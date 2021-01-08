@@ -10,6 +10,9 @@ export class ToolbarComponent implements OnInit {
   @Input()
   version: string = 'v0.0.0';
 
+  @Input()
+  title: string = 'Title';
+
   constructor() { }
 
   ngOnInit(): void {
