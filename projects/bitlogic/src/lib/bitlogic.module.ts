@@ -1,16 +1,12 @@
 import { NgModule } from '@angular/core';
-import { BitlogicComponent } from './bitlogic.component';
-import { ToolbarComponent } from './components/toolbar/toolbar.component';
+// import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { ToolbarModule } from './components/toolbar/toolbar.module';
 
 @NgModule({
-  declarations: [BitlogicComponent, ToolbarComponent],
-  imports: [
-  ],
+  declarations: [],
+  imports: [],
   exports: [
-    BitlogicComponent,
-    
-    ToolbarComponent
-    
+    ToolbarModule    
   ]
 })
 export class BitlogicModule { }
