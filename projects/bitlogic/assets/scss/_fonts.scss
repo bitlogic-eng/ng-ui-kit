@@ -1,0 +1,63 @@
+//Google Fonts //
+@import url("https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,600,600i,700,700i,900,900i&display=swap");
+
+//--------------- Fonts ---------------//
+$font-primary: "Montserrat", sans-serif;
+$font-secondary: "Source Sans Pro", sans-serif;
+.font-primary {
+  font-family: $font-primary;
+}
+
+.font-secondary {
+  font-family: $font-secondary;
+}
+
+// @font-face {
+//     font-family: 'Poppins';
+//     font-style: normal;
+//     font-weight: normal;
+//     src: url('../assets/fonts/Poppins/Poppins-Regular.ttf');
+//  }
+
+//  @font-face {
+//     font-family: 'Poppins';
+//     font-style: normal;
+//     font-weight: 200;
+//     src: url('../assets/fonts/Poppins/Poppins-ExtraLight.ttf');
+//  }
+
+//  @font-face {
+//     font-family: 'Poppins';
+//     font-style: normal;
+//     font-weight: 300;
+//     src: url('../assets/fonts/Poppins/Poppins-Light.ttf');
+//  }
+
+//  @font-face {
+//     font-family: 'Poppins';
+//     font-style: normal;
+//     font-weight: 500;
+//     src: url('../assets/fonts/Poppins/Poppins-Medium.ttf');
+//  }
+
+//  @font-face {
+//     font-family: 'Poppins';
+//     font-style: normal;
+//     font-weight: 100;
+//     src: url('../assets/fonts/Poppins/Poppins-Thin.ttf');
+//  }
+
+//  @font-face {
+//     font-family: 'Poppins';
+//     font-style: normal;
+//     font-weight: bold;
+//     src: url('../assets/fonts/Poppins/Poppins-Bold.ttf');
+//  }
+  
+//  @font-face {
+//     font-family: 'Poppins';
+//     font-style: italic;
+//     font-weight: normal;
+//     src: url('../assets/fonts/Poppins/Poppins-Italic.ttf');
+//  }

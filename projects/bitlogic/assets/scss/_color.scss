@@ -1,0 +1,77 @@
+// Customizable colors
+$color-primary:#00A98F;
+$color-secondary: #006C5B;
+
+$color-white:#FFFFFF;
+$color-black:#000000;
+
+// state colors
+$color-warning: #FAA41A;
+$color-success: #0EE1A2;
+$color-danger: #DC1351;
+$color-highlighted:#772583;
+$color-info:#005587;
+$color-disabled: mix($color-black, white, 10%);
+
+// Alternative apha - Colors 
+
+$color-primary-alt-80: mix($color-primary, white, 80%);
+$color-primary-alt-60: mix($color-primary, white, 60%);
+$color-primary-alt-40: mix($color-primary, white, 40%);
+$color-primary-alt-20: mix($color-primary, white, 20%);
+$color-primary-alt-10: mix($color-primary, white, 10%);
+$color-primary-alt-05: mix($color-primary, white, 5%);
+
+$color-secondary-alt-80: mix($color-secondary, white, 80%);
+$color-secondary-alt-60: mix($color-secondary, white, 60%);
+$color-secondary-alt-40: mix($color-secondary, white, 40%);
+$color-secondary-alt-20: mix($color-secondary, white, 20%);
+$color-secondary-alt-10: mix($color-secondary, white, 10%);
+$color-secondary-alt-05: mix($color-secondary, white, 5%);
+
+$color-black-alt-80: mix($color-black, white, 80%);
+$color-black-alt-60: mix($color-black, white, 60%);
+$color-black-alt-40: mix($color-black, white, 40%);
+$color-black-alt-20: mix($color-black, white, 20%);
+$color-black-alt-10: mix($color-black, white, 10%);
+$color-black-alt-05: mix($color-black, white, 5%);
+
+$color-warning-alt-80: mix($color-warning, white, 80%);
+$color-warning-alt-60: mix($color-warning, white, 60%);
+$color-warning-alt-40: mix($color-warning, white, 40%);
+$color-warning-alt-20: mix($color-warning, white, 20%);
+$color-warning-alt-10: mix($color-warning, white, 10%);
+$color-warning-alt-05: mix($color-warning, white, 5%);
+
+$color-success-alt-80: mix($color-success, white, 80%);
+$color-success-alt-60: mix($color-success, white, 60%);
+$color-success-alt-40: mix($color-success, white, 40%);
+$color-success-alt-20: mix($color-success, white, 20%);
+$color-success-alt-10: mix($color-success, white, 10%);
+$color-success-alt-05: mix($color-success, white, 5%);
+
+$color-danger-alt-80: mix($color-danger, white, 80%);
+$color-danger-alt-60: mix($color-danger, white, 60%);
+$color-danger-alt-40: mix($color-danger, white, 40%);
+$color-danger-alt-20: mix($color-danger, white, 20%);
+$color-danger-alt-10: mix($color-danger, white, 10%);
+$color-danger-alt-05: mix($color-danger, white, 5%);
+
+$color-highlighted-alt-80: mix($color-highlighted, white, 80%);
+$color-highlighted-alt-60: mix($color-highlighted, white, 60%);
+$color-highlighted-alt-40: mix($color-highlighted, white, 40%);
+$color-highlighted-alt-20: mix($color-highlighted, white, 20%);
+$color-highlighted-alt-10: mix($color-highlighted, white, 10%);
+$color-highlighted-alt-05: mix($color-highlighted, white, 5%);
+
+$color-info-alt-80: mix($color-info, white, 80%);
+$color-info-alt-60: mix($color-info, white, 60%);
+$color-info-alt-40: mix($color-info, white, 40%);
+$color-info-alt-20: mix($color-info, white, 20%);
+$color-info-alt-10: mix($color-info, white, 10%);
+$color-info-alt-05: mix($color-info, white, 5%);    
+
+//shadow
+$shadow: 0 2px 3px 0 rgba($color-black, .16);
+$shadow-sm: 0 1px 3px 0 rgba($color-black, .08);
+  

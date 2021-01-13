@@ -12,7 +12,7 @@
       },      
       "root": "projects/bitlogic",
       "sourceRoot": "projects/bitlogic/src",
-      "prefix": "bit",
+      "prefix": "bit",      
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
@@ -20,6 +20,7 @@
             "tsConfig": "projects/bitlogic/tsconfig.lib.json",
             "project": "projects/bitlogic/ng-package.json"
           },
+          "assets": ["projects/bitlogic/assets"],
           "configurations": {
             "production": {
               "tsConfig": "projects/bitlogic/tsconfig.lib.prod.json"
