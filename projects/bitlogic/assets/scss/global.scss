@@ -1,0 +1,7 @@
+@import '_color';
+@import '~@angular/material/theming';
+
+// font
+$font-primary: mat-typography-config($font-family: '"Poppins", sans-serif;');
+@include mat-core($font-primary);
+

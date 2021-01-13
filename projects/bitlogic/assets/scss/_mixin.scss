@@ -1,0 +1,12 @@
+@mixin deg-main ($direction, $color-top, $color-bottom) {
+	background: linear-gradient($direction, $color-top, $color-bottom);
+}
+
+@mixin btn-background($btn-background, $color) {
+    background-color: $btn-background;
+    color: $color;
+    &:hover {
+        background-color: lighten($color: $btn-background, $amount: 0.5);
+        color: $color;
+    }
+}
