@@ -96,8 +96,8 @@ $bit-info: (
 );    
  
 $my-custom-primary: mat-palette($bit-primary, main, light, dark);
-$my-custom-accent: mat-palette($bit-accent, main, light, dark);
-$my-custom-warn: mat-palette($bit-warning, main, light, dark);
+$my-custom-accent: mat-palette($bit-secondary, main, light, dark);
+$my-custom-warn: mat-palette($bit-danger, main, light, dark);
 
 $my-custom-theme: mat-light-theme($my-custom-primary, $my-custom-accent, $my-custom-warn);
 

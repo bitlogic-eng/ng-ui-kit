@@ -1,62 +1,23 @@
 
 <ng-template #content><ng-content></ng-content></ng-template>
 
-<ng-container *ngIf="btntype === undefined">
-        <button color={{color}} mat-button>
-                <!-- [ngClass]="colorClass"    -->
-                <ng-container *ngTemplateOutlet="content"></ng-container>
-        </button>        
-</ng-container>
 
-<ng-container *ngIf="btntype === 'raised'">
-        <button color={{color}} mat-raised-button>
-                <!-- [ngClass]="colorClass"    -->
-                <ng-container *ngTemplateOutlet="content"></ng-container>
-        </button>        
-</ng-container>
+<button *ngIf="type === undefined || type === 'text-button'" color={{color}} mat-button [disabled]="disabled" (click)="onClickButton()">
+        <!-- [ngClass]="colorClass"    -->
+        <ng-container *ngTemplateOutlet="content"></ng-container>
+</button>        
 
-<ng-container *ngIf="btntype === 'stroked'">
-        <button color={{color}} mat-stroked-button>
-                <!-- [ngClass]="colorClass"    -->
-                <ng-container *ngTemplateOutlet="content"></ng-container>
-        </button>           
+<button *ngIf="type === 'raised-button'" color={{color}} mat-raised-button [disabled]="disabled" (click)="onClickButton()">
+        <!-- [ngClass]="colorClass"    -->
+        <ng-container *ngTemplateOutlet="content"></ng-container>
+</button>        
+
+<button *ngIf="type === 'stroked-button'" color={{color}} mat-stroked-button [disabled]="disabled" [ngClass]="buttonClass" (click)="onClickButton()">
+        <!-- [ngClass]="colorClass"    -->
+        <ng-container *ngTemplateOutlet="content"></ng-container>
+</button>     
         
-</ng-container>
-        
-<ng-container *ngIf="btntype === 'flat'">
-        <button color={{color}} mat-flat-button>
-                <!-- [ngClass]="colorClass"    -->
-                <ng-container *ngTemplateOutlet="content"></ng-container>
-        </button>           
-        
-</ng-container>
-
-
-<!-- <ng-container *ngIf="btntype === 'raised'">
-        <button mat-raised-button color={{color}} >
-            <ng-content></ng-content>    
-        </button>        
-</ng-container>
-
-<ng-container *ngIf="btntype === 'stroked'">
-        <button mat-stroked-button color={{color}} >
-            <ng-content></ng-content>    
-        </button>        
-</ng-container>
-
-<ng-container *ngIf="btntype === 'flat'">
-        <button mat-flat-button color={{color}} >
-
-            <ng-content></ng-content>    
-        </button>        
-</ng-container>
- -->
-<!-- 
-<button mat-stroked-button>Basic</button>
-<button mat-raised-button color="primary">Primary</button>
-<button mat-raised-button color="accent">Accent</button>
-<button mat-raised-button color="warn">Warn</button>
-<button mat-raised-button disabled>Disabled</button>
-<a mat-raised-button href="https://www.google.com/" target="_blank">Link</a> -->
-
-
+<button *ngIf="type === 'flat-button'" color={{color}} mat-flat-button [disabled]="disabled" (click)="onClickButton()">
+        <!-- [ngClass]="colorClass"    -->
+        <ng-container *ngTemplateOutlet="content"></ng-container>
+</button>

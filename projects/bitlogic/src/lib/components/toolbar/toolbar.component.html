@@ -1,6 +1,24 @@
-<div class="toolbar" role="banner">
-    <h1>{{title}}</h1>
+<div class="toolbar">
+    <div class="header-user-data">
+        <h1>{{title}}</h1>
+        <p>{{currentDate}}</p>        
+    </div>
+
     <div class="spacer"></div>
-    <p class="version">{{version}}</p>
+
+    <div class="header-profile">
+        
+        <div class="user-data">
+            <h4>Santiago Suarez</h4>
+            <p>{{currentDate}}</p>
+            <p class="version">({{version}})</p>
+        </div>
+        
+
+        <div class="user-avatar" (click)="onOpenProfile()"></div>
+    
+    </div>
+    
+
 </div>
 

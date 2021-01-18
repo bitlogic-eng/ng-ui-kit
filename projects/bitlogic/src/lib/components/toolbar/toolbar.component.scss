@@ -1,28 +1,73 @@
+@import '../../../../assets/scss/theme';
+  
   .spacer {
     flex: 1;
   }
 
   .toolbar {
-    // position: absolute;
-    // top: 0;
-    // left: 0;
-    // right: 0;
     height: 80px;
     display: flex;
     align-items: center;
-    background: rgb(0,169,143);
-    background: linear-gradient(100deg, rgba(0,169,143,1) 5%, rgba(0,108,91,1) 45%);
-    color: white;
-    font-weight: 600;
+
+    @include deg-main (-45deg, $color-secondary, $color-primary);
+    
+    color: $color-white;
     width: 100%;
 
-    h1 {
-      margin-left: 20px;
+    .header-user-data {
+      display: flex;
+      flex-direction: column;
+      margin: 0 20px;
+
+      h1 {
+        margin: 0 0 5px 0;
+      }
+
+      p {
+        margin: 0;
+        font-size: 0.7rem;
+      }
     }
 
-    .version {
-      margin-right: 10px;
-      font-weight: 300;
-      font-size: 12px;
+    .header-profile {
+      display: flex;
+      align-items: center;
+      margin: 0 20px 0 0;
+
+      .user-data {
+        margin: 0 10px 0 0;
+        text-align: end;
+
+        h4 {
+          margin: 0 0 5px 0;
+        }
+
+        p {
+          font-size: .7rem;
+          margin: 0 0 5px 0;
+        }
+      }
+
+      .user-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 2px solid $color-primary;
+        overflow: hidden;
+        background-size: cover;
+        background-repeat: none;
+        background-position: center;
+        background-image: url(../../../../assets/img/avatar_default.jpg);
+        cursor: pointer;
+      }
+
+      .version {
+        margin-right: 0;
+        font-weight: 300;
+        font-size: 12px;
+      }
+        
     }
+
+  
   }

@@ -14,52 +14,68 @@ const ColorType = {
 }
 
 const ButtonType = {
-  "bit-basic": "bt-btn-basic",
+  "basic": "bt-btn-basic",
   "bit-outlined": "bt-btn-outlined",
   "bit-raised": "bt-btn-raised",
   "bit-flat": "bt-btn-flat"
 }
 
-const colorDefault = ColorType["basic"];
+const BUTTON_HOST_ATTRIBUTES = [
+  'bit-button',
+  'bit-flat-button',
+  'bit-icon-button',
+  'bit-raised-button'
+];
+
+const colorDefault = ColorType[ColorType.basic];
 
 @Component({
   selector: 'bit-button',
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss']
 })
-export class ButtonComponent implements OnInit, AfterViewInit {
+export class ButtonComponent implements OnInit {
 
   _color: string;
-  colorClass: string;
-
-  @ViewChild('btn') btnRef: ElementRef;
+  _disabled: boolean = false;
+  _type: string;
+  buttonClass: string;
 
   @Input()
   set color(color: string) {
     this._color = color;
-    this.colorClass = ColorType[color] ||  colorDefault;
+    this.buttonClass = ColorType[color] ||  colorDefault;
   }
   get color() {
     return this._color;
   }
 
   @Input()
-  btntype: string;
+  set disabled(disabled) {
+    this._disabled = disabled != null;
+  }
+  get disabled() {
+    return this._disabled;
+  }
+
+  @Input()
+  set type(type: string) {
+    this._type = type;
+  }
+  get type() {
+    return this._type;
+  }
 
   @Output()
   btnEvent = new EventEmitter();
 
-  constructor() { }
+  constructor() { 
+  }
 
   ngOnInit(): void {
   }
 
-  ngAfterViewInit() {
-    // console.log(this.btnRef.nativeElement.html);
-    console.log(this.btnRef);
-    console.log(this.btntype);
-
-
+  onClickButton() {
+    this.btnEvent.emit();
   }
-
 }
