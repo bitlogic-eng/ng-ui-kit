@@ -2,16 +2,10 @@
 @import '../../../../assets/scss/theme';
 
 :host {
-    .btn-disabled {
-        border-color: $color-black-alt-10; 
-        @include btn-background ($color-black-alt-10, $color-black-alt-40);
-        cursor: initial;
-    }
 
     button {
         border-radius: 60px;
         font-family: $font-primary;
-
 
         // &.mat-button {
 
@@ -125,77 +119,6 @@
     
         // }
 
-        // // &.mat-raised-button,
-        // // &.mat-stroked-button,
-        // // &.mat-flat-button
-        // // {
-        // //     border-radius: 60px;
-        // //     font-family: $font-primary;
-        // // }
-    
-        // &:disabled {
-        //     border-color: $color-black-alt-10; 
-        //     @include btn-background ($color-black-alt-10, $color-black-alt-40);
-        //     cursor: initial;
-        // }
-
-        // &.bt-basic {
-        //     border-color: $color-white; 
-        //     @include btn-background ($color-white, $color-black-alt-80);
-        // }
-
-        // &.bt-primary {
-        //     border-color: $color-primary; 
-        //     @include btn-background ($color-primary, $color-white);
-        // }
-
-        // &.bt-secondary {
-        //     border-color: $color-secondary; 
-        //     @include btn-background ($color-secondary, $color-white);
-        // }
-        
-        // &.bt-success {
-        //     border-color: $color-success; 
-        //     @include btn-background ($color-success, $color-white);
-        // }
-        
-        // &.bt-danger {
-        //     border-color: $color-danger; 
-        //     @include btn-background ($color-danger, $color-white);
-        // }
-        
-        // &.bt-warning {
-        //     border-color: $color-warning; 
-        //     @include btn-background ($color-warning, $color-white);
-        // }
-                
-        // &.bt-high {
-        //     border-color: $color-highlighted; 
-        //     @include btn-background ($color-highlighted, $color-white);
-        // }
-        
-        // &.bt-alt {
-        //     border-color: $color-primary; 
-        //     @include btn-background ($color-white, $color-primary);
-        // }
-
-        // &.bt-info {
-        //     border-color: $color-info; 
-        //     @include btn-background ($color-info, $color-white);
-
-        // }
-        
-        // &.bt-link {
-        //     border-color: transparent; 
-        //     @include btn-background (transparent, $color-primary);
-        //     box-shadow: none;
-        //     text-transform: initial;
-        //     &:hover {
-        //         text-decoration: underline;
-        //     }
-        // }
-        
-    
     }
 
 }

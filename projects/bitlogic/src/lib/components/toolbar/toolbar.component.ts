@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'bit-toolbar',
@@ -13,9 +13,19 @@ export class ToolbarComponent implements OnInit {
   @Input()
   title: string = 'Title';
 
+  @Input()
+  currentDate: string;
+
+  @Output()
+  openProfile = new EventEmitter();
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onOpenProfile() {
+    this.openProfile.emit(); // TODO send user data.
   }
 
 }
