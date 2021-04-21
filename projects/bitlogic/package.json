@@ -4,7 +4,7 @@
   "peerDependencies": {
     "@angular/common": "^11.0.5",
     "@angular/core": "^11.0.5",
-    "@angular/material": "^11.0.3"
+    "bootstrap": "^4.6.0"
   },
   "dependencies": {
     "tslib": "^2.0.0"

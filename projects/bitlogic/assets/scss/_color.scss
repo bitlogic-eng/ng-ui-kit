@@ -69,9 +69,16 @@ $color-info-alt-60: mix($color-info, white, 60%);
 $color-info-alt-40: mix($color-info, white, 40%);
 $color-info-alt-20: mix($color-info, white, 20%);
 $color-info-alt-10: mix($color-info, white, 10%);
-$color-info-alt-05: mix($color-info, white, 5%);    
+$color-info-alt-05: mix($color-info, white, 5%);  
 
-//shadow
-$shadow: 0 2px 3px 0 rgba($color-black, .16);
-$shadow-sm: 0 1px 3px 0 rgba($color-black, .08);
-  
+// customs theme ...
+$theme-colors: (
+  "primary":    $color-primary,
+  "secondary":  $color-secondary,
+  "success":    $color-success,
+  "info":       $color-info,
+  "warning":    $color-warning,
+  "danger":     $color-danger,
+  "light":      $color-white,
+  "dark":       $color-black
+);
