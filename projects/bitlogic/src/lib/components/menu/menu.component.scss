@@ -1,0 +1,104 @@
+
+@import '../../../../assets/scss/theme';
+
+// .menu {
+//   text-align: center;
+//   -webkit-box-shadow: 5px 1px 15px -7px #cecece;
+//   box-shadow: 5px 1px 15px -7px #cecece;
+  
+//   .u21 {
+//     background-image: url('../../../../assets/img/iso_siglo_21.svg');
+//     width: 50px;
+//     height: 50px;
+//     background-size: cover;
+//     background-repeat: none;
+//     background-position: center;
+//     margin-bottom: 50px;
+  
+//   }
+  
+// }
+
+// h4 {
+//   font-weight: 400 !important;
+// }
+
+.navbar {
+  // position: fixed;
+  // width: $navbar-width;
+  height: 100%;
+  // top: 0px;
+  background: $color-white;
+  box-shadow: 3px 0 6px rgba(0,0,0,.08);
+  // z-index: 100;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  .u21 {
+    background-image: url('../../../../assets/img/iso_siglo_21.svg');
+    width: 34px;
+    height: 34px;
+    background-size: cover;
+    background-repeat: none;
+    background-position: center;
+    margin: 26px 0 26px 0;
+  }
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  .link {
+    @extend %transition;
+
+    // text-decoration: none;
+    &:hover {
+      opacity: 0.8;
+      cursor: pointer;
+    }
+
+
+    // & + .link {
+    //   border-top: 1px solid $color-black-alt-10;
+    // }
+    // &:last-child {
+    //   border: none;
+    // }
+
+    i {
+      height: 50px;
+      width: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      border: 6px solid $color-white;
+      background-color: $color-white;
+      align-items: center;
+      justify-content: center;
+      color:$color-black-alt-40;
+      font-size: 26px;
+    }
+    h6 {
+      color:$color-black-alt-40;
+    }
+
+    &.selected {
+      i {
+          color: $color-white;
+          background-color: $color-primary;
+      }
+      h6 {
+          color: $color-primary;
+      }
+    }
+
+    &:last-child {
+
+    }
+
+  }
+}
+

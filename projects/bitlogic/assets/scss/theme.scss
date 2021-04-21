@@ -1,107 +1,40 @@
-@import '~@angular/material/prebuilt-themes/indigo-pink.css';
-@import '~@angular/material/theming';
-@include mat-core();
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
 @import 'mixin';
 @import 'color';
 @import 'fonts';
 @import 'variables';
+@import 'placeholders';
+@import 'text';
 
-@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+    // .btn-primary {
+    //     border-color: $color-primary; 
+    //     // background-color: $color-primary-alt-80; 
+    //     @include btn-background ($color-primary, $color-white);
 
-$bit-basic: (
-    main: $color-primary,
-    light: $color-primary-alt-40,
-    dark: $color-secondary,
-        contrast: (
-        main: #f5f5f5,
-        light: $color-primary-alt-80,
-        dark: #fff
-    )
-);    
+    //     box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%), 0 1px 5px 0 rgb(0 0 0 / 12%) !important;
+		// 		// box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24) !important;
+    //     transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 
-$bit-primary: (
-    main: $color-primary,
-    light: $color-primary-alt-40,
-    dark: $color-secondary,
-        contrast: (
-        main: #f5f5f5,
-        light: $color-primary-alt-80,
-        dark: #fff
-    )
-);    
+    //     // @include btn-background ($color-white, $color-black-alt-80);
 
-$bit-secondary: (
-    main: $color-secondary,
-    light: $color-secondary-alt-40,
-    dark: $color-secondary,
-        contrast: (
-        main: #f5f5f5,
-        light: $color-secondary-alt-80,
-        dark: #fff
-    )
-);    
+    //     &:active {
+    //         box-shadow: 0 5px 5px -3px rgb(0 0 0 / 20%), 0 8px 10px 1px rgb(0 0 0 / 14%), 0 3px 14px 2px rgb(0 0 0 / 12%) !important;
+    //         // box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22) !important;
+    //         transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    //         border-color: $color-primary-alt-80; 
+    //         background-color: $color-primary-alt-80 !important; 
+    //     }
 
-$bit-warning: (
-    main: $color-warning,
-    light: $color-warning-alt-40,
-    dark: $color-warning,
-        contrast: (
-        main: #f5f5f5,
-        light: $color-warning-alt-80,
-        dark: #fff
-    )
-);    
-
-$bit-success: (
-    main: $color-success,
-    light: $color-success-alt-40,
-    dark: $color-success,
-        contrast: (
-        main: #f5f5f5,
-        light: $color-success-alt-80,
-        dark: #fff
-    )
-);    
-
-$bit-danger: (
-    main: $color-danger,
-    light: $color-danger-alt-40,
-    dark: $color-danger,
-        contrast: (
-        main: #f5f5f5,
-        light: $color-danger-alt-80,
-        dark: #fff
-    )
-);    
-
-$bit-accent: (
-    main: $color-highlighted,
-    light: $color-highlighted-alt-40,
-    dark: $color-highlighted,
-        contrast: (
-        main: #f5f5f5,
-        light: $color-highlighted-alt-80,
-        dark: #fff
-    )
-);    
-
-$bit-info: (
-    main: $color-info,
-    light: $color-info-alt-40,
-    dark: $color-info,
-        contrast: (
-        main: #f5f5f5,
-        light: $color-info-alt-80,
-        dark: #fff
-    )
-);    
+    //     &:hover {
+    //         background-color: $color-primary; 
+    //     }
  
-$my-custom-primary: mat-palette($bit-primary, main, light, dark);
-$my-custom-accent: mat-palette($bit-secondary, main, light, dark);
-$my-custom-warn: mat-palette($bit-danger, main, light, dark);
-
-$my-custom-theme: mat-light-theme($my-custom-primary, $my-custom-accent, $my-custom-warn);
+    // }
 
 
-@include angular-material-theme($my-custom-theme);
+@import '~bootstrap/scss/bootstrap';
+
+// .btn-primary {
+// 	@include button-variant($color-danger, darken($color-danger, 7.5%), darken($color-danger, 10%), lighten($color-danger,5%), lighten($color-danger, 10%), darken($color-danger,20%));
+// }

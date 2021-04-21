@@ -1,0 +1,41 @@
+body {
+	font-family: $font-primary;
+	color: $color-black-alt-60 !important;
+	font-size: 0.875rem;
+}
+h1 {
+	font-size: 2rem !important;
+	font-family: $font-primary;
+}
+h2 {
+	font-size: 1.5rem !important;
+	font-family: $font-primary;
+}
+h3 {
+	font-size: 1.25rem !important;
+	font-family: $font-primary;
+}
+h4 {
+	font-size: 1rem !important;
+	font-family: $font-primary;
+}
+h5 {
+	font-size: 0.875rem !important;
+	font-family: $font-primary;
+}
+h6 {
+	font-size: 0.625rem !important;
+	font-family: $font-primary;
+}
+p {
+	font-size: 0.75rem;
+	font-family: $font-secondary;
+}
+
+.font-primary {
+	font-family: $font-primary;
+}
+
+.font-secondary {
+	font-family: $font-secondary;
+}

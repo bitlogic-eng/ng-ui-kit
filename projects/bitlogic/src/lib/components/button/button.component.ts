@@ -1,33 +1,32 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 
-
-const ColorType = {
-  "basic": "bt-basic",
-  "primary": "bt-primary",
-  "secondary": "bt-secondary",
-  "success": "bt-success",
-  "warning": "bt-warning",
-  "danger": "bt-danger",
-  "high": "bt-high",
-  "alt": "bt-alt",
-  "info": "bt-info"
-}
-
 const ButtonType = {
-  "basic": "bt-btn-basic",
-  "bit-outlined": "bt-btn-outlined",
-  "bit-raised": "bt-btn-raised",
-  "bit-flat": "bt-btn-flat"
+  "button": "btn",
+  "fab": "fab",
+  "link": "link"
 }
 
-const BUTTON_HOST_ATTRIBUTES = [
-  'bit-button',
-  'bit-flat-button',
-  'bit-icon-button',
-  'bit-raised-button'
-];
+const ButtonColor = {
+  "basic": "main",
+  "primary": "primary",
+  "secondary": "secondary",
+  "success": "success",
+  "warning": "warning",
+  "danger": "danger",
+  "high": "high",
+  "info": "info"
+}
 
-const colorDefault = ColorType[ColorType.basic];
+const ButtonStyle = {
+  "text": "btn-text",
+  "outlined": "btn-outline",
+  "raised": "btn",
+  "flat": "flat"
+}
+
+const COLOR_DEFAULT = ButtonColor.basic;
+const STYLE_DEFAULT = ButtonStyle.raised;
+const TYPE_DEFAULT = ButtonType.button;
 
 @Component({
   selector: 'bit-button',
@@ -36,18 +35,39 @@ const colorDefault = ColorType[ColorType.basic];
 })
 export class ButtonComponent implements OnInit {
 
-  _color: string;
-  _disabled: boolean = false;
-  _type: string;
-  buttonClass: string;
+  private _color: string;
+  private _disabled: boolean = false;
+  private _type: string;
+  private _style: string;
+  private _colorClass: string = COLOR_DEFAULT; 
+  private _styleClass: string = STYLE_DEFAULT;
+  private _typeClass: string = TYPE_DEFAULT;
 
   @Input()
   set color(color: string) {
     this._color = color;
-    this.buttonClass = ColorType[color] ||  colorDefault;
+    this._colorClass = ButtonColor[color] ||  COLOR_DEFAULT;
   }
   get color() {
     return this._color;
+  }
+
+  @Input()
+  set type(type: string) {
+    this._type = type;
+    this._typeClass = ButtonType[type] || TYPE_DEFAULT;
+  }
+  get type() {
+    return this._type;
+  }
+
+  @Input()
+  set sty(style: string) {
+    this._style = style;
+    this._styleClass = ButtonStyle[this._style] || STYLE_DEFAULT;
+  }
+  get sty() {
+    return this._style;
   }
 
   @Input()
@@ -58,13 +78,6 @@ export class ButtonComponent implements OnInit {
     return this._disabled;
   }
 
-  @Input()
-  set type(type: string) {
-    this._type = type;
-  }
-  get type() {
-    return this._type;
-  }
 
   @Output()
   btnEvent = new EventEmitter();
@@ -73,6 +86,13 @@ export class ButtonComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  getClass() {
+    const commun = '' //'shadow-none' ;
+    // + (this._type === ButtonStyle.fab ? ' btn-rounded' : '');
+    
+    return `${commun} ${this._typeClass} ${this._styleClass}-${this._colorClass}`;
   }
 
   onClickButton() {

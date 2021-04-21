@@ -21,6 +21,13 @@
             "project": "projects/bitlogic/ng-package.json"
           },
           "assets": ["projects/bitlogic/assets"],
+          "styles": [
+            "./node_modules/bootstrap/dist/css/bootstrap.min.css"
+          ],
+          "scripts": [
+            "./node_modules/jquery/dist/jquery.min.js",
+            "./node_modules/bootstrap/dist/js/bootstrap.min.js"
+          ],
           "configurations": {
             "production": {
               "tsConfig": "projects/bitlogic/tsconfig.lib.prod.json"
