@@ -1,4 +1,3 @@
-
 ## Getting Started with NG UI KIT Components
 
 Before start using this library, make sure to have configured your NPM client to use the NPM private registry. 
@@ -125,7 +124,7 @@ $ npm run build-w
 
 ## Publishing
 
-Before pubish a new version of the library, generate a [release version]().
+Before pubish a new version of the library, generate a [release version - TBD].
 
 To publish the components library to the NPM private registry, first a build must be generated,
 ```bash
