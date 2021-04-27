@@ -112,13 +112,13 @@ The tests are executed via [Karma](https://karma-runner.github.io) test runner, 
 To generate a build.
 
 ```bash
-$ npm run build
+$ npm run build:dev
 ```
 
 If want to generate a build for watch.
 
 ```bash
-$ npm run build-w
+$ npm run build:dev:w
 ```
 
 
@@ -132,13 +132,23 @@ To publish the components library to the NPM private registry, first a build mus
 $ npm run build
 ```
 
-Then, publish the library,
+Or
+
 ```bash
-# move to the dist folder
-$ cd dist/bitlogic
-# publish it
-$ npm publish
+$ ng build yourLibraryName --prod
+
 ```
+
+Then, publish the library from the root.
+
+  ```bash
+  npm run publish
+  ```
+Or
+
+  ```bash
+  $ npm publish ./dist/bitlogic
+  ```
 
 ## Demo library Components setup
 
