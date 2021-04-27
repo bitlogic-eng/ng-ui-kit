@@ -1,5 +1,4 @@
 
-
 ## Getting Started with NG UI KIT Components
 
 Before start using this library, make sure to have configured your NPM client to use the NPM private registry. 
@@ -14,7 +13,7 @@ Before start using this library, make sure to have configured your NPM client to
 
 1. Install  [nodejs](https://nodejs.org/) (tested with v14.15.4 or later)
   npm (version 6.14.10 or later)
-2. Install [Angular](https://angular.io) (tested with 11 or later)
+2. Install [Angular-CLI](https://github.com/angular/angular-cli) (tested with 11 or later)
 
 
 ## Development
