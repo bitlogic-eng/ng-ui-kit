@@ -3,7 +3,7 @@
 
   <ul>
     <ng-container *ngFor="let option of options">
-        <li id={{option.id}} class="link" [class.selected]="option.selected" (click)="onOptionClick(option, $event)">
+        <li id={{option.id}} class="link" [class.selected]="option.selected" (click)="onOptionClick(option)">
             <div>
               <i class="material-icons mx-auto">{{option.icon}}</i>
               <h6 class="text-center">

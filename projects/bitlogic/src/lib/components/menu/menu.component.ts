@@ -24,7 +24,7 @@ export class MenuComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onOptionClick(optionSelected: any, $event) {
+  onOptionClick(optionSelected: any) {
     for (let option of this.options) {
       option.selected = false;
       if (option.id === optionSelected.id) {
@@ -34,9 +34,6 @@ export class MenuComponent implements OnInit {
 
     this.memuClick.emit(optionSelected);
 
-    console.log ($event);
-  
-    
   }
 
 }
