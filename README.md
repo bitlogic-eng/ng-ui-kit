@@ -1,27 +1,85 @@
-# DemoLib
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.4.
+# NG UI KIT, Angular Component to Siglo 21.
 
-## Development server
+Welcome to ng-ui-kit, a common UI component library. This library exposes a set of common UI component for angular, in order to be used as building blocks that help and accelerate the developing process of siglo 21 web applications
+This library is a work in progress. Please check out our list of
+[issues](https://code.ues21.edu.ar/ui-lab/ng-ui-kit/-/issues). Feel free to make comments there.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+**Team Leads/Commiters:**
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Usubiaga, Juan <juan.usubiaga@bitlogic.io>
 
-## Build
+## Table of Contents
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+- [Getting started](#getting-started)
+- [How to use the library](#how-to-use-the-library)
+- [Contributing to the project](#contributing-to-the-project)
+- [You've found a bug?](#youve-found-a-bug)
+- [Contact](#contact)
+- [Licence](#licence)
 
-## Running unit tests
+## Getting started
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+See the [Getting Started Guide](GETTINGSTARTED.md) if you're interested to develop new components.
 
-## Running end-to-end tests
+If you'd like to contribute, you must follow our [contributing guidelines](CONTRIBUTING.md).
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+If you want to see the components working, try it with a live [demo]().
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## How to use the library
+
+Before start using this library, make sure to have configured your NPM client to use the NPM private registry. Follow this [documentation]()
+NPM private registry [Nexus](https://nexus.uesiglo21.edu.ar/#browse/browse:npm-private:%40bitlogic)
+
+To install this library, run:
+
+```bash
+$ npm install @bitlogic/ng-ui-kit
+```
+
+and then from your Angular `AppModule`:
+
+```typescript
+...
+// Import the module
+import { BitlogicModule } from '@bitlogic/ng-ui-kit';
+
+@NgModule({
+  ...
+  imports: [
+    ...
+    // Specify library as an import
+    BitlogicModule
+  ],
+
+  ...
+})
+export class AppModule { }
+```
+
+Once the library is imported, you can use its components, directives and pipes in your Angular application, for example, to use the totalizer component:
+
+```html
+<!-- You can now use your library component in app.component.html -->
+<bit-toolbar version="{{currentVersion}}" title="{{title}}" currentDate="{{currentDate}}" (openProfile)="onOpenProfile()"></bit-toolbar>    
+```
+
+Please, take a look at the `demo` Angular app for a complete list and detailed usage for all of the available components.
+
+## Contributing to the project
+
+Please check our [Contributing process](CONTRIBUTING.md) Process.
+
+## You've found a bug?
+
+Please check our [Contributing process](CONTRIBUTING.md) Process.
+
+## Contact
+
+Contact us in [Teams]()
+
+## License
+
+Copyright (c) 2021 Bitlogic, LLC.  All rights reserved.

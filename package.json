@@ -7,7 +7,7 @@
     "build": "ng build bitlogic",
     "test": "ng test",
     "lint": "ng lint",
-    "link": "npm link ./dist/bitlogic",
+    "symlink": "npm link ./dist/bitlogic",
     "build-w": "ng build bitlogic --watch"
   },
   "private": true,
