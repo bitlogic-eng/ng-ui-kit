@@ -4,11 +4,13 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build bitlogic",
+    "build": "ng build bitlogic --prod",
     "test": "ng test",
     "lint": "ng lint",
     "symlink": "npm link ./dist/bitlogic",
-    "build-w": "ng build bitlogic --watch"
+    "build:dev": "ng build bitlogic",
+    "build:dev:w": "ng build bitlogic --watch",
+    "publish": "npm publish ./dist/bitlogic" 
   },
   "private": true,
   "dependencies": {
