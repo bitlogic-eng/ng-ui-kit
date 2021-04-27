@@ -1,4 +1,3 @@
-
 # NG UI KIT, Angular Component to Siglo 21.
 
 Welcome to ng-ui-kit, a common UI component library. This library exposes a set of common UI component for angular, in order to be used as building blocks that help and accelerate the developing process of siglo 21 web applications
@@ -25,7 +24,7 @@ See the [Getting Started Guide](GETTINGSTARTED.md) if you're interested to devel
 
 If you'd like to contribute, you must follow our [contributing guidelines](CONTRIBUTING.md).
 
-If you want to see the components working, try it with a live [demo]().
+If you want to see the components working, try it with a live [demo - TBD].
 
 
 ## How to use the library
