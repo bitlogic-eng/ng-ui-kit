@@ -4,6 +4,7 @@ export interface MenuOpcion {
   id: string, 
   name: string, 
   icon: string, 
+  link: string, 
   selected: boolean
 }
 
@@ -17,7 +18,11 @@ export class MenuComponent implements OnInit {
   @Input()
   options: Array<MenuOpcion> = [];
 
+  @Input()
+  showLogo: boolean = false;
+
   @Output('menuClick') memuClick : EventEmitter<any> = new EventEmitter<any>();
+
   
   constructor() {}
 

@@ -1,10 +1,10 @@
 <nav class="navbar">
-  <div class="u21"></div>
+  <div *ngIf="false" class="u21"></div>
 
   <ul>
     <ng-container *ngFor="let option of options">
-        <li id={{option.id}} class="link" [class.selected]="option.selected" (click)="onOptionClick(option)">
-            <div>
+        <li id={{option.id}} routerLink={{option.link}} class="link" [class.selected]="option.selected" (click)="onOptionClick(option)">
+          <div>
               <i class="material-icons mx-auto">{{option.icon}}</i>
               <h6 class="text-center">
                   {{option.name}}
@@ -13,68 +13,7 @@
           </li>          
     </ng-container>    
 
-    <!-- <li id="butt-2" class="link">
-      <div>
-        <i class="material-icons mx-auto">menu_book</i>
-        <h6 class="text-center">
-          Materias
-        </h6>
-      </div>
-    </li>
-
-    <li id="butt-3" class="link">
-        <div>
-          <i class="material-icons mx-auto">receipt</i>
-          <h6 class="text-center">
-              Pagos
-          </h6>
-        </div>
-    </li>
-
-    <li id="butt-4" class="link">
-        <div>
-          <i class="material-icons mx-auto">more_vert</i>
-          <h6 class="text-center">
-              Más opciones
-          </h6>
-        </div>
-    </li> -->
 
   </ul>
         
 </nav>
-
-
-
-
-<!-- <nav
-  class="navbar position-fixed d-flex flex-md-column justify-content-between align-items-center flex-nowrap overflow-auto py-0 px-4 px-md-0">
-  <a routerLink="/" class="link d-none d-md-flex flex-column align-items-center py-4">
-    <img src="./assets/img/iso_siglo_21.svg" alt="Universidad Siglo 21" class="img-fluid" />
-  </a>
-  <div class="flex-grow-1 d-flex justify-content-between align-items-end  align-items-md-center flex-md-column mb-md-2">
-    <a id="butt-course"
-      class="link d-flex flex-column align-items-center pb-2 pt-md-1 mt-md-auto">
-      <i class="material-icons mx-auto">menu_book</i>
-      <h6 class="text-center">
-        Materias
-      </h6>
-    </a>
-
-    <button class="btn link cursor d-flex flex-column align-items-center pb-2 mt-md-auto">
-        <i class="material-icons mx-auto">menu_book</i>
-        <h6 class="text-center">
-          Materias
-        </h6>
-    </button>
-
-    <bit-button><i class="material-icons mx-auto">menu_book</i></bit-button>
-    
-    <div id="butt-more" class="link cursor d-flex flex-column align-items-center pb-2 mt-md-auto">
-      <i class="material-icons mx-auto">exit_to_app</i>
-      <h6 class="text-center">
-        Salir
-      </h6>
-    </div>
-  </div>
-</nav> -->
