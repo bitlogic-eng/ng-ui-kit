@@ -10,7 +10,7 @@
     "symlink": "npm link ./dist/bitlogic",
     "build:dev": "ng build bitlogic",
     "build:dev:w": "ng build bitlogic --watch",
-    "publish": "npm publish ./dist/bitlogic" 
+    "publish": "npm publish ./dist/bitlogic"
   },
   "private": true,
   "dependencies": {
@@ -24,7 +24,9 @@
     "@angular/platform-browser": "~11.0.4",
     "@angular/platform-browser-dynamic": "~11.0.4",
     "@angular/router": "~11.0.4",
+    "@ngu/carousel": "^3.0.2",
     "bootstrap": "^4.6.0",
+    "hammerjs": "^2.0.8",
     "jquery": "^3.6.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",

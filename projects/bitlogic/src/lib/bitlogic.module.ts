@@ -13,7 +13,7 @@ import { SliderModule } from './components/slider/slider.module';
     ToolbarModule,
     ButtonModule,
     MenuModule,
-    SliderModule    
+    SliderModule,
   ]
 })
 export class BitlogicModule { }
