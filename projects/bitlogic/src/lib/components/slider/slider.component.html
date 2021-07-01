@@ -12,7 +12,7 @@
                     </div>
                     <div class="mb-2 d-flex align-items-center text-white">
                         <i class="material-icons icon-xs mr-2">work_outline</i>
-                        <h5 class="flex-grow-1 pr-2 text-truncate m-0">
+                        <h5 class="flex-grow-1 pr-2 m-0">
                             {{item.modality}}
                         </h5>
                     </div>
@@ -26,16 +26,20 @@
                 <div class="flex-grow-1 d-flex align-items-center mt-4">
                     <h5 class="text-white font-weight-bold course-name m-0">{{item.careerName}}</h5>
                 </div>
-                <div class="total-subjets mt-4 rounded-custom">
-                    <div class="h-100 d-flex align-items-center text-white px-3">
-                        <h5 class="acl flex-grow-1 pr-2 m-0">{{item.subjectsLabel}}</h5>
-                        <h5 class="num pl-2 m-0">{{item.subjectsApprove}}</h5>
+                <div *ngIf="item.subjectsApprove">
+                    <div class="total-subjets mt-4 rounded-custom">
+                        <div class="h-100 d-flex align-items-center text-white px-3">
+                            <h5 class="acl flex-grow-1 pr-2 m-0">{{item.subjectsLabel}}</h5>
+                            <h5 class="num pl-2 m-0">{{item.subjectsApprove}}</h5>
+                        </div>
                     </div>
                 </div>
-                <div class="total-credits mt-2 rounded-custom">
-                    <div class="h-100 d-flex align-items-center px-3">
-                        <h5 class="acl flex-grow-1 pr-2 m-0">{{item.creditsLabel}}</h5>
-                        <h5 class="num pl-2 m-0"> {{item.credits}}</h5>
+                <div *ngIf="item.credits">
+                    <div class="total-credits mt-2 rounded-custom">
+                        <div class="h-100 d-flex align-items-center px-3">
+                            <h5 class="acl flex-grow-1 pr-2 m-0">{{item.creditsLabel}}</h5>
+                            <h5 class="num pl-2 m-0"> {{item.credits}}</h5>
+                        </div>
                     </div>
                 </div>
             </div>
