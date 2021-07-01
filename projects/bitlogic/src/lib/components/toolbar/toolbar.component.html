@@ -6,18 +6,14 @@
     <div class="spacer"></div>
 
     <div class="header-profile">
-        
+
         <div class="user-data">
-            <h4>Santiago Suarez</h4>
-            <p>{{currentDate}}</p>
+            <h4>{{userName}}</h4>
+            <p>{{currentDate | date:'mediumDate'}}</p>
             <p class="version">({{version}})</p>
         </div>
-        
-
         <div class="user-avatar" (click)="onOpenProfile()"></div>
-    
     </div>
-    
+
 
 </div>
-

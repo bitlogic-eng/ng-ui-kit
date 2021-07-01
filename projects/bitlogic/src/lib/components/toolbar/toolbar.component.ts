@@ -19,6 +19,11 @@ export class ToolbarComponent implements OnInit {
   @Output()
   openProfile = new EventEmitter();
 
+  @Input()
+  userName: string
+
+
+
   constructor() { }
 
   ngOnInit(): void {
