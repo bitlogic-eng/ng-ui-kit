@@ -1,5 +1,5 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { NguCarousel, NguCarouselConfig } from '@ngu/carousel';
+import { Component, Input, AfterViewInit, ViewChild, Output, EventEmitter } from '@angular/core';
+import { NguCarousel, NguCarouselConfig, NguCarouselStore} from '@ngu/carousel';
 
 export interface SliderInfo {
   careerLevel: string;
@@ -16,27 +16,47 @@ export interface SliderInfo {
   selector: 'bit-slider',
   templateUrl: './slider.component.html',
   styleUrls: ['./slider.component.scss']
+
 })
-export class SliderComponent implements OnInit {
-  public carouselOne: NguCarouselConfig;
+export class SliderComponent implements AfterViewInit {
+  @Input() slideInfo: SliderInfo[];
+  @Output() moveSlide = new EventEmitter();
+  @Output() slideClick = new EventEmitter();
+  currentSlide: SliderInfo;
+
   @ViewChild('myCarousel') myCarousel: NguCarousel<any>;
-  @Input() slideInfo: SliderInfo[]
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-  carouselConfig: NguCarouselConfig = {
-    grid: { xs: 1, sm: 1, md: 1, lg: 1, all: 0 },
+  
+  carouselTileConfig: NguCarouselConfig = {
+    grid: {xs: 1, sm: 1, md: 1, lg: 1, all: 0},
     slide: 1,
-    loop: true,
-    touch: true,
-    animation: 'lazy',
-    velocity: 0.2,
-    load: 3,
+    speed: 600,
+    interval: {timing: 4000},
     point: {
-      visible: true,
-      hideOnSingleSlide: true
+      visible: true
+    },
+    load: 2,
+    touch: true,
+    loop: true,
+    custom: 'banner'
+  };  
+
+
+  constructor() {}
+
+  ngAfterViewInit() {
+    if (this.slideInfo.length !== 0) {
+      this.currentSlide = this.slideInfo[0];
     }
-  };
+    console.log(this.currentSlide);
+
+  }
+
+  onSlideMove(data: NguCarouselStore) {
+    this.currentSlide = this.slideInfo[data.currentSlide]; 
+    this.moveSlide.emit(this.currentSlide);
+  }
+
+  onSlideClick() {
+    this.slideClick.emit(this.currentSlide);
+  }
 }

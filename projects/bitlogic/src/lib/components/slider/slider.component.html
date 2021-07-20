@@ -1,58 +1,60 @@
-<ngu-carousel [inputs]="carouselConfig" [dataSource]="slideInfo" #myCarousel
-    class="rounded-custom-lg overflow-hidden shadow cont-cards h-100">
-    <div class="card rounded-0 shadow-0 border-0 d-flex w-100 h-100 item px-2" *nguCarouselDef="let item">
-        <div class="flex-grow-1 d-flex flex-column p-4">
-            <div>
-                <div class="flex-grow-1 w-50 plans">
-                    <div class="mb-2 d-flex align-items-center text-white">
-                        <i class="material-icons icon-xs mr-2">list_alt</i>
-                        <h5 class="m-0">
-                            {{item.careerLevel}}
-                        </h5>
-                    </div>
-                    <div class="mb-2 d-flex align-items-center text-white">
-                        <i class="material-icons icon-xs mr-2">work_outline</i>
-                        <h5 class="flex-grow-1 pr-2 m-0">
-                            {{item.modality}}
-                        </h5>
-                    </div>
-                    <div class="mb-1 d-flex align-items-center text-white">
-                        <i class="material-icons icon-xs mr-2">assignment</i>
-                        <h5 class="m-0">
-                            {{item.assigment}}
-                        </h5>
-                    </div>
-                </div>
-                <div class="flex-grow-1 d-flex align-items-center mt-4">
-                    <h5 class="text-white font-weight-bold course-name m-0">{{item.careerName}}</h5>
-                </div>
-                <div *ngIf="item.subjectsApprove">
-                    <div class="total-subjets mt-4 rounded-custom">
-                        <div class="h-100 d-flex align-items-center text-white px-3">
-                            <h5 class="acl flex-grow-1 pr-2 m-0">{{item.subjectsLabel}}</h5>
-                            <h5 class="num pl-2 m-0">{{item.subjectsApprove}}</h5>
+<ngu-carousel #myCarousel class="rounded-custom-lg overflow-hidden shadow cont-cards h-100" 
+              [inputs]="carouselTileConfig" 
+              [dataSource]="slideInfo" 
+              (onMove)="onSlideMove($event)">
+
+    <div class="card rounded-0 shadow-0 border-0 d-flex w-100 h-100 item px-2" 
+              *nguCarouselDef="let item; let i = index;">
+
+            <div class="flex-grow-1 d-flex flex-column p-4" (click)="onSlideClick()">
+                        <div class="flex-grow-1 w-50 plans">
+                            <div class="mb-2 d-flex align-items-center text-white">
+                                <i class="material-icons icon-xs mr-2">list_alt</i>
+                                <h6 class="m-0">
+                                    {{item.careerLevel}}
+                                </h6>
+                            </div>
+                            <div class="mb-2 d-flex align-items-center text-white">
+                                <i class="material-icons icon-xs mr-2">work_outline</i>
+                                <h6 class="flex-grow-1 pr-2 m-0">
+                                    {{item.modality}}
+                                </h6>
+                            </div>
+                            <div class="mb-1 d-flex align-items-center text-white">
+                                <i class="material-icons icon-xs mr-2">assignment</i>
+                                <h6 class="m-0">
+                                    {{item.assigment}}
+                                </h6>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div *ngIf="item.credits">
-                    <div class="total-credits mt-2 rounded-custom">
-                        <div class="h-100 d-flex align-items-center px-3">
-                            <h5 class="acl flex-grow-1 pr-2 m-0">{{item.creditsLabel}}</h5>
-                            <h5 class="num pl-2 m-0"> {{item.credits}}</h5>
+                        <div class="flex-grow-1 d-flex align-items-center mt-4">
+                            <h5 class="text-white font-weight-bold course-name m-0">{{item.careerName}}</h5>
                         </div>
-                    </div>
+                        <div *ngIf="item.subjectsApprove">
+                            <div class="total-subjets mt-4 rounded-custom">
+                                <div class="h-100 d-flex align-items-center text-white px-3">
+                                    <h6 class="acl flex-grow-1 pr-2 m-0">{{item.subjectsLabel}}</h6>
+                                    <h5 class="num pl-2 m-0">{{item.subjectsApprove}}</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="item.credits">
+                            <div class="total-credits mt-2 rounded-custom">
+                                <div class="h-100 d-flex align-items-center px-3">
+                                    <h6 class="acl flex-grow-1 pr-2 m-0">{{item.creditsLabel}}</h6>
+                                    <h5 class="num pl-2 m-0"> {{item.credits}}</h5>
+                                </div>
+                            </div>
+                        </div>
                 </div>
+                
             </div>
-            <div>
-                <div NguCarouselNext *ngIf="slideInfo.length >= 2" class="card-butt next"><i
-                        class="material-icons">chevron_right</i>
-                </div>
-            </div>
-            <div>
-                <div NguCarouselPrev *ngIf="slideInfo.length >= 2" class="card-butt prev"><i
-                        class="material-icons">chevron_left</i>
-                </div>
-            </div>
-        </div>
-    </div>
+    
+    <button NguCarouselPrev class="card-button prev">
+        <i class="material-icons">chevron_left</i>
+    </button>
+    <button NguCarouselNext class="card-button next">
+        <i class="material-icons">chevron_right</i>
+    </button>
+
 </ngu-carousel>

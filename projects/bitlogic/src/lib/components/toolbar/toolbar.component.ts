@@ -23,14 +23,13 @@ export class ToolbarComponent implements OnInit {
   userName: string
 
 
-
   constructor() { }
 
   ngOnInit(): void {
   }
 
   onOpenProfile() {
-    this.openProfile.emit(); // TODO send user data.
+    this.openProfile.emit(this.userName); // TODO send user data.
   }
 
 }
