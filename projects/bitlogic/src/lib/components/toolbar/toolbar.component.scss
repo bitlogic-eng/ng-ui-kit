@@ -1,75 +1,86 @@
-@import '../../../../assets/scss/theme';
-  
-  .spacer {
-    flex: 1;
-  }
+  @import '../../../../assets/scss/theme';
+ 
+  :host {
 
-  .toolbar {
-    height: 80px;
-    display: flex;
-    align-items: center;
+    // custom variables
+    --color: #{$color-white}; // title color
+    --background-lg-start: #{$color-secondary}; // linear-gradient start
+    --background-lg-end: #{$color-primary}; // linear-gradient end
 
-    @include deg-main (-45deg, $color-secondary, $color-primary);
-    
-    color: $color-white;
-    width: 100%;
-
-    .header-user-data {
-      display: flex;
-      flex-direction: column;
-      margin: 0 20px;
-
-      h1 {
-        margin: 0 0 5px 0;
-        font-weight: bold ;
-        font-size: 24px;
-      }
-
-      p {
-        margin: 0;
-        font-size: 0.7rem;
-      }
+    .spacer {
+      flex: 1;
     }
-
-    .header-profile {
+  
+    .toolbar {
+  
+      height: 80px;
       display: flex;
       align-items: center;
-      margin: 0 20px 0 0;
-
-      .user-data {
-        margin: 0 10px 0 0;
-        text-align: end;
-
-        h4 {
-          margin: 0 0 5px 0;
-        }
-
-        p {
-          font-size: .7rem;
-          margin: 0 0 5px 0;
-        }
-      }
-
-      .user-avatar {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        border: 2px solid $color-primary;
-        overflow: hidden;
-        background-size: cover;
-        background-repeat: none;
-        background-position: center;
-        background-image: url(../../../../assets/img/user_avatar_default.png);
-        cursor: pointer;
-      }
-
-      .version {
-        margin-right: 0;
-        font-weight: 300;
-        font-size: 12px;
-      }
-        
-    }
-
   
+      @include deg-main (-45deg, var(--background-lg-start), var(--background-lg-end));
+      
+      color: var(--color);
+      width: 100%;
+  
+      .header-user-data {
+        display: flex;
+        flex-direction: column;
+        margin: 0 20px;
+  
+        h1 {
+          margin: 0 0 5px 0;
+          font-weight: bold ;
+          font-size: 24px;
+        }
+  
+        p {
+          margin: 0;
+          font-size: 0.7rem;
+        }
+      }
+  
+      .header-profile {
+        display: flex;
+        align-items: center;
+        margin: 0 20px 0 0;
+  
+        .user-data {
+          margin: 0 10px 0 0;
+          text-align: end;
+  
+          h4 {
+            margin: 0 0 5px 0;
+          }
+  
+          p {
+            font-size: .7rem;
+            margin: 0 0 5px 0;
+          }
+        }
+  
+        .user-avatar {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          border: 2px solid $color-primary;
+          overflow: hidden;
+          background-size: cover;
+          background-repeat: none;
+          background-position: center;
+          background-image: url(../../../../assets/img/user_avatar_default.png);
+          cursor: pointer;
+        }
+  
+        .version {
+          margin-right: 0;
+          font-weight: 300;
+          font-size: 12px;
+        }
+          
+      }
+  
+    
+    }    
   }
+  
+
