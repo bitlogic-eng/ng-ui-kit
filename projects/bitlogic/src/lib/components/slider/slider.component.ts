@@ -20,7 +20,7 @@ export interface SliderInfo {
 })
 export class SliderComponent implements AfterViewInit {
   @Input() slideInfo: SliderInfo[];
-  @Output() moveSlide = new EventEmitter();
+  @Output() slideMove = new EventEmitter();
   @Output() slideClick = new EventEmitter();
   currentSlide: SliderInfo;
 
@@ -53,7 +53,7 @@ export class SliderComponent implements AfterViewInit {
 
   onSlideMove(data: NguCarouselStore) {
     this.currentSlide = this.slideInfo[data.currentSlide]; 
-    this.moveSlide.emit(this.currentSlide);
+    this.slideMove.emit(this.currentSlide);
   }
 
   onSlideClick() {
