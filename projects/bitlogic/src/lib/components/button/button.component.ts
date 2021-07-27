@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef, AfterViewInit, ContentChild } from '@angular/core';
 
 const ButtonType = {
   "button": "btn",
@@ -33,7 +33,8 @@ const TYPE_DEFAULT = ButtonType.button;
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss']
 })
-export class ButtonComponent implements OnInit {
+export class ButtonComponent implements OnInit, AfterViewInit {
+  
 
   private _color: string;
   private _disabled: boolean = false;
@@ -82,10 +83,17 @@ export class ButtonComponent implements OnInit {
   @Output()
   btnEvent = new EventEmitter();
 
+  @ContentChild("ref") c: any;
+
+  
   constructor() { 
   }
 
   ngOnInit(): void {
+  }
+
+  ngAfterViewInit(): void {
+    console.log(this.c);
   }
 
   getClass() {

@@ -1,6 +1,10 @@
 import { Component, Input, AfterViewInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { NguCarousel, NguCarouselConfig, NguCarouselStore} from '@ngu/carousel';
 
+/**
+ * The Slider Info
+ * @interface SliderInfo
+ */
 export interface SliderInfo {
   careerLevel: string;
   modality: string;
@@ -19,10 +23,22 @@ export interface SliderInfo {
 
 })
 export class SliderComponent implements AfterViewInit {
+  /**
+   * Is the Slider info
+   */
   @Input() slideInfo: SliderInfo[];
+  
+  /**
+   * Slide Move click handler
+   */
   @Output() slideMove = new EventEmitter();
+  
+  /**
+   * Banner click handler
+   */
   @Output() slideClick = new EventEmitter();
-  currentSlide: SliderInfo;
+  
+  private currentSlide: SliderInfo;
 
   @ViewChild('myCarousel') myCarousel: NguCarousel<any>;
   
@@ -40,7 +56,6 @@ export class SliderComponent implements AfterViewInit {
     custom: 'banner'
   };  
 
-
   constructor() {}
 
   ngAfterViewInit() {
@@ -48,7 +63,6 @@ export class SliderComponent implements AfterViewInit {
       this.currentSlide = this.slideInfo[0];
     }
     console.log(this.currentSlide);
-
   }
 
   onSlideMove(data: NguCarouselStore) {
