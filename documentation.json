@@ -1221,7 +1221,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/bitlogic/src/lib/components/menu/menu.stories.ts",
+                "file": "projects/bitlogic/src/lib/components/slider/slider.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -1241,7 +1241,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/bitlogic/src/lib/components/slider/slider.stories.ts",
+                "file": "projects/bitlogic/src/lib/components/menu/menu.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -1252,6 +1252,26 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "projects/bitlogic/src/lib/components/button/button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "LegajoDisabled",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/bitlogic/src/lib/components/slider/slider.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "LegajoSlider",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/bitlogic/src/lib/components/slider/slider.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -1275,6 +1295,16 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "literal type"
+            },
+            {
+                "name": "Simple",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/bitlogic/src/lib/components/slider/slider.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
             },
             {
                 "name": "slideInfo",
@@ -1304,17 +1334,17 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<ButtonComponent>",
-                "defaultValue": "(args: ButtonComponent) => ({\n  component: ButtonComponent,\n  props: args,\n  decorators: [\n    moduleMetadata({\n      declarations: [],\n      imports: [\n        ButtonModule\n      ],\n    }),\n  ],\n\n  template: `<bit-button>Button</bit-button>`,\n})"
+                "defaultValue": "(args: ButtonComponent) => ({\n  component: ButtonComponent,\n  props: args,\n  decorators: [\n    moduleMetadata({\n      declarations: [],\n      imports: [\n        ButtonModule\n      ],\n    }),\n  ],\n\n  template: `<bit-button sty=\"outlined\" color=\"secondary\">Button</bit-button>`,\n})"
             },
             {
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/bitlogic/src/lib/components/menu/menu.stories.ts",
+                "file": "projects/bitlogic/src/lib/components/slider/slider.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<MenuComponent>",
-                "defaultValue": "(args: MenuComponent) => ({\n  component: MenuComponent,\n  props: args,\n})"
+                "type": "Story<SliderComponent>",
+                "defaultValue": "(args: SliderComponent) => ({\n  component: SliderComponent,\n  props: args,\n})"
             },
             {
                 "name": "Template",
@@ -1330,11 +1360,11 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/bitlogic/src/lib/components/slider/slider.stories.ts",
+                "file": "projects/bitlogic/src/lib/components/menu/menu.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<SliderComponent>",
-                "defaultValue": "(args: SliderComponent) => ({\n  component: SliderComponent,\n  props: args,\n})"
+                "type": "Story<MenuComponent>",
+                "defaultValue": "(args: MenuComponent) => ({\n  component: MenuComponent,\n  props: args,\n})"
             },
             {
                 "name": "TYPE_DEFAULT",
@@ -1463,7 +1493,91 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<ButtonComponent>",
-                    "defaultValue": "(args: ButtonComponent) => ({\n  component: ButtonComponent,\n  props: args,\n  decorators: [\n    moduleMetadata({\n      declarations: [],\n      imports: [\n        ButtonModule\n      ],\n    }),\n  ],\n\n  template: `<bit-button>Button</bit-button>`,\n})"
+                    "defaultValue": "(args: ButtonComponent) => ({\n  component: ButtonComponent,\n  props: args,\n  decorators: [\n    moduleMetadata({\n      declarations: [],\n      imports: [\n        ButtonModule\n      ],\n    }),\n  ],\n\n  template: `<bit-button sty=\"outlined\" color=\"secondary\">Button</bit-button>`,\n})"
+                }
+            ],
+            "projects/bitlogic/src/lib/components/slider/slider.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/bitlogic/src/lib/components/slider/slider.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "LegajoDisabled",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/bitlogic/src/lib/components/slider/slider.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "LegajoSlider",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/bitlogic/src/lib/components/slider/slider.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Simple",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/bitlogic/src/lib/components/slider/slider.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "slideInfo",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/bitlogic/src/lib/components/slider/slider.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "SliderInfo[]",
+                    "defaultValue": "[\n  {\n    careerLevel: 'GRADO',\n    modality: 'DISTANCIA - EDUCACION DISTRIBUIDA',\n    assigment: 'VCIN02466',\n    careerName: 'LICENCIATURA EN COMERCIO INTERNACIONAL',\n    subjectsApprove: '35/37',\n    credits: '3/12',\n    subjectsLabel:'Materias programáticas aprobadas para el plan de estudio',\n    creditsLabel:'Créditos acumulados'\n\n  },\n  {\n    careerLevel: 'GRADO 1',\n    modality: 'DISTANCIA - EDUCACION DISTRIBUIDA',\n    assigment: 'VCIN03000',\n    careerName: 'Licenciatura en Gestión Turística',\n    subjectsApprove: '1/10',\n    credits: '3/3',\n    subjectsLabel:'Materias programáticas aprobadas para el plan de estudio',\n    creditsLabel:'Créditos acumulados'\n  },\n  {\n    careerLevel: 'GRADO 2',\n    modality: 'DISTANCIA - EDUCACION DISTRIBUIDA',\n    assigment: 'VCIN04000',\n    careerName: 'Mat 3',\n    subjectsApprove: '1/10',\n    credits: '3/3',\n    subjectsLabel:'Materias programáticas aprobadas para el plan de estudio',\n    creditsLabel:'Créditos acumulados'\n  },\n  {\n    careerLevel: 'GRADO 3',\n    modality: 'DISTANCIA - EDUCACION DISTRIBUIDA',\n    assigment: 'VCIN04000',\n    careerName: 'Mat 3',\n    subjectsApprove: '1/10',\n    credits: '3/3',\n    subjectsLabel:'Materias programáticas aprobadas para el plan de estudio',\n    creditsLabel:'Créditos acumulados'\n  }\n]"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/bitlogic/src/lib/components/slider/slider.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<SliderComponent>",
+                    "defaultValue": "(args: SliderComponent) => ({\n  component: SliderComponent,\n  props: args,\n})"
+                }
+            ],
+            "projects/bitlogic/src/lib/components/toolbar/toolbar.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/bitlogic/src/lib/components/toolbar/toolbar.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/bitlogic/src/lib/components/toolbar/toolbar.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<ToolbarComponent>",
+                    "defaultValue": "(args: ToolbarComponent) => ({\n  component: ToolbarComponent,\n  props: args,\n})"
                 }
             ],
             "projects/bitlogic/src/lib/components/menu/menu.stories.ts": [
@@ -1497,60 +1611,6 @@
                     "type": "Story<MenuComponent>",
                     "defaultValue": "(args: MenuComponent) => ({\n  component: MenuComponent,\n  props: args,\n})"
                 }
-            ],
-            "projects/bitlogic/src/lib/components/toolbar/toolbar.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/bitlogic/src/lib/components/toolbar/toolbar.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/bitlogic/src/lib/components/toolbar/toolbar.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<ToolbarComponent>",
-                    "defaultValue": "(args: ToolbarComponent) => ({\n  component: ToolbarComponent,\n  props: args,\n})"
-                }
-            ],
-            "projects/bitlogic/src/lib/components/slider/slider.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/bitlogic/src/lib/components/slider/slider.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "slideInfo",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/bitlogic/src/lib/components/slider/slider.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "SliderInfo[]",
-                    "defaultValue": "[\n  {\n    careerLevel: 'GRADO',\n    modality: 'DISTANCIA - EDUCACION DISTRIBUIDA',\n    assigment: 'VCIN02466',\n    careerName: 'LICENCIATURA EN COMERCIO INTERNACIONAL',\n    subjectsApprove: '35/37',\n    credits: '3/12',\n    subjectsLabel:'Materias programáticas aprobadas para el plan de estudio',\n    creditsLabel:'Créditos acumulados'\n\n  },\n  {\n    careerLevel: 'GRADO 1',\n    modality: 'DISTANCIA - EDUCACION DISTRIBUIDA',\n    assigment: 'VCIN03000',\n    careerName: 'Licenciatura en Gestión Turística',\n    subjectsApprove: '1/10',\n    credits: '3/3',\n    subjectsLabel:'Materias programáticas aprobadas para el plan de estudio',\n    creditsLabel:'Créditos acumulados'\n  },\n  {\n    careerLevel: 'GRADO 2',\n    modality: 'DISTANCIA - EDUCACION DISTRIBUIDA',\n    assigment: 'VCIN04000',\n    careerName: 'Mat 3',\n    subjectsApprove: '1/10',\n    credits: '3/3',\n    subjectsLabel:'Materias programáticas aprobadas para el plan de estudio',\n    creditsLabel:'Créditos acumulados'\n  },\n  {\n    careerLevel: 'GRADO 3',\n    modality: 'DISTANCIA - EDUCACION DISTRIBUIDA',\n    assigment: 'VCIN04000',\n    careerName: 'Mat 3',\n    subjectsApprove: '1/10',\n    credits: '3/3',\n    subjectsLabel:'Materias programáticas aprobadas para el plan de estudio',\n    creditsLabel:'Créditos acumulados'\n  }\n]"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/bitlogic/src/lib/components/slider/slider.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<SliderComponent>",
-                    "defaultValue": "(args: SliderComponent) => ({\n  component: SliderComponent,\n  props: args,\n})"
-                }
             ]
         },
         "groupedFunctions": {},
@@ -1559,7 +1619,7 @@
     },
     "routes": [],
     "coverage": {
-        "count": 6,
+        "count": 5,
         "status": "low",
         "files": [
             {
@@ -1733,6 +1793,36 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/bitlogic/src/lib/components/slider/slider.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "LegajoDisabled",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/bitlogic/src/lib/components/slider/slider.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "LegajoSlider",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/bitlogic/src/lib/components/slider/slider.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Simple",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
