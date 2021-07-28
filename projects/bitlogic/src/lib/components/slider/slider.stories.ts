@@ -47,7 +47,7 @@ const slideInfo: SliderInfo[] = [
 ]
 
 export default {
-  title: 'bitlogic/Slider',
+  title: 'Components/Slider',
   component: SliderComponent,
   argTypes: {},
   decorators: [
@@ -69,4 +69,16 @@ const Template: Story<SliderComponent> = (args: SliderComponent) => ({
 export const Default = Template.bind({});
 Default.args = {
   slideInfo: slideInfo
+};
+
+export const Simple = Template.bind({});
+Simple.args = {
+};
+
+export const LegajoSlider = Template.bind({});
+LegajoSlider.args = {
+};
+
+export const LegajoDisabled = Template.bind({});
+LegajoDisabled.args = {
 };

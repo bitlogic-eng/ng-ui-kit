@@ -9,7 +9,7 @@ const options: MenuOpcion[] = [
 ];
 
 export default {
-  title: 'bitlogic/Menu',
+  title: 'Components/Menu',
   component: MenuComponent,
   argTypes: {},
 } as Meta;

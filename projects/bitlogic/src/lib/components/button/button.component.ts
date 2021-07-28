@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef, AfterViewInit, ContentChild } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 const ButtonType = {
   "button": "btn",
@@ -33,19 +33,18 @@ const TYPE_DEFAULT = ButtonType.button;
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss']
 })
-export class ButtonComponent implements OnInit, AfterViewInit {
+export class ButtonComponent implements OnInit {
   
-
-  private _color: string;
+  private _color: 'basic' | 'primary' | 'secondary' | 'success'  | 'warning' | 'danger' | 'high' | 'info' ;
   private _disabled: boolean = false;
   private _type: string;
-  private _style: string;
+  private _style: 'text' | 'outlined' | 'raised' | 'flat';
   private _colorClass: string = COLOR_DEFAULT; 
   private _styleClass: string = STYLE_DEFAULT;
   private _typeClass: string = TYPE_DEFAULT;
 
   @Input()
-  set color(color: string) {
+  set color(color) {
     this._color = color;
     this._colorClass = ButtonColor[color] ||  COLOR_DEFAULT;
   }
@@ -54,16 +53,16 @@ export class ButtonComponent implements OnInit, AfterViewInit {
   }
 
   @Input()
-  set type(type: string) {
+  set type(type) {
     this._type = type;
-    this._typeClass = ButtonType[type] || TYPE_DEFAULT;
+    this._typeClass = ButtonType[this._type] || TYPE_DEFAULT;
   }
   get type() {
     return this._type;
   }
 
   @Input()
-  set sty(style: string) {
+  set sty(style) {
     this._style = style;
     this._styleClass = ButtonStyle[this._style] || STYLE_DEFAULT;
   }
@@ -73,7 +72,7 @@ export class ButtonComponent implements OnInit, AfterViewInit {
 
   @Input()
   set disabled(disabled) {
-    this._disabled = disabled != null;
+    this._disabled = disabled;
   }
   get disabled() {
     return this._disabled;
@@ -81,19 +80,12 @@ export class ButtonComponent implements OnInit, AfterViewInit {
 
 
   @Output()
-  btnEvent = new EventEmitter();
+  click: EventEmitter<any> = new EventEmitter<any>();
 
-  @ContentChild("ref") c: any;
-
-  
   constructor() { 
   }
 
   ngOnInit(): void {
-  }
-
-  ngAfterViewInit(): void {
-    console.log(this.c);
   }
 
   getClass() {
@@ -103,7 +95,7 @@ export class ButtonComponent implements OnInit, AfterViewInit {
     return `${commun} ${this._typeClass} ${this._styleClass}-${this._colorClass}`;
   }
 
-  onClickButton() {
-    this.btnEvent.emit();
+  onClickButton($event) {
+    this.click.emit('ev');
   }
 }
