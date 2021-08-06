@@ -1211,7 +1211,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/bitlogic/src/lib/components/button/button.stories.ts",
+                "file": "projects/bitlogic/src/lib/components/menu/menu.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -1241,7 +1241,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/bitlogic/src/lib/components/menu/menu.stories.ts",
+                "file": "projects/bitlogic/src/lib/components/button/button.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -1330,11 +1330,11 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/bitlogic/src/lib/components/button/button.stories.ts",
+                "file": "projects/bitlogic/src/lib/components/menu/menu.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<ButtonComponent>",
-                "defaultValue": "(args: ButtonComponent) => ({\n  component: ButtonComponent,\n  props: args,\n  decorators: [\n    moduleMetadata({\n      declarations: [],\n      imports: [\n        ButtonModule\n      ],\n    }),\n  ],\n\n  template: `<bit-button sty=\"outlined\" color=\"secondary\">Button</bit-button>`,\n})"
+                "type": "Story<MenuComponent>",
+                "defaultValue": "(args: MenuComponent) => ({\n  component: MenuComponent,\n  props: args,\n})"
             },
             {
                 "name": "Template",
@@ -1360,11 +1360,11 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/bitlogic/src/lib/components/menu/menu.stories.ts",
+                "file": "projects/bitlogic/src/lib/components/button/button.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<MenuComponent>",
-                "defaultValue": "(args: MenuComponent) => ({\n  component: MenuComponent,\n  props: args,\n})"
+                "type": "Story<ButtonComponent>",
+                "defaultValue": "(args: ButtonComponent) => ({\n  component: ButtonComponent,\n  props: args,\n  decorators: [\n    moduleMetadata({\n      declarations: [],\n      imports: [\n        ButtonModule\n      ],\n    }),\n  ],\n\n  template: `<bit-button sty=\"outlined\" color=\"secondary\">Button</bit-button>`,\n})"
             },
             {
                 "name": "TYPE_DEFAULT",
@@ -1464,36 +1464,36 @@
                     "type": "literal type"
                 }
             ],
-            "projects/bitlogic/src/lib/components/button/button.stories.ts": [
+            "projects/bitlogic/src/lib/components/menu/menu.stories.ts": [
                 {
                     "name": "Default",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "projects/bitlogic/src/lib/components/button/button.stories.ts",
+                    "file": "projects/bitlogic/src/lib/components/menu/menu.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
                     "defaultValue": "Template.bind({})"
                 },
                 {
-                    "name": "Disabled",
+                    "name": "options",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "projects/bitlogic/src/lib/components/button/button.stories.ts",
+                    "file": "projects/bitlogic/src/lib/components/menu/menu.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
+                    "type": "MenuOpcion[]",
+                    "defaultValue": "[\n  { id: 'butt-1', name: 'Exámenes', icon: 'insert_drive_file', link:\"\", selected: true },\n  { id: 'butt-2', name: 'Materias', icon: 'menu_book', link:\"\", selected: false },\n  { id: 'butt-3', name: 'Pagos', icon: 'receipt', link:\"\", selected: false },\n  { id: 'butt-4', name: 'Más opciones', icon: 'more_vert', link:\"\", selected: false }\n]"
                 },
                 {
                     "name": "Template",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "projects/bitlogic/src/lib/components/button/button.stories.ts",
+                    "file": "projects/bitlogic/src/lib/components/menu/menu.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "Story<ButtonComponent>",
-                    "defaultValue": "(args: ButtonComponent) => ({\n  component: ButtonComponent,\n  props: args,\n  decorators: [\n    moduleMetadata({\n      declarations: [],\n      imports: [\n        ButtonModule\n      ],\n    }),\n  ],\n\n  template: `<bit-button sty=\"outlined\" color=\"secondary\">Button</bit-button>`,\n})"
+                    "type": "Story<MenuComponent>",
+                    "defaultValue": "(args: MenuComponent) => ({\n  component: MenuComponent,\n  props: args,\n})"
                 }
             ],
             "projects/bitlogic/src/lib/components/slider/slider.stories.ts": [
@@ -1580,36 +1580,36 @@
                     "defaultValue": "(args: ToolbarComponent) => ({\n  component: ToolbarComponent,\n  props: args,\n})"
                 }
             ],
-            "projects/bitlogic/src/lib/components/menu/menu.stories.ts": [
+            "projects/bitlogic/src/lib/components/button/button.stories.ts": [
                 {
                     "name": "Default",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "projects/bitlogic/src/lib/components/menu/menu.stories.ts",
+                    "file": "projects/bitlogic/src/lib/components/button/button.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
                     "defaultValue": "Template.bind({})"
                 },
                 {
-                    "name": "options",
+                    "name": "Disabled",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "projects/bitlogic/src/lib/components/menu/menu.stories.ts",
+                    "file": "projects/bitlogic/src/lib/components/button/button.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "MenuOpcion[]",
-                    "defaultValue": "[\n  { id: 'butt-1', name: 'Exámenes', icon: 'insert_drive_file', link:\"\", selected: true },\n  { id: 'butt-2', name: 'Materias', icon: 'menu_book', link:\"\", selected: false },\n  { id: 'butt-3', name: 'Pagos', icon: 'receipt', link:\"\", selected: false },\n  { id: 'butt-4', name: 'Más opciones', icon: 'more_vert', link:\"\", selected: false }\n]"
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
                 },
                 {
                     "name": "Template",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "projects/bitlogic/src/lib/components/menu/menu.stories.ts",
+                    "file": "projects/bitlogic/src/lib/components/button/button.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "Story<MenuComponent>",
-                    "defaultValue": "(args: MenuComponent) => ({\n  component: MenuComponent,\n  props: args,\n})"
+                    "type": "Story<ButtonComponent>",
+                    "defaultValue": "(args: ButtonComponent) => ({\n  component: ButtonComponent,\n  props: args,\n  decorators: [\n    moduleMetadata({\n      declarations: [],\n      imports: [\n        ButtonModule\n      ],\n    }),\n  ],\n\n  template: `<bit-button sty=\"outlined\" color=\"secondary\">Button</bit-button>`,\n})"
                 }
             ]
         },
