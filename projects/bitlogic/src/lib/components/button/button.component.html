@@ -1,6 +1,11 @@
 
-<ng-template #content><ng-content></ng-content></ng-template>
+<!-- <ng-template #content><ng-content></ng-content></ng-template>
 
 <button ngClass={{getClass()}} [disabled]="disabled" (click)="onClickButton()">
-  <ng-container *ngTemplateOutlet="content"></ng-container>
+  <ng-container *ngTemplateOutlet="content">
+  </ng-container>
+</button> -->
+
+<button ngClass={{getClass()}} [disabled]="disabled" (click)="onClickButton($event)">
+    <ng-content></ng-content>
 </button>

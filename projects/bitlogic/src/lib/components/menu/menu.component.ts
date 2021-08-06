@@ -1,5 +1,9 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 
+/**
+ * The Menu Opcion
+ * @interface MenuOpcion
+ */
 export interface MenuOpcion {
   id: string, 
   name: string, 
@@ -13,23 +17,23 @@ export interface MenuOpcion {
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss']
 })
-export class MenuComponent implements OnInit {
+export class MenuComponent {
 
+  /**
+   * Is the menu opcion 
+   */
   @Input()
-  options: Array<MenuOpcion> = [];
+  options: MenuOpcion[] = [];
 
-  @Input()
-  showLogo: boolean = false;
+  /**
+   * Menu click handler
+   */
+  @Output() 
+  menuClick: EventEmitter<MenuOpcion> = new EventEmitter<MenuOpcion>();
 
-  @Output('menuClick') memuClick : EventEmitter<any> = new EventEmitter<any>();
-
-  
   constructor() {}
 
-  ngOnInit(): void {
-  }
-
-  onOptionClick(optionSelected: any) {
+  onOptionClick(optionSelected: MenuOpcion) {
     for (let option of this.options) {
       option.selected = false;
       if (option.id === optionSelected.id) {
@@ -37,7 +41,7 @@ export class MenuComponent implements OnInit {
       }
     }
 
-    this.memuClick.emit(optionSelected);
+    this.menuClick.emit(optionSelected);
 
   }
 

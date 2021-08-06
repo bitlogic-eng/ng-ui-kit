@@ -1,0 +1,1901 @@
+{
+    "pipes": [],
+    "interfaces": [
+        {
+            "name": "MenuOpcion",
+            "id": "interface-MenuOpcion-6d18aa53589b60542d8efbb6853ee2bd",
+            "file": "projects/bitlogic/src/lib/components/menu/menu.component.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import { Component, Output, EventEmitter, Input } from '@angular/core';\n\n/**\n * The Menu Opcion\n * @interface MenuOpcion\n */\nexport interface MenuOpcion {\n  id: string, \n  name: string, \n  icon: string, \n  link: string, \n  selected: boolean\n}\n\n@Component({\n  selector: 'bit-menu',\n  templateUrl: './menu.component.html',\n  styleUrls: ['./menu.component.scss']\n})\nexport class MenuComponent {\n\n  /**\n   * Is the menu opcion \n   */\n  @Input()\n  options: MenuOpcion[] = [];\n\n  /**\n   * Menu click handler\n   */\n  @Output() \n  menuClick: EventEmitter<MenuOpcion> = new EventEmitter<MenuOpcion>();\n\n  constructor() {}\n\n  onOptionClick(optionSelected: MenuOpcion) {\n    for (let option of this.options) {\n      option.selected = false;\n      if (option.id === optionSelected.id) {\n        option.selected = true;\n      }\n    }\n\n    this.menuClick.emit(optionSelected);\n\n  }\n\n}\n",
+            "properties": [
+                {
+                    "name": "icon",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 10
+                },
+                {
+                    "name": "id",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 8
+                },
+                {
+                    "name": "link",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 11
+                },
+                {
+                    "name": "name",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 9
+                },
+                {
+                    "name": "selected",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "optional": false,
+                    "description": "",
+                    "line": 12
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 163,
+            "description": "<p>The Menu Opcion</p>\n",
+            "rawdescription": "\n\nThe Menu Opcion\n",
+            "methods": []
+        },
+        {
+            "name": "SliderInfo",
+            "id": "interface-SliderInfo-b8c069a5732c52b466c07c030e2cf013",
+            "file": "projects/bitlogic/src/lib/components/slider/slider.component.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import { Component, Input, AfterViewInit, ViewChild, Output, EventEmitter } from '@angular/core';\nimport { NguCarousel, NguCarouselConfig, NguCarouselStore} from '@ngu/carousel';\n\n/**\n * The Slider Info\n * @interface SliderInfo\n */\nexport interface SliderInfo {\n  careerLevel: string;\n  modality: string;\n  assigment: string;\n  careerName: string;\n  subjectsApprove: string;\n  credits: string;\n  subjectsLabel: string;\n  creditsLabel:string;\n}\n\n@Component({\n  selector: 'bit-slider',\n  templateUrl: './slider.component.html',\n  styleUrls: ['./slider.component.scss']\n\n})\nexport class SliderComponent implements AfterViewInit {\n  /**\n   * Is the Slider info\n   */\n  @Input() slideInfo: SliderInfo[];\n  \n  /**\n   * Slide Move click handler\n   */\n  @Output() slideMove = new EventEmitter();\n  \n  /**\n   * Banner click handler\n   */\n  @Output() slideClick = new EventEmitter();\n  \n  private currentSlide: SliderInfo;\n\n  @ViewChild('myCarousel') myCarousel: NguCarousel<any>;\n  \n  carouselTileConfig: NguCarouselConfig = {\n    grid: {xs: 1, sm: 1, md: 1, lg: 1, all: 0},\n    slide: 1,\n    speed: 600,\n    interval: {timing: 4000},\n    point: {\n      visible: true\n    },\n    load: 2,\n    touch: true,\n    loop: true,\n    custom: 'banner'\n  };  \n\n  constructor() {}\n\n  ngAfterViewInit() {\n    if (this.slideInfo.length !== 0) {\n      this.currentSlide = this.slideInfo[0];\n    }\n    console.log(this.currentSlide);\n  }\n\n  onSlideMove(data: NguCarouselStore) {\n    this.currentSlide = this.slideInfo[data.currentSlide]; \n    this.slideMove.emit(this.currentSlide);\n  }\n\n  onSlideClick() {\n    this.slideClick.emit(this.currentSlide);\n  }\n}\n",
+            "properties": [
+                {
+                    "name": "assigment",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 11
+                },
+                {
+                    "name": "careerLevel",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 9
+                },
+                {
+                    "name": "careerName",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 12
+                },
+                {
+                    "name": "credits",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 14
+                },
+                {
+                    "name": "creditsLabel",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 16
+                },
+                {
+                    "name": "modality",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 10
+                },
+                {
+                    "name": "subjectsApprove",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 13
+                },
+                {
+                    "name": "subjectsLabel",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 15
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 163,
+            "description": "<p>The Slider Info</p>\n",
+            "rawdescription": "\n\nThe Slider Info\n",
+            "methods": []
+        }
+    ],
+    "injectables": [],
+    "guards": [],
+    "interceptors": [],
+    "classes": [],
+    "directives": [],
+    "components": [
+        {
+            "name": "ButtonComponent",
+            "id": "component-ButtonComponent-3c9340bb1ad444d28af3b8589075d58e",
+            "file": "projects/bitlogic/src/lib/components/button/button.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "bit-button",
+            "styleUrls": [
+                "./button.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./button.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "color",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 47,
+                    "type": "\"basic\" | \"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | \"high\" | \"info\""
+                },
+                {
+                    "name": "disabled",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 74,
+                    "type": "boolean"
+                },
+                {
+                    "name": "sty",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 65,
+                    "type": "\"text\" | \"outlined\" | \"raised\" | \"flat\""
+                },
+                {
+                    "name": "type",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 56,
+                    "type": "string"
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "click",
+                    "defaultValue": "new EventEmitter<any>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 83,
+                    "type": "EventEmitter<any>"
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "_color",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "\"basic\" | \"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | \"high\" | \"info\"",
+                    "optional": false,
+                    "description": "",
+                    "line": 38,
+                    "modifierKind": [
+                        120
+                    ]
+                },
+                {
+                    "name": "_colorClass",
+                    "defaultValue": "COLOR_DEFAULT",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 42,
+                    "modifierKind": [
+                        120
+                    ]
+                },
+                {
+                    "name": "_disabled",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "optional": false,
+                    "description": "",
+                    "line": 39,
+                    "modifierKind": [
+                        120
+                    ]
+                },
+                {
+                    "name": "_style",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "\"text\" | \"outlined\" | \"raised\" | \"flat\"",
+                    "optional": false,
+                    "description": "",
+                    "line": 41,
+                    "modifierKind": [
+                        120
+                    ]
+                },
+                {
+                    "name": "_styleClass",
+                    "defaultValue": "STYLE_DEFAULT",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 43,
+                    "modifierKind": [
+                        120
+                    ]
+                },
+                {
+                    "name": "_type",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 40,
+                    "modifierKind": [
+                        120
+                    ]
+                },
+                {
+                    "name": "_typeClass",
+                    "defaultValue": "TYPE_DEFAULT",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 44,
+                    "modifierKind": [
+                        120
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "getClass",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "string",
+                    "typeParameters": [],
+                    "line": 91,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 88,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onClickButton",
+                    "args": [
+                        {
+                            "name": "$event",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 98,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "$event",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';\n\nconst ButtonType = {\n  \"button\": \"btn\",\n  \"fab\": \"fab\",\n  \"link\": \"link\"\n}\n\nconst ButtonColor = {\n  \"basic\": \"main\",\n  \"primary\": \"primary\",\n  \"secondary\": \"secondary\",\n  \"success\": \"success\",\n  \"warning\": \"warning\",\n  \"danger\": \"danger\",\n  \"high\": \"high\",\n  \"info\": \"info\"\n}\n\nconst ButtonStyle = {\n  \"text\": \"btn-text\",\n  \"outlined\": \"btn-outline\",\n  \"raised\": \"btn\",\n  \"flat\": \"flat\"\n}\n\nconst COLOR_DEFAULT = ButtonColor.basic;\nconst STYLE_DEFAULT = ButtonStyle.raised;\nconst TYPE_DEFAULT = ButtonType.button;\n\n@Component({\n  selector: 'bit-button',\n  templateUrl: './button.component.html',\n  styleUrls: ['./button.component.scss']\n})\nexport class ButtonComponent implements OnInit {\n  \n  private _color: 'basic' | 'primary' | 'secondary' | 'success'  | 'warning' | 'danger' | 'high' | 'info' ;\n  private _disabled: boolean = false;\n  private _type: string;\n  private _style: 'text' | 'outlined' | 'raised' | 'flat';\n  private _colorClass: string = COLOR_DEFAULT; \n  private _styleClass: string = STYLE_DEFAULT;\n  private _typeClass: string = TYPE_DEFAULT;\n\n  @Input()\n  set color(color) {\n    this._color = color;\n    this._colorClass = ButtonColor[color] ||  COLOR_DEFAULT;\n  }\n  get color() {\n    return this._color;\n  }\n\n  @Input()\n  set type(type) {\n    this._type = type;\n    this._typeClass = ButtonType[this._type] || TYPE_DEFAULT;\n  }\n  get type() {\n    return this._type;\n  }\n\n  @Input()\n  set sty(style) {\n    this._style = style;\n    this._styleClass = ButtonStyle[this._style] || STYLE_DEFAULT;\n  }\n  get sty() {\n    return this._style;\n  }\n\n  @Input()\n  set disabled(disabled) {\n    this._disabled = disabled;\n  }\n  get disabled() {\n    return this._disabled;\n  }\n\n\n  @Output()\n  click: EventEmitter<any> = new EventEmitter<any>();\n\n  constructor() { \n  }\n\n  ngOnInit(): void {\n  }\n\n  getClass() {\n    const commun = '' //'shadow-none' ;\n    // + (this._type === ButtonStyle.fab ? ' btn-rounded' : '');\n    \n    return `${commun} ${this._typeClass} ${this._styleClass}-${this._colorClass}`;\n  }\n\n  onClickButton($event) {\n    this.click.emit('ev');\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@import '../../../../assets/scss/theme';\n\n:host {\n \n    @mixin btn-shadow($color) {\n        box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%), 0 1px 5px 0 rgb(0 0 0 / 12%) !important;\n        border-color: transparent !important;\n        &:active {\n            $color-lighten: lighten($color, 5%);\n            box-shadow: 0 5px 5px -3px rgb(0 0 0 / 20%), 0 8px 10px 1px rgb(0 0 0 / 14%), 0 3px 14px 2px rgb(0 0 0 / 12%) !important;\n            transition: all 0.3s cubic-bezier(.25,.8,.25,1) !important;\n            border-color: transparent !important;\n            background-color: $color-lighten !important;\n        }\n    }\n\n    @mixin btn-type($color-sty, $color, $border-color, $background-color ) {\n        .btn-#{$color-sty}{\n            border: 1px solid $border-color;\n            @include btn-background ($background-color, $color-white);\n            @include btn-shadow($color);    \n        }\n\n        .btn-outline-#{$color-sty}{\n            border: 1px solid $border-color;\n            box-shadow: none !important;\n            @include btn-background ($color-white, $background-color);\n            &:active {\n                background-color: mix($color, white, 20%);\n            }                    \n        }\n\n        .btn-text-#{$color-sty}{\n            border-color: transparent; \n            box-shadow: none;\n            @include btn-background (transparent, $background-color);\n            &:active {\n                background-color: mix($color, white, 20%);\n            }                    \n        }\n    }\n\n         \n    .btn {\n        min-width: fit-content !important;\n        @extend %transition;\n        padding: .5rem 1rem !important;\n        font-size: 13px;\n        border-radius: 10rem !important;\n        \n        &:focus, &:hover {\n            outline: none !important;\n        }\n    }\n\n    .fab {\n        width: 56px;\n        min-width: 56px;\n        height: 56px;\n        padding: 0;\n        border-radius: 50%;\n        @extend %transition;\n\n        i {\n            line-height: 54px;\n        }    \n    }\n\n\n    //size\n\n    // .btn-sm {\n    //     padding: .25rem .5rem !important;\n    //     font-size: 0.75rem;\n    //     line-height: 1.5;\n    //     text-transform: initial;\n    //     box-shadow: $shadow-sm;\n    // }\n\n    // .btn-lg {\n    //     padding: .1rem 1.5rem !important;\n    //     font-size: 1.25rem;\n    // }\n\n    //color\n\n        // &:disabled {\n        //     border-color: $color-black-alt-20; \n        //     @include btn-background ($color-black-alt-20, $color-black-alt-80);\n        //     cursor: initial;\n        //     box-shadow: none !important;\n        // }\n    \n\n    .btn-link {\n        border-color: transparent; \n        @include btn-background (transparent, $color-primary);\n        box-shadow: none;\n        text-transform: initial;\n        &:hover {\n            text-decoration: underline;\n        }\n    }\n\n    .btn-link-default {\n        border-color: transparent; \n        @include btn-background (transparent, $color-black-alt-60);\n        box-shadow: none;\n        text-transform: initial;\n        &:hover {\n            text-decoration: none;\n        }\n    }\n\n    .btn-close {\n        border-color: transparent; \n        padding: 0 !important;\n        box-shadow: none;\n        @include btn-background (transparent, $color-black-alt-60);\n    }\n\n\n    @include btn-type(\"secondary\", $color-secondary, $color-secondary, $color-secondary);\n    @include btn-type(\"info\", $color-info, $color-info, $color-info);\n    @include btn-type(\"high\", $color-highlighted, $color-highlighted, $color-highlighted);\n    @include btn-type(\"main\", $color-black, $color-black-alt-10, $color-black);\n    @include btn-type(\"success\", $color-success, $color-success, $color-success);\n    @include btn-type(\"danger\", $color-danger, $color-danger, $color-danger);\n    @include btn-type(\"warning\", $color-warning, $color-warning, $color-warning);\n    @include btn-type(\"primary\", $color-primary, $color-primary, $color-primary);\n\n}\n\n",
+                    "styleUrl": "./button.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 83
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "accessors": {
+                "color": {
+                    "name": "color",
+                    "setSignature": {
+                        "name": "color",
+                        "type": "void",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "args": [
+                            {
+                                "name": "color",
+                                "type": "",
+                                "deprecated": false,
+                                "deprecationMessage": ""
+                            }
+                        ],
+                        "returnType": "void",
+                        "line": 47,
+                        "jsdoctags": [
+                            {
+                                "name": "color",
+                                "type": "",
+                                "deprecated": false,
+                                "deprecationMessage": "",
+                                "tagName": {
+                                    "text": "param"
+                                }
+                            }
+                        ]
+                    },
+                    "getSignature": {
+                        "name": "color",
+                        "type": "",
+                        "returnType": "",
+                        "line": 51
+                    }
+                },
+                "type": {
+                    "name": "type",
+                    "setSignature": {
+                        "name": "type",
+                        "type": "void",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "args": [
+                            {
+                                "name": "type",
+                                "type": "",
+                                "deprecated": false,
+                                "deprecationMessage": ""
+                            }
+                        ],
+                        "returnType": "void",
+                        "line": 56,
+                        "jsdoctags": [
+                            {
+                                "name": "type",
+                                "type": "",
+                                "deprecated": false,
+                                "deprecationMessage": "",
+                                "tagName": {
+                                    "text": "param"
+                                }
+                            }
+                        ]
+                    },
+                    "getSignature": {
+                        "name": "type",
+                        "type": "",
+                        "returnType": "",
+                        "line": 60
+                    }
+                },
+                "sty": {
+                    "name": "sty",
+                    "setSignature": {
+                        "name": "sty",
+                        "type": "void",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "args": [
+                            {
+                                "name": "style",
+                                "type": "",
+                                "deprecated": false,
+                                "deprecationMessage": ""
+                            }
+                        ],
+                        "returnType": "void",
+                        "line": 65,
+                        "jsdoctags": [
+                            {
+                                "name": "style",
+                                "type": "",
+                                "deprecated": false,
+                                "deprecationMessage": "",
+                                "tagName": {
+                                    "text": "param"
+                                }
+                            }
+                        ]
+                    },
+                    "getSignature": {
+                        "name": "sty",
+                        "type": "",
+                        "returnType": "",
+                        "line": 69
+                    }
+                },
+                "disabled": {
+                    "name": "disabled",
+                    "setSignature": {
+                        "name": "disabled",
+                        "type": "void",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "args": [
+                            {
+                                "name": "disabled",
+                                "type": "",
+                                "deprecated": false,
+                                "deprecationMessage": ""
+                            }
+                        ],
+                        "returnType": "void",
+                        "line": 74,
+                        "jsdoctags": [
+                            {
+                                "name": "disabled",
+                                "type": "",
+                                "deprecated": false,
+                                "deprecationMessage": "",
+                                "tagName": {
+                                    "text": "param"
+                                }
+                            }
+                        ]
+                    },
+                    "getSignature": {
+                        "name": "disabled",
+                        "type": "",
+                        "returnType": "",
+                        "line": 77
+                    }
+                }
+            },
+            "templateData": "\n<!-- <ng-template #content><ng-content></ng-content></ng-template>\n\n<button ngClass={{getClass()}} [disabled]=\"disabled\" (click)=\"onClickButton()\">\n  <ng-container *ngTemplateOutlet=\"content\">\n  </ng-container>\n</button> -->\n\n<button ngClass={{getClass()}} [disabled]=\"disabled\" (click)=\"onClickButton($event)\">\n    <ng-content></ng-content>\n</button>"
+        },
+        {
+            "name": "MenuComponent",
+            "id": "component-MenuComponent-6d18aa53589b60542d8efbb6853ee2bd",
+            "file": "projects/bitlogic/src/lib/components/menu/menu.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "bit-menu",
+            "styleUrls": [
+                "./menu.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./menu.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "options",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "Is the menu opcion",
+                    "description": "<p>Is the menu opcion</p>\n",
+                    "line": 26,
+                    "type": "MenuOpcion[]"
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "menuClick",
+                    "defaultValue": "new EventEmitter<MenuOpcion>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nMenu click handler\n",
+                    "description": "<p>Menu click handler</p>\n",
+                    "line": 32,
+                    "type": "EventEmitter<MenuOpcion>"
+                }
+            ],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "onOptionClick",
+                    "args": [
+                        {
+                            "name": "optionSelected",
+                            "type": "MenuOpcion",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 36,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "optionSelected",
+                            "type": "MenuOpcion",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Output, EventEmitter, Input } from '@angular/core';\n\n/**\n * The Menu Opcion\n * @interface MenuOpcion\n */\nexport interface MenuOpcion {\n  id: string, \n  name: string, \n  icon: string, \n  link: string, \n  selected: boolean\n}\n\n@Component({\n  selector: 'bit-menu',\n  templateUrl: './menu.component.html',\n  styleUrls: ['./menu.component.scss']\n})\nexport class MenuComponent {\n\n  /**\n   * Is the menu opcion \n   */\n  @Input()\n  options: MenuOpcion[] = [];\n\n  /**\n   * Menu click handler\n   */\n  @Output() \n  menuClick: EventEmitter<MenuOpcion> = new EventEmitter<MenuOpcion>();\n\n  constructor() {}\n\n  onOptionClick(optionSelected: MenuOpcion) {\n    for (let option of this.options) {\n      option.selected = false;\n      if (option.id === optionSelected.id) {\n        option.selected = true;\n      }\n    }\n\n    this.menuClick.emit(optionSelected);\n\n  }\n\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "\n@import '../../../../assets/scss/theme';\n\n.navbar {\n  // position: fixed;\n  // width: $navbar-width;\n  height: 100%;\n  // top: 0px;\n  background: $color-white;\n  box-shadow: 3px 0 6px rgba(0,0,0,.08);\n  // z-index: 100;\n  display: flex;\n  flex-direction: column;\n  justify-content: flex-start;\n\n  .u21 {\n    background-image: url('../../../../assets/img/iso_siglo_21.svg');\n    width: 34px;\n    height: 34px;\n    background-size: cover;\n    background-repeat: none;\n    background-position: center;\n    margin: 26px 0 26px 0;\n  }\n\n  ul {\n    list-style-type: none;\n    margin: 0;\n    padding: 0;\n    display: flex;\n    flex-direction: column;\n\n  }\n\n  .link {\n    @extend %transition;\n\n    // text-decoration: none;\n    &:hover {\n      opacity: 0.8;\n      cursor: pointer;\n    }\n\n\n    // & + .link {\n    //   border-top: 1px solid $color-black-alt-10;\n    // }\n    // &:last-child {\n    //   border: none;\n    // }\n\n    i {\n      height: 50px;\n      width: 50px;\n      display: flex;\n      align-items: center;\n      justify-content: center;\n      border-radius: 50%;\n      border: 6px solid $color-white;\n      background-color: $color-white;\n      align-items: center;\n      justify-content: center;\n      color:$color-black-alt-40;\n      font-size: 26px;\n    }\n    h6 {\n      color:$color-black-alt-40;\n    }\n\n    &.selected {\n      i {\n          color: $color-white;\n          background-color: $color-primary;\n      }\n      h6 {\n          color: $color-primary;\n      }\n    }\n\n    &:last-child {\n\n    }\n\n  }\n}\n\n@media  only screen and ( max-width : 768px) {\n\n  .u21 {\n    display: none;  \n  }\n\n  .navbar {\n\n    ul {\n      display: flex;\n      flex-direction: row;\n      justify-content: space-evenly;\n      width: 100%;\n    }\n  }\n}\n",
+                    "styleUrl": "./menu.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 32
+            },
+            "templateData": "<nav class=\"navbar\">\n  <div class=\"u21\"></div>\n\n  <ul>\n    <ng-container *ngFor=\"let option of options\">\n        <li id={{option.id}} routerLink={{option.link}} class=\"link\" [class.selected]=\"option.selected\" (click)=\"onOptionClick(option)\">\n          <div>\n              <i class=\"material-icons mx-auto\">{{option.icon}}</i>\n              <h6 class=\"text-center\">\n                  {{option.name}}\n              </h6>\n            </div>\n          </li>          \n    </ng-container>    \n\n\n  </ul>\n        \n</nav>"
+        },
+        {
+            "name": "SliderComponent",
+            "id": "component-SliderComponent-b8c069a5732c52b466c07c030e2cf013",
+            "file": "projects/bitlogic/src/lib/components/slider/slider.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "bit-slider",
+            "styleUrls": [
+                "./slider.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./slider.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "slideInfo",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "Is the Slider info",
+                    "description": "<p>Is the Slider info</p>\n",
+                    "line": 29,
+                    "type": "SliderInfo[]"
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "slideClick",
+                    "defaultValue": "new EventEmitter()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nBanner click handler\n",
+                    "description": "<p>Banner click handler</p>\n",
+                    "line": 39,
+                    "type": "EventEmitter"
+                },
+                {
+                    "name": "slideMove",
+                    "defaultValue": "new EventEmitter()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nSlide Move click handler\n",
+                    "description": "<p>Slide Move click handler</p>\n",
+                    "line": 34,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "carouselTileConfig",
+                    "defaultValue": "{\n    grid: {xs: 1, sm: 1, md: 1, lg: 1, all: 0},\n    slide: 1,\n    speed: 600,\n    interval: {timing: 4000},\n    point: {\n      visible: true\n    },\n    load: 2,\n    touch: true,\n    loop: true,\n    custom: 'banner'\n  }",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "NguCarouselConfig",
+                    "optional": false,
+                    "description": "",
+                    "line": 45
+                },
+                {
+                    "name": "currentSlide",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "SliderInfo",
+                    "optional": false,
+                    "description": "",
+                    "line": 41,
+                    "modifierKind": [
+                        120
+                    ]
+                },
+                {
+                    "name": "myCarousel",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "NguCarousel<any>",
+                    "optional": false,
+                    "description": "",
+                    "line": 43,
+                    "decorators": [
+                        {
+                            "name": "ViewChild",
+                            "stringifiedArguments": "'myCarousel'"
+                        }
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "ngAfterViewInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 61,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onSlideClick",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 73,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onSlideMove",
+                    "args": [
+                        {
+                            "name": "data",
+                            "type": "NguCarouselStore",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 68,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "data",
+                            "type": "NguCarouselStore",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input, AfterViewInit, ViewChild, Output, EventEmitter } from '@angular/core';\nimport { NguCarousel, NguCarouselConfig, NguCarouselStore} from '@ngu/carousel';\n\n/**\n * The Slider Info\n * @interface SliderInfo\n */\nexport interface SliderInfo {\n  careerLevel: string;\n  modality: string;\n  assigment: string;\n  careerName: string;\n  subjectsApprove: string;\n  credits: string;\n  subjectsLabel: string;\n  creditsLabel:string;\n}\n\n@Component({\n  selector: 'bit-slider',\n  templateUrl: './slider.component.html',\n  styleUrls: ['./slider.component.scss']\n\n})\nexport class SliderComponent implements AfterViewInit {\n  /**\n   * Is the Slider info\n   */\n  @Input() slideInfo: SliderInfo[];\n  \n  /**\n   * Slide Move click handler\n   */\n  @Output() slideMove = new EventEmitter();\n  \n  /**\n   * Banner click handler\n   */\n  @Output() slideClick = new EventEmitter();\n  \n  private currentSlide: SliderInfo;\n\n  @ViewChild('myCarousel') myCarousel: NguCarousel<any>;\n  \n  carouselTileConfig: NguCarouselConfig = {\n    grid: {xs: 1, sm: 1, md: 1, lg: 1, all: 0},\n    slide: 1,\n    speed: 600,\n    interval: {timing: 4000},\n    point: {\n      visible: true\n    },\n    load: 2,\n    touch: true,\n    loop: true,\n    custom: 'banner'\n  };  \n\n  constructor() {}\n\n  ngAfterViewInit() {\n    if (this.slideInfo.length !== 0) {\n      this.currentSlide = this.slideInfo[0];\n    }\n    console.log(this.currentSlide);\n  }\n\n  onSlideMove(data: NguCarouselStore) {\n    this.currentSlide = this.slideInfo[data.currentSlide]; \n    this.slideMove.emit(this.currentSlide);\n  }\n\n  onSlideClick() {\n    this.slideClick.emit(this.currentSlide);\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@import '../../../../assets/scss/theme';\n\n.cont-cards {\n\n\tposition: relative;\n\tdisplay: block;\n\twidth: 100%;\n\theight: 15rem;\n\tbackground-color: $color-black-alt-10;\n\tborder-radius: 0.6rem;\n\n\n\t.card {\n\t\tposition: relative;\n\t\twidth: 100%;\n\t\theight: 15rem;\n\t\tbox-sizing: border-box;\n\t\tbackground: $color-primary-alt-80;\n\t\tbackground-image: url(\"../../../../assets/img/wave_back.svg\");\n\t\tbackground-size: cover;\n\t\tbackground-position: center bottom;\n\t\tbackground-repeat: no-repeat;\n\t\tcursor: pointer;\n\t\ttransition: all 0.5s;\n\t\tdisplay: block;\n\t\tz-index: 2;\n\t\t&:hover {\n\t\t\tbox-shadow: 0 2px 16px $color-black-alt-10;\n\t\t}\n\n\t\t.course-name {\n\t\t\ttext-shadow: 0 2px 2px $color-primary-alt-80;\t\n\t\t}\n\t\n\t\t.total-subjets {\n\t\t\theight: 2rem;\n\t\t\tbottom: 0 !important;\n\t\t\tbackground-color:$color-primary-alt-80;\n\t\t\tbox-sizing: border-box;\n\t\t}\n\t\t.total-credits {\n\t\t\theight: 2rem;\n\t\t\tbottom: 0 !important;\n\t\t\tbackground-color: $color-secondary-alt-20;\n\t\t\tbox-sizing: border-box;\n\t\t\tcolor: $color-primary-alt-80 !important;\n\t\t}\n\t\n\t\t.empty-state {\n\t\t\tbackground-color: $color-black-alt-20;\n\t\t\tbackground-image: url(\"../../../../assets/img/wave_back.svg\");\n\t\t\tbackground-size: cover;\n\t\t\tbackground-position: center bottom;\n\t\t}\n\t\n\t}\n\n\t.card-button {\n\t\tborder: none;\n\t\tposition: absolute;\n\t\ttop: calc(50% - 13px);\n\t\theight: 26px;\n\t\tbackground: transparent;\n\t\tcolor: $color-white;\n\t\ttext-align: center;\n\t\tcursor: pointer;\n\t\tz-index: 99;\n\t\tdisplay: block;\n\t\tbox-sizing: initial;\n\t\tpadding: 0 0.2rem 2rem 0.2rem;\n\t\ti {\n\t\t\tfont-size: 24px;\n\t\t}\n\n\t\t&.next {\n\t\t\tright: 0;\n\t\t}\n\t\t&.prev {\n\t\t\tleft: 0;\n\t\t}\n\n\t}\n\n\t.rounded-custom {\n    border-radius: 0.25rem;\n\t}\n\n}\n",
+                    "styleUrl": "./slider.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 57
+            },
+            "implements": [
+                "AfterViewInit"
+            ],
+            "templateData": "<ngu-carousel #myCarousel class=\"rounded-custom-lg overflow-hidden shadow cont-cards h-100\" \n              [inputs]=\"carouselTileConfig\" \n              [dataSource]=\"slideInfo\" \n              (onMove)=\"onSlideMove($event)\">\n\n    <div class=\"card rounded-0 shadow-0 border-0 d-flex w-100 h-100 item px-2\" \n              *nguCarouselDef=\"let item; let i = index;\">\n\n            <div class=\"flex-grow-1 d-flex flex-column p-4\" (click)=\"onSlideClick()\">\n                        <div class=\"flex-grow-1 w-50 plans\">\n                            <div class=\"mb-2 d-flex align-items-center text-white\">\n                                <i class=\"material-icons icon-xs mr-2\">list_alt</i>\n                                <h6 class=\"m-0\">\n                                    {{item.careerLevel}}\n                                </h6>\n                            </div>\n                            <div class=\"mb-2 d-flex align-items-center text-white\">\n                                <i class=\"material-icons icon-xs mr-2\">work_outline</i>\n                                <h6 class=\"flex-grow-1 pr-2 m-0\">\n                                    {{item.modality}}\n                                </h6>\n                            </div>\n                            <div class=\"mb-1 d-flex align-items-center text-white\">\n                                <i class=\"material-icons icon-xs mr-2\">assignment</i>\n                                <h6 class=\"m-0\">\n                                    {{item.assigment}}\n                                </h6>\n                            </div>\n                        </div>\n                        <div class=\"flex-grow-1 d-flex align-items-center mt-4\">\n                            <h5 class=\"text-white font-weight-bold course-name m-0\">{{item.careerName}}</h5>\n                        </div>\n                        <div *ngIf=\"item.subjectsApprove\">\n                            <div class=\"total-subjets mt-4 rounded-custom\">\n                                <div class=\"h-100 d-flex align-items-center text-white px-3\">\n                                    <h6 class=\"acl flex-grow-1 pr-2 m-0\">{{item.subjectsLabel}}</h6>\n                                    <h5 class=\"num pl-2 m-0\">{{item.subjectsApprove}}</h5>\n                                </div>\n                            </div>\n                        </div>\n                        <div *ngIf=\"item.credits\">\n                            <div class=\"total-credits mt-2 rounded-custom\">\n                                <div class=\"h-100 d-flex align-items-center px-3\">\n                                    <h6 class=\"acl flex-grow-1 pr-2 m-0\">{{item.creditsLabel}}</h6>\n                                    <h5 class=\"num pl-2 m-0\"> {{item.credits}}</h5>\n                                </div>\n                            </div>\n                        </div>\n                </div>\n                \n            </div>\n    \n    <button NguCarouselPrev class=\"card-button prev\">\n        <i class=\"material-icons\">chevron_left</i>\n    </button>\n    <button NguCarouselNext class=\"card-button next\">\n        <i class=\"material-icons\">chevron_right</i>\n    </button>\n\n</ngu-carousel>\n"
+        },
+        {
+            "name": "ToolbarComponent",
+            "id": "component-ToolbarComponent-64d0eaccdc9f23d028a6e7f16a0f5f69",
+            "file": "projects/bitlogic/src/lib/components/toolbar/toolbar.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "bit-toolbar",
+            "styleUrls": [
+                "./toolbar.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./toolbar.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "currentDate",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "Is the current date",
+                    "description": "<p>Is the current date</p>\n",
+                    "line": 28,
+                    "type": "string"
+                },
+                {
+                    "name": "title",
+                    "defaultValue": "'Title'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "pos": 279,
+                            "end": 292,
+                            "flags": 4227072,
+                            "modifierFlagsCache": 0,
+                            "transformFlags": 0,
+                            "kind": 317,
+                            "tagName": {
+                                "pos": 280,
+                                "end": 288,
+                                "flags": 4227072,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 78,
+                                "escapedText": "required"
+                            },
+                            "comment": ""
+                        }
+                    ],
+                    "rawdescription": "Is the title for the toolbar",
+                    "description": "<p>Is the title for the toolbar</p>\n",
+                    "line": 15,
+                    "type": "string"
+                },
+                {
+                    "name": "userName",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "Is the current user",
+                    "description": "<p>Is the current user</p>\n",
+                    "line": 34,
+                    "type": "string"
+                },
+                {
+                    "name": "version",
+                    "defaultValue": "'v0.0.0'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "Is the version to application",
+                    "description": "<p>Is the version to application</p>\n",
+                    "line": 21,
+                    "type": "string"
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "openProfile",
+                    "defaultValue": "new EventEmitter()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nProfile Click handler\n",
+                    "description": "<p>Profile Click handler</p>\n",
+                    "line": 40,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "onOpenProfile",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 44,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\n\n@Component({\n  selector: 'bit-toolbar',\n  templateUrl: './toolbar.component.html',\n  styleUrls: ['./toolbar.component.scss']\n})\nexport class ToolbarComponent {\n\n  /**\n   * Is the title for the toolbar\n   * @required\n   */ \n  @Input()\n  title: string = 'Title';\n\n  /**\n   * Is the version to application\n   */\n  @Input()\n  version: string = 'v0.0.0';\n\n\n  /**\n   * Is the current date\n   */\n  @Input()\n  currentDate: string;\n\n  /**\n   * Is the current user\n   */\n  @Input()\n  userName: string;\n\n  /**\n   * Profile Click handler\n   */\n  @Output()\n  openProfile = new EventEmitter();\n\n  constructor() { }\n\n  onOpenProfile() {\n    this.openProfile.emit(this.userName); // TODO send user data.\n  }\n\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "  @import '../../../../assets/scss/theme';\n \n  :host {\n\n    // custom variables\n    --color: #{$color-white}; // title color\n    --background-lg-start: #{$color-secondary}; // linear-gradient start\n    --background-lg-end: #{$color-primary}; // linear-gradient end\n\n    .spacer {\n      flex: 1;\n    }\n  \n    .toolbar {\n  \n      height: 80px;\n      display: flex;\n      align-items: center;\n  \n      @include deg-main (-45deg, var(--background-lg-start), var(--background-lg-end));\n      \n      color: var(--color);\n      width: 100%;\n  \n      .header-user-data {\n        display: flex;\n        flex-direction: column;\n        margin: 0 20px;\n  \n        h1 {\n          margin: 0 0 5px 0;\n          font-weight: bold ;\n          font-size: 24px;\n        }\n  \n        p {\n          margin: 0;\n          font-size: 0.7rem;\n        }\n      }\n  \n      .header-profile {\n        display: flex;\n        align-items: center;\n        margin: 0 20px 0 0;\n  \n        .user-data {\n          margin: 0 10px 0 0;\n          text-align: end;\n  \n          h4 {\n            margin: 0 0 5px 0;\n          }\n  \n          p {\n            font-size: .7rem;\n            margin: 0 0 5px 0;\n          }\n        }\n  \n        .user-avatar {\n          width: 40px;\n          height: 40px;\n          border-radius: 50%;\n          border: 2px solid $color-primary;\n          overflow: hidden;\n          background-size: cover;\n          background-repeat: none;\n          background-position: center;\n          background-image: url(../../../../assets/img/user_avatar_default.png);\n          cursor: pointer;\n        }\n  \n        .version {\n          margin-right: 0;\n          font-weight: 300;\n          font-size: 12px;\n        }\n          \n      }\n  \n    \n    }    \n  }\n  \n\n",
+                    "styleUrl": "./toolbar.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 40
+            },
+            "templateData": "<div class=\"toolbar\">\n    <div class=\"header-user-data\">\n        <h2>{{title}}</h2>\n    </div>\n\n    <div class=\"spacer\"></div>\n\n    <div class=\"header-profile\">\n\n        <div class=\"user-data\">\n            <h4>{{userName}}</h4>\n            <p>{{currentDate | date:'mediumDate'}}</p>\n            <p class=\"version\">({{version}})</p>\n        </div>\n        <div class=\"user-avatar\" (click)=\"onOpenProfile()\"></div>\n    </div>\n\n\n</div>"
+        }
+    ],
+    "modules": [
+        {
+            "name": "BitlogicModule",
+            "id": "module-BitlogicModule-65f40731c0d94d3966c903a16a58695a",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "projects/bitlogic/src/lib/bitlogic.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { ToolbarModule } from './components/toolbar/toolbar.module';\nimport { ButtonModule } from './components/button/button.module';\nimport { MenuModule } from './components/menu/menu.module';\nimport { SliderModule } from './components/slider/slider.module';\n\n@NgModule({\n  declarations: [],\n  imports: [\n  ],\n  exports: [\n    ToolbarModule,\n    ButtonModule,\n    MenuModule,\n    SliderModule,\n  ]\n})\nexport class BitlogicModule { }\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": []
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "ButtonModule"
+                        },
+                        {
+                            "name": "MenuModule"
+                        },
+                        {
+                            "name": "SliderModule"
+                        },
+                        {
+                            "name": "ToolbarModule"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "ButtonModule",
+            "id": "module-ButtonModule-57f5368ae1325894e2ea34493f025e1e",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "projects/bitlogic/src/lib/components/button/button.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { ButtonComponent } from './button.component';\n\n@NgModule({\n  declarations: [ButtonComponent],\n  imports: [\n    CommonModule,\n  ],\n  exports: [\n    ButtonComponent\n  ]\n})\nexport class ButtonModule { }\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "ButtonComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "ButtonComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "MenuModule",
+            "id": "module-MenuModule-dce051b9346e181e52e991b2a3220ded",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "projects/bitlogic/src/lib/components/menu/menu.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MenuComponent } from './menu.component';\n\n@NgModule({\n  declarations: [MenuComponent],\n  imports: [\n    CommonModule,\n  ],\n  exports: [MenuComponent]\n})\nexport class MenuModule { }\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "MenuComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "MenuComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "SliderModule",
+            "id": "module-SliderModule-295dcfe3aac8b2da51432c0f80eae092",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "projects/bitlogic/src/lib/components/slider/slider.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { SliderComponent } from './slider.component';\nimport { NguCarouselModule } from '@ngu/carousel';\n\n@NgModule({\n  declarations: [SliderComponent],\n  imports: [\n    CommonModule,\n    NguCarouselModule\n  ],\n  exports: [\n    SliderComponent\n  ],\n})\nexport class SliderModule { }\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "SliderComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "SliderComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "ToolbarModule",
+            "id": "module-ToolbarModule-8844cbe8d01b824c0619e0100bd89ee1",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "projects/bitlogic/src/lib/components/toolbar/toolbar.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { ToolbarComponent } from './toolbar.component';\n\n@NgModule({\n  declarations: [ToolbarComponent],\n  imports: [\n    CommonModule\n  ],\n  exports: [ToolbarComponent]\n})\nexport class ToolbarModule { }\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "ToolbarComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "ToolbarComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        }
+    ],
+    "miscellaneous": {
+        "variables": [
+            {
+                "name": "ButtonColor",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/bitlogic/src/lib/components/button/button.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\n  \"basic\": \"main\",\n  \"primary\": \"primary\",\n  \"secondary\": \"secondary\",\n  \"success\": \"success\",\n  \"warning\": \"warning\",\n  \"danger\": \"danger\",\n  \"high\": \"high\",\n  \"info\": \"info\"\n}"
+            },
+            {
+                "name": "ButtonStyle",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/bitlogic/src/lib/components/button/button.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\n  \"text\": \"btn-text\",\n  \"outlined\": \"btn-outline\",\n  \"raised\": \"btn\",\n  \"flat\": \"flat\"\n}"
+            },
+            {
+                "name": "ButtonType",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/bitlogic/src/lib/components/button/button.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\n  \"button\": \"btn\",\n  \"fab\": \"fab\",\n  \"link\": \"link\"\n}"
+            },
+            {
+                "name": "COLOR_DEFAULT",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/bitlogic/src/lib/components/button/button.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "ButtonColor.basic"
+            },
+            {
+                "name": "context",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/bitlogic/src/test.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "require.context('./', true, /\\.spec\\.ts$/)"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/bitlogic/src/lib/components/menu/menu.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/bitlogic/src/lib/components/slider/slider.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/bitlogic/src/lib/components/toolbar/toolbar.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/bitlogic/src/lib/components/button/button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Disabled",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/bitlogic/src/lib/components/button/button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "LegajoDisabled",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/bitlogic/src/lib/components/slider/slider.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "LegajoSlider",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/bitlogic/src/lib/components/slider/slider.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "options",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/bitlogic/src/lib/components/menu/menu.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "MenuOpcion[]",
+                "defaultValue": "[\n  { id: 'butt-1', name: 'Exámenes', icon: 'insert_drive_file', link:\"\", selected: true },\n  { id: 'butt-2', name: 'Materias', icon: 'menu_book', link:\"\", selected: false },\n  { id: 'butt-3', name: 'Pagos', icon: 'receipt', link:\"\", selected: false },\n  { id: 'butt-4', name: 'Más opciones', icon: 'more_vert', link:\"\", selected: false }\n]"
+            },
+            {
+                "name": "require",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/bitlogic/src/test.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "literal type"
+            },
+            {
+                "name": "Simple",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/bitlogic/src/lib/components/slider/slider.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "slideInfo",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/bitlogic/src/lib/components/slider/slider.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "SliderInfo[]",
+                "defaultValue": "[\n  {\n    careerLevel: 'GRADO',\n    modality: 'DISTANCIA - EDUCACION DISTRIBUIDA',\n    assigment: 'VCIN02466',\n    careerName: 'LICENCIATURA EN COMERCIO INTERNACIONAL',\n    subjectsApprove: '35/37',\n    credits: '3/12',\n    subjectsLabel:'Materias programáticas aprobadas para el plan de estudio',\n    creditsLabel:'Créditos acumulados'\n\n  },\n  {\n    careerLevel: 'GRADO 1',\n    modality: 'DISTANCIA - EDUCACION DISTRIBUIDA',\n    assigment: 'VCIN03000',\n    careerName: 'Licenciatura en Gestión Turística',\n    subjectsApprove: '1/10',\n    credits: '3/3',\n    subjectsLabel:'Materias programáticas aprobadas para el plan de estudio',\n    creditsLabel:'Créditos acumulados'\n  },\n  {\n    careerLevel: 'GRADO 2',\n    modality: 'DISTANCIA - EDUCACION DISTRIBUIDA',\n    assigment: 'VCIN04000',\n    careerName: 'Mat 3',\n    subjectsApprove: '1/10',\n    credits: '3/3',\n    subjectsLabel:'Materias programáticas aprobadas para el plan de estudio',\n    creditsLabel:'Créditos acumulados'\n  },\n  {\n    careerLevel: 'GRADO 3',\n    modality: 'DISTANCIA - EDUCACION DISTRIBUIDA',\n    assigment: 'VCIN04000',\n    careerName: 'Mat 3',\n    subjectsApprove: '1/10',\n    credits: '3/3',\n    subjectsLabel:'Materias programáticas aprobadas para el plan de estudio',\n    creditsLabel:'Créditos acumulados'\n  }\n]"
+            },
+            {
+                "name": "STYLE_DEFAULT",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/bitlogic/src/lib/components/button/button.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "ButtonStyle.raised"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/bitlogic/src/lib/components/menu/menu.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<MenuComponent>",
+                "defaultValue": "(args: MenuComponent) => ({\n  component: MenuComponent,\n  props: args,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/bitlogic/src/lib/components/slider/slider.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<SliderComponent>",
+                "defaultValue": "(args: SliderComponent) => ({\n  component: SliderComponent,\n  props: args,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/bitlogic/src/lib/components/toolbar/toolbar.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<ToolbarComponent>",
+                "defaultValue": "(args: ToolbarComponent) => ({\n  component: ToolbarComponent,\n  props: args,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/bitlogic/src/lib/components/button/button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<ButtonComponent>",
+                "defaultValue": "(args: ButtonComponent) => ({\n  component: ButtonComponent,\n  props: args,\n  decorators: [\n    moduleMetadata({\n      declarations: [],\n      imports: [\n        ButtonModule\n      ],\n    }),\n  ],\n\n  template: `<bit-button sty=\"outlined\" color=\"secondary\">Button</bit-button>`,\n})"
+            },
+            {
+                "name": "TYPE_DEFAULT",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/bitlogic/src/lib/components/button/button.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "ButtonType.button"
+            }
+        ],
+        "functions": [],
+        "typealiases": [],
+        "enumerations": [],
+        "groupedVariables": {
+            "projects/bitlogic/src/lib/components/button/button.component.ts": [
+                {
+                    "name": "ButtonColor",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/bitlogic/src/lib/components/button/button.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\n  \"basic\": \"main\",\n  \"primary\": \"primary\",\n  \"secondary\": \"secondary\",\n  \"success\": \"success\",\n  \"warning\": \"warning\",\n  \"danger\": \"danger\",\n  \"high\": \"high\",\n  \"info\": \"info\"\n}"
+                },
+                {
+                    "name": "ButtonStyle",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/bitlogic/src/lib/components/button/button.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\n  \"text\": \"btn-text\",\n  \"outlined\": \"btn-outline\",\n  \"raised\": \"btn\",\n  \"flat\": \"flat\"\n}"
+                },
+                {
+                    "name": "ButtonType",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/bitlogic/src/lib/components/button/button.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\n  \"button\": \"btn\",\n  \"fab\": \"fab\",\n  \"link\": \"link\"\n}"
+                },
+                {
+                    "name": "COLOR_DEFAULT",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/bitlogic/src/lib/components/button/button.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "ButtonColor.basic"
+                },
+                {
+                    "name": "STYLE_DEFAULT",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/bitlogic/src/lib/components/button/button.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "ButtonStyle.raised"
+                },
+                {
+                    "name": "TYPE_DEFAULT",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/bitlogic/src/lib/components/button/button.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "ButtonType.button"
+                }
+            ],
+            "projects/bitlogic/src/test.ts": [
+                {
+                    "name": "context",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/bitlogic/src/test.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "require.context('./', true, /\\.spec\\.ts$/)"
+                },
+                {
+                    "name": "require",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/bitlogic/src/test.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "literal type"
+                }
+            ],
+            "projects/bitlogic/src/lib/components/menu/menu.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/bitlogic/src/lib/components/menu/menu.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "options",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/bitlogic/src/lib/components/menu/menu.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "MenuOpcion[]",
+                    "defaultValue": "[\n  { id: 'butt-1', name: 'Exámenes', icon: 'insert_drive_file', link:\"\", selected: true },\n  { id: 'butt-2', name: 'Materias', icon: 'menu_book', link:\"\", selected: false },\n  { id: 'butt-3', name: 'Pagos', icon: 'receipt', link:\"\", selected: false },\n  { id: 'butt-4', name: 'Más opciones', icon: 'more_vert', link:\"\", selected: false }\n]"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/bitlogic/src/lib/components/menu/menu.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<MenuComponent>",
+                    "defaultValue": "(args: MenuComponent) => ({\n  component: MenuComponent,\n  props: args,\n})"
+                }
+            ],
+            "projects/bitlogic/src/lib/components/slider/slider.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/bitlogic/src/lib/components/slider/slider.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "LegajoDisabled",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/bitlogic/src/lib/components/slider/slider.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "LegajoSlider",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/bitlogic/src/lib/components/slider/slider.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Simple",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/bitlogic/src/lib/components/slider/slider.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "slideInfo",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/bitlogic/src/lib/components/slider/slider.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "SliderInfo[]",
+                    "defaultValue": "[\n  {\n    careerLevel: 'GRADO',\n    modality: 'DISTANCIA - EDUCACION DISTRIBUIDA',\n    assigment: 'VCIN02466',\n    careerName: 'LICENCIATURA EN COMERCIO INTERNACIONAL',\n    subjectsApprove: '35/37',\n    credits: '3/12',\n    subjectsLabel:'Materias programáticas aprobadas para el plan de estudio',\n    creditsLabel:'Créditos acumulados'\n\n  },\n  {\n    careerLevel: 'GRADO 1',\n    modality: 'DISTANCIA - EDUCACION DISTRIBUIDA',\n    assigment: 'VCIN03000',\n    careerName: 'Licenciatura en Gestión Turística',\n    subjectsApprove: '1/10',\n    credits: '3/3',\n    subjectsLabel:'Materias programáticas aprobadas para el plan de estudio',\n    creditsLabel:'Créditos acumulados'\n  },\n  {\n    careerLevel: 'GRADO 2',\n    modality: 'DISTANCIA - EDUCACION DISTRIBUIDA',\n    assigment: 'VCIN04000',\n    careerName: 'Mat 3',\n    subjectsApprove: '1/10',\n    credits: '3/3',\n    subjectsLabel:'Materias programáticas aprobadas para el plan de estudio',\n    creditsLabel:'Créditos acumulados'\n  },\n  {\n    careerLevel: 'GRADO 3',\n    modality: 'DISTANCIA - EDUCACION DISTRIBUIDA',\n    assigment: 'VCIN04000',\n    careerName: 'Mat 3',\n    subjectsApprove: '1/10',\n    credits: '3/3',\n    subjectsLabel:'Materias programáticas aprobadas para el plan de estudio',\n    creditsLabel:'Créditos acumulados'\n  }\n]"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/bitlogic/src/lib/components/slider/slider.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<SliderComponent>",
+                    "defaultValue": "(args: SliderComponent) => ({\n  component: SliderComponent,\n  props: args,\n})"
+                }
+            ],
+            "projects/bitlogic/src/lib/components/toolbar/toolbar.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/bitlogic/src/lib/components/toolbar/toolbar.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/bitlogic/src/lib/components/toolbar/toolbar.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<ToolbarComponent>",
+                    "defaultValue": "(args: ToolbarComponent) => ({\n  component: ToolbarComponent,\n  props: args,\n})"
+                }
+            ],
+            "projects/bitlogic/src/lib/components/button/button.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/bitlogic/src/lib/components/button/button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Disabled",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/bitlogic/src/lib/components/button/button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/bitlogic/src/lib/components/button/button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<ButtonComponent>",
+                    "defaultValue": "(args: ButtonComponent) => ({\n  component: ButtonComponent,\n  props: args,\n  decorators: [\n    moduleMetadata({\n      declarations: [],\n      imports: [\n        ButtonModule\n      ],\n    }),\n  ],\n\n  template: `<bit-button sty=\"outlined\" color=\"secondary\">Button</bit-button>`,\n})"
+                }
+            ]
+        },
+        "groupedFunctions": {},
+        "groupedEnumerations": {},
+        "groupedTypeAliases": {}
+    },
+    "routes": [],
+    "coverage": {
+        "count": 5,
+        "status": "low",
+        "files": [
+            {
+                "filePath": "projects/bitlogic/src/lib/components/button/button.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "ButtonComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/17",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/bitlogic/src/lib/components/button/button.component.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "ButtonColor",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/bitlogic/src/lib/components/button/button.component.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "ButtonStyle",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/bitlogic/src/lib/components/button/button.component.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "ButtonType",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/bitlogic/src/lib/components/button/button.component.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "COLOR_DEFAULT",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/bitlogic/src/lib/components/button/button.component.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "STYLE_DEFAULT",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/bitlogic/src/lib/components/button/button.component.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "TYPE_DEFAULT",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/bitlogic/src/lib/components/button/button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/bitlogic/src/lib/components/button/button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Disabled",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/bitlogic/src/lib/components/button/button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/bitlogic/src/lib/components/menu/menu.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "MenuComponent",
+                "coveragePercent": 40,
+                "coverageCount": "2/5",
+                "status": "medium"
+            },
+            {
+                "filePath": "projects/bitlogic/src/lib/components/menu/menu.component.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "MenuOpcion",
+                "coveragePercent": 16,
+                "coverageCount": "1/6",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/bitlogic/src/lib/components/menu/menu.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/bitlogic/src/lib/components/menu/menu.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "options",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/bitlogic/src/lib/components/menu/menu.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/bitlogic/src/lib/components/slider/slider.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "SliderComponent",
+                "coveragePercent": 27,
+                "coverageCount": "3/11",
+                "status": "medium"
+            },
+            {
+                "filePath": "projects/bitlogic/src/lib/components/slider/slider.component.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "SliderInfo",
+                "coveragePercent": 11,
+                "coverageCount": "1/9",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/bitlogic/src/lib/components/slider/slider.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/bitlogic/src/lib/components/slider/slider.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "LegajoDisabled",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/bitlogic/src/lib/components/slider/slider.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "LegajoSlider",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/bitlogic/src/lib/components/slider/slider.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Simple",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/bitlogic/src/lib/components/slider/slider.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "slideInfo",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/bitlogic/src/lib/components/slider/slider.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/bitlogic/src/lib/components/toolbar/toolbar.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "ToolbarComponent",
+                "coveragePercent": 62,
+                "coverageCount": "5/8",
+                "status": "good"
+            },
+            {
+                "filePath": "projects/bitlogic/src/lib/components/toolbar/toolbar.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/bitlogic/src/lib/components/toolbar/toolbar.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/bitlogic/src/test.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "context",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/bitlogic/src/test.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "require",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            }
+        ]
+    }
+}
