@@ -15,7 +15,6 @@ jobs:
     - run: |
         npm install
         npm run build-storybook
-      uses: ./
       with:
         run_lint: true
         github_access_token: ${{ secrets.ACCESS_TOKEN }}
