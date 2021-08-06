@@ -5,16 +5,19 @@ on: # rebuild any PRs and main branch changes
     branches:
       - master
       - 'releases/*'
+      - 'feature/*'
 
 jobs:
   build_action_storybook: # make sure the action works on a clean machine without building
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - name: 'Deploy storybook using action'
+    - name: Angular Deploy gh-pages Actions
+      uses: AhsanAyaz/angular-deploy-gh-pages-actions@v1.3.2
+
     - run: |
         npm install
         npm run build-storybook
+      uses: ./
       with:
         run_lint: true
         github_access_token: ${{ secrets.ACCESS_TOKEN }}
