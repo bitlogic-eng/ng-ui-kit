@@ -13,7 +13,8 @@
     "publish": "npm publish ./dist/bitlogic",
     "docs:json": "compodoc -p ./tsconfig.json -e json -d .",
     "storybook": "npm run docs:json && start-storybook -p 6006",
-    "build-storybook": "npm run docs:json && build-storybook"
+    "build-storybook": "npm run docs:json && build-storybook",
+    "deploy-storybook": "npx angular-cli-ghpages --dir=storybook-static"
   },
   "private": true,
   "dependencies": {
@@ -49,6 +50,7 @@
     "@types/jasmine": "~3.6.0",
     "@types/node": "^12.11.1",
     "@webcomponents/custom-elements": "^1.4.3",
+    "angular-cli-ghpages": "^1.0.0-rc.2",
     "babel-loader": "^8.2.2",
     "codelyzer": "^6.0.0",
     "jasmine-core": "~3.6.0",
