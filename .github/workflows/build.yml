@@ -27,13 +27,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Retrieve saved Artifact
+      - name: Retrieve saved Artifact Storybook
         uses: actions/download-artifact@v2
         with:
           name: storybook
 
-      - name: Modify the artifact
-        run: echo "Hello, I have been changed by secondJob"
+      - name: Deploy Storybook to github pages
+        run: npm run deploy-storybook
         
-      - name: Upload the artifact
-        uses: actions/upload-artifact@v2
