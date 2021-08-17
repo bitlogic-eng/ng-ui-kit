@@ -12,7 +12,13 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Create artifact Storybook
+<<<<<<< HEAD
         run: npm run storybook
+=======
+        run: |
+          npm i
+          npm run storybook
+>>>>>>> 78c64810a934679b57dcbd65cbe8da2e129418b2
 
       - name: Upload the artifact
         uses: actions/upload-artifact@v2
@@ -34,4 +40,8 @@ jobs:
         run: echo "Hello, I have been changed by secondJob"
         
       - name: Upload the artifact
+<<<<<<< HEAD
         uses: actions/upload-artifact@v2
+=======
+        uses: actions/upload-artifact@v2
+>>>>>>> 78c64810a934679b57dcbd65cbe8da2e129418b2
