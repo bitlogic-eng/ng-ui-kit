@@ -14,7 +14,7 @@ jobs:
       - name: Create artifact Storybook
         run: |
           npm i
-          npm run storybook
+          npm run storybook2
 
       - name: Upload the artifact
         uses: actions/upload-artifact@v2
