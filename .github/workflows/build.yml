@@ -33,5 +33,5 @@ jobs:
           name: storybook
 
       - name: Deploy Storybook to github pages
-        run: npm run deploy-storybook
+        run: npx angular-cli-ghpages --dir=storybook-static
         
