@@ -31,7 +31,7 @@ jobs:
       with:
         name: artifact_storybook
     - name: Modify the artifact
-        run: echo "Hello, I have been changed by secondJob" >>  myArtifact.txt
+      run: echo "Hello, I have been changed by secondJob" >>  myArtifact.txt
     # - name: Deploy storybook
     # - uses: actions/checkout@v2
     # - run: |
