@@ -1,34 +1,50 @@
-name: "build"
+name: Secuencial jobs
 on:
-  pull_request:
-    branches: [ feature/act ]
   push:
     branches: [ feature/act ]
-
+  pull_request:
+    branches: [ feature/act ]
 jobs:
-
-  buildStorybook:
+  firstJob:
     runs-on: ubuntu-latest
     steps:
-
-    - name: Create artifact StoryBook
-      uses: actions/checkout@v2    
-      run: echo "Creting artifact Storybook" > storybook.txt
-
-    - name: Upload the storybook
+    - name: Create artifact
+      run: echo "Hello, I'm produced by firstJob" > myArtifact.txt
+    - name: Upload the artifact
       uses: actions/upload-artifact@v2
       with:
-        name: artifact_storybook
-        path: storybook.txt    
-
-  deployStorybook:
-    needs: buildStorybook
+        name: artifact_job1
+        path: myArtifact.txt
+  secondJob:
+    needs: firstJob
     runs-on: ubuntu-latest
     steps:
-
-    - name: Retrieve artifact StoryBook
-      uses: actions/download-artifact@v2
-      with:
-        name: artifact_storybook
-    - name: Modify the artifact
-      run: echo "Hello, I have been changed by secondJob"
+      - name: Retrieve saved Artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: artifact_job1
+      - name: Modify the artifact
+        run: echo "Hello, I have been changed by secondJob" >>  myArtifact.txt
+      - name: Upload the artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: artifact_job2
+          path: myArtifact.txt
+  thirdJob:
+    needs: secondJob
+    runs-on: ubuntu-latest
+    steps:
+      - name: Retrieve saved Artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: artifact_job2
+      - name: duplicate files
+        run: |
+          mkdir project
+          cp myArtifact.txt project/myArtifact.txt
+          cp myArtifact.txt project/myArtifact_copy.txt
+      - name: Upload the project artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: final_artifact
+          path: project
