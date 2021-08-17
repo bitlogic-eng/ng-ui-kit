@@ -27,11 +27,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/checkout@v2
+      
       - name: Retrieve saved Artifact Storybook
         uses: actions/download-artifact@v2
         with:
           name: storybook
 
       - name: Deploy Storybook to github pages
-        run: npx angular-cli-ghpages --dir=storybook-static
+        run: npm run deploy-storybook
         
