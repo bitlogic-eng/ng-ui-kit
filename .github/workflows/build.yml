@@ -16,24 +16,10 @@ jobs:
           npm i
           npm run build-storybook
 
-      - name: Upload the artifact
-        uses: actions/upload-artifact@v2
+        
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          name: storybook
-          path: ./storybook-static/*
-
-  deployStorybook:
-    needs: buildStorybook
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-      
-      - name: Retrieve saved Artifact Storybook
-        uses: actions/download-artifact@v2
-        with:
-          name: storybook
-
-      - name: Deploy Storybook to github pages
-        run: npm run deploy-storybook
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./storybook-static
         
