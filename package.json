@@ -13,6 +13,7 @@
     "publish": "npm publish ./dist/bitlogic",
     "docs:json": "compodoc -p ./tsconfig.json -e json -d .",
     "storybook": "npm run docs:json && start-storybook -p 6006",
+    "storybook2": "npm run docs:json",
     "build-storybook": "npm run docs:json && build-storybook",
     "deploy-storybook": "npx angular-cli-ghpages --dir=storybook-static"
   },
