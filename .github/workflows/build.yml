@@ -31,17 +31,4 @@ jobs:
       with:
         name: artifact_storybook
     - name: Modify the artifact
-      run: echo "Hello, I have been changed by secondJob" >>  myArtifact.txt
-    # - name: Deploy storybook
-    # - uses: actions/checkout@v2
-    # - run: |
-    #     npm install
-    #     npm run build-storybook
-    #   with:
-    #     run_lint: true
-    #     github_access_token: ${{ secrets.GITHUB_TOKEN }}
-    #     build_configuration: # The branch the action should deploy from.
-    #     base_href: /ng-ui-kit/
-    #     deploy_branch: gh-pages # The branch the action should deploy to.
-    #     angular_dist_build_folder: storybook-static # The folder the action should deploy.
-    #     angular_project_dir: bitlog
+      run: echo "Hello, I have been changed by secondJob"
