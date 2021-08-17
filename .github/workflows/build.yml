@@ -5,46 +5,33 @@ on:
   pull_request:
     branches: [ feature/act ]
 jobs:
-  firstJob:
+  buildStorybook:
     runs-on: ubuntu-latest
+
     steps:
-    - name: Create artifact
-      run: echo "Hello, I'm produced by firstJob" > myArtifact.txt
-    - name: Upload the artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: artifact_job1
-        path: myArtifact.txt
-  secondJob:
-    needs: firstJob
-    runs-on: ubuntu-latest
-    steps:
-      - name: Retrieve saved Artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: artifact_job1
-      - name: Modify the artifact
-        run: echo "Hello, I have been changed by secondJob" >>  myArtifact.txt
+      - uses: actions/checkout@v2
+
+      - name: Create artifact Storybook
+        run: npm run storybook
+
       - name: Upload the artifact
         uses: actions/upload-artifact@v2
         with:
-          name: artifact_job2
-          path: myArtifact.txt
-  thirdJob:
-    needs: secondJob
+          name: storybook
+          path: storybook-static
+
+  deployStorybook:
+    needs: buildStorybook
     runs-on: ubuntu-latest
+
     steps:
       - name: Retrieve saved Artifact
         uses: actions/download-artifact@v2
         with:
-          name: artifact_job2
-      - name: duplicate files
-        run: |
-          mkdir project
-          cp myArtifact.txt project/myArtifact.txt
-          cp myArtifact.txt project/myArtifact_copy.txt
-      - name: Upload the project artifact
+          name: storybook
+
+      - name: Modify the artifact
+        run: echo "Hello, I have been changed by secondJob"
+        
+      - name: Upload the artifact
         uses: actions/upload-artifact@v2
-        with:
-          name: final_artifact
-          path: project
