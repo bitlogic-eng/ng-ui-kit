@@ -1,29 +1,47 @@
-# name: "build"
-# on: # rebuild any PRs and main branch changes
-#   pull_request:
-#   push:
-#     branches:
-#       - master
-#       - 'releases/*'
-#       - 'feature/*'
+name: "build"
+on:
+  pull_request:
+    branches: [ feature/act ]
+  push:
+    branches: [ feature/act ]
 
-# jobs:
-#   build_action_storybook: # make sure the action works on a clean machine without building
-#     runs-on: ubuntu-latest
-#     steps:
-#     - uses: actions/checkout@v2
-#     - name: Angular Deploy gh-pages Actions
-#       uses: AhsanAyaz/angular-deploy-gh-pages-actions@v1.3.2
+jobs:
 
-#     - run: |
-#         npm install
-#         npm run build-storybook
-#       uses: ./
-#       with:
-#         run_lint: true
-#         github_access_token: ${{ secrets.ACCESS_TOKEN }}
-#         build_configuration: # The branch the action should deploy from.
-#         base_href: /ng-ui-kit/
-#         deploy_branch: gh-pages # The branch the action should deploy to.
-#         angular_dist_build_folder: storybook-static # The folder the action should deploy.
-#         angular_project_dir: bitlogic
+  buildStorybook:
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Create artifact StoryBook
+    - uses: actions/checkout@v2    
+      run: echo "Creting artifact Storybook" > storybook.txt
+
+    - name: Upload the storybook
+      uses: actions/upload-artifact@v2
+      with:
+        name: artifact_storybook
+        path: storybook.txt    
+
+  deployStorybook:
+    needs: buildStorybook
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Retrieve artifact StoryBook
+      uses: actions/download-artifact@v2
+      with:
+        name: artifact_storybook
+    - name: Modify the artifact
+        run: echo "Hello, I have been changed by secondJob" >>  myArtifact.txt
+    # - name: Deploy storybook
+    # - uses: actions/checkout@v2
+    # - run: |
+    #     npm install
+    #     npm run build-storybook
+    #   with:
+    #     run_lint: true
+    #     github_access_token: ${{ secrets.GITHUB_TOKEN }}
+    #     build_configuration: # The branch the action should deploy from.
+    #     base_href: /ng-ui-kit/
+    #     deploy_branch: gh-pages # The branch the action should deploy to.
+    #     angular_dist_build_folder: storybook-static # The folder the action should deploy.
+    #     angular_project_dir: bitlog
