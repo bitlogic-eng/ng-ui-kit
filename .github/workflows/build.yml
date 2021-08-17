@@ -20,7 +20,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: storybook
-          path: storybook-static
+          path: ./storybook-static/*
 
   deployStorybook:
     needs: buildStorybook
