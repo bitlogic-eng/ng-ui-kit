@@ -1,9 +1,9 @@
 name: Secuencial jobs
 on:
   push:
-    branches: [ feature/act ]
+    branches: [ master ]
   pull_request:
-    branches: [ feature/act ]
+    branches: [ master ]
 jobs:
   buildStorybook:
     runs-on: ubuntu-latest
