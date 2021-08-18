@@ -1,29 +1,25 @@
-# name: "build"
-# on: # rebuild any PRs and main branch changes
-#   pull_request:
-#   push:
-#     branches:
-#       - master
-#       - 'releases/*'
-#       - 'feature/*'
+name: Secuencial jobs
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+jobs:
+  buildStorybook:
+    runs-on: ubuntu-latest
 
-# jobs:
-#   build_action_storybook: # make sure the action works on a clean machine without building
-#     runs-on: ubuntu-latest
-#     steps:
-#     - uses: actions/checkout@v2
-#     - name: Angular Deploy gh-pages Actions
-#       uses: AhsanAyaz/angular-deploy-gh-pages-actions@v1.3.2
+    steps:
+      - uses: actions/checkout@v2
 
-#     - run: |
-#         npm install
-#         npm run build-storybook
-#       uses: ./
-#       with:
-#         run_lint: true
-#         github_access_token: ${{ secrets.ACCESS_TOKEN }}
-#         build_configuration: # The branch the action should deploy from.
-#         base_href: /ng-ui-kit/
-#         deploy_branch: gh-pages # The branch the action should deploy to.
-#         angular_dist_build_folder: storybook-static # The folder the action should deploy.
-#         angular_project_dir: bitlogic
+      - name: Create artifact Storybook
+        run: |
+          npm i
+          npm run build-storybook
+
+        
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./storybook-static
+        
