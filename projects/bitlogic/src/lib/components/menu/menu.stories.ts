@@ -1,12 +1,15 @@
 import { Story, Meta } from '@storybook/angular';
-import { MenuComponent, MenuOpcion} from './menu.component';
+import { MenuComponent, MenuOption} from './menu.component';
 
-const options: MenuOpcion[] = [
-  { id: 'butt-1', name: 'Exámenes', icon: 'insert_drive_file', link:"", selected: true },
-  { id: 'butt-2', name: 'Materias', icon: 'menu_book', link:"", selected: false },
-  { id: 'butt-3', name: 'Pagos', icon: 'receipt', link:"", selected: false },
-  { id: 'butt-4', name: 'Más opciones', icon: 'more_vert', link:"", selected: false }
+const options: MenuOption[] = [
+  { id: 'butt-1', name: 'Exámenes', icon: 'insert_drive_file', link:"" },
+  { id: 'butt-2', name: 'Materias', icon: 'menu_book', link:"" },
+  { id: 'butt-3', name: 'Pagos', icon: 'receipt', link:"" },
+  { id: 'butt-4', name: 'Titulos', icon: 'done', link:""  },
+  { id: 'butt-5', name: 'info', icon: 'info', link:"" },
 ];
+
+const moreOption = { id: '_mas', name: 'Más', icon: 'more_vert', link:"" }
 
 export default {
   title: 'Components/Menu',
@@ -21,5 +24,7 @@ const Template: Story<MenuComponent> = (args: MenuComponent) => ({
 
 export const Default = Template.bind({});
 Default.args = {
-  options: options
+  options: options,
+  moreOption: moreOption,
+  selectedOptionId: 'butt-1'
 };

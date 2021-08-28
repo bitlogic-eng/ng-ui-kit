@@ -2,13 +2,9 @@
 @import '../../../../assets/scss/theme';
 
 .navbar {
-  // position: fixed;
-  // width: $navbar-width;
   height: 100%;
-  // top: 0px;
   background: $color-white;
   box-shadow: 3px 0 6px rgba(0,0,0,.08);
-  // z-index: 100;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -23,65 +19,62 @@
     margin: 26px 0 26px 0;
   }
 
-  ul {
+  .menu {
     list-style-type: none;
     margin: 0;
     padding: 0;
     display: flex;
     flex-direction: column;
+    justify-content: center;
 
-  }
+    height: 80%;
 
-  .link {
-    @extend %transition;
-
-    // text-decoration: none;
-    &:hover {
-      opacity: 0.8;
-      cursor: pointer;
-    }
-
-
-    // & + .link {
-    //   border-top: 1px solid $color-black-alt-10;
-    // }
-    // &:last-child {
-    //   border: none;
-    // }
-
-    i {
-      height: 50px;
-      width: 50px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      border: 6px solid $color-white;
-      background-color: $color-white;
-      align-items: center;
-      justify-content: center;
-      color:$color-black-alt-40;
-      font-size: 26px;
-    }
-    h6 {
-      color:$color-black-alt-40;
-    }
-
-    &.selected {
+    .item {
+      @extend %transition;
+      overflow: hidden;
+  
+      &:hover {
+        opacity: 0.8;
+        cursor: pointer;
+      }
+  
       i {
-          color: $color-white;
-          background-color: $color-primary;
+        height: 50px;
+        width: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        border: 6px solid $color-white;
+        background-color: $color-white;
+        align-items: center;
+        justify-content: center;
+        color:$color-black-alt-40;
+        font-size: 26px;
       }
       h6 {
-          color: $color-primary;
+        color:$color-black-alt-40;
       }
-    }
-
-    &:last-child {
+  
+      &.selected {
+        i {
+            color: $color-white;
+            background-color: $color-primary;
+        }
+        h6 {
+            color: $color-primary;
+        }
+      }
+  
 
     }
 
   }
+
+  .version {
+    height: auto;
+  }
+
 }
 
 @media  only screen and ( max-width : 768px) {
@@ -92,7 +85,7 @@
 
   .navbar {
 
-    ul {
+    .menu {
       display: flex;
       flex-direction: row;
       justify-content: space-evenly;

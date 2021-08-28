@@ -2,13 +2,13 @@
     "pipes": [],
     "interfaces": [
         {
-            "name": "MenuOpcion",
-            "id": "interface-MenuOpcion-6d18aa53589b60542d8efbb6853ee2bd",
+            "name": "MenuOption",
+            "id": "interface-MenuOption-20ebed62f2480000738be53d31e28bb0",
             "file": "projects/bitlogic/src/lib/components/menu/menu.component.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { Component, Output, EventEmitter, Input } from '@angular/core';\n\n/**\n * The Menu Opcion\n * @interface MenuOpcion\n */\nexport interface MenuOpcion {\n  id: string, \n  name: string, \n  icon: string, \n  link: string, \n  selected: boolean\n}\n\n@Component({\n  selector: 'bit-menu',\n  templateUrl: './menu.component.html',\n  styleUrls: ['./menu.component.scss']\n})\nexport class MenuComponent {\n\n  /**\n   * Is the menu opcion \n   */\n  @Input()\n  options: MenuOpcion[] = [];\n\n  /**\n   * Menu click handler\n   */\n  @Output() \n  menuClick: EventEmitter<MenuOpcion> = new EventEmitter<MenuOpcion>();\n\n  constructor() {}\n\n  onOptionClick(optionSelected: MenuOpcion) {\n    for (let option of this.options) {\n      option.selected = false;\n      if (option.id === optionSelected.id) {\n        option.selected = true;\n      }\n    }\n\n    this.menuClick.emit(optionSelected);\n\n  }\n\n}\n",
+            "sourceCode": "import { Component, Output, EventEmitter, Input } from '@angular/core';\n\n/**\n * The Menu Options\n * @interface MenuOption\n */\nexport interface MenuOption {\n  id: string, \n  name: string, \n  icon: string, \n  link: string,\n  linkType?: string\n}\n\n@Component({\n  selector: 'bit-menu',\n  templateUrl: './menu.component.html',\n  styleUrls: ['./menu.component.scss']\n})\nexport class MenuComponent {\n\n  /**\n   * Is the menu items\n   * @type Array<MenuOption>\n   * @private\n   */\n  private _options: Array<MenuOption> = [];\n\n  /**\n   * Is the menu items\n   * @requires\n   */\n  @Input()\n  set options(options: MenuOption[]) {\n    \n    this._options = options; \n    const regexp = new RegExp(\"^(http|https)://\", \"i\");\n\n    this._options.map((op) => {\n      \n      if (regexp.test(op.link)) {\n        op.linkType = \"externar\";\n      } else {\n        op.linkType = \"internal\";\n      }\n\n    })\n  }\n  get options() {\n    return this.getOptions();\n  }\n\n  /**\n   * The item showed \n   * @default\n   */\n  @Input()\n  numberItemShowed: number = 0;\n\n  /**\n   * Is the selected option id\n   * @type string \n   */\n  @Input()\n  selectedOptionId: string = null;\n\n  /**\n   * More Option. When the menu has several items, it's replaced for the item moreOption.\n   * @type MenuOption\n   */\n  @Input()\n  moreOption: MenuOption = null;\n\n  /**\n   * Menu click handler\n   */\n  @Output() \n  menuClick: EventEmitter<MenuOption> = new EventEmitter<MenuOption>();\n\n  /**\n   * Constructor\n   */\n  constructor() {}\n\n  /**\n   * Check the item selected\n   * @returns boolean\n   */\n  isOptionSelected(option: MenuOption) : boolean {\n    return this.selectedOptionId === option.id;\n  }\n  \n  /**\n   * Return the menu items\n   * @returns Array<MenuOption>\n   */\n  // getOptions(): MenuOption[] {\n  //   let optionsToShow: MenuOption[]  = this._options.slice();\n\n  //   if (this.numberItemShowed !== 0 && this.moreOption !== null)\n  //   { \n  //     const length = optionsToShow.length - this.numberItemShowed;\n  //     optionsToShow = optionsToShow.slice(0,length < 0 ? 0 : length).concat([this.moreOption]);\n  //   }\n\n  //   return optionsToShow;\n  // }\n\n  getOptions(): MenuOption[] {\n    let optionsToShow: MenuOption[] = this._options.slice();\n\n    if (this.moreOption !== null && this.numberItemShowed > 0 && this.numberItemShowed < this._options.length)\n    { \n      // const length = optionsToShow.length - this.numberItemShowed;\n      optionsToShow = optionsToShow.slice(0,this.numberItemShowed).concat([this.moreOption]);\n    }\n\n    return optionsToShow;\n  }\n\n\n  /**\n   * Menu click handler\n   * @param MenuOption\n   */\n  onOptionClick(optionSelected: MenuOption) {\n    this.selectedOptionId = optionSelected.id;\n    this.menuClick.emit(optionSelected);\n  }\n\n}\n",
             "properties": [
                 {
                     "name": "icon",
@@ -38,6 +38,15 @@
                     "line": 11
                 },
                 {
+                    "name": "linkType",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": true,
+                    "description": "",
+                    "line": 12
+                },
+                {
                     "name": "name",
                     "deprecated": false,
                     "deprecationMessage": "",
@@ -45,21 +54,12 @@
                     "optional": false,
                     "description": "",
                     "line": 9
-                },
-                {
-                    "name": "selected",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "boolean",
-                    "optional": false,
-                    "description": "",
-                    "line": 12
                 }
             ],
             "indexSignatures": [],
             "kind": 163,
-            "description": "<p>The Menu Opcion</p>\n",
-            "rawdescription": "\n\nThe Menu Opcion\n",
+            "description": "<p>The Menu Options</p>\n",
+            "rawdescription": "\n\nThe Menu Options\n",
             "methods": []
         },
         {
@@ -151,7 +151,29 @@
             "methods": []
         }
     ],
-    "injectables": [],
+    "injectables": [
+        {
+            "name": "MenuService",
+            "id": "injectable-MenuService-8404b66c6ba7c77951ebb116afd5b6ee",
+            "file": "projects/bitlogic/src/lib/components/menu/menu.service.ts",
+            "properties": [],
+            "methods": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\n\n@Injectable({\n  providedIn: 'root'\n})\nexport class MenuService {\n\n  constructor() { }\n}\n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 6
+            },
+            "type": "injectable"
+        }
+    ],
     "guards": [],
     "interceptors": [],
     "classes": [],
@@ -532,7 +554,7 @@
         },
         {
             "name": "MenuComponent",
-            "id": "component-MenuComponent-6d18aa53589b60542d8efbb6853ee2bd",
+            "id": "component-MenuComponent-20ebed62f2480000738be53d31e28bb0",
             "file": "projects/bitlogic/src/lib/components/menu/menu.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -550,36 +572,356 @@
             "viewProviders": [],
             "inputsClass": [
                 {
-                    "name": "options",
-                    "defaultValue": "[]",
+                    "name": "moreOption",
+                    "defaultValue": "null",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "rawdescription": "Is the menu opcion",
-                    "description": "<p>Is the menu opcion</p>\n",
-                    "line": 26,
-                    "type": "MenuOpcion[]"
+                    "jsdoctags": [
+                        {
+                            "pos": 1239,
+                            "end": 1255,
+                            "flags": 4227072,
+                            "modifierFlagsCache": 0,
+                            "transformFlags": 0,
+                            "kind": 333,
+                            "tagName": {
+                                "pos": 1240,
+                                "end": 1244,
+                                "flags": 4227072,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 78,
+                                "originalKeywordKind": 149,
+                                "escapedText": "type"
+                            },
+                            "comment": "",
+                            "typeExpression": {
+                                "pos": 1245,
+                                "end": 1255,
+                                "flags": 4227072,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 302,
+                                "type": {
+                                    "pos": 1245,
+                                    "end": 1255,
+                                    "flags": 4194304,
+                                    "modifierFlagsCache": 0,
+                                    "transformFlags": 1,
+                                    "kind": 174,
+                                    "typeName": {
+                                        "pos": 1245,
+                                        "end": 1255,
+                                        "flags": 4194304,
+                                        "modifierFlagsCache": 0,
+                                        "transformFlags": 0,
+                                        "kind": 78,
+                                        "escapedText": "MenuOption"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "rawdescription": "More Option. When the menu has several items, it's replaced for the item moreOption.",
+                    "description": "<p>More Option. When the menu has several items, it&#39;s replaced for the item moreOption.</p>\n",
+                    "line": 72,
+                    "type": "MenuOption"
+                },
+                {
+                    "name": "numberItemShowed",
+                    "defaultValue": "0",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "pos": 970,
+                            "end": 982,
+                            "flags": 4227072,
+                            "modifierFlagsCache": 0,
+                            "transformFlags": 0,
+                            "kind": 317,
+                            "tagName": {
+                                "pos": 971,
+                                "end": 978,
+                                "flags": 4227072,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 78,
+                                "originalKeywordKind": 87,
+                                "escapedText": "default"
+                            },
+                            "comment": ""
+                        }
+                    ],
+                    "rawdescription": "The item showed",
+                    "description": "<p>The item showed</p>\n",
+                    "line": 58,
+                    "type": "number"
+                },
+                {
+                    "name": "options",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "pos": 550,
+                            "end": 563,
+                            "flags": 4227072,
+                            "modifierFlagsCache": 0,
+                            "transformFlags": 0,
+                            "kind": 317,
+                            "tagName": {
+                                "pos": 551,
+                                "end": 559,
+                                "flags": 4227072,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 78,
+                                "escapedText": "requires"
+                            },
+                            "comment": ""
+                        }
+                    ],
+                    "rawdescription": "Is the menu items",
+                    "description": "<p>Is the menu items</p>\n",
+                    "line": 34,
+                    "type": "[]"
+                },
+                {
+                    "name": "selectedOptionId",
+                    "defaultValue": "null",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "pos": 1071,
+                            "end": 1083,
+                            "flags": 4227072,
+                            "modifierFlagsCache": 0,
+                            "transformFlags": 0,
+                            "kind": 333,
+                            "tagName": {
+                                "pos": 1072,
+                                "end": 1076,
+                                "flags": 4227072,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 78,
+                                "originalKeywordKind": 149,
+                                "escapedText": "type"
+                            },
+                            "comment": "",
+                            "typeExpression": {
+                                "pos": 1077,
+                                "end": 1083,
+                                "flags": 4227072,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 302,
+                                "type": {
+                                    "pos": 1077,
+                                    "end": 1083,
+                                    "flags": 4194304,
+                                    "modifierFlagsCache": 0,
+                                    "transformFlags": 1,
+                                    "kind": 147
+                                }
+                            }
+                        }
+                    ],
+                    "rawdescription": "Is the selected option id",
+                    "description": "<p>Is the selected option id</p>\n",
+                    "line": 65,
+                    "type": "string"
                 }
             ],
             "outputsClass": [
                 {
                     "name": "menuClick",
-                    "defaultValue": "new EventEmitter<MenuOpcion>()",
+                    "defaultValue": "new EventEmitter<MenuOption>()",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\n\nMenu click handler\n",
                     "description": "<p>Menu click handler</p>\n",
-                    "line": 32,
-                    "type": "EventEmitter<MenuOpcion>"
+                    "line": 78,
+                    "type": "EventEmitter<MenuOption>"
                 }
             ],
-            "propertiesClass": [],
+            "propertiesClass": [
+                {
+                    "name": "_options",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Array<MenuOption>",
+                    "optional": false,
+                    "description": "<p>Is the menu items</p>\n",
+                    "line": 27,
+                    "rawdescription": "\n\nIs the menu items\n",
+                    "modifierKind": [
+                        120
+                    ],
+                    "jsdoctags": [
+                        {
+                            "pos": 427,
+                            "end": 456,
+                            "flags": 4227072,
+                            "modifierFlagsCache": 0,
+                            "transformFlags": 0,
+                            "kind": 333,
+                            "tagName": {
+                                "pos": 428,
+                                "end": 432,
+                                "flags": 4227072,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 78,
+                                "originalKeywordKind": 149,
+                                "escapedText": "type"
+                            },
+                            "comment": "",
+                            "typeExpression": {
+                                "pos": 433,
+                                "end": 450,
+                                "flags": 4227072,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 302,
+                                "type": {
+                                    "pos": 433,
+                                    "end": 450,
+                                    "flags": 4194304,
+                                    "modifierFlagsCache": 0,
+                                    "transformFlags": 1,
+                                    "kind": 174,
+                                    "typeName": {
+                                        "pos": 433,
+                                        "end": 438,
+                                        "flags": 4194304,
+                                        "modifierFlagsCache": 0,
+                                        "transformFlags": 0,
+                                        "kind": 78,
+                                        "escapedText": "Array"
+                                    },
+                                    "typeArguments": [
+                                        {
+                                            "pos": 439,
+                                            "end": 449,
+                                            "flags": 4194304,
+                                            "modifierFlagsCache": 0,
+                                            "transformFlags": 1,
+                                            "kind": 174,
+                                            "typeName": {
+                                                "pos": 439,
+                                                "end": 449,
+                                                "flags": 4194304,
+                                                "modifierFlagsCache": 0,
+                                                "transformFlags": 0,
+                                                "kind": 78,
+                                                "escapedText": "MenuOption"
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "pos": 456,
+                            "end": 468,
+                            "flags": 4227072,
+                            "modifierFlagsCache": 0,
+                            "transformFlags": 0,
+                            "kind": 324,
+                            "tagName": {
+                                "pos": 457,
+                                "end": 464,
+                                "flags": 4227072,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 78,
+                                "originalKeywordKind": 120,
+                                "escapedText": "private"
+                            },
+                            "comment": ""
+                        }
+                    ]
+                }
+            ],
             "methodsClass": [
+                {
+                    "name": "getOptions",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "MenuOption[]",
+                    "typeParameters": [],
+                    "line": 109,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nReturn the menu items\n",
+                    "description": "<p>Return the menu items</p>\n",
+                    "jsdoctags": [
+                        {
+                            "tagName": {
+                                "pos": 1686,
+                                "end": 1693,
+                                "flags": 4227072,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 78,
+                                "escapedText": "returns"
+                            },
+                            "comment": "<p>Array<MenuOption></p>\n"
+                        }
+                    ]
+                },
+                {
+                    "name": "isOptionSelected",
+                    "args": [
+                        {
+                            "name": "option",
+                            "type": "MenuOption",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "boolean",
+                    "typeParameters": [],
+                    "line": 89,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nCheck the item selected\n",
+                    "description": "<p>Check the item selected</p>\n",
+                    "jsdoctags": [
+                        {
+                            "name": "option",
+                            "type": "MenuOption",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "tagName": {
+                                "pos": 1519,
+                                "end": 1526,
+                                "flags": 4227072,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 78,
+                                "escapedText": "returns"
+                            },
+                            "comment": "<p>boolean</p>\n"
+                        }
+                    ]
+                },
                 {
                     "name": "onOptionClick",
                     "args": [
                         {
                             "name": "optionSelected",
-                            "type": "MenuOpcion",
+                            "type": "MenuOption",
                             "deprecated": false,
                             "deprecationMessage": ""
                         }
@@ -587,13 +929,15 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 36,
+                    "line": 126,
                     "deprecated": false,
                     "deprecationMessage": "",
+                    "rawdescription": "\n\nMenu click handler\n",
+                    "description": "<p>Menu click handler</p>\n",
                     "jsdoctags": [
                         {
                             "name": "optionSelected",
-                            "type": "MenuOpcion",
+                            "type": "MenuOption",
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
@@ -610,24 +954,65 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Output, EventEmitter, Input } from '@angular/core';\n\n/**\n * The Menu Opcion\n * @interface MenuOpcion\n */\nexport interface MenuOpcion {\n  id: string, \n  name: string, \n  icon: string, \n  link: string, \n  selected: boolean\n}\n\n@Component({\n  selector: 'bit-menu',\n  templateUrl: './menu.component.html',\n  styleUrls: ['./menu.component.scss']\n})\nexport class MenuComponent {\n\n  /**\n   * Is the menu opcion \n   */\n  @Input()\n  options: MenuOpcion[] = [];\n\n  /**\n   * Menu click handler\n   */\n  @Output() \n  menuClick: EventEmitter<MenuOpcion> = new EventEmitter<MenuOpcion>();\n\n  constructor() {}\n\n  onOptionClick(optionSelected: MenuOpcion) {\n    for (let option of this.options) {\n      option.selected = false;\n      if (option.id === optionSelected.id) {\n        option.selected = true;\n      }\n    }\n\n    this.menuClick.emit(optionSelected);\n\n  }\n\n}\n",
+            "sourceCode": "import { Component, Output, EventEmitter, Input } from '@angular/core';\n\n/**\n * The Menu Options\n * @interface MenuOption\n */\nexport interface MenuOption {\n  id: string, \n  name: string, \n  icon: string, \n  link: string,\n  linkType?: string\n}\n\n@Component({\n  selector: 'bit-menu',\n  templateUrl: './menu.component.html',\n  styleUrls: ['./menu.component.scss']\n})\nexport class MenuComponent {\n\n  /**\n   * Is the menu items\n   * @type Array<MenuOption>\n   * @private\n   */\n  private _options: Array<MenuOption> = [];\n\n  /**\n   * Is the menu items\n   * @requires\n   */\n  @Input()\n  set options(options: MenuOption[]) {\n    \n    this._options = options; \n    const regexp = new RegExp(\"^(http|https)://\", \"i\");\n\n    this._options.map((op) => {\n      \n      if (regexp.test(op.link)) {\n        op.linkType = \"externar\";\n      } else {\n        op.linkType = \"internal\";\n      }\n\n    })\n  }\n  get options() {\n    return this.getOptions();\n  }\n\n  /**\n   * The item showed \n   * @default\n   */\n  @Input()\n  numberItemShowed: number = 0;\n\n  /**\n   * Is the selected option id\n   * @type string \n   */\n  @Input()\n  selectedOptionId: string = null;\n\n  /**\n   * More Option. When the menu has several items, it's replaced for the item moreOption.\n   * @type MenuOption\n   */\n  @Input()\n  moreOption: MenuOption = null;\n\n  /**\n   * Menu click handler\n   */\n  @Output() \n  menuClick: EventEmitter<MenuOption> = new EventEmitter<MenuOption>();\n\n  /**\n   * Constructor\n   */\n  constructor() {}\n\n  /**\n   * Check the item selected\n   * @returns boolean\n   */\n  isOptionSelected(option: MenuOption) : boolean {\n    return this.selectedOptionId === option.id;\n  }\n  \n  /**\n   * Return the menu items\n   * @returns Array<MenuOption>\n   */\n  // getOptions(): MenuOption[] {\n  //   let optionsToShow: MenuOption[]  = this._options.slice();\n\n  //   if (this.numberItemShowed !== 0 && this.moreOption !== null)\n  //   { \n  //     const length = optionsToShow.length - this.numberItemShowed;\n  //     optionsToShow = optionsToShow.slice(0,length < 0 ? 0 : length).concat([this.moreOption]);\n  //   }\n\n  //   return optionsToShow;\n  // }\n\n  getOptions(): MenuOption[] {\n    let optionsToShow: MenuOption[] = this._options.slice();\n\n    if (this.moreOption !== null && this.numberItemShowed > 0 && this.numberItemShowed < this._options.length)\n    { \n      // const length = optionsToShow.length - this.numberItemShowed;\n      optionsToShow = optionsToShow.slice(0,this.numberItemShowed).concat([this.moreOption]);\n    }\n\n    return optionsToShow;\n  }\n\n\n  /**\n   * Menu click handler\n   * @param MenuOption\n   */\n  onOptionClick(optionSelected: MenuOption) {\n    this.selectedOptionId = optionSelected.id;\n    this.menuClick.emit(optionSelected);\n  }\n\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "\n@import '../../../../assets/scss/theme';\n\n.navbar {\n  // position: fixed;\n  // width: $navbar-width;\n  height: 100%;\n  // top: 0px;\n  background: $color-white;\n  box-shadow: 3px 0 6px rgba(0,0,0,.08);\n  // z-index: 100;\n  display: flex;\n  flex-direction: column;\n  justify-content: flex-start;\n\n  .u21 {\n    background-image: url('../../../../assets/img/iso_siglo_21.svg');\n    width: 34px;\n    height: 34px;\n    background-size: cover;\n    background-repeat: none;\n    background-position: center;\n    margin: 26px 0 26px 0;\n  }\n\n  ul {\n    list-style-type: none;\n    margin: 0;\n    padding: 0;\n    display: flex;\n    flex-direction: column;\n\n  }\n\n  .link {\n    @extend %transition;\n\n    // text-decoration: none;\n    &:hover {\n      opacity: 0.8;\n      cursor: pointer;\n    }\n\n\n    // & + .link {\n    //   border-top: 1px solid $color-black-alt-10;\n    // }\n    // &:last-child {\n    //   border: none;\n    // }\n\n    i {\n      height: 50px;\n      width: 50px;\n      display: flex;\n      align-items: center;\n      justify-content: center;\n      border-radius: 50%;\n      border: 6px solid $color-white;\n      background-color: $color-white;\n      align-items: center;\n      justify-content: center;\n      color:$color-black-alt-40;\n      font-size: 26px;\n    }\n    h6 {\n      color:$color-black-alt-40;\n    }\n\n    &.selected {\n      i {\n          color: $color-white;\n          background-color: $color-primary;\n      }\n      h6 {\n          color: $color-primary;\n      }\n    }\n\n    &:last-child {\n\n    }\n\n  }\n}\n\n@media  only screen and ( max-width : 768px) {\n\n  .u21 {\n    display: none;  \n  }\n\n  .navbar {\n\n    ul {\n      display: flex;\n      flex-direction: row;\n      justify-content: space-evenly;\n      width: 100%;\n    }\n  }\n}\n",
+                    "data": "\n@import '../../../../assets/scss/theme';\n\n.navbar {\n  height: 100%;\n  background: $color-white;\n  box-shadow: 3px 0 6px rgba(0,0,0,.08);\n  display: flex;\n  flex-direction: column;\n  justify-content: flex-start;\n\n  .u21 {\n    background-image: url('../../../../assets/img/iso_siglo_21.svg');\n    width: 34px;\n    height: 34px;\n    background-size: cover;\n    background-repeat: none;\n    background-position: center;\n    margin: 26px 0 26px 0;\n  }\n\n  .menu {\n    list-style-type: none;\n    margin: 0;\n    padding: 0;\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n\n    height: 80%;\n\n    .item {\n      @extend %transition;\n      overflow: hidden;\n  \n      &:hover {\n        opacity: 0.8;\n        cursor: pointer;\n      }\n  \n      i {\n        height: 50px;\n        width: 50px;\n        display: flex;\n        align-items: center;\n        justify-content: center;\n        border-radius: 50%;\n        border: 6px solid $color-white;\n        background-color: $color-white;\n        align-items: center;\n        justify-content: center;\n        color:$color-black-alt-40;\n        font-size: 26px;\n      }\n      h6 {\n        color:$color-black-alt-40;\n      }\n  \n      &.selected {\n        i {\n            color: $color-white;\n            background-color: $color-primary;\n        }\n        h6 {\n            color: $color-primary;\n        }\n      }\n  \n\n    }\n\n  }\n\n  .version {\n    height: auto;\n  }\n\n}\n\n@media  only screen and ( max-width : 768px) {\n\n  .u21 {\n    display: none;  \n  }\n\n  .navbar {\n\n    .menu {\n      display: flex;\n      flex-direction: row;\n      justify-content: space-evenly;\n      width: 100%;\n    }\n  }\n}\n",
                     "styleUrl": "./menu.component.scss"
                 }
             ],
             "stylesData": "",
             "constructorObj": {
                 "name": "constructor",
-                "description": "",
+                "description": "<p>Constructor</p>\n",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "args": [],
-                "line": 32
+                "line": 78,
+                "rawdescription": "\n\nConstructor\n"
             },
-            "templateData": "<nav class=\"navbar\">\n  <div class=\"u21\"></div>\n\n  <ul>\n    <ng-container *ngFor=\"let option of options\">\n        <li id={{option.id}} routerLink={{option.link}} class=\"link\" [class.selected]=\"option.selected\" (click)=\"onOptionClick(option)\">\n          <div>\n              <i class=\"material-icons mx-auto\">{{option.icon}}</i>\n              <h6 class=\"text-center\">\n                  {{option.name}}\n              </h6>\n            </div>\n          </li>          \n    </ng-container>    \n\n\n  </ul>\n        \n</nav>"
+            "accessors": {
+                "options": {
+                    "name": "options",
+                    "setSignature": {
+                        "name": "options",
+                        "type": "void",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "args": [
+                            {
+                                "name": "options",
+                                "type": "MenuOption[]",
+                                "deprecated": false,
+                                "deprecationMessage": ""
+                            }
+                        ],
+                        "returnType": "void",
+                        "line": 34,
+                        "rawdescription": "Is the menu items",
+                        "description": "<p>Is the menu items</p>\n",
+                        "jsdoctags": [
+                            {
+                                "name": "options",
+                                "type": "MenuOption[]",
+                                "deprecated": false,
+                                "deprecationMessage": "",
+                                "tagName": {
+                                    "text": "param"
+                                }
+                            }
+                        ]
+                    },
+                    "getSignature": {
+                        "name": "options",
+                        "type": "",
+                        "returnType": "",
+                        "line": 49
+                    }
+                }
+            },
+            "templateData": "<nav class=\"navbar\">\n  <div class=\"u21\"></div>\n\n  <ul class=\"menu\">\n    <ng-container *ngFor=\"let option of getOptions()\">\n        <li id={{option.id}} routerLink={{option.link}} class=\"item\" [class.selected]=\"isOptionSelected(option)\" (click)=\"onOptionClick(option)\">\n          <div>\n              <i class=\"material-icons mx-auto\">{{option.icon}}</i>\n              <h6 class=\"text-center\">\n                  {{option.name}}\n              </h6>\n            </div>\n          </li>          \n    </ng-container>    \n  </ul>\n\n  <div class=\"version\"></div> \n</nav>"
         },
         {
             "name": "SliderComponent",
@@ -1278,14 +1663,24 @@
                 "defaultValue": "Template.bind({})"
             },
             {
+                "name": "moreOption",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/bitlogic/src/lib/components/menu/menu.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{ id: '_mas', name: 'Más', icon: 'more_vert', link:\"\" }"
+            },
+            {
                 "name": "options",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "projects/bitlogic/src/lib/components/menu/menu.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "MenuOpcion[]",
-                "defaultValue": "[\n  { id: 'butt-1', name: 'Exámenes', icon: 'insert_drive_file', link:\"\", selected: true },\n  { id: 'butt-2', name: 'Materias', icon: 'menu_book', link:\"\", selected: false },\n  { id: 'butt-3', name: 'Pagos', icon: 'receipt', link:\"\", selected: false },\n  { id: 'butt-4', name: 'Más opciones', icon: 'more_vert', link:\"\", selected: false }\n]"
+                "type": "MenuOption[]",
+                "defaultValue": "[\n  { id: 'butt-1', name: 'Exámenes', icon: 'insert_drive_file', link:\"\" },\n  { id: 'butt-2', name: 'Materias', icon: 'menu_book', link:\"\" },\n  { id: 'butt-3', name: 'Pagos', icon: 'receipt', link:\"\" },\n  { id: 'butt-4', name: 'Titulos', icon: 'done', link:\"\"  },\n  { id: 'butt-5', name: 'info', icon: 'info', link:\"\" },\n]"
             },
             {
                 "name": "require",
@@ -1508,14 +1903,24 @@
                     "defaultValue": "Template.bind({})"
                 },
                 {
+                    "name": "moreOption",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/bitlogic/src/lib/components/menu/menu.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{ id: '_mas', name: 'Más', icon: 'more_vert', link:\"\" }"
+                },
+                {
                     "name": "options",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "projects/bitlogic/src/lib/components/menu/menu.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "MenuOpcion[]",
-                    "defaultValue": "[\n  { id: 'butt-1', name: 'Exámenes', icon: 'insert_drive_file', link:\"\", selected: true },\n  { id: 'butt-2', name: 'Materias', icon: 'menu_book', link:\"\", selected: false },\n  { id: 'butt-3', name: 'Pagos', icon: 'receipt', link:\"\", selected: false },\n  { id: 'butt-4', name: 'Más opciones', icon: 'more_vert', link:\"\", selected: false }\n]"
+                    "type": "MenuOption[]",
+                    "defaultValue": "[\n  { id: 'butt-1', name: 'Exámenes', icon: 'insert_drive_file', link:\"\" },\n  { id: 'butt-2', name: 'Materias', icon: 'menu_book', link:\"\" },\n  { id: 'butt-3', name: 'Pagos', icon: 'receipt', link:\"\" },\n  { id: 'butt-4', name: 'Titulos', icon: 'done', link:\"\"  },\n  { id: 'butt-5', name: 'info', icon: 'info', link:\"\" },\n]"
                 },
                 {
                     "name": "Template",
@@ -1619,7 +2024,7 @@
     },
     "routes": [],
     "coverage": {
-        "count": 5,
+        "count": 6,
         "status": "low",
         "files": [
             {
@@ -1726,17 +2131,26 @@
                 "type": "component",
                 "linktype": "component",
                 "name": "MenuComponent",
-                "coveragePercent": 40,
-                "coverageCount": "2/5",
-                "status": "medium"
+                "coveragePercent": 90,
+                "coverageCount": "10/11",
+                "status": "very-good"
             },
             {
                 "filePath": "projects/bitlogic/src/lib/components/menu/menu.component.ts",
                 "type": "interface",
                 "linktype": "interface",
-                "name": "MenuOpcion",
+                "name": "MenuOption",
                 "coveragePercent": 16,
                 "coverageCount": "1/6",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/bitlogic/src/lib/components/menu/menu.service.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "MenuService",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
                 "status": "low"
             },
             {
@@ -1745,6 +2159,16 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/bitlogic/src/lib/components/menu/menu.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "moreOption",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
