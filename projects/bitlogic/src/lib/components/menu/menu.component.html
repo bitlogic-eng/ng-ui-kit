@@ -1,9 +1,9 @@
 <nav class="navbar">
   <div class="u21"></div>
 
-  <ul>
-    <ng-container *ngFor="let option of options">
-        <li id={{option.id}} routerLink={{option.link}} class="link" [class.selected]="option.selected" (click)="onOptionClick(option)">
+  <ul class="menu">
+    <ng-container *ngFor="let option of getOptions()">
+        <li id={{option.id}} routerLink={{option.link}} class="item" [class.selected]="isOptionSelected(option)" (click)="onOptionClick(option)">
           <div>
               <i class="material-icons mx-auto">{{option.icon}}</i>
               <h6 class="text-center">
@@ -12,8 +12,7 @@
             </div>
           </li>          
     </ng-container>    
-
-
   </ul>
-        
+
+  <div class="version"></div> 
 </nav>
