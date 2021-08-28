@@ -90,28 +90,11 @@ export class MenuComponent {
     return this.selectedOptionId === option.id;
   }
   
-  /**
-   * Return the menu items
-   * @returns Array<MenuOption>
-   */
-  // getOptions(): MenuOption[] {
-  //   let optionsToShow: MenuOption[]  = this._options.slice();
-
-  //   if (this.numberItemShowed !== 0 && this.moreOption !== null)
-  //   { 
-  //     const length = optionsToShow.length - this.numberItemShowed;
-  //     optionsToShow = optionsToShow.slice(0,length < 0 ? 0 : length).concat([this.moreOption]);
-  //   }
-
-  //   return optionsToShow;
-  // }
-
   getOptions(): MenuOption[] {
     let optionsToShow: MenuOption[] = this._options.slice();
 
     if (this.moreOption !== null && this.numberItemShowed > 0 && this.numberItemShowed < this._options.length)
     { 
-      // const length = optionsToShow.length - this.numberItemShowed;
       optionsToShow = optionsToShow.slice(0,this.numberItemShowed).concat([this.moreOption]);
     }
 
