@@ -1,0 +1,14 @@
+<!-- <p>search works!</p> -->
+<mat-form-field appearance="outline">
+  <mat-label>{{ label }}</mat-label>
+  <input matInput 
+         type="text"
+         [placeholder]="placeholder"
+         [timeToSearch]="timeToSearch"
+         [minLength]="minLength"
+         autocomplete="off"
+         [formControl]="filterSearch"         
+         (focus)="onFocus()"
+         (blur)="onBlur()">
+  <mat-icon matSuffix>search</mat-icon>
+</mat-form-field>

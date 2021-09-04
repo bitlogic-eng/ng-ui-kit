@@ -3,12 +3,12 @@
     "interfaces": [
         {
             "name": "MenuOption",
-            "id": "interface-MenuOption-20ebed62f2480000738be53d31e28bb0",
+            "id": "interface-MenuOption-dbc851841b0cb4cf4409bb87c8f96369",
             "file": "projects/bitlogic/src/lib/components/menu/menu.component.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { Component, Output, EventEmitter, Input } from '@angular/core';\n\n/**\n * The Menu Options\n * @interface MenuOption\n */\nexport interface MenuOption {\n  id: string, \n  name: string, \n  icon: string, \n  link: string,\n  linkType?: string\n}\n\n@Component({\n  selector: 'bit-menu',\n  templateUrl: './menu.component.html',\n  styleUrls: ['./menu.component.scss']\n})\nexport class MenuComponent {\n\n  /**\n   * Is the menu items\n   * @type Array<MenuOption>\n   * @private\n   */\n  private _options: Array<MenuOption> = [];\n\n  /**\n   * Is the menu items\n   * @requires\n   */\n  @Input()\n  set options(options: MenuOption[]) {\n    \n    this._options = options; \n    const regexp = new RegExp(\"^(http|https)://\", \"i\");\n\n    this._options.map((op) => {\n      \n      if (regexp.test(op.link)) {\n        op.linkType = \"externar\";\n      } else {\n        op.linkType = \"internal\";\n      }\n\n    })\n  }\n  get options() {\n    return this.getOptions();\n  }\n\n  /**\n   * The item showed \n   * @default\n   */\n  @Input()\n  numberItemShowed: number = 0;\n\n  /**\n   * Is the selected option id\n   * @type string \n   */\n  @Input()\n  selectedOptionId: string = null;\n\n  /**\n   * More Option. When the menu has several items, it's replaced for the item moreOption.\n   * @type MenuOption\n   */\n  @Input()\n  moreOption: MenuOption = null;\n\n  /**\n   * Menu click handler\n   */\n  @Output() \n  menuClick: EventEmitter<MenuOption> = new EventEmitter<MenuOption>();\n\n  /**\n   * Constructor\n   */\n  constructor() {}\n\n  /**\n   * Check the item selected\n   * @returns boolean\n   */\n  isOptionSelected(option: MenuOption) : boolean {\n    return this.selectedOptionId === option.id;\n  }\n  \n  /**\n   * Return the menu items\n   * @returns Array<MenuOption>\n   */\n  // getOptions(): MenuOption[] {\n  //   let optionsToShow: MenuOption[]  = this._options.slice();\n\n  //   if (this.numberItemShowed !== 0 && this.moreOption !== null)\n  //   { \n  //     const length = optionsToShow.length - this.numberItemShowed;\n  //     optionsToShow = optionsToShow.slice(0,length < 0 ? 0 : length).concat([this.moreOption]);\n  //   }\n\n  //   return optionsToShow;\n  // }\n\n  getOptions(): MenuOption[] {\n    let optionsToShow: MenuOption[] = this._options.slice();\n\n    if (this.moreOption !== null && this.numberItemShowed > 0 && this.numberItemShowed < this._options.length)\n    { \n      // const length = optionsToShow.length - this.numberItemShowed;\n      optionsToShow = optionsToShow.slice(0,this.numberItemShowed).concat([this.moreOption]);\n    }\n\n    return optionsToShow;\n  }\n\n\n  /**\n   * Menu click handler\n   * @param MenuOption\n   */\n  onOptionClick(optionSelected: MenuOption) {\n    this.selectedOptionId = optionSelected.id;\n    this.menuClick.emit(optionSelected);\n  }\n\n}\n",
+            "sourceCode": "import { Component, Output, EventEmitter, Input } from '@angular/core';\n\n/**\n * The Menu Options\n * @interface MenuOption\n */\nexport interface MenuOption {\n  id: string, \n  name: string, \n  icon: string, \n  link: string,\n  linkType?: string\n}\n\n@Component({\n  selector: 'bit-menu',\n  templateUrl: './menu.component.html',\n  styleUrls: ['./menu.component.scss']\n})\nexport class MenuComponent {\n\n  /**\n   * Is the menu items\n   * @type Array<MenuOption>\n   * @private\n   */\n  private _options: Array<MenuOption> = [];\n\n  /**\n   * Is the menu items\n   * @requires\n   */\n  @Input()\n  set options(options: MenuOption[]) {\n    \n    this._options = options; \n    const regexp = new RegExp(\"^(http|https)://\", \"i\");\n\n    this._options.map((op) => {\n      \n      if (regexp.test(op.link)) {\n        op.linkType = \"externar\";\n      } else {\n        op.linkType = \"internal\";\n      }\n\n    })\n  }\n  get options() {\n    return this.getOptions();\n  }\n\n  /**\n   * The item showed \n   * @default\n   */\n  @Input()\n  numberItemShowed: number = 0;\n\n  /**\n   * Is the selected option id\n   * @type string \n   */\n  @Input()\n  selectedOptionId: string = null;\n\n  /**\n   * More Option. When the menu has several items, it's replaced for the item moreOption.\n   * @type MenuOption\n   */\n  @Input()\n  moreOption: MenuOption = null;\n\n  /**\n   * Menu click handler\n   */\n  @Output() \n  menuClick: EventEmitter<MenuOption> = new EventEmitter<MenuOption>();\n\n  /**\n   * Constructor\n   */\n  constructor() {}\n\n  /**\n   * Check the item selected\n   * @returns boolean\n   */\n  isOptionSelected(option: MenuOption) : boolean {\n    return this.selectedOptionId === option.id;\n  }\n  \n  getOptions(): MenuOption[] {\n    let optionsToShow: MenuOption[] = this._options.slice();\n\n    if (this.moreOption !== null && this.numberItemShowed > 0 && this.numberItemShowed < this._options.length)\n    { \n      optionsToShow = optionsToShow.slice(0,this.numberItemShowed).concat([this.moreOption]);\n    }\n\n    return optionsToShow;\n  }\n\n\n  /**\n   * Menu click handler\n   * @param MenuOption\n   */\n  onOptionClick(optionSelected: MenuOption) {\n    this.selectedOptionId = optionSelected.id;\n    this.menuClick.emit(optionSelected);\n  }\n\n}\n",
             "properties": [
                 {
                     "name": "icon",
@@ -151,29 +151,7 @@
             "methods": []
         }
     ],
-    "injectables": [
-        {
-            "name": "MenuService",
-            "id": "injectable-MenuService-8404b66c6ba7c77951ebb116afd5b6ee",
-            "file": "projects/bitlogic/src/lib/components/menu/menu.service.ts",
-            "properties": [],
-            "methods": [],
-            "deprecated": false,
-            "deprecationMessage": "",
-            "description": "",
-            "rawdescription": "\n",
-            "sourceCode": "import { Injectable } from '@angular/core';\n\n@Injectable({\n  providedIn: 'root'\n})\nexport class MenuService {\n\n  constructor() { }\n}\n",
-            "constructorObj": {
-                "name": "constructor",
-                "description": "",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "args": [],
-                "line": 6
-            },
-            "type": "injectable"
-        }
-    ],
+    "injectables": [],
     "guards": [],
     "interceptors": [],
     "classes": [],
@@ -554,7 +532,7 @@
         },
         {
             "name": "MenuComponent",
-            "id": "component-MenuComponent-20ebed62f2480000738be53d31e28bb0",
+            "id": "component-MenuComponent-dbc851841b0cb4cf4409bb87c8f96369",
             "file": "projects/bitlogic/src/lib/components/menu/menu.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -854,25 +832,9 @@
                     "optional": false,
                     "returnType": "MenuOption[]",
                     "typeParameters": [],
-                    "line": 109,
+                    "line": 93,
                     "deprecated": false,
-                    "deprecationMessage": "",
-                    "rawdescription": "\n\nReturn the menu items\n",
-                    "description": "<p>Return the menu items</p>\n",
-                    "jsdoctags": [
-                        {
-                            "tagName": {
-                                "pos": 1686,
-                                "end": 1693,
-                                "flags": 4227072,
-                                "modifierFlagsCache": 0,
-                                "transformFlags": 0,
-                                "kind": 78,
-                                "escapedText": "returns"
-                            },
-                            "comment": "<p>Array<MenuOption></p>\n"
-                        }
-                    ]
+                    "deprecationMessage": ""
                 },
                 {
                     "name": "isOptionSelected",
@@ -929,7 +891,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 126,
+                    "line": 109,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\n\nMenu click handler\n",
@@ -954,7 +916,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Output, EventEmitter, Input } from '@angular/core';\n\n/**\n * The Menu Options\n * @interface MenuOption\n */\nexport interface MenuOption {\n  id: string, \n  name: string, \n  icon: string, \n  link: string,\n  linkType?: string\n}\n\n@Component({\n  selector: 'bit-menu',\n  templateUrl: './menu.component.html',\n  styleUrls: ['./menu.component.scss']\n})\nexport class MenuComponent {\n\n  /**\n   * Is the menu items\n   * @type Array<MenuOption>\n   * @private\n   */\n  private _options: Array<MenuOption> = [];\n\n  /**\n   * Is the menu items\n   * @requires\n   */\n  @Input()\n  set options(options: MenuOption[]) {\n    \n    this._options = options; \n    const regexp = new RegExp(\"^(http|https)://\", \"i\");\n\n    this._options.map((op) => {\n      \n      if (regexp.test(op.link)) {\n        op.linkType = \"externar\";\n      } else {\n        op.linkType = \"internal\";\n      }\n\n    })\n  }\n  get options() {\n    return this.getOptions();\n  }\n\n  /**\n   * The item showed \n   * @default\n   */\n  @Input()\n  numberItemShowed: number = 0;\n\n  /**\n   * Is the selected option id\n   * @type string \n   */\n  @Input()\n  selectedOptionId: string = null;\n\n  /**\n   * More Option. When the menu has several items, it's replaced for the item moreOption.\n   * @type MenuOption\n   */\n  @Input()\n  moreOption: MenuOption = null;\n\n  /**\n   * Menu click handler\n   */\n  @Output() \n  menuClick: EventEmitter<MenuOption> = new EventEmitter<MenuOption>();\n\n  /**\n   * Constructor\n   */\n  constructor() {}\n\n  /**\n   * Check the item selected\n   * @returns boolean\n   */\n  isOptionSelected(option: MenuOption) : boolean {\n    return this.selectedOptionId === option.id;\n  }\n  \n  /**\n   * Return the menu items\n   * @returns Array<MenuOption>\n   */\n  // getOptions(): MenuOption[] {\n  //   let optionsToShow: MenuOption[]  = this._options.slice();\n\n  //   if (this.numberItemShowed !== 0 && this.moreOption !== null)\n  //   { \n  //     const length = optionsToShow.length - this.numberItemShowed;\n  //     optionsToShow = optionsToShow.slice(0,length < 0 ? 0 : length).concat([this.moreOption]);\n  //   }\n\n  //   return optionsToShow;\n  // }\n\n  getOptions(): MenuOption[] {\n    let optionsToShow: MenuOption[] = this._options.slice();\n\n    if (this.moreOption !== null && this.numberItemShowed > 0 && this.numberItemShowed < this._options.length)\n    { \n      // const length = optionsToShow.length - this.numberItemShowed;\n      optionsToShow = optionsToShow.slice(0,this.numberItemShowed).concat([this.moreOption]);\n    }\n\n    return optionsToShow;\n  }\n\n\n  /**\n   * Menu click handler\n   * @param MenuOption\n   */\n  onOptionClick(optionSelected: MenuOption) {\n    this.selectedOptionId = optionSelected.id;\n    this.menuClick.emit(optionSelected);\n  }\n\n}\n",
+            "sourceCode": "import { Component, Output, EventEmitter, Input } from '@angular/core';\n\n/**\n * The Menu Options\n * @interface MenuOption\n */\nexport interface MenuOption {\n  id: string, \n  name: string, \n  icon: string, \n  link: string,\n  linkType?: string\n}\n\n@Component({\n  selector: 'bit-menu',\n  templateUrl: './menu.component.html',\n  styleUrls: ['./menu.component.scss']\n})\nexport class MenuComponent {\n\n  /**\n   * Is the menu items\n   * @type Array<MenuOption>\n   * @private\n   */\n  private _options: Array<MenuOption> = [];\n\n  /**\n   * Is the menu items\n   * @requires\n   */\n  @Input()\n  set options(options: MenuOption[]) {\n    \n    this._options = options; \n    const regexp = new RegExp(\"^(http|https)://\", \"i\");\n\n    this._options.map((op) => {\n      \n      if (regexp.test(op.link)) {\n        op.linkType = \"externar\";\n      } else {\n        op.linkType = \"internal\";\n      }\n\n    })\n  }\n  get options() {\n    return this.getOptions();\n  }\n\n  /**\n   * The item showed \n   * @default\n   */\n  @Input()\n  numberItemShowed: number = 0;\n\n  /**\n   * Is the selected option id\n   * @type string \n   */\n  @Input()\n  selectedOptionId: string = null;\n\n  /**\n   * More Option. When the menu has several items, it's replaced for the item moreOption.\n   * @type MenuOption\n   */\n  @Input()\n  moreOption: MenuOption = null;\n\n  /**\n   * Menu click handler\n   */\n  @Output() \n  menuClick: EventEmitter<MenuOption> = new EventEmitter<MenuOption>();\n\n  /**\n   * Constructor\n   */\n  constructor() {}\n\n  /**\n   * Check the item selected\n   * @returns boolean\n   */\n  isOptionSelected(option: MenuOption) : boolean {\n    return this.selectedOptionId === option.id;\n  }\n  \n  getOptions(): MenuOption[] {\n    let optionsToShow: MenuOption[] = this._options.slice();\n\n    if (this.moreOption !== null && this.numberItemShowed > 0 && this.numberItemShowed < this._options.length)\n    { \n      optionsToShow = optionsToShow.slice(0,this.numberItemShowed).concat([this.moreOption]);\n    }\n\n    return optionsToShow;\n  }\n\n\n  /**\n   * Menu click handler\n   * @param MenuOption\n   */\n  onOptionClick(optionSelected: MenuOption) {\n    this.selectedOptionId = optionSelected.id;\n    this.menuClick.emit(optionSelected);\n  }\n\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -1013,6 +975,151 @@
                 }
             },
             "templateData": "<nav class=\"navbar\">\n  <div class=\"u21\"></div>\n\n  <ul class=\"menu\">\n    <ng-container *ngFor=\"let option of getOptions()\">\n        <li id={{option.id}} routerLink={{option.link}} class=\"item\" [class.selected]=\"isOptionSelected(option)\" (click)=\"onOptionClick(option)\">\n          <div>\n              <i class=\"material-icons mx-auto\">{{option.icon}}</i>\n              <h6 class=\"text-center\">\n                  {{option.name}}\n              </h6>\n            </div>\n          </li>          \n    </ng-container>    \n  </ul>\n\n  <div class=\"version\"></div> \n</nav>"
+        },
+        {
+            "name": "SearchComponent",
+            "id": "component-SearchComponent-d3d0566d4a20ff25871d39c5960ce6ae",
+            "file": "projects/bitlogic/src/lib/components/search/search.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "bit-search",
+            "styleUrls": [
+                "./search.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./search.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "label",
+                    "defaultValue": "'<label>'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 19,
+                    "type": "string"
+                },
+                {
+                    "name": "placehorder",
+                    "defaultValue": "'<placeherder>'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 22,
+                    "type": "string"
+                },
+                {
+                    "name": "timeToSearch",
+                    "defaultValue": "500",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 36,
+                    "type": "number"
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "search",
+                    "defaultValue": "new EventEmitter()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 40,
+                    "type": "EventEmitter<string>"
+                },
+                {
+                    "name": "typing",
+                    "defaultValue": "new EventEmitter<boolean>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 42,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "filterSearch",
+                    "defaultValue": "new FormControl('')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "FormControl",
+                    "optional": false,
+                    "description": "",
+                    "line": 16
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 59,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "notitySearch",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 75,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onBlur",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 83,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onFocus",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 79,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';\nimport { FormControl, Validators } from '@angular/forms';\nimport { debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';\n// import Fuse from 'fuse';\n\n@Component({\n  selector: 'bit-search',\n  templateUrl: './search.component.html',\n  styleUrls: ['./search.component.scss']\n})\nexport class SearchComponent implements OnInit {\n  // private _fuseOptions: any;\n  // private _keys: Array<string> = [];\n  // private _data: any;\n  // private _fuse: any;\n  filterSearch: FormControl = new FormControl('');\n\n  @Input()\n  label: string = '<label>';\n\n  @Input()\n  placehorder: string = '<placeherder>'\n\n  // @Input()\n  // set Key(keys: Array<string>){\n  //   this._keys = keys;\n  // }\n\n  // @Input()\n  // set data(data: any) {\n  //   this._data = data;\n  //   // this._fuse = new Fuse(this._data, this._fuseOptions);\n  //   this._fuse.keys = this._keys\n  // }\n\n  @Input() timeToSearch = 500;\n\n\n  @Output()\n  search: EventEmitter<string> = new EventEmitter();\n\n  @Output() typing = new EventEmitter<boolean>();\n\n  constructor() {   \n    // this._fuseOptions = {\n    //   includeScore: true,\n    //   minMatchCharLength: 3,\n    //   threshold: 0.3,\n    //   caseSensitive: false,\n    //   shouldSort: true,\n    //   tokenize: true,\n    //   matchAllTokens: true,\n    //   location: 0,\n    //   distance: 100,\n    //   maxPatternLength: 32\n    // };\n  }\n\n  ngOnInit(): void {\n    this.filterSearch.setValidators(Validators.minLength(2));\n    this.filterSearch.valueChanges.pipe(\n      tap(() => this.typing.emit(true)),\n      debounceTime(this.timeToSearch),\n      tap(() => this.typing.emit(false)),\n      distinctUntilChanged())\n      .subscribe(() => {\n        // Constraint: only search when the input is empty or valid\n        if (this.filterSearch.value === '' || this.filterSearch.valid) {\n          this.notitySearch();\n        }\n      });\n\n  }\n\n  notitySearch() {\n    this.search.emit(this.filterSearch.value);\n  }\n\n  onFocus() {\n\n  }\n\n  onBlur() {\n  }\n\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@import '../../../../assets/scss/theme';\n",
+                    "styleUrl": "./search.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 42
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<!-- <p>search works!</p> -->\n<mat-form-field appearance=\"outline\">\n  <mat-label>{{ label }}</mat-label>\n  <input type=\"text\"\n         matInput\n         [placeholder]=\"placeholder\"\n         [matAutocomplete]=\"auto\"\n         formControlName=\"filterSearch\"\n         [formControl]=\"filterSearch\"\n         [keys]=\"keys\"\n         (focus)=\"onFocus()\"\n         (blur)=\"onBlur()\">\n\n  <!-- <mat-autocomplete #auto=\"matAutocomplete\" >\n    <mat-option *ngFor=\"let item of resuts\" [value]=\"course.item\">\n      {{ course.item.description }} - {{ course.item.code }}\n    </mat-option>\n  </mat-autocomplete> -->\n\n  <mat-icon matSuffix>search</mat-icon>\n  <!-- <i class=\"material-icons mx-auto\">search</i> -->\n\n</mat-form-field>\n"
         },
         {
             "name": "SliderComponent",
@@ -1316,13 +1423,13 @@
     "modules": [
         {
             "name": "BitlogicModule",
-            "id": "module-BitlogicModule-65f40731c0d94d3966c903a16a58695a",
+            "id": "module-BitlogicModule-3ba9719fba7b66bb955325ff6523866c",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "projects/bitlogic/src/lib/bitlogic.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\nimport { ToolbarModule } from './components/toolbar/toolbar.module';\nimport { ButtonModule } from './components/button/button.module';\nimport { MenuModule } from './components/menu/menu.module';\nimport { SliderModule } from './components/slider/slider.module';\n\n@NgModule({\n  declarations: [],\n  imports: [\n  ],\n  exports: [\n    ToolbarModule,\n    ButtonModule,\n    MenuModule,\n    SliderModule,\n  ]\n})\nexport class BitlogicModule { }\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { ToolbarModule } from './components/toolbar/toolbar.module';\nimport { ButtonModule } from './components/button/button.module';\nimport { MenuModule } from './components/menu/menu.module';\nimport { SliderModule } from './components/slider/slider.module';\nimport { SearchModule } from './components/search/search.module';\n\n@NgModule({\n  declarations: [],\n  imports: [\n  ],\n  exports: [\n    ToolbarModule,\n    ButtonModule,\n    MenuModule,\n    SliderModule,\n    SearchModule\n  ]\n})\nexport class BitlogicModule { }\n",
             "children": [
                 {
                     "type": "providers",
@@ -1344,6 +1451,9 @@
                         },
                         {
                             "name": "MenuModule"
+                        },
+                        {
+                            "name": "SearchModule"
                         },
                         {
                             "name": "SliderModule"
@@ -1438,6 +1548,50 @@
                     "elements": [
                         {
                             "name": "MenuComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "SearchModule",
+            "id": "module-SearchModule-29af16a1943c505c55e87ebdf8ea95bf",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "projects/bitlogic/src/lib/components/search/search.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { SearchComponent } from './search.component';\nimport { ReactiveFormsModule } from '@angular/forms';\n// import { MatAutocompleteModule } from '@angular/material/autocomplete';\nimport { MatFormFieldModule } from '@angular/material/form-field';\nimport { MatInputModule} from '@angular/material/input';\nimport { MatIconModule } from '@angular/material/icon';\n// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';\n\n@NgModule({\n  declarations: [SearchComponent],\n  imports: [\n    CommonModule,\n    // MatAutocompleteModule,\n    MatFormFieldModule,\n    MatInputModule,    \n    MatIconModule,\n    // BrowserAnimationsModule,\n    ReactiveFormsModule\n  ],\n  exports: [\n    SearchComponent\n  ]\n})\nexport class SearchModule { }\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "SearchComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "SearchComponent"
                         }
                     ]
                 },
@@ -1606,16 +1760,6 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/bitlogic/src/lib/components/menu/menu.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
-                "name": "Default",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/bitlogic/src/lib/components/slider/slider.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -1627,6 +1771,26 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "projects/bitlogic/src/lib/components/toolbar/toolbar.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/bitlogic/src/lib/components/menu/menu.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/bitlogic/src/lib/components/search/search.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -1735,16 +1899,6 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/bitlogic/src/lib/components/menu/menu.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<MenuComponent>",
-                "defaultValue": "(args: MenuComponent) => ({\n  component: MenuComponent,\n  props: args,\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/bitlogic/src/lib/components/slider/slider.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -1760,6 +1914,26 @@
                 "deprecationMessage": "",
                 "type": "Story<ToolbarComponent>",
                 "defaultValue": "(args: ToolbarComponent) => ({\n  component: ToolbarComponent,\n  props: args,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/bitlogic/src/lib/components/menu/menu.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<MenuComponent>",
+                "defaultValue": "(args: MenuComponent) => ({\n  component: MenuComponent,\n  props: args,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/bitlogic/src/lib/components/search/search.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<SearchComponent>",
+                "defaultValue": "(args: SearchComponent) => ({\n  component: SearchComponent,\n  props: args\n})"
             },
             {
                 "name": "TYPE_DEFAULT",
@@ -1891,48 +2065,6 @@
                     "defaultValue": "(args: ButtonComponent) => ({\n  component: ButtonComponent,\n  props: args,\n  decorators: [\n    moduleMetadata({\n      declarations: [],\n      imports: [\n        ButtonModule\n      ],\n    }),\n  ],\n\n  template: `<bit-button sty=\"outlined\" color=\"secondary\">Button</bit-button>`,\n})"
                 }
             ],
-            "projects/bitlogic/src/lib/components/menu/menu.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/bitlogic/src/lib/components/menu/menu.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "moreOption",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/bitlogic/src/lib/components/menu/menu.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "object",
-                    "defaultValue": "{ id: '_mas', name: 'Más', icon: 'more_vert', link:\"\" }"
-                },
-                {
-                    "name": "options",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/bitlogic/src/lib/components/menu/menu.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "MenuOption[]",
-                    "defaultValue": "[\n  { id: 'butt-1', name: 'Exámenes', icon: 'insert_drive_file', link:\"\" },\n  { id: 'butt-2', name: 'Materias', icon: 'menu_book', link:\"\" },\n  { id: 'butt-3', name: 'Pagos', icon: 'receipt', link:\"\" },\n  { id: 'butt-4', name: 'Titulos', icon: 'done', link:\"\"  },\n  { id: 'butt-5', name: 'info', icon: 'info', link:\"\" },\n]"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/bitlogic/src/lib/components/menu/menu.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<MenuComponent>",
-                    "defaultValue": "(args: MenuComponent) => ({\n  component: MenuComponent,\n  props: args,\n})"
-                }
-            ],
             "projects/bitlogic/src/lib/components/slider/slider.stories.ts": [
                 {
                     "name": "Default",
@@ -2015,6 +2147,70 @@
                     "deprecationMessage": "",
                     "type": "Story<ToolbarComponent>",
                     "defaultValue": "(args: ToolbarComponent) => ({\n  component: ToolbarComponent,\n  props: args,\n})"
+                }
+            ],
+            "projects/bitlogic/src/lib/components/menu/menu.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/bitlogic/src/lib/components/menu/menu.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "moreOption",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/bitlogic/src/lib/components/menu/menu.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{ id: '_mas', name: 'Más', icon: 'more_vert', link:\"\" }"
+                },
+                {
+                    "name": "options",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/bitlogic/src/lib/components/menu/menu.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "MenuOption[]",
+                    "defaultValue": "[\n  { id: 'butt-1', name: 'Exámenes', icon: 'insert_drive_file', link:\"\" },\n  { id: 'butt-2', name: 'Materias', icon: 'menu_book', link:\"\" },\n  { id: 'butt-3', name: 'Pagos', icon: 'receipt', link:\"\" },\n  { id: 'butt-4', name: 'Titulos', icon: 'done', link:\"\"  },\n  { id: 'butt-5', name: 'info', icon: 'info', link:\"\" },\n]"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/bitlogic/src/lib/components/menu/menu.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<MenuComponent>",
+                    "defaultValue": "(args: MenuComponent) => ({\n  component: MenuComponent,\n  props: args,\n})"
+                }
+            ],
+            "projects/bitlogic/src/lib/components/search/search.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/bitlogic/src/lib/components/search/search.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/bitlogic/src/lib/components/search/search.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<SearchComponent>",
+                    "defaultValue": "(args: SearchComponent) => ({\n  component: SearchComponent,\n  props: args\n})"
                 }
             ]
         },
@@ -2131,8 +2327,8 @@
                 "type": "component",
                 "linktype": "component",
                 "name": "MenuComponent",
-                "coveragePercent": 90,
-                "coverageCount": "10/11",
+                "coveragePercent": 81,
+                "coverageCount": "9/11",
                 "status": "very-good"
             },
             {
@@ -2142,15 +2338,6 @@
                 "name": "MenuOption",
                 "coveragePercent": 16,
                 "coverageCount": "1/6",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/bitlogic/src/lib/components/menu/menu.service.ts",
-                "type": "injectable",
-                "linktype": "injectable",
-                "name": "MenuService",
-                "coveragePercent": 0,
-                "coverageCount": "0/2",
                 "status": "low"
             },
             {
@@ -2185,6 +2372,35 @@
             },
             {
                 "filePath": "projects/bitlogic/src/lib/components/menu/menu.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/bitlogic/src/lib/components/search/search.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "SearchComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/12",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/bitlogic/src/lib/components/search/search.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/bitlogic/src/lib/components/search/search.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
