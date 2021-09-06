@@ -1,1 +1,6 @@
 @import '../../../../assets/scss/theme';
+
+input {
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
