@@ -82,3 +82,36 @@ $theme-colors: (
   "light":      $color-white,
   "dark":       $color-black
 );
+
+$color-map: (
+  primary-light: #08c5ab,
+  primary: #006c5b,
+  primary-dark: #014e44,
+  secondary-light: #047abf,
+  secondary: #005587,
+  secondary-dark: #002e5d,
+  accent-light: #c14fd3,
+  accent: #772583,
+  accent-dark: #4c1d58,
+  danger-light: #fc5252,
+  danger: #f2363c,
+  danger-dark: #b80015,
+  success-light: #62f881,
+  success: #15c452,
+  success-dark: #009223,
+  info-light: #6be4ff,
+  info: #1bb2e7,
+  info-dark: #0082b5,
+  warning-light: #fce359,
+  warning: #fcd804,
+  warning-dark: #ebc302,
+  muted: #8f8f94,
+  clear: transparent,
+  light_gray: #f6f5f5,
+  medium_gray: #e2e2e2,
+  gray: #707070,
+  gray-1: #878686,
+  mine-shaft: #424242,
+  white: #ffffff,
+  dark: #4b4b4b
+);

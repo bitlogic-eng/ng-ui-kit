@@ -1,0 +1,24 @@
+<!-- <p>search works!</p> -->
+<mat-form-field appearance="outline">
+  <mat-label>{{ label }}</mat-label>
+  <input matInput 
+         type="text"
+         [placeholder]="placeholder"
+         [minLength]="minLength"
+         autocomplete="off"
+         [matAutocomplete]="auto"
+         [formControl]="filterSearch"         
+         (focus)="onFocus()"
+         (blur)="onBlur()"
+         (input)="OptionsAutoComplete($event)">
+  <mat-icon matSuffix>search</mat-icon>
+  <ng-content></ng-content>
+
+  <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayOption">
+    <mat-option *ngFor="let option of optionsResults" [value]="option.item">
+      {{ option.item.description }} - {{ option.item.code }}
+    </mat-option>
+  </mat-autocomplete>
+ 
+</mat-form-field>
+  

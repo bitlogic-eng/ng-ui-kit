@@ -15,3 +15,6 @@ export * from './lib/components/menu/menu.component';
 
 export * from './lib/components/slider/slider.module';
 export * from './lib/components/slider/slider.component';
+
+export * from './lib/components/search/search.module';
+export * from './lib/components/search/search.component';
