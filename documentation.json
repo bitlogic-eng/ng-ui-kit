@@ -3,12 +3,12 @@
     "interfaces": [
         {
             "name": "AutoCompleteOption",
-            "id": "interface-AutoCompleteOption-9228c7e770445c805833d9d1b5c9a63f",
+            "id": "interface-AutoCompleteOption-4f7b244e456250b85f2bfec6e4255172",
             "file": "projects/bitlogic/src/lib/components/search/search.component.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';\nimport { FormControl, Validators } from '@angular/forms';\nimport { debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';\nimport Fuse from 'fuse.js';\n\nexport interface AutoCompleteOption {\n  id: string,\n  code: string,\n  description: string,\n  type: string,\n  metaData: any\n};\n\n@Component({\n  selector: 'bit-search',\n  templateUrl: './search.component.html',\n  styleUrls: ['./search.component.scss']\n})\nexport class SearchComponent implements OnInit {\n  private _fuseOptions: any;\n  private _fuse: Fuse<AutoCompleteOption>;\n  private _autoCompleteOptions: AutoCompleteOption[] = [];\n\n  filterSearch: FormControl = new FormControl('');\n  optionsResults = [];\n\n  @Input()\n  label: string;\n\n  @Input()\n  placeholder: string;\n\n  @Input() timeToSearch = 500;\n\n  @Input() minLength = 2;\n\n  @Input() \n  set autoCompleteOptions(autoCompleteOptions: AutoCompleteOption[]){\n    this._autoCompleteOptions = autoCompleteOptions;\n    this._fuse = new Fuse(this._autoCompleteOptions, this._fuseOptions);\n  }\n\n  @Output()\n  search: EventEmitter<string> = new EventEmitter();\n\n  @Output() typing = new EventEmitter<boolean>();\n\n  constructor() {   \n    \n    this._fuseOptions = {\n      includeScore: true,\n      minMatchCharLength: 1,\n      threshold: 0.3,\n      caseSensitive: false,\n      shouldSort: true,\n      tokenize: true,\n      matchAllTokens: true,\n      location: 0,\n      distance: 100,\n      maxPatternLength: 32,\n      keys: ['description', 'code']      \n    };\n\n    // this._fuse = new Fuse(this._autoCompleteOptions, this._fuseOptions);\n  }\n\n  ngOnInit(): void {\n    this.filterSearch.setValidators(Validators.minLength(this.minLength));\n\n    this.filterSearch.valueChanges.pipe(\n      tap(() => this.typing.emit(true)),\n      debounceTime(this.timeToSearch),\n      tap(() => this.typing.emit(false)),\n      distinctUntilChanged())\n      .subscribe(() => {\n       // Constraint: only search when the input is empty or valid\n        if (this.filterSearch.value === '' || this.filterSearch.valid) {\n          this.notitySearch();\n        }\n      });\n\n  }\n\n  notitySearch() {\n    this.search.emit(this.filterSearch.value);\n  }\n\n  onFocus() {\n  }\n\n  onBlur() {\n  }\n\n  displayOption(option) {\n    return option ? `${option.description} ${option.code ? `- ${option.code}` : ''}` : '';\n  }\n\n  OptionsAutoComplete($event) {\n    const target = $event.target as HTMLInputElement;\n    this.optionsResults = this._fuse.search(target.value).slice(0, 100);\n  }\n\n}\n",
+            "sourceCode": "import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';\nimport { FormControl, Validators } from '@angular/forms';\nimport { debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';\nimport Fuse from 'fuse.js';\n\nexport interface AutoCompleteOption {\n  id: string,\n  code: string,\n  description: string,\n  type: string,\n  metaData: any\n};\n\n@Component({\n  selector: 'bit-search',\n  templateUrl: './search.component.html',\n  styleUrls: ['./search.component.scss']\n})\nexport class SearchComponent implements OnInit {\n  private _fuseOptions: any;\n  private _fuse: Fuse<AutoCompleteOption> = null;\n  private _autoCompleteOptions: AutoCompleteOption[] = [];\n\n  filterSearch: FormControl = new FormControl('');\n  optionsResults = [];\n\n  @Input()\n  label: string;\n\n  @Input()\n  placeholder: string;\n\n  @Input() timeToSearch = 500;\n\n  @Input() minLength = 2;\n\n  @Input() \n  set autoCompleteOptions(autoCompleteOptions: AutoCompleteOption[]){\n    this._autoCompleteOptions = autoCompleteOptions;\n    this._fuse = new Fuse(this._autoCompleteOptions, this._fuseOptions);\n  }\n\n  @Output()\n  search: EventEmitter<string> = new EventEmitter();\n\n  @Output() typing = new EventEmitter<boolean>();\n\n  constructor() {   \n    \n    this._fuseOptions = {\n      includeScore: true,\n      minMatchCharLength: 1,\n      threshold: 0.3,\n      caseSensitive: false,\n      shouldSort: true,\n      tokenize: true,\n      matchAllTokens: true,\n      location: 0,\n      distance: 100,\n      maxPatternLength: 32,\n      keys: ['description', 'code']      \n    };\n\n    // this._fuse = new Fuse(this._autoCompleteOptions, this._fuseOptions);\n  }\n\n  ngOnInit(): void {\n    this.filterSearch.setValidators(Validators.minLength(this.minLength));\n\n    this.filterSearch.valueChanges.pipe(\n      tap(() => this.typing.emit(true)),\n      debounceTime(this.timeToSearch),\n      tap(() => this.typing.emit(false)),\n      distinctUntilChanged())\n      .subscribe(() => {\n       // Constraint: only search when the input is empty or valid\n        if (this.filterSearch.value === '' || this.filterSearch.valid) {\n          this.notitySearch();\n        }\n      });\n\n  }\n\n  notitySearch() {\n    this.search.emit(this.filterSearch.value);\n  }\n\n  onFocus() {\n  }\n\n  onBlur() {\n  }\n\n  displayOption(option) {\n    return option ? `${option.description} ${option.code ? `- ${option.code}` : ''}` : '';\n  }\n\n  OptionsAutoComplete($event) {\n    if (this._fuse !== null ) {\n      const target = $event.target as HTMLInputElement;\n      this.optionsResults = this._fuse.search(target.value).slice(0, 100);  \n    }\n  }\n\n}\n",
             "properties": [
                 {
                     "name": "code",
@@ -119,6 +119,47 @@
             "kind": 163,
             "description": "<p>The Menu Options</p>\n",
             "rawdescription": "\n\nThe Menu Options\n",
+            "methods": []
+        },
+        {
+            "name": "SelectOption",
+            "id": "interface-SelectOption-22eb3cc717ee75fc1625a209bd36790a",
+            "file": "projects/bitlogic/src/lib/components/select/select.component.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import { Component, OnInit, Input } from '@angular/core';\nimport { FormControl } from '@angular/forms'\n\nexport interface SelectOption {\n  id?: string,\n  desc: string,\n  meta?: any\n};\n\nconst DEFAULT_OPTION = {\n  desc: 'Todos'\n}\n\nconst OPTIONS = [\n  {desc: 'PRESENCIAL HOME'},\n  {desc: 'PRESENCIAL HOME RIO IV'},\n  {desc: 'PRESENCIAL .'},\n  {desc: 'PRESENCIAL . RIO IV'},\n  {desc: 'DISTANCIA - ED HOME'},\n  {desc: 'DISTANCIA - EDUCACION DISTRIBUIDA'},\n]\n\n\n\n@Component({\n  selector: 'bit-select',\n  templateUrl: './select.component.html',\n  styleUrls: ['./select.component.scss']\n})\nexport class SelectComponent implements OnInit {\n\n  selectControl = new FormControl('');\n\n  @Input()\n  defaultOption: SelectOption = null;\n\n  @Input()\n  options: SelectOption[] = OPTIONS;\n\n  @Input()\n  isMultiple: boolean = true;\n\n  constructor() { }\n\n  ngOnInit(): void {\n  }\n\n  onClick() {\n    console.log(`onClick`);\n  }\n\n  onSelectionChange($event) {\n    console.log(`onSelectionChange`);\n    console.log($event);\n    console.log($event.value);\n\n    const value = $event.value;\n\n    if (Array.isArray(value) && value.length > 1) {\n      console.log(`Se seleccionaron ${value.length} items`);\n    }\n        \n\n\n    // Se seleccionaron 3 items\n    // const selectedText = $('#career-dropdown span > span')[0];\n\n    // if (event) {\n    //   const valueLength = event.value.length;\n\n    //   if (selectedText) {\n    //     if (valueLength > 2) {\n    //       this._translate.stream('label.multipleSelectedAndTotalCareers', { quantity: valueLength - 1 }).subscribe(result => {\n    //         selectedText.textContent = result;\n    //       });\n    //     } else if (valueLength > 0) {\n    //       selectedText.textContent = event.value[valueLength - 1].description;\n    //     }\n    //   }\n    // } else {\n    //   selectedText.textContent = CAREER_DEFAULT.description;\n    // }\n\n  }\n}\n",
+            "properties": [
+                {
+                    "name": "desc",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 6
+                },
+                {
+                    "name": "id",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": true,
+                    "description": "",
+                    "line": 5
+                },
+                {
+                    "name": "meta",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "any",
+                    "optional": true,
+                    "description": "",
+                    "line": 7
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 163,
             "methods": []
         },
         {
@@ -1037,7 +1078,7 @@
         },
         {
             "name": "SearchComponent",
-            "id": "component-SearchComponent-9228c7e770445c805833d9d1b5c9a63f",
+            "id": "component-SearchComponent-4f7b244e456250b85f2bfec6e4255172",
             "file": "projects/bitlogic/src/lib/components/search/search.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -1126,6 +1167,7 @@
                 },
                 {
                     "name": "_fuse",
+                    "defaultValue": "null",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Fuse<AutoCompleteOption>",
@@ -1274,7 +1316,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';\nimport { FormControl, Validators } from '@angular/forms';\nimport { debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';\nimport Fuse from 'fuse.js';\n\nexport interface AutoCompleteOption {\n  id: string,\n  code: string,\n  description: string,\n  type: string,\n  metaData: any\n};\n\n@Component({\n  selector: 'bit-search',\n  templateUrl: './search.component.html',\n  styleUrls: ['./search.component.scss']\n})\nexport class SearchComponent implements OnInit {\n  private _fuseOptions: any;\n  private _fuse: Fuse<AutoCompleteOption>;\n  private _autoCompleteOptions: AutoCompleteOption[] = [];\n\n  filterSearch: FormControl = new FormControl('');\n  optionsResults = [];\n\n  @Input()\n  label: string;\n\n  @Input()\n  placeholder: string;\n\n  @Input() timeToSearch = 500;\n\n  @Input() minLength = 2;\n\n  @Input() \n  set autoCompleteOptions(autoCompleteOptions: AutoCompleteOption[]){\n    this._autoCompleteOptions = autoCompleteOptions;\n    this._fuse = new Fuse(this._autoCompleteOptions, this._fuseOptions);\n  }\n\n  @Output()\n  search: EventEmitter<string> = new EventEmitter();\n\n  @Output() typing = new EventEmitter<boolean>();\n\n  constructor() {   \n    \n    this._fuseOptions = {\n      includeScore: true,\n      minMatchCharLength: 1,\n      threshold: 0.3,\n      caseSensitive: false,\n      shouldSort: true,\n      tokenize: true,\n      matchAllTokens: true,\n      location: 0,\n      distance: 100,\n      maxPatternLength: 32,\n      keys: ['description', 'code']      \n    };\n\n    // this._fuse = new Fuse(this._autoCompleteOptions, this._fuseOptions);\n  }\n\n  ngOnInit(): void {\n    this.filterSearch.setValidators(Validators.minLength(this.minLength));\n\n    this.filterSearch.valueChanges.pipe(\n      tap(() => this.typing.emit(true)),\n      debounceTime(this.timeToSearch),\n      tap(() => this.typing.emit(false)),\n      distinctUntilChanged())\n      .subscribe(() => {\n       // Constraint: only search when the input is empty or valid\n        if (this.filterSearch.value === '' || this.filterSearch.valid) {\n          this.notitySearch();\n        }\n      });\n\n  }\n\n  notitySearch() {\n    this.search.emit(this.filterSearch.value);\n  }\n\n  onFocus() {\n  }\n\n  onBlur() {\n  }\n\n  displayOption(option) {\n    return option ? `${option.description} ${option.code ? `- ${option.code}` : ''}` : '';\n  }\n\n  OptionsAutoComplete($event) {\n    const target = $event.target as HTMLInputElement;\n    this.optionsResults = this._fuse.search(target.value).slice(0, 100);\n  }\n\n}\n",
+            "sourceCode": "import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';\nimport { FormControl, Validators } from '@angular/forms';\nimport { debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';\nimport Fuse from 'fuse.js';\n\nexport interface AutoCompleteOption {\n  id: string,\n  code: string,\n  description: string,\n  type: string,\n  metaData: any\n};\n\n@Component({\n  selector: 'bit-search',\n  templateUrl: './search.component.html',\n  styleUrls: ['./search.component.scss']\n})\nexport class SearchComponent implements OnInit {\n  private _fuseOptions: any;\n  private _fuse: Fuse<AutoCompleteOption> = null;\n  private _autoCompleteOptions: AutoCompleteOption[] = [];\n\n  filterSearch: FormControl = new FormControl('');\n  optionsResults = [];\n\n  @Input()\n  label: string;\n\n  @Input()\n  placeholder: string;\n\n  @Input() timeToSearch = 500;\n\n  @Input() minLength = 2;\n\n  @Input() \n  set autoCompleteOptions(autoCompleteOptions: AutoCompleteOption[]){\n    this._autoCompleteOptions = autoCompleteOptions;\n    this._fuse = new Fuse(this._autoCompleteOptions, this._fuseOptions);\n  }\n\n  @Output()\n  search: EventEmitter<string> = new EventEmitter();\n\n  @Output() typing = new EventEmitter<boolean>();\n\n  constructor() {   \n    \n    this._fuseOptions = {\n      includeScore: true,\n      minMatchCharLength: 1,\n      threshold: 0.3,\n      caseSensitive: false,\n      shouldSort: true,\n      tokenize: true,\n      matchAllTokens: true,\n      location: 0,\n      distance: 100,\n      maxPatternLength: 32,\n      keys: ['description', 'code']      \n    };\n\n    // this._fuse = new Fuse(this._autoCompleteOptions, this._fuseOptions);\n  }\n\n  ngOnInit(): void {\n    this.filterSearch.setValidators(Validators.minLength(this.minLength));\n\n    this.filterSearch.valueChanges.pipe(\n      tap(() => this.typing.emit(true)),\n      debounceTime(this.timeToSearch),\n      tap(() => this.typing.emit(false)),\n      distinctUntilChanged())\n      .subscribe(() => {\n       // Constraint: only search when the input is empty or valid\n        if (this.filterSearch.value === '' || this.filterSearch.valid) {\n          this.notitySearch();\n        }\n      });\n\n  }\n\n  notitySearch() {\n    this.search.emit(this.filterSearch.value);\n  }\n\n  onFocus() {\n  }\n\n  onBlur() {\n  }\n\n  displayOption(option) {\n    return option ? `${option.description} ${option.code ? `- ${option.code}` : ''}` : '';\n  }\n\n  OptionsAutoComplete($event) {\n    if (this._fuse !== null ) {\n      const target = $event.target as HTMLInputElement;\n      this.optionsResults = this._fuse.search(target.value).slice(0, 100);  \n    }\n  }\n\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -1327,6 +1369,142 @@
                 }
             },
             "templateData": "<!-- <p>search works!</p> -->\n<mat-form-field appearance=\"outline\">\n  <mat-label>{{ label }}</mat-label>\n  <input matInput \n         type=\"text\"\n         [placeholder]=\"placeholder\"\n         [minLength]=\"minLength\"\n         autocomplete=\"off\"\n         [matAutocomplete]=\"auto\"\n         [formControl]=\"filterSearch\"         \n         (focus)=\"onFocus()\"\n         (blur)=\"onBlur()\"\n         (input)=\"OptionsAutoComplete($event)\">\n  <mat-icon matSuffix>search</mat-icon>\n  <ng-content></ng-content>\n\n  <mat-autocomplete #auto=\"matAutocomplete\" [displayWith]=\"displayOption\">\n    <mat-option *ngFor=\"let option of optionsResults\" [value]=\"option.item\">\n      {{ option.item.description }} - {{ option.item.code }}\n    </mat-option>\n  </mat-autocomplete>\n \n</mat-form-field>\n  "
+        },
+        {
+            "name": "SelectComponent",
+            "id": "component-SelectComponent-22eb3cc717ee75fc1625a209bd36790a",
+            "file": "projects/bitlogic/src/lib/components/select/select.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "bit-select",
+            "styleUrls": [
+                "./select.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./select.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "defaultOption",
+                    "defaultValue": "null",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 35,
+                    "type": "SelectOption"
+                },
+                {
+                    "name": "isMultiple",
+                    "defaultValue": "true",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 41,
+                    "type": "boolean"
+                },
+                {
+                    "name": "options",
+                    "defaultValue": "OPTIONS",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 38,
+                    "type": "SelectOption[]"
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "selectControl",
+                    "defaultValue": "new FormControl('')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 32
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 45,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onClick",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 48,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onSelectionChange",
+                    "args": [
+                        {
+                            "name": "$event",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 52,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "$event",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit, Input } from '@angular/core';\nimport { FormControl } from '@angular/forms'\n\nexport interface SelectOption {\n  id?: string,\n  desc: string,\n  meta?: any\n};\n\nconst DEFAULT_OPTION = {\n  desc: 'Todos'\n}\n\nconst OPTIONS = [\n  {desc: 'PRESENCIAL HOME'},\n  {desc: 'PRESENCIAL HOME RIO IV'},\n  {desc: 'PRESENCIAL .'},\n  {desc: 'PRESENCIAL . RIO IV'},\n  {desc: 'DISTANCIA - ED HOME'},\n  {desc: 'DISTANCIA - EDUCACION DISTRIBUIDA'},\n]\n\n\n\n@Component({\n  selector: 'bit-select',\n  templateUrl: './select.component.html',\n  styleUrls: ['./select.component.scss']\n})\nexport class SelectComponent implements OnInit {\n\n  selectControl = new FormControl('');\n\n  @Input()\n  defaultOption: SelectOption = null;\n\n  @Input()\n  options: SelectOption[] = OPTIONS;\n\n  @Input()\n  isMultiple: boolean = true;\n\n  constructor() { }\n\n  ngOnInit(): void {\n  }\n\n  onClick() {\n    console.log(`onClick`);\n  }\n\n  onSelectionChange($event) {\n    console.log(`onSelectionChange`);\n    console.log($event);\n    console.log($event.value);\n\n    const value = $event.value;\n\n    if (Array.isArray(value) && value.length > 1) {\n      console.log(`Se seleccionaron ${value.length} items`);\n    }\n        \n\n\n    // Se seleccionaron 3 items\n    // const selectedText = $('#career-dropdown span > span')[0];\n\n    // if (event) {\n    //   const valueLength = event.value.length;\n\n    //   if (selectedText) {\n    //     if (valueLength > 2) {\n    //       this._translate.stream('label.multipleSelectedAndTotalCareers', { quantity: valueLength - 1 }).subscribe(result => {\n    //         selectedText.textContent = result;\n    //       });\n    //     } else if (valueLength > 0) {\n    //       selectedText.textContent = event.value[valueLength - 1].description;\n    //     }\n    //   }\n    // } else {\n    //   selectedText.textContent = CAREER_DEFAULT.description;\n    // }\n\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@import '../../../../assets/scss/theme';",
+                    "styleUrl": "./select.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 41
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<mat-form-field appearance=\"outline\">\n  <mat-label>Label</mat-label>\n  <mat-select *ngIf=\"isMultiple\" multiple\n              (selectionChange)=\"onSelectionChange($event)\"\n              [formControl]=\"selectControl\"\n              disableOptionCentering\n              panelClass=\"select-margin-top\">\n\n    <mat-option value=\"\" *ngIf=\"defaultOption\">\n      {{defaultOption}}\n    </mat-option>\n\n    <mat-option *ngFor=\"let option of options\"\n                [value]=\"option\"  \n                (click)=\"onClick()\">\n      {{option.desc}}\n    </mat-option>\n  </mat-select>\n\n  <mat-select *ngIf=\"!isMultiple\"\n              (selectionChange)=\"onSelectionChange($event)\"\n              [formControl]=\"selectControl\"\n              disableOptionCentering\n              panelClass=\"select-margin-top\">\n\n    <mat-option value=\"\" *ngIf=\"defaultOption\">\n      {{defaultOption}}\n    </mat-option>\n\n    <mat-option *ngFor=\"let option of options\"\n                [value]=\"option\"  \n                (click)=\"onClick()\">\n      {{option.desc}}\n    </mat-option>\n  </mat-select>\n\n</mat-form-field>\n"
         },
         {
             "name": "SliderComponent",
@@ -1630,13 +1808,13 @@
     "modules": [
         {
             "name": "BitlogicModule",
-            "id": "module-BitlogicModule-3ba9719fba7b66bb955325ff6523866c",
+            "id": "module-BitlogicModule-b44d7b621fa0a7ee0c648093616d3fab",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "projects/bitlogic/src/lib/bitlogic.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\nimport { ToolbarModule } from './components/toolbar/toolbar.module';\nimport { ButtonModule } from './components/button/button.module';\nimport { MenuModule } from './components/menu/menu.module';\nimport { SliderModule } from './components/slider/slider.module';\nimport { SearchModule } from './components/search/search.module';\n\n@NgModule({\n  declarations: [],\n  imports: [\n  ],\n  exports: [\n    ToolbarModule,\n    ButtonModule,\n    MenuModule,\n    SliderModule,\n    SearchModule\n  ]\n})\nexport class BitlogicModule { }\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { ToolbarModule } from './components/toolbar/toolbar.module';\nimport { ButtonModule } from './components/button/button.module';\nimport { MenuModule } from './components/menu/menu.module';\nimport { SliderModule } from './components/slider/slider.module';\nimport { SearchModule } from './components/search/search.module';\nimport { SelectModule } from './components/select/select.module';\n\n@NgModule({\n  declarations: [],\n  imports: [\n  ],\n  exports: [\n    ToolbarModule,\n    ButtonModule,\n    MenuModule,\n    SliderModule,\n    SearchModule,\n    SelectModule\n  ]\n})\nexport class BitlogicModule { }\n",
             "children": [
                 {
                     "type": "providers",
@@ -1661,6 +1839,9 @@
                         },
                         {
                             "name": "SearchModule"
+                        },
+                        {
+                            "name": "SelectModule"
                         },
                         {
                             "name": "SliderModule"
@@ -1799,6 +1980,50 @@
                     "elements": [
                         {
                             "name": "SearchComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "SelectModule",
+            "id": "module-SelectModule-40a56f09603a4b9749cc902c9f8d3d0c",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "projects/bitlogic/src/lib/components/select/select.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { SelectComponent } from './select.component';\nimport { MatSelectModule } from '@angular/material/select';\nimport { ReactiveFormsModule } from '@angular/forms';\n\n@NgModule({\n  declarations: [SelectComponent],\n  imports: [\n    CommonModule,\n    MatSelectModule,\n    ReactiveFormsModule\n  ],\n  exports: [\n    SelectComponent,\n  ]\n})\nexport class SelectModule { }\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "SelectComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "SelectComponent"
                         }
                     ]
                 },
@@ -1967,7 +2192,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/bitlogic/src/lib/components/toolbar/toolbar.stories.ts",
+                "file": "projects/bitlogic/src/lib/components/menu/menu.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -1987,7 +2212,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/bitlogic/src/lib/components/menu/menu.stories.ts",
+                "file": "projects/bitlogic/src/lib/components/select/select.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -2002,6 +2227,26 @@
                 "deprecationMessage": "",
                 "type": "",
                 "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/bitlogic/src/lib/components/toolbar/toolbar.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "DEFAULT_OPTION",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/bitlogic/src/lib/components/select/select.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\n  desc: 'Todos'\n}"
             },
             {
                 "name": "Disabled",
@@ -2052,6 +2297,16 @@
                 "deprecationMessage": "",
                 "type": "MenuOption[]",
                 "defaultValue": "[\n  { id: 'butt-1', name: 'Exámenes', icon: 'insert_drive_file', link:\"\" },\n  { id: 'butt-2', name: 'Materias', icon: 'menu_book', link:\"\" },\n  { id: 'butt-3', name: 'Pagos', icon: 'receipt', link:\"\" },\n  { id: 'butt-4', name: 'Titulos', icon: 'done', link:\"\"  },\n  { id: 'butt-5', name: 'info', icon: 'info', link:\"\" },\n]"
+            },
+            {
+                "name": "OPTIONS",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/bitlogic/src/lib/components/select/select.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "[]",
+                "defaultValue": "[\n  {desc: 'PRESENCIAL HOME'},\n  {desc: 'PRESENCIAL HOME RIO IV'},\n  {desc: 'PRESENCIAL .'},\n  {desc: 'PRESENCIAL . RIO IV'},\n  {desc: 'DISTANCIA - ED HOME'},\n  {desc: 'DISTANCIA - EDUCACION DISTRIBUIDA'},\n]"
             },
             {
                 "name": "require",
@@ -2106,26 +2361,6 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/bitlogic/src/lib/components/toolbar/toolbar.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<ToolbarComponent>",
-                "defaultValue": "(args: ToolbarComponent) => ({\n  component: ToolbarComponent,\n  props: args,\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/bitlogic/src/lib/components/search/search.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<SearchComponent>",
-                "defaultValue": "(args: SearchComponent) => ({\n  component: SearchComponent,\n  props: args,\n  // decorators: [\n  //   moduleMetadata({\n  //     declarations: [],\n  //     imports: [\n  //       SearchModule\n  //     ],\n  //   }),\n  // ],\n\n  // template: `<bit-search></bit-search>`,\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/bitlogic/src/lib/components/menu/menu.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -2136,11 +2371,41 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "projects/bitlogic/src/lib/components/search/search.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<SearchComponent>",
+                "defaultValue": "(args: SearchComponent) => ({\n  component: SearchComponent,\n  props: args,\n  // decorators: [\n  //   moduleMetadata({\n  //     declarations: [],\n  //     imports: [\n  //       SearchModule\n  //     ],\n  //   }),\n  // ],\n\n  template: `<bit-search></bit-search>`,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/bitlogic/src/lib/components/select/select.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<SelectComponent>",
+                "defaultValue": "(args: SelectComponent) => ({\n  component: SelectComponent,\n  props: args,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "projects/bitlogic/src/lib/components/slider/slider.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<SliderComponent>",
                 "defaultValue": "(args: SliderComponent) => ({\n  component: SliderComponent,\n  props: args,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/bitlogic/src/lib/components/toolbar/toolbar.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<ToolbarComponent>",
+                "defaultValue": "(args: ToolbarComponent) => ({\n  component: ToolbarComponent,\n  props: args,\n})"
             },
             {
                 "name": "TYPE_DEFAULT",
@@ -2272,50 +2537,6 @@
                     "defaultValue": "(args: ButtonComponent) => ({\n  component: ButtonComponent,\n  props: args,\n  decorators: [\n    moduleMetadata({\n      declarations: [],\n      imports: [\n        ButtonModule\n      ],\n    }),\n  ],\n\n  template: `<bit-button sty=\"outlined\" color=\"secondary\">Button</bit-button>`,\n})"
                 }
             ],
-            "projects/bitlogic/src/lib/components/toolbar/toolbar.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/bitlogic/src/lib/components/toolbar/toolbar.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/bitlogic/src/lib/components/toolbar/toolbar.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<ToolbarComponent>",
-                    "defaultValue": "(args: ToolbarComponent) => ({\n  component: ToolbarComponent,\n  props: args,\n})"
-                }
-            ],
-            "projects/bitlogic/src/lib/components/search/search.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/bitlogic/src/lib/components/search/search.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/bitlogic/src/lib/components/search/search.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<SearchComponent>",
-                    "defaultValue": "(args: SearchComponent) => ({\n  component: SearchComponent,\n  props: args,\n  // decorators: [\n  //   moduleMetadata({\n  //     declarations: [],\n  //     imports: [\n  //       SearchModule\n  //     ],\n  //   }),\n  // ],\n\n  // template: `<bit-search></bit-search>`,\n})"
-                }
-            ],
             "projects/bitlogic/src/lib/components/menu/menu.stories.ts": [
                 {
                     "name": "Default",
@@ -2356,6 +2577,50 @@
                     "deprecationMessage": "",
                     "type": "Story<MenuComponent>",
                     "defaultValue": "(args: MenuComponent) => ({\n  component: MenuComponent,\n  props: args,\n})"
+                }
+            ],
+            "projects/bitlogic/src/lib/components/search/search.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/bitlogic/src/lib/components/search/search.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/bitlogic/src/lib/components/search/search.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<SearchComponent>",
+                    "defaultValue": "(args: SearchComponent) => ({\n  component: SearchComponent,\n  props: args,\n  // decorators: [\n  //   moduleMetadata({\n  //     declarations: [],\n  //     imports: [\n  //       SearchModule\n  //     ],\n  //   }),\n  // ],\n\n  template: `<bit-search></bit-search>`,\n})"
+                }
+            ],
+            "projects/bitlogic/src/lib/components/select/select.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/bitlogic/src/lib/components/select/select.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/bitlogic/src/lib/components/select/select.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<SelectComponent>",
+                    "defaultValue": "(args: SelectComponent) => ({\n  component: SelectComponent,\n  props: args,\n})"
                 }
             ],
             "projects/bitlogic/src/lib/components/slider/slider.stories.ts": [
@@ -2418,6 +2683,50 @@
                     "deprecationMessage": "",
                     "type": "Story<SliderComponent>",
                     "defaultValue": "(args: SliderComponent) => ({\n  component: SliderComponent,\n  props: args,\n})"
+                }
+            ],
+            "projects/bitlogic/src/lib/components/toolbar/toolbar.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/bitlogic/src/lib/components/toolbar/toolbar.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/bitlogic/src/lib/components/toolbar/toolbar.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<ToolbarComponent>",
+                    "defaultValue": "(args: ToolbarComponent) => ({\n  component: ToolbarComponent,\n  props: args,\n})"
+                }
+            ],
+            "projects/bitlogic/src/lib/components/select/select.component.ts": [
+                {
+                    "name": "DEFAULT_OPTION",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/bitlogic/src/lib/components/select/select.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\n  desc: 'Todos'\n}"
+                },
+                {
+                    "name": "OPTIONS",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/bitlogic/src/lib/components/select/select.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "[]",
+                    "defaultValue": "[\n  {desc: 'PRESENCIAL HOME'},\n  {desc: 'PRESENCIAL HOME RIO IV'},\n  {desc: 'PRESENCIAL .'},\n  {desc: 'PRESENCIAL . RIO IV'},\n  {desc: 'DISTANCIA - ED HOME'},\n  {desc: 'DISTANCIA - EDUCACION DISTRIBUIDA'},\n]"
                 }
             ]
         },
@@ -2617,6 +2926,64 @@
             },
             {
                 "filePath": "projects/bitlogic/src/lib/components/search/search.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/bitlogic/src/lib/components/select/select.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "SelectComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/9",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/bitlogic/src/lib/components/select/select.component.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "SelectOption",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/bitlogic/src/lib/components/select/select.component.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "DEFAULT_OPTION",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/bitlogic/src/lib/components/select/select.component.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "OPTIONS",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/bitlogic/src/lib/components/select/select.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/bitlogic/src/lib/components/select/select.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",

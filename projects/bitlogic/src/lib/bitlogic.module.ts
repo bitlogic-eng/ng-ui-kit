@@ -4,6 +4,7 @@ import { ButtonModule } from './components/button/button.module';
 import { MenuModule } from './components/menu/menu.module';
 import { SliderModule } from './components/slider/slider.module';
 import { SearchModule } from './components/search/search.module';
+import { SelectModule } from './components/select/select.module';
 
 @NgModule({
   declarations: [],
@@ -14,7 +15,8 @@ import { SearchModule } from './components/search/search.module';
     ButtonModule,
     MenuModule,
     SliderModule,
-    SearchModule
+    SearchModule,
+    SelectModule
   ]
 })
 export class BitlogicModule { }
