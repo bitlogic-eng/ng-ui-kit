@@ -1,0 +1,39 @@
+@import '../../../../assets/scss/theme';
+
+:host {
+
+  .mat-table {
+    width: 100%;
+    font-family: $font-primary;
+    
+    // header
+    .mat-header-row {
+      background-color: $color-primary;
+
+      .mat-header-cell {
+        color: $color-white;
+      }    
+    }
+
+    // body
+    .mat-row:hover {
+      background-color: $color-primary-alt-10;
+    }
+
+  }
+
+  // checkbox
+  ::ng-deep .mat-checkbox-ripple .mat-ripple-element {
+    background-color: $color-primary !important;
+  }
+  
+  ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background {
+    background-color: $color-primary !important;
+  }
+  
+  ::ng-deep .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+    background-color: $color-primary !important;
+  }
+  
+  
+}
