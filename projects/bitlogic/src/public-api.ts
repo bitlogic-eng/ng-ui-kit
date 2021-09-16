@@ -18,3 +18,6 @@ export * from './lib/components/slider/slider.component';
 
 export * from './lib/components/search/search.module';
 export * from './lib/components/search/search.component';
+
+export * from './lib/components/table/table.module';
+export * from './lib/components/table/table.component';
