@@ -1,95 +1,99 @@
 
 @import '../../../../assets/scss/theme';
 
-.navbar {
-  height: 100%;
-  background: $color-white;
-  box-shadow: 3px 0 6px rgba(0,0,0,.08);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
 
-  .u21 {
-    background-image: url('../../../../assets/img/iso_siglo_21.svg');
-    width: 34px;
-    height: 34px;
-    background-size: cover;
-    background-repeat: none;
-    background-position: center;
-    margin: 26px 0 26px 0;
-  }
-
-  .menu {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+:host {
+  .navbar {
+    height: 100%;
+    background: $color-white;
+    box-shadow: 3px 0 6px rgba(0,0,0,.08);
     display: flex;
     flex-direction: column;
-    justify-content: center;
-
-    height: 80%;
-
-    .item {
-      @extend %transition;
-      overflow: hidden;
+    justify-content: flex-start;
   
-      &:hover {
-        opacity: 0.8;
-        cursor: pointer;
-      }
+    .u21 {
+      background-image: url('../../../../assets/img/iso_siglo_21.svg');
+      width: 34px;
+      height: 34px;
+      background-size: cover;
+      background-repeat: none;
+      background-position: center;
+      margin: 26px 0 26px 0;
+    }
   
-      i {
-        height: 50px;
-        width: 50px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
-        border: 6px solid $color-white;
-        background-color: $color-white;
-        align-items: center;
-        justify-content: center;
-        color:$color-black-alt-40;
-        font-size: 26px;
-      }
-      h6 {
-        color:$color-black-alt-40;
-      }
+    .menu {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
   
-      &.selected {
+      height: 80%;
+  
+      .item {
+        @extend %transition;
+        overflow: hidden;
+    
+        &:hover {
+          opacity: 0.8;
+          cursor: pointer;
+        }
+    
         i {
-            color: $color-white;
-            background-color: $color-primary;
+          height: 50px;
+          width: 50px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 50%;
+          border: 6px solid $color-white;
+          background-color: $color-white;
+          align-items: center;
+          justify-content: center;
+          color:$color-black-alt-40;
+          font-size: 26px;
         }
         h6 {
-            color: $color-primary;
+          color:$color-black-alt-40;
         }
+    
+        &.selected {
+          i {
+              color: $color-white;
+              background-color: $color-primary;
+          }
+          h6 {
+              color: $color-primary;
+          }
+        }
+    
+  
       }
   
-
     }
-
+  
+    .version {
+      height: auto;
+    }
+  
   }
-
-  .version {
-    height: auto;
-  }
-
-}
-
-@media  only screen and ( max-width : 768px) {
-
-  .u21 {
-    display: none;  
-  }
-
-  .navbar {
-
-    .menu {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-evenly;
-      width: 100%;
+  
+  @media  only screen and ( max-width : 768px) {
+  
+    .u21 {
+      display: none;  
+    }
+  
+    .navbar {
+  
+      .menu {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        width: 100%;
+      }
     }
   }
+  
 }

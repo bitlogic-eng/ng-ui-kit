@@ -1,6 +1,10 @@
 @import '../../../../assets/scss/theme';
 
-input {
-  text-overflow: ellipsis;
-  overflow: hidden;
+:host {
+  input {
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  
 }
