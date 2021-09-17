@@ -1,0 +1,37 @@
+<mat-form-field appearance="outline">
+  <mat-label>Label</mat-label>
+  <mat-select *ngIf="isMultiple" multiple
+              (selectionChange)="onSelectionChange($event)"
+              [formControl]="selectControl"
+              disableOptionCentering
+              panelClass="select-margin-top">
+
+    <mat-option value="" *ngIf="defaultOption">
+      {{defaultOption}}
+    </mat-option>
+
+    <mat-option *ngFor="let option of options"
+                [value]="option"  
+                (click)="onClick()">
+      {{option.viewValue}}
+    </mat-option>
+  </mat-select>
+
+  <mat-select *ngIf="!isMultiple"
+              (selectionChange)="onSelectionChange($event)"
+              [formControl]="selectControl"
+              disableOptionCentering
+              panelClass="select-margin-top">
+
+    <mat-option value="" *ngIf="defaultOption">
+      {{defaultOption}}
+    </mat-option>
+
+    <mat-option *ngFor="let option of options"
+                [value]="option"  
+                (click)="onClick()">
+      {{option.viewValue}}
+    </mat-option>
+  </mat-select>
+
+</mat-form-field>

@@ -20,7 +20,15 @@ const Template: Story<ButtonComponent> = (args: ButtonComponent) => ({
     }),
   ],
 
-  template: `<bit-button sty="outlined" color="secondary">Button</bit-button>`,
+  template: `
+  <bit-button sty="text" color="secondary">Text - secondary</bit-button>
+  <bit-button sty="raised" color="secondary">raised - secondary</bit-button>
+  <bit-button sty="outlined" color="secondary">outlined - secondary</bit-button>
+  <bit-button sty="text" type="fab" color="secondary"><i class="material-icons mx-auto">menu_book</i></bit-button>
+  <bit-button sty="raised" type="fab" color="secondary"><i class="material-icons mx-auto">menu_book</i>
+  </bit-button>
+  <bit-button sty="outlined" type="fab" color="secondary"><i class="material-icons mx-auto">menu_book</i>
+  </bit-button>`,
 });
 
 export const Default = Template.bind({});

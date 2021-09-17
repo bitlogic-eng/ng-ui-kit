@@ -4,6 +4,7 @@ import { ButtonModule } from './components/button/button.module';
 import { MenuModule } from './components/menu/menu.module';
 import { SliderModule } from './components/slider/slider.module';
 import { SearchModule } from './components/search/search.module';
+import { SelectModule } from './components/select/select.module';
 import { TableModule } from './components/table/table.module';
 
 @NgModule({
@@ -16,6 +17,7 @@ import { TableModule } from './components/table/table.module';
     MenuModule,
     SliderModule,
     SearchModule,
+    SelectModule,
     TableModule
   ]
 })
