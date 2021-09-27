@@ -1,5 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { FormControl } from '@angular/forms'
+import { Component, OnInit, Input, ViewChild, Output, EventEmitter } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { MatSelect } from '@angular/material/select';
+import { MatOption } from '@angular/material/core';
 
 export interface SelectOption {
   id: number,
@@ -7,9 +9,16 @@ export interface SelectOption {
   meta?: any
 };
 
-const DEFAULT_OPTION = {
-  desc: 'Todos'
+export interface SelectButtons {
+  selectAll: string,
+  deselectAll: string
+};
+
+export interface OtherText {
+  text1: string,
+  text2: string
 }
+
 
 @Component({
   selector: 'bit-select',
@@ -19,56 +28,52 @@ const DEFAULT_OPTION = {
 export class SelectComponent implements OnInit {
 
   selectControl = new FormControl('');
+  allSelected = false;
+
+  @ViewChild('select') select: MatSelect;
 
   @Input()
-  defaultOption: SelectOption = null;
+  label: string;
 
   @Input()
   options: SelectOption[];
 
   @Input()
-  isMultiple: boolean = true;
+  isMultiple: boolean;
+
+  @Input()
+  selectButtons: SelectButtons = {selectAll: 'Select All', deselectAll: 'Deselect All'};
+
+  @Input()
+  otherText: OtherText = {text1: 'other', text2: 'others'}
+
+  @Output()
+  selectChange = new EventEmitter();
 
   constructor() { }
 
   ngOnInit(): void {
-  }
-
-  onClick() {
-    console.log(`onClick`);
+    this.selectControl.valueChanges.subscribe(()=>{
+      this.selectChange.emit(this.selectControl.value)
+    })
   }
 
   onSelectionChange($event) {
-    console.log(`onSelectionChange`);
-    console.log($event);
-    console.log($event.value);
-
-    const value = $event.value;
-
-    if (Array.isArray(value) && value.length > 1) {
-      console.log(`Se seleccionaron ${value.length} items`);
-    }
-        
-
-
-    // Se seleccionaron 3 items
-    // const selectedText = $('#career-dropdown span > span')[0];
-
-    // if (event) {
-    //   const valueLength = event.value.length;
-
-    //   if (selectedText) {
-    //     if (valueLength > 2) {
-    //       this._translate.stream('label.multipleSelectedAndTotalCareers', { quantity: valueLength - 1 }).subscribe(result => {
-    //         selectedText.textContent = result;
-    //       });
-    //     } else if (valueLength > 0) {
-    //       selectedText.textContent = event.value[valueLength - 1].description;
-    //     }
-    //   }
-    // } else {
-    //   selectedText.textContent = CAREER_DEFAULT.description;
-    // }
 
   }
+
+  selectAll() {
+    this.select.options.forEach((item: MatOption) => { 
+      if(!item.disabled) {
+        item.select();
+      }
+    });
+    this.allSelected = true;
+  }
+
+  deselectAll() {
+    this.select.options.forEach((item: MatOption) => item.deselect());
+    this.allSelected = false;
+  }
+
 }
