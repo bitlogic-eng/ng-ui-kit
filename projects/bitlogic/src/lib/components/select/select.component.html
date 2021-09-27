@@ -1,35 +1,47 @@
 <mat-form-field appearance="outline">
-  <mat-label>Label</mat-label>
-  <mat-select *ngIf="isMultiple" multiple
+  <mat-label>{{ label }}</mat-label>
+
+  <!-- Multiple -->
+  <mat-select *ngIf="isMultiple" 
+              multiple
+              #select
               (selectionChange)="onSelectionChange($event)"
               [formControl]="selectControl"
               disableOptionCentering
-              panelClass="select-margin-top">
+              panelClass="select-margin-top"
+              [(value)]="selected">
 
-    <mat-option value="" *ngIf="defaultOption">
-      {{defaultOption}}
+              <mat-select-trigger>
+                  {{selected ? selected[0]?.viewValue : ''}}
+                  <span *ngIf="selected?.length > 1" class="example-additional-selection">
+                    (+{{selected.length - 1}} {{selected?.length === 2 ? otherText.text1: otherText.text2}})
+                  </span>
+                </mat-select-trigger>
+
+    <mat-option disabled="disabled" class="filter-option">
+      <bit-button sty="text" color="secondary" (click)="selectAll()">
+       {{selectButtons.selectAll}}
+      </bit-button>
+      <bit-button sty="text" color="secondary" (click)="deselectAll()">
+          {{selectButtons.deselectAll}}
+      </bit-button>
     </mat-option>
-
+                          
     <mat-option *ngFor="let option of options"
-                [value]="option"  
-                (click)="onClick()">
+                [value]="option">
       {{option.viewValue}}
     </mat-option>
   </mat-select>
 
+  <!-- Simple -->
   <mat-select *ngIf="!isMultiple"
               (selectionChange)="onSelectionChange($event)"
               [formControl]="selectControl"
               disableOptionCentering
               panelClass="select-margin-top">
 
-    <mat-option value="" *ngIf="defaultOption">
-      {{defaultOption}}
-    </mat-option>
-
     <mat-option *ngFor="let option of options"
-                [value]="option"  
-                (click)="onClick()">
+                [value]="option">
       {{option.viewValue}}
     </mat-option>
   </mat-select>
