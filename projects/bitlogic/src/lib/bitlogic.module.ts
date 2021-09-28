@@ -6,6 +6,8 @@ import { SliderModule } from './components/slider/slider.module';
 import { SearchModule } from './components/search/search.module';
 import { SelectModule } from './components/select/select.module';
 import { TableModule } from './components/table/table.module';
+import { ChipsModule } from './components/chips/chips.module';
+import { StatusModule } from './components/status/status.module';
 
 @NgModule({
   declarations: [],
@@ -18,7 +20,9 @@ import { TableModule } from './components/table/table.module';
     SliderModule,
     SearchModule,
     SelectModule,
-    TableModule
+    TableModule,
+    ChipsModule,
+    StatusModule
   ]
 })
 export class BitlogicModule { }

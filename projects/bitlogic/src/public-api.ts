@@ -24,3 +24,10 @@ export * from './lib/components/select/select.component';
 
 export * from './lib/components/table/table.module';
 export * from './lib/components/table/table.component';
+
+export * from './lib/components/chips/chips.module';
+export * from './lib/components/chips/chips.component';
+
+export * from './lib/components/status/status.module';
+export * from './lib/components/status/status.component';
+
