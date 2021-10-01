@@ -1,6 +1,8 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output, ViewChild, AfterViewInit } from '@angular/core';
 import {SelectionModel} from '@angular/cdk/collections';
-import {MatTableDataSource} from '@angular/material/table';
+import {MatTableDataSource } from '@angular/material/table';
+import {MatPaginator} from '@angular/material/paginator';
+
 
 export interface TableHeader {
   key: string,
@@ -15,12 +17,15 @@ export interface TableHeader {
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss']
 })
-export class TableComponent implements OnInit {
+export class TableComponent implements OnInit, AfterViewInit {
 
+  private dataSource: MatTableDataSource<any>;
   private _headers: TableHeader[];
   private _enableSelection: boolean;
   columnsToDisplay: string[];
   selection = new SelectionModel<any>(true, []);
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   @Input()
   set headers(headers: TableHeader[]){
@@ -40,8 +45,14 @@ export class TableComponent implements OnInit {
     return this._headers;
   }
 
+  // dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   @Input()
-  data;
+  set data(data: any) {
+    this.dataSource = new MatTableDataSource<any>(data);
+  }
+  get data() {
+    return this.dataSource;
+  }
 
   @Input()
   set enableSelection(enableSelection: boolean) {
@@ -65,6 +76,10 @@ export class TableComponent implements OnInit {
 
   ngOnInit(): void {
     
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
   }
 
   isAllSelected() {
