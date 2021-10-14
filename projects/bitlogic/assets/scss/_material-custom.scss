@@ -1,8 +1,7 @@
 
-@import '~@angular/material/prebuilt-themes/indigo-pink.css';
-@import '~@angular/material/theming';
+// @import '~@angular/material/theming';
 
-@include mat-core();
+// @include mat-core();
 // @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
 // @import 'mixin';
@@ -10,97 +9,6 @@
 // @import 'fonts';
 // @import 'variables';
 // @import 'placeholders';
-
-
-//--------------- button ---------------//
-$bit-basic: (
-    main: $color-primary,
-    light: $color-primary-alt-40,
-    dark: $color-secondary,
-        contrast: (
-        main: #f5f5f5,
-        light: $color-primary-alt-80,
-        dark: #fff
-    )
-);    
-
-$bit-primary: (
-    main: $color-primary,
-    light: $color-primary-alt-40,
-    dark: $color-secondary,
-        contrast: (
-        main: #f5f5f5,
-        light: $color-primary-alt-80,
-        dark: #fff
-    )
-);    
-
-$bit-secondary: (
-    main: $color-secondary,
-    light: $color-secondary-alt-40,
-    dark: $color-secondary,
-        contrast: (
-        main: #f5f5f5,
-        light: $color-secondary-alt-80,
-        dark: #fff
-    )
-);    
-
-$bit-warning: (
-    main: $color-warning,
-    light: $color-warning-alt-40,
-    dark: $color-warning,
-        contrast: (
-        main: #f5f5f5,
-        light: $color-warning-alt-80,
-        dark: #fff
-    )
-);    
-
-$bit-success: (
-    main: $color-success,
-    light: $color-success-alt-40,
-    dark: $color-success,
-        contrast: (
-        main: #f5f5f5,
-        light: $color-success-alt-80,
-        dark: #fff
-    )
-);    
-
-$bit-danger: (
-    main: $color-danger,
-    light: $color-danger-alt-40,
-    dark: $color-danger,
-        contrast: (
-        main: #f5f5f5,
-        light: $color-danger-alt-80,
-        dark: #fff
-    )
-);    
-
-$bit-accent: (
-    main: $color-highlighted,
-    light: $color-highlighted-alt-40,
-    dark: $color-highlighted,
-        contrast: (
-        main: #f5f5f5,
-        light: $color-highlighted-alt-80,
-        dark: #fff
-    )
-);    
-
-$bit-info: (
-    main: $color-info,
-    light: $color-info-alt-40,
-    dark: $color-info,
-        contrast: (
-        main: #f5f5f5,
-        light: $color-info-alt-80,
-        dark: #fff
-    )
-);    
- 
 
 //--------------- Inputs Outline Regular ---------------//
 .mat-form-field {
@@ -161,7 +69,7 @@ $bit-info: (
     .mat-form-field-infix {
       width: auto !important;
       height: 0px;
-      padding: 16px 0 0 0;
+      padding: 16px 0 0 0 !important;
       z-index: 2;
     }
     .mat-form-field-infix input {
@@ -198,7 +106,7 @@ $bit-info: (
   .mat-form-field-appearance-outline .mat-form-field-outline-thick {
     color: #777 !important;
   }
-  
+
   .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
     color: #999 !important;
   }
@@ -276,11 +184,3 @@ $bit-info: (
   display: none !important;
 }
 
-$my-custom-primary: mat-palette($bit-primary, main, light, dark);
-$my-custom-accent: mat-palette($bit-secondary, main, light, dark);
-$my-custom-warn: mat-palette($bit-danger, main, light, dark);
-
-$my-custom-theme: mat-light-theme($my-custom-primary, $my-custom-accent, $my-custom-warn);
-
-
-@include angular-material-theme($my-custom-theme);

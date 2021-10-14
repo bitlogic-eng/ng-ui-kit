@@ -1,6 +1,6 @@
 <div class="toolbar">
     <div class="header-user-data">
-        <h2>{{title}}</h2>
+        <h1>{{title}}</h1>
     </div>
 
     <div class="spacer"></div>
@@ -8,9 +8,9 @@
     <div class="header-profile">
 
         <div class="user-data">
-            <h4>{{userName}}</h4>
+            <h5>{{userName}}</h5>
             <p>{{currentDate | date:'mediumDate'}}</p>
-            <p class="version">({{version}})</p>
+            <!-- <p class="version">({{version}})</p> -->
         </div>
         <div class="user-avatar" (click)="onOpenProfile()"></div>
     </div>

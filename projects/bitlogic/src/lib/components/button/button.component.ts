@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 
 const ButtonType = {
   "button": "btn",
@@ -31,7 +31,9 @@ const TYPE_DEFAULT = ButtonType.button;
 @Component({
   selector: 'bit-button',
   templateUrl: './button.component.html',
-  styleUrls: ['./button.component.scss']
+  styleUrls: ['./button.component.scss'],
+  // encapsulation: ViewEncapsulation.ShadowDom
+  
 })
 export class ButtonComponent implements OnInit {
   

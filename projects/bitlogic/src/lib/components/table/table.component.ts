@@ -19,14 +19,6 @@ export interface TableHeader {
 })
 export class TableComponent implements OnInit, AfterViewInit {
 
-  private dataSource: MatTableDataSource<any>;
-  private _headers: TableHeader[];
-  private _enableSelection: boolean;
-  columnsToDisplay: string[];
-  selection = new SelectionModel<any>(true, []);
-
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-
   @Input()
   set headers(headers: TableHeader[]){
     this._headers = headers;
@@ -45,7 +37,6 @@ export class TableComponent implements OnInit, AfterViewInit {
     return this._headers;
   }
 
-  // dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   @Input()
   set data(data: any) {
     this.dataSource = new MatTableDataSource<any>(data);
@@ -67,15 +58,32 @@ export class TableComponent implements OnInit, AfterViewInit {
     
   }
 
+  @Input()
+  set enablePagination (enablePagination: boolean) {
+    this._enablePagination = enablePagination;
+    this.dataSource.paginator = this.paginator;
+  }
+  get enablePagination() {
+    return this._enablePagination;
+  }
+
   @Output()
   rowClick: EventEmitter<any> = new EventEmitter();
+
+  private dataSource: MatTableDataSource<any>;
+  private _headers: TableHeader[];
+  private _enableSelection: boolean;
+  private _enablePagination: boolean;
+  columnsToDisplay: string[];
+  selection = new SelectionModel<any>(true, []);
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor() { 
 
   }
 
   ngOnInit(): void {
-    
+    // this.dataSource.paginator = this.paginator;
   }
 
   ngAfterViewInit() {
@@ -84,7 +92,7 @@ export class TableComponent implements OnInit, AfterViewInit {
 
   isAllSelected() {
     const numSelected = this.selection.selected.length;
-    const numRows = this.data.length;
+    const numRows = this.dataSource.data.length;
     return numSelected === numRows;
   }
 
@@ -94,16 +102,8 @@ export class TableComponent implements OnInit, AfterViewInit {
       return;
     }
 
-    this.selection.select(...this.data);
+    this.selection.select(...this.dataSource.data);
   }
-
-  /** The label for the checkbox on the passed row */
-  checkboxLabel(row?: any): string {
-    if (!row) {
-      return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
-    }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
-  }  
 
   onClick(row: any){
     this.selection.toggle(row);
