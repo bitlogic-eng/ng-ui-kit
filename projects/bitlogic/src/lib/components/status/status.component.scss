@@ -1,0 +1,110 @@
+@import '../../../../assets/scss/theme';
+
+
+// status colors
+$status-color-pending: $color-warning;
+$status-color-accepted: $color-success;
+$status-color-error: $color-danger;
+$status-color-canceled: $color-black-alt-60;
+
+:host {
+
+  font-family: $font-primary;
+
+  .status {
+    display: inline-flex;
+    flex-direction: row;    
+    border: none;
+    cursor: default;
+    height: 36px;
+    outline: none;
+    padding: 0;
+    font-size: 14px;
+    white-space: nowrap;
+    align-items: center;
+    border-radius: 16px;
+    vertical-align: middle;
+    text-decoration: none;
+    justify-content: center;
+
+    &.small {
+      transform: scale(0.75);
+    }
+    
+
+    &.pending {
+      background-color: mix($status-color-pending, white, 5%);
+    }
+
+    &.accepted {
+      background-color: mix($status-color-accepted, white, 5%);
+    }
+
+    &.error {
+      background-color: mix($status-color-error, white, 5%);
+    }
+
+    &.canceled {
+      background-color: mix($status-color-canceled, white, 5%);
+    }
+
+
+    .status-head {
+      display: flex;
+      overflow: hidden;
+      flex-shrink: 0;
+      align-items: center;
+      user-select: none;
+      border-radius: 50%;
+      justify-content: center;
+      width: 1rem;
+      height: 1rem;
+      color: #fff;
+      margin-left: 10px;
+
+      &.pending {
+        background-color: $status-color-pending;
+      }
+
+      &.accepted {
+        background-color: $status-color-accepted;
+      }
+
+      &.error {
+        background-color: $status-color-error;
+      }
+
+      &.canceled {
+        background-color: $status-color-canceled;
+      }
+      
+    }
+
+    .status-content {
+      display: flex;
+      align-items: center;
+      padding: 7px 10px;
+      font-weight: 500;
+
+      &.pending {
+        color: $status-color-pending;
+      }
+
+      &.accepted {
+        color: $status-color-accepted;
+      }
+
+      &.error {
+        color: $status-color-error;
+      }
+
+      &.canceled {
+        color: $status-color-canceled;
+      }
+
+      
+    }
+    
+  }
+  
+}

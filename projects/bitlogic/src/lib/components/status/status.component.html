@@ -1,0 +1,7 @@
+<div class="status" ngClass="{{status}} {{size}}">
+    <div *ngIf="statusHead === true" class="status-head" [ngClass]="status"></div>
+    <div class="status-content" [ngClass]="status">
+        <ng-content></ng-content>
+    </div>
+</div>
+

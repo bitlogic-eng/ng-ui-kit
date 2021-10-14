@@ -19,12 +19,12 @@
                 </mat-select-trigger>
 
     <mat-option disabled="disabled" class="filter-option">
-      <bit-button sty="text" color="secondary" (click)="selectAll()">
+      <button mat-button color="primary" (click)="selectAll()">
        {{selectButtons.selectAll}}
-      </bit-button>
-      <bit-button sty="text" color="secondary" (click)="deselectAll()">
+      </button>
+      <button mat-button color="primary" (click)="deselectAll()">
           {{selectButtons.deselectAll}}
-      </bit-button>
+      </button>
     </mat-option>
                           
     <mat-option *ngFor="let option of options"

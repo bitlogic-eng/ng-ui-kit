@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SelectComponent } from './select.component';
 import { MatSelectModule } from '@angular/material/select';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ButtonModule } from '../button/button.module';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [SelectComponent],
@@ -11,7 +11,7 @@ import { ButtonModule } from '../button/button.module';
     CommonModule,
     MatSelectModule,
     ReactiveFormsModule,
-    ButtonModule,
+    MatButtonModule,
     
   ],
   exports: [

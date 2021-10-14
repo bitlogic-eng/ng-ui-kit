@@ -1,6 +1,8 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output, ViewChild, AfterViewInit } from '@angular/core';
 import {SelectionModel} from '@angular/cdk/collections';
-import {MatTableDataSource} from '@angular/material/table';
+import {MatTableDataSource } from '@angular/material/table';
+import {MatPaginator} from '@angular/material/paginator';
+
 
 export interface TableHeader {
   key: string,
@@ -15,12 +17,7 @@ export interface TableHeader {
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss']
 })
-export class TableComponent implements OnInit {
-
-  private _headers: TableHeader[];
-  private _enableSelection: boolean;
-  columnsToDisplay: string[];
-  selection = new SelectionModel<any>(true, []);
+export class TableComponent implements OnInit, AfterViewInit {
 
   @Input()
   set headers(headers: TableHeader[]){
@@ -41,7 +38,12 @@ export class TableComponent implements OnInit {
   }
 
   @Input()
-  data;
+  set data(data: any) {
+    this.dataSource = new MatTableDataSource<any>(data);
+  }
+  get data() {
+    return this.dataSource;
+  }
 
   @Input()
   set enableSelection(enableSelection: boolean) {
@@ -56,20 +58,41 @@ export class TableComponent implements OnInit {
     
   }
 
+  @Input()
+  set enablePagination (enablePagination: boolean) {
+    this._enablePagination = enablePagination;
+    this.dataSource.paginator = this.paginator;
+  }
+  get enablePagination() {
+    return this._enablePagination;
+  }
+
   @Output()
   rowClick: EventEmitter<any> = new EventEmitter();
+
+  private dataSource: MatTableDataSource<any>;
+  private _headers: TableHeader[];
+  private _enableSelection: boolean;
+  private _enablePagination: boolean;
+  columnsToDisplay: string[];
+  selection = new SelectionModel<any>(true, []);
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor() { 
 
   }
 
   ngOnInit(): void {
-    
+    // this.dataSource.paginator = this.paginator;
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
   }
 
   isAllSelected() {
     const numSelected = this.selection.selected.length;
-    const numRows = this.data.length;
+    const numRows = this.dataSource.data.length;
     return numSelected === numRows;
   }
 
@@ -79,16 +102,8 @@ export class TableComponent implements OnInit {
       return;
     }
 
-    this.selection.select(...this.data);
+    this.selection.select(...this.dataSource.data);
   }
-
-  /** The label for the checkbox on the passed row */
-  checkboxLabel(row?: any): string {
-    if (!row) {
-      return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
-    }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
-  }  
 
   onClick(row: any){
     this.selection.toggle(row);

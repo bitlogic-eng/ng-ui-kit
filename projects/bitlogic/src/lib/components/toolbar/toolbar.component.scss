@@ -18,8 +18,8 @@
       align-items: center;
   
       @include deg-main (-45deg, var(--background-lg-start), var(--background-lg-end));
-      
-      color: var(--color);
+      color: $color-white;
+
       width: 100%;
   
       .header-user-data {
@@ -27,11 +27,16 @@
         flex-direction: column;
         margin: 0 20px;
   
+        // h1 {
+        //   margin: 0 0 5px 0;
+        //   font-weight: bold ;
+        //   font-size: 24px;
+        // }
+
         h1 {
-          margin: 0 0 5px 0;
-          font-weight: bold ;
-          font-size: 24px;
+          color: var(--color); 
         }
+
   
         p {
           margin: 0;
@@ -48,13 +53,15 @@
           margin: 0 10px 0 0;
           text-align: end;
   
-          h4 {
+          h5 {
             margin: 0 0 5px 0;
+            color: var(--color);
           }
   
           p {
             font-size: .7rem;
             margin: 0 0 5px 0;
+            color: var(--color);
           }
         }
   

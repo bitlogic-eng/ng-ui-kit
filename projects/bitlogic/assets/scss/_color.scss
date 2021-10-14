@@ -1,6 +1,110 @@
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+$bit-primary-colors: (
+    50 : #e0f5f2,
+    100 : #b3e5dd,
+    200 : #80d4c7,
+    300 : #4dc3b1,
+    400 : #26b6a0,
+    500 : #00a98f,
+    600 : #00a287,
+    700 : #00987c,
+    800 : #008f72,
+    900 : #007e60,
+    A100 : #acffe7,
+    A200 : #79ffd9,
+    A400 : #46ffca,
+    A700 : #2cffc3,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$bit-secundary-colors: (
+    50 : #e0edeb,
+    100 : #b3d3ce,
+    200 : #80b6ad,
+    300 : #4d988c,
+    400 : #268274,
+    500 : #006c5b,
+    600 : #006453,
+    700 : #005949,
+    800 : #004f40,
+    900 : #003d2f,
+    A100 : #73ffd6,
+    A200 : #40ffc8,
+    A400 : #0dffb9,
+    A700 : #00f2ac,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$bit-warn-colors: (
+    50 : #fbe3ea,
+    100 : #f5b8cb,
+    200 : #ee89a8,
+    300 : #e75a85,
+    400 : #e1366b,
+    500 : #dc1351,
+    600 : #d8114a,
+    700 : #d30e40,
+    800 : #ce0b37,
+    900 : #c50627,
+    A100 : #ffeef0,
+    A200 : #ffbbc4,
+    A400 : #ff8897,
+    A700 : #ff6f81,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+
 // Customizable colors
-$color-primary:#00A98F;
-$color-secondary: #006C5B;
+$color-primary: map-get($bit-primary-colors , 500 );
+$color-secondary: map-get($bit-secundary-colors , 500 );
 
 $color-white:#FFFFFF;
 $color-black:#000000;
@@ -14,7 +118,6 @@ $color-info:#005587;
 $color-disabled: mix($color-black, white, 10%);
 
 // Alternative apha - Colors 
-
 $color-primary-alt-80: mix($color-primary, white, 80%);
 $color-primary-alt-60: mix($color-primary, white, 60%);
 $color-primary-alt-40: mix($color-primary, white, 40%);
@@ -72,46 +175,23 @@ $color-info-alt-10: mix($color-info, white, 10%);
 $color-info-alt-05: mix($color-info, white, 5%);  
 
 // customs theme ...
-$theme-colors: (
-  "primary":    $color-primary,
-  "secondary":  $color-secondary,
-  "success":    $color-success,
-  "info":       $color-info,
-  "warning":    $color-warning,
-  "danger":     $color-danger,
-  "light":      $color-white,
-  "dark":       $color-black
+$color-map: (
+  primary:    $color-primary,
+  secondary:  $color-secondary,
+  success:    $color-success,
+  info:       $color-info,
+  warning:    $color-warning,
+  danger:     $color-danger,
+  light:      $color-white,
+  dark:       $color-black,
+  gray:       $color-black-alt-80
 );
 
-$color-map: (
-  primary-light: #08c5ab,
-  primary: #006c5b,
-  primary-dark: #014e44,
-  secondary-light: #047abf,
-  secondary: #005587,
-  secondary-dark: #002e5d,
-  accent-light: #c14fd3,
-  accent: #772583,
-  accent-dark: #4c1d58,
-  danger-light: #fc5252,
-  danger: #f2363c,
-  danger-dark: #b80015,
-  success-light: #62f881,
-  success: #15c452,
-  success-dark: #009223,
-  info-light: #6be4ff,
-  info: #1bb2e7,
-  info-dark: #0082b5,
-  warning-light: #fce359,
-  warning: #fcd804,
-  warning-dark: #ebc302,
-  muted: #8f8f94,
-  clear: transparent,
-  light_gray: #f6f5f5,
-  medium_gray: #e2e2e2,
-  gray: #707070,
-  gray-1: #878686,
-  mine-shaft: #424242,
-  white: #ffffff,
-  dark: #4b4b4b
-);
+// Material custom color ...
+$bit-palette-primary: mat-palette($bit-primary-colors);
+$bit-palette-secundary: mat-palette($bit-secundary-colors);
+$bit-palette-warn: mat-palette($bit-warn-colors);
+
+$bit-light-theme: mat-light-theme($bit-palette-primary, $bit-palette-secundary, $bit-palette-warn);
+
+@include angular-material-theme($bit-light-theme);

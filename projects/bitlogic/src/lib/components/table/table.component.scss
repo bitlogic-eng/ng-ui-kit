@@ -23,17 +23,25 @@
   }
 
   // checkbox
-  ::ng-deep .mat-checkbox-ripple .mat-ripple-element {
-    background-color: $color-primary !important;
-  }
+  // ::ng-deep {
+  //   .mat-checkbox {
+  //     .mat-checkbox-layout {
+  //       margin-bottom: 0.2rem !important;
+  //     }
+  //   }
+  // }
   
-  ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background {
-    background-color: $color-primary !important;
-  }
+  // ::ng-deep .mat-checkbox-ripple .mat-ripple-element {
+  //   background-color: $color-primary !important;
+  // }
   
-  ::ng-deep .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
-    background-color: $color-primary !important;
-  }
+  // ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background {
+  //   background-color: $color-primary !important;
+  // }
+  
+  // ::ng-deep .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+  //   background-color: $color-primary !important;
+  // }
   
   
 }

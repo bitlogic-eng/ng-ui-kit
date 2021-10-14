@@ -122,13 +122,45 @@
             "methods": []
         },
         {
-            "name": "SelectAllButton",
-            "id": "interface-SelectAllButton-51926827051b81545052e6c9c1ba1d09",
+            "name": "OtherText",
+            "id": "interface-OtherText-eb1f2b54cbc28b617b4c9092f386a50c",
             "file": "projects/bitlogic/src/lib/components/select/select.component.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { Component, OnInit, Input, ViewChild, Output, EventEmitter } from '@angular/core';\nimport { FormControl } from '@angular/forms';\nimport { MatSelect } from '@angular/material/select';\nimport { MatOption } from '@angular/material/core';\n\nexport interface SelectOption {\n  id: number,\n  viewValue: string,\n  meta?: any\n};\n\nexport interface SelectAllButton {\n  selectAll: string,\n  deselectAll: string\n};\n\n\n\n@Component({\n  selector: 'bit-select',\n  templateUrl: './select.component.html',\n  styleUrls: ['./select.component.scss']\n})\nexport class SelectComponent implements OnInit {\n\n  selectControl = new FormControl('');\n  allSelected = false;\n  other = 'other'\n  others = 'others'\n\n  @ViewChild('select') select: MatSelect;\n\n  @Input()\n  label: string;\n\n  @Input()\n  options: SelectOption[];\n\n  @Input()\n  isMultiple: boolean;\n\n  @Input()\n  selectAllButton = 'Select All';\n\n  @Input()\n  deselectAllLabel = 'Deselect All';\n\n\n  @Output()\n  selectChange = new EventEmitter();\n\n  constructor() { }\n\n  ngOnInit(): void {\n    this.selectControl.valueChanges.subscribe(()=>{\n      this.selectChange.emit(this.selectControl.value)\n    })\n  }\n\n  onSelectionChange($event) {\n\n  }\n\n  selectAll() {\n    this.select.options.forEach((item: MatOption) => { \n      if(!item.disabled) {\n        item.select();\n      }\n    });\n    this.allSelected = true;\n  }\n\n  deselectAll() {\n    this.select.options.forEach((item: MatOption) => item.deselect());\n    this.allSelected = false;\n  }\n\n}\n",
+            "sourceCode": "import { Component, OnInit, Input, ViewChild, Output, EventEmitter } from '@angular/core';\nimport { FormControl } from '@angular/forms';\nimport { MatSelect } from '@angular/material/select';\nimport { MatOption } from '@angular/material/core';\n\nexport interface SelectOption {\n  id: number,\n  viewValue: string,\n  meta?: any\n};\n\nexport interface SelectButtons {\n  selectAll: string,\n  deselectAll: string\n};\n\nexport interface OtherText {\n  text1: string,\n  text2: string\n}\n\n\n@Component({\n  selector: 'bit-select',\n  templateUrl: './select.component.html',\n  styleUrls: ['./select.component.scss']\n})\nexport class SelectComponent implements OnInit {\n\n  selectControl = new FormControl('');\n  allSelected = false;\n\n  @ViewChild('select') select: MatSelect;\n\n  @Input()\n  label: string;\n\n  @Input()\n  options: SelectOption[];\n\n  @Input()\n  isMultiple: boolean;\n\n  @Input()\n  selectButtons: SelectButtons = {selectAll: 'Select All', deselectAll: 'Deselect All'};\n\n  @Input()\n  otherText: OtherText = {text1: 'other', text2: 'others'}\n\n  @Output()\n  selectChange = new EventEmitter();\n\n  constructor() { }\n\n  ngOnInit(): void {\n    this.selectControl.valueChanges.subscribe(()=>{\n      this.selectChange.emit(this.selectControl.value)\n    })\n  }\n\n  onSelectionChange($event) {\n\n  }\n\n  selectAll() {\n    this.select.options.forEach((item: MatOption) => { \n      if(!item.disabled) {\n        item.select();\n      }\n    });\n    this.allSelected = true;\n  }\n\n  deselectAll() {\n    this.select.options.forEach((item: MatOption) => item.deselect());\n    this.allSelected = false;\n  }\n\n}\n",
+            "properties": [
+                {
+                    "name": "text1",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 18
+                },
+                {
+                    "name": "text2",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 19
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 163,
+            "methods": []
+        },
+        {
+            "name": "SelectButtons",
+            "id": "interface-SelectButtons-eb1f2b54cbc28b617b4c9092f386a50c",
+            "file": "projects/bitlogic/src/lib/components/select/select.component.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import { Component, OnInit, Input, ViewChild, Output, EventEmitter } from '@angular/core';\nimport { FormControl } from '@angular/forms';\nimport { MatSelect } from '@angular/material/select';\nimport { MatOption } from '@angular/material/core';\n\nexport interface SelectOption {\n  id: number,\n  viewValue: string,\n  meta?: any\n};\n\nexport interface SelectButtons {\n  selectAll: string,\n  deselectAll: string\n};\n\nexport interface OtherText {\n  text1: string,\n  text2: string\n}\n\n\n@Component({\n  selector: 'bit-select',\n  templateUrl: './select.component.html',\n  styleUrls: ['./select.component.scss']\n})\nexport class SelectComponent implements OnInit {\n\n  selectControl = new FormControl('');\n  allSelected = false;\n\n  @ViewChild('select') select: MatSelect;\n\n  @Input()\n  label: string;\n\n  @Input()\n  options: SelectOption[];\n\n  @Input()\n  isMultiple: boolean;\n\n  @Input()\n  selectButtons: SelectButtons = {selectAll: 'Select All', deselectAll: 'Deselect All'};\n\n  @Input()\n  otherText: OtherText = {text1: 'other', text2: 'others'}\n\n  @Output()\n  selectChange = new EventEmitter();\n\n  constructor() { }\n\n  ngOnInit(): void {\n    this.selectControl.valueChanges.subscribe(()=>{\n      this.selectChange.emit(this.selectControl.value)\n    })\n  }\n\n  onSelectionChange($event) {\n\n  }\n\n  selectAll() {\n    this.select.options.forEach((item: MatOption) => { \n      if(!item.disabled) {\n        item.select();\n      }\n    });\n    this.allSelected = true;\n  }\n\n  deselectAll() {\n    this.select.options.forEach((item: MatOption) => item.deselect());\n    this.allSelected = false;\n  }\n\n}\n",
             "properties": [
                 {
                     "name": "deselectAll",
@@ -155,12 +187,12 @@
         },
         {
             "name": "SelectOption",
-            "id": "interface-SelectOption-51926827051b81545052e6c9c1ba1d09",
+            "id": "interface-SelectOption-eb1f2b54cbc28b617b4c9092f386a50c",
             "file": "projects/bitlogic/src/lib/components/select/select.component.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { Component, OnInit, Input, ViewChild, Output, EventEmitter } from '@angular/core';\nimport { FormControl } from '@angular/forms';\nimport { MatSelect } from '@angular/material/select';\nimport { MatOption } from '@angular/material/core';\n\nexport interface SelectOption {\n  id: number,\n  viewValue: string,\n  meta?: any\n};\n\nexport interface SelectAllButton {\n  selectAll: string,\n  deselectAll: string\n};\n\n\n\n@Component({\n  selector: 'bit-select',\n  templateUrl: './select.component.html',\n  styleUrls: ['./select.component.scss']\n})\nexport class SelectComponent implements OnInit {\n\n  selectControl = new FormControl('');\n  allSelected = false;\n  other = 'other'\n  others = 'others'\n\n  @ViewChild('select') select: MatSelect;\n\n  @Input()\n  label: string;\n\n  @Input()\n  options: SelectOption[];\n\n  @Input()\n  isMultiple: boolean;\n\n  @Input()\n  selectAllButton = 'Select All';\n\n  @Input()\n  deselectAllLabel = 'Deselect All';\n\n\n  @Output()\n  selectChange = new EventEmitter();\n\n  constructor() { }\n\n  ngOnInit(): void {\n    this.selectControl.valueChanges.subscribe(()=>{\n      this.selectChange.emit(this.selectControl.value)\n    })\n  }\n\n  onSelectionChange($event) {\n\n  }\n\n  selectAll() {\n    this.select.options.forEach((item: MatOption) => { \n      if(!item.disabled) {\n        item.select();\n      }\n    });\n    this.allSelected = true;\n  }\n\n  deselectAll() {\n    this.select.options.forEach((item: MatOption) => item.deselect());\n    this.allSelected = false;\n  }\n\n}\n",
+            "sourceCode": "import { Component, OnInit, Input, ViewChild, Output, EventEmitter } from '@angular/core';\nimport { FormControl } from '@angular/forms';\nimport { MatSelect } from '@angular/material/select';\nimport { MatOption } from '@angular/material/core';\n\nexport interface SelectOption {\n  id: number,\n  viewValue: string,\n  meta?: any\n};\n\nexport interface SelectButtons {\n  selectAll: string,\n  deselectAll: string\n};\n\nexport interface OtherText {\n  text1: string,\n  text2: string\n}\n\n\n@Component({\n  selector: 'bit-select',\n  templateUrl: './select.component.html',\n  styleUrls: ['./select.component.scss']\n})\nexport class SelectComponent implements OnInit {\n\n  selectControl = new FormControl('');\n  allSelected = false;\n\n  @ViewChild('select') select: MatSelect;\n\n  @Input()\n  label: string;\n\n  @Input()\n  options: SelectOption[];\n\n  @Input()\n  isMultiple: boolean;\n\n  @Input()\n  selectButtons: SelectButtons = {selectAll: 'Select All', deselectAll: 'Deselect All'};\n\n  @Input()\n  otherText: OtherText = {text1: 'other', text2: 'others'}\n\n  @Output()\n  selectChange = new EventEmitter();\n\n  constructor() { }\n\n  ngOnInit(): void {\n    this.selectControl.valueChanges.subscribe(()=>{\n      this.selectChange.emit(this.selectControl.value)\n    })\n  }\n\n  onSelectionChange($event) {\n\n  }\n\n  selectAll() {\n    this.select.options.forEach((item: MatOption) => { \n      if(!item.disabled) {\n        item.select();\n      }\n    });\n    this.allSelected = true;\n  }\n\n  deselectAll() {\n    this.select.options.forEach((item: MatOption) => item.deselect());\n    this.allSelected = false;\n  }\n\n}\n",
             "properties": [
                 {
                     "name": "id",
@@ -284,12 +316,12 @@
         },
         {
             "name": "TableHeader",
-            "id": "interface-TableHeader-866ddf078e6faa0aafbc5ca9f6a8aac7",
+            "id": "interface-TableHeader-44fa4790d26a6f8a65ac3a5a68522c4e",
             "file": "projects/bitlogic/src/lib/components/table/table.component.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';\nimport {SelectionModel} from '@angular/cdk/collections';\nimport {MatTableDataSource} from '@angular/material/table';\n\nexport interface TableHeader {\n  key: string,\n  text: string,\n  orden?: string\n  hide?: boolean,\n  class?: string\n}\n\n@Component({\n  selector: 'bit-table',\n  templateUrl: './table.component.html',\n  styleUrls: ['./table.component.scss']\n})\nexport class TableComponent implements OnInit {\n\n  private _headers: TableHeader[];\n  private _enableSelection: boolean;\n  columnsToDisplay: string[];\n  selection = new SelectionModel<any>(true, []);\n\n  @Input()\n  set headers(headers: TableHeader[]){\n    this._headers = headers;\n    \n    this.columnsToDisplay = [];\n    if (this._enableSelection) {\n      this.columnsToDisplay = ['select'];\n    } else {\n      this.selection.clear();\n    }\n    this.columnsToDisplay = [...this.columnsToDisplay, ...this._headers.map(header => header.key)]\n\n    \n  }\n  get headers() {\n    return this._headers;\n  }\n\n  @Input()\n  data;\n\n  @Input()\n  set enableSelection(enableSelection: boolean) {\n    this._enableSelection = enableSelection;\n    this.columnsToDisplay = [];\n    if (this._enableSelection) {\n      this.columnsToDisplay = ['select'];\n    } else {\n      this.selection.clear();\n    }\n    this.columnsToDisplay = [...this.columnsToDisplay, ...this._headers.map(header => header.key)]\n    \n  }\n\n  @Output()\n  rowClick: EventEmitter<any> = new EventEmitter();\n\n  constructor() { \n\n  }\n\n  ngOnInit(): void {\n    \n  }\n\n  isAllSelected() {\n    const numSelected = this.selection.selected.length;\n    const numRows = this.data.length;\n    return numSelected === numRows;\n  }\n\n  masterToggle() {\n    if (this.isAllSelected()) {\n      this.selection.clear();\n      return;\n    }\n\n    this.selection.select(...this.data);\n  }\n\n  /** The label for the checkbox on the passed row */\n  checkboxLabel(row?: any): string {\n    if (!row) {\n      return `${this.isAllSelected() ? 'deselect' : 'select'} all`;\n    }\n    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;\n  }  \n\n  onClick(row: any){\n    this.selection.toggle(row);\n    this.rowClick.emit(row);\n  }\n\n}\n",
+            "sourceCode": "import { Component, OnInit, Input, EventEmitter, Output, ViewChild, AfterViewInit } from '@angular/core';\nimport {SelectionModel} from '@angular/cdk/collections';\nimport {MatTableDataSource } from '@angular/material/table';\nimport {MatPaginator} from '@angular/material/paginator';\n\n\nexport interface TableHeader {\n  key: string,\n  text: string,\n  orden?: string\n  hide?: boolean,\n  class?: string\n}\n\n@Component({\n  selector: 'bit-table',\n  templateUrl: './table.component.html',\n  styleUrls: ['./table.component.scss']\n})\nexport class TableComponent implements OnInit, AfterViewInit {\n\n  private dataSource: MatTableDataSource<any>;\n  private _headers: TableHeader[];\n  private _enableSelection: boolean;\n  columnsToDisplay: string[];\n  selection = new SelectionModel<any>(true, []);\n\n  @ViewChild(MatPaginator) paginator: MatPaginator;\n\n  @Input()\n  set headers(headers: TableHeader[]){\n    this._headers = headers;\n    \n    this.columnsToDisplay = [];\n    if (this._enableSelection) {\n      this.columnsToDisplay = ['select'];\n    } else {\n      this.selection.clear();\n    }\n    this.columnsToDisplay = [...this.columnsToDisplay, ...this._headers.map(header => header.key)]\n\n    \n  }\n  get headers() {\n    return this._headers;\n  }\n\n  // dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);\n  @Input()\n  set data(data: any) {\n    this.dataSource = new MatTableDataSource<any>(data);\n  }\n  get data() {\n    return this.dataSource;\n  }\n\n  @Input()\n  set enableSelection(enableSelection: boolean) {\n    this._enableSelection = enableSelection;\n    this.columnsToDisplay = [];\n    if (this._enableSelection) {\n      this.columnsToDisplay = ['select'];\n    } else {\n      this.selection.clear();\n    }\n    this.columnsToDisplay = [...this.columnsToDisplay, ...this._headers.map(header => header.key)]\n    \n  }\n\n  @Input()\n  enablePagination: boolean\n\n  @Output()\n  rowClick: EventEmitter<any> = new EventEmitter();\n\n  constructor() { \n\n  }\n\n  ngOnInit(): void {\n    \n  }\n\n  ngAfterViewInit() {\n    this.dataSource.paginator = this.paginator;\n  }\n\n  isAllSelected() {\n    const numSelected = this.selection.selected.length;\n    const numRows = this.data.length;\n    return numSelected === numRows;\n  }\n\n  masterToggle() {\n    if (this.isAllSelected()) {\n      this.selection.clear();\n      return;\n    }\n\n    this.selection.select(...this.data);\n  }\n\n  /** The label for the checkbox on the passed row */\n  checkboxLabel(row?: any): string {\n    if (!row) {\n      return `${this.isAllSelected() ? 'deselect' : 'select'} all`;\n    }\n    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;\n  }  \n\n  onClick(row: any){\n    this.selection.toggle(row);\n    this.rowClick.emit(row);\n  }\n\n}\n",
             "properties": [
                 {
                     "name": "class",
@@ -298,7 +330,7 @@
                     "type": "string",
                     "optional": true,
                     "description": "",
-                    "line": 10
+                    "line": 12
                 },
                 {
                     "name": "hide",
@@ -307,7 +339,7 @@
                     "type": "boolean",
                     "optional": true,
                     "description": "",
-                    "line": 9
+                    "line": 11
                 },
                 {
                     "name": "key",
@@ -316,7 +348,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "",
-                    "line": 6
+                    "line": 8
                 },
                 {
                     "name": "orden",
@@ -325,7 +357,7 @@
                     "type": "string",
                     "optional": true,
                     "description": "",
-                    "line": 8
+                    "line": 10
                 },
                 {
                     "name": "text",
@@ -334,7 +366,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "",
-                    "line": 7
+                    "line": 9
                 }
             ],
             "indexSignatures": [],
@@ -557,7 +589,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@import '../../../../assets/scss/theme';\n\n\n:host {\n    button {\n        font-family: $font-primary;\n        border-radius: 10rem !important;\n    }\n    \n}\n\n\n// :host {\n    \n//     button {\n//         font-family: $font-primary;\n//     }\n\n//     @mixin btn-shadow($color) {\n//         box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%), 0 1px 5px 0 rgb(0 0 0 / 12%) !important;\n//         border-color: transparent !important;\n//         &:active {\n//             $color-lighten: lighten($color, 5%);\n//             box-shadow: 0 5px 5px -3px rgb(0 0 0 / 20%), 0 8px 10px 1px rgb(0 0 0 / 14%), 0 3px 14px 2px rgb(0 0 0 / 12%) !important;\n//             transition: all 0.3s cubic-bezier(.25,.8,.25,1) !important;\n//             border-color: transparent !important;\n//             background-color: $color-lighten !important;\n//         }\n//     }\n\n//     @mixin btn-type($color-sty, $color, $border-color, $background-color ) {\n//         .btn-#{$color-sty}{\n//             border: 1px solid $border-color;\n//             @include btn-background ($background-color, $color-white);\n//             @include btn-shadow($color);    \n//         }\n\n//         .btn-outline-#{$color-sty}{\n//             border: 1px solid $border-color;\n//             box-shadow: none !important;\n//             @include btn-background ($color-white, $background-color);\n//             &:active {\n//                 background-color: mix($color, white, 20%);\n//             }                    \n//         }\n\n//         .btn-text-#{$color-sty}{\n//             border-color: transparent; \n//             box-shadow: none;\n//             @include btn-background (transparent, $background-color);\n//             &:active {\n//                 background-color: mix($color, white, 20%);\n//             }                    \n//         }\n//     }\n\n         \n//     .btn {\n//         min-width: fit-content !important;\n//         @extend %transition;\n//         padding: .5rem 1rem !important;\n//         font-size: 13px;\n//         border-radius: 10rem !important;\n        \n//         &:focus, &:hover {\n//             outline: none !important;\n//         }\n//     }\n\n//     .fab {\n//         width: 56px;\n//         min-width: 56px;\n//         height: 56px;\n//         padding: 0;\n//         border-radius: 50%;\n//         @extend %transition;\n\n//         i {\n//             line-height: 54px;\n//         }    \n//     }\n\n\n//     //size\n\n//     // .btn-sm {\n//     //     padding: .25rem .5rem !important;\n//     //     font-size: 0.75rem;\n//     //     line-height: 1.5;\n//     //     text-transform: initial;\n//     //     box-shadow: $shadow-sm;\n//     // }\n\n//     // .btn-lg {\n//     //     padding: .1rem 1.5rem !important;\n//     //     font-size: 1.25rem;\n//     // }\n\n//     //color\n\n//         // &:disabled {\n//         //     border-color: $color-black-alt-20; \n//         //     @include btn-background ($color-black-alt-20, $color-black-alt-80);\n//         //     cursor: initial;\n//         //     box-shadow: none !important;\n//         // }\n    \n\n//     .btn-link {\n//         border-color: transparent; \n//         @include btn-background (transparent, $color-primary);\n//         box-shadow: none;\n//         text-transform: initial;\n//         &:hover {\n//             text-decoration: underline;\n//         }\n//     }\n\n//     .btn-link-default {\n//         border-color: transparent; \n//         @include btn-background (transparent, $color-black-alt-60);\n//         box-shadow: none;\n//         text-transform: initial;\n//         &:hover {\n//             text-decoration: none;\n//         }\n//     }\n\n//     .btn-close {\n//         border-color: transparent; \n//         padding: 0 !important;\n//         box-shadow: none;\n//         @include btn-background (transparent, $color-black-alt-60);\n//     }\n\n\n//     @include btn-type(\"secondary\", $color-secondary, $color-secondary, $color-secondary);\n//     @include btn-type(\"info\", $color-info, $color-info, $color-info);\n//     @include btn-type(\"high\", $color-highlighted, $color-highlighted, $color-highlighted);\n//     @include btn-type(\"main\", $color-black, $color-black-alt-10, $color-black);\n//     @include btn-type(\"success\", $color-success, $color-success, $color-success);\n//     @include btn-type(\"danger\", $color-danger, $color-danger, $color-danger);\n//     @include btn-type(\"warning\", $color-warning, $color-warning, $color-warning);\n//     @include btn-type(\"primary\", $color-primary, $color-primary, $color-primary);\n\n// }\n\n",
+                    "data": "@import '../../../../assets/scss/theme';\n\n\n// :host {\n//     button {\n//         font-family: $font-primary;\n//         border-radius: 10rem !important;\n//     }\n    \n// }\n\n\n:host {\n    \n    button {\n        font-family: $font-primary;\n    }\n\n    @mixin btn-shadow($color) {\n        box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%), 0 1px 5px 0 rgb(0 0 0 / 12%) !important;\n        border-color: transparent !important;\n        &:active {\n            $color-lighten: lighten($color, 5%);\n            box-shadow: 0 5px 5px -3px rgb(0 0 0 / 20%), 0 8px 10px 1px rgb(0 0 0 / 14%), 0 3px 14px 2px rgb(0 0 0 / 12%) !important;\n            transition: all 0.3s cubic-bezier(.25,.8,.25,1) !important;\n            border-color: transparent !important;\n            background-color: $color-lighten !important;\n        }\n    }\n\n    @mixin btn-type($color-sty, $color, $border-color, $background-color ) {\n        .btn-#{$color-sty}{\n            border: 1px solid $border-color;\n            @include btn-background ($background-color, $color-white);\n            @include btn-shadow($color);    \n        }\n\n        .btn-outline-#{$color-sty}{\n            border: 1px solid $border-color;\n            box-shadow: none !important;\n            @include btn-background ($color-white, $background-color);\n            &:active {\n                background-color: mix($color, white, 20%);\n            }                    \n        }\n\n        .btn-text-#{$color-sty}{\n            border-color: transparent; \n            box-shadow: none;\n            @include btn-background (transparent, $background-color);\n            &:active {\n                background-color: mix($color, white, 20%);\n            }                    \n        }\n    }\n\n         \n    .btn {\n        min-width: fit-content !important;\n        @extend %transition;\n        padding: .5rem 1rem !important;\n        font-size: 13px;\n        border-radius: 10rem !important;\n        \n        &:focus, &:hover {\n            outline: none !important;\n        }\n    }\n\n    .fab {\n        width: 56px;\n        min-width: 56px;\n        height: 56px;\n        padding: 0;\n        border-radius: 50%;\n        @extend %transition;\n\n        i {\n            line-height: 54px;\n        }    \n    }\n\n\n    //size\n\n    // .btn-sm {\n    //     padding: .25rem .5rem !important;\n    //     font-size: 0.75rem;\n    //     line-height: 1.5;\n    //     text-transform: initial;\n    //     box-shadow: $shadow-sm;\n    // }\n\n    // .btn-lg {\n    //     padding: .1rem 1.5rem !important;\n    //     font-size: 1.25rem;\n    // }\n\n    //color\n\n        // &:disabled {\n        //     border-color: $color-black-alt-20; \n        //     @include btn-background ($color-black-alt-20, $color-black-alt-80);\n        //     cursor: initial;\n        //     box-shadow: none !important;\n        // }\n    \n\n    .btn-link {\n        border-color: transparent; \n        @include btn-background (transparent, $color-primary);\n        box-shadow: none;\n        text-transform: initial;\n        &:hover {\n            text-decoration: underline;\n        }\n    }\n\n    .btn-link-default {\n        border-color: transparent; \n        @include btn-background (transparent, $color-black-alt-60);\n        box-shadow: none;\n        text-transform: initial;\n        &:hover {\n            text-decoration: none;\n        }\n    }\n\n    .btn-close {\n        border-color: transparent; \n        padding: 0 !important;\n        box-shadow: none;\n        @include btn-background (transparent, $color-black-alt-60);\n    }\n\n\n    @include btn-type(\"secondary\", $color-secondary, $color-secondary, $color-secondary);\n    @include btn-type(\"info\", $color-info, $color-info, $color-info);\n    @include btn-type(\"high\", $color-highlighted, $color-highlighted, $color-highlighted);\n    @include btn-type(\"main\", $color-black, $color-black-alt-10, $color-black);\n    @include btn-type(\"success\", $color-success, $color-success, $color-success);\n    @include btn-type(\"danger\", $color-danger, $color-danger, $color-danger);\n    @include btn-type(\"warning\", $color-warning, $color-warning, $color-warning);\n    @include btn-type(\"primary\", $color-primary, $color-primary, $color-primary);\n\n}\n\n",
                     "styleUrl": "./button.component.scss"
                 }
             ],
@@ -719,7 +751,69 @@
                     }
                 }
             },
-            "templateData": "\n<!-- <ng-template #content><ng-content></ng-content></ng-template>\n\n<button ngClass={{getClass()}} [disabled]=\"disabled\" (click)=\"onClickButton()\">\n  <ng-container *ngTemplateOutlet=\"content\">\n  </ng-container>\n</button> -->\n\n<!-- <button ngClass={{getClass()}} [disabled]=\"disabled\" (click)=\"onClickButton($event)\">\n    <ng-content></ng-content>\n</button>\n -->\n<button mat-raised-button  color=\"primary\" [disabled]=\"disabled\" (click)=\"onClickButton($event)\">\n    <ng-content></ng-content>\n</button>\n\n\n"
+            "templateData": "\n<!-- <ng-template #content><ng-content></ng-content></ng-template>\n\n<button ngClass={{getClass()}} [disabled]=\"disabled\" (click)=\"onClickButton()\">\n  <ng-container *ngTemplateOutlet=\"content\">\n  </ng-container>\n</button> -->\n\n<button ngClass={{getClass()}} [disabled]=\"disabled\" (click)=\"onClickButton($event)\">\n    <ng-content></ng-content>\n</button>\n\n<!-- <button mat-raised-button  color=\"primary\" [disabled]=\"disabled\" (click)=\"onClickButton($event)\">\n    <ng-content></ng-content>\n</button> -->\n\n\n"
+        },
+        {
+            "name": "ChipsComponent",
+            "id": "component-ChipsComponent-3c56866a29b67b3a851b3d2944948bb3",
+            "file": "projects/bitlogic/src/lib/components/chips/chips.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "bit-chips",
+            "styleUrls": [
+                "./chips.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./chips.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 12,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit, Input } from '@angular/core';\n\n@Component({\n  selector: 'bit-chips',\n  templateUrl: './chips.component.html',\n  styleUrls: ['./chips.component.scss']\n})\nexport class ChipsComponent implements OnInit {\n\n  constructor() { }\n\n  ngOnInit(): void {\n  }\n\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./chips.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 8
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<p>chips works!</p>"
         },
         {
             "name": "MenuComponent",
@@ -1463,7 +1557,7 @@
         },
         {
             "name": "SelectComponent",
-            "id": "component-SelectComponent-51926827051b81545052e6c9c1ba1d09",
+            "id": "component-SelectComponent-eb1f2b54cbc28b617b4c9092f386a50c",
             "file": "projects/bitlogic/src/lib/components/select/select.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -1481,41 +1575,41 @@
             "viewProviders": [],
             "inputsClass": [
                 {
-                    "name": "deselectAllLabel",
-                    "defaultValue": "'Deselect All'",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 46,
-                    "type": "string"
-                },
-                {
                     "name": "isMultiple",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 40,
+                    "line": 42,
                     "type": "boolean"
                 },
                 {
                     "name": "label",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 34,
+                    "line": 36,
                     "type": "string"
                 },
                 {
                     "name": "options",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 37,
+                    "line": 39,
                     "type": "SelectOption[]"
                 },
                 {
-                    "name": "selectAllButton",
-                    "defaultValue": "'Select All'",
+                    "name": "otherText",
+                    "defaultValue": "{text1: 'other', text2: 'others'}",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 43,
-                    "type": "string"
+                    "line": 48,
+                    "type": "OtherText"
+                },
+                {
+                    "name": "selectButtons",
+                    "defaultValue": "{selectAll: 'Select All', deselectAll: 'Deselect All'}",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 45,
+                    "type": "SelectButtons"
                 }
             ],
             "outputsClass": [
@@ -1524,7 +1618,7 @@
                     "defaultValue": "new EventEmitter()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 50,
+                    "line": 51,
                     "type": "EventEmitter"
                 }
             ],
@@ -1537,27 +1631,7 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 27
-                },
-                {
-                    "name": "other",
-                    "defaultValue": "'other'",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "optional": false,
-                    "description": "",
-                    "line": 28
-                },
-                {
-                    "name": "others",
-                    "defaultValue": "'others'",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "optional": false,
-                    "description": "",
-                    "line": 29
+                    "line": 31
                 },
                 {
                     "name": "select",
@@ -1566,7 +1640,7 @@
                     "type": "MatSelect",
                     "optional": false,
                     "description": "",
-                    "line": 31,
+                    "line": 33,
                     "decorators": [
                         {
                             "name": "ViewChild",
@@ -1582,7 +1656,7 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 26
+                    "line": 30
                 }
             ],
             "methodsClass": [
@@ -1592,7 +1666,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 73,
+                    "line": 74,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -1602,7 +1676,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 54,
+                    "line": 55,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -1619,7 +1693,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 60,
+                    "line": 61,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -1640,7 +1714,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 64,
+                    "line": 65,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -1652,7 +1726,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, OnInit, Input, ViewChild, Output, EventEmitter } from '@angular/core';\nimport { FormControl } from '@angular/forms';\nimport { MatSelect } from '@angular/material/select';\nimport { MatOption } from '@angular/material/core';\n\nexport interface SelectOption {\n  id: number,\n  viewValue: string,\n  meta?: any\n};\n\nexport interface SelectAllButton {\n  selectAll: string,\n  deselectAll: string\n};\n\n\n\n@Component({\n  selector: 'bit-select',\n  templateUrl: './select.component.html',\n  styleUrls: ['./select.component.scss']\n})\nexport class SelectComponent implements OnInit {\n\n  selectControl = new FormControl('');\n  allSelected = false;\n  other = 'other'\n  others = 'others'\n\n  @ViewChild('select') select: MatSelect;\n\n  @Input()\n  label: string;\n\n  @Input()\n  options: SelectOption[];\n\n  @Input()\n  isMultiple: boolean;\n\n  @Input()\n  selectAllButton = 'Select All';\n\n  @Input()\n  deselectAllLabel = 'Deselect All';\n\n\n  @Output()\n  selectChange = new EventEmitter();\n\n  constructor() { }\n\n  ngOnInit(): void {\n    this.selectControl.valueChanges.subscribe(()=>{\n      this.selectChange.emit(this.selectControl.value)\n    })\n  }\n\n  onSelectionChange($event) {\n\n  }\n\n  selectAll() {\n    this.select.options.forEach((item: MatOption) => { \n      if(!item.disabled) {\n        item.select();\n      }\n    });\n    this.allSelected = true;\n  }\n\n  deselectAll() {\n    this.select.options.forEach((item: MatOption) => item.deselect());\n    this.allSelected = false;\n  }\n\n}\n",
+            "sourceCode": "import { Component, OnInit, Input, ViewChild, Output, EventEmitter } from '@angular/core';\nimport { FormControl } from '@angular/forms';\nimport { MatSelect } from '@angular/material/select';\nimport { MatOption } from '@angular/material/core';\n\nexport interface SelectOption {\n  id: number,\n  viewValue: string,\n  meta?: any\n};\n\nexport interface SelectButtons {\n  selectAll: string,\n  deselectAll: string\n};\n\nexport interface OtherText {\n  text1: string,\n  text2: string\n}\n\n\n@Component({\n  selector: 'bit-select',\n  templateUrl: './select.component.html',\n  styleUrls: ['./select.component.scss']\n})\nexport class SelectComponent implements OnInit {\n\n  selectControl = new FormControl('');\n  allSelected = false;\n\n  @ViewChild('select') select: MatSelect;\n\n  @Input()\n  label: string;\n\n  @Input()\n  options: SelectOption[];\n\n  @Input()\n  isMultiple: boolean;\n\n  @Input()\n  selectButtons: SelectButtons = {selectAll: 'Select All', deselectAll: 'Deselect All'};\n\n  @Input()\n  otherText: OtherText = {text1: 'other', text2: 'others'}\n\n  @Output()\n  selectChange = new EventEmitter();\n\n  constructor() { }\n\n  ngOnInit(): void {\n    this.selectControl.valueChanges.subscribe(()=>{\n      this.selectChange.emit(this.selectControl.value)\n    })\n  }\n\n  onSelectionChange($event) {\n\n  }\n\n  selectAll() {\n    this.select.options.forEach((item: MatOption) => { \n      if(!item.disabled) {\n        item.select();\n      }\n    });\n    this.allSelected = true;\n  }\n\n  deselectAll() {\n    this.select.options.forEach((item: MatOption) => item.deselect());\n    this.allSelected = false;\n  }\n\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -1667,12 +1741,12 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "args": [],
-                "line": 50
+                "line": 51
             },
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<mat-form-field appearance=\"outline\">\n  <mat-label>{{ label }}</mat-label>\n\n  <!-- Multiple -->\n  <mat-select *ngIf=\"isMultiple\" \n              multiple\n              #select\n              (selectionChange)=\"onSelectionChange($event)\"\n              [formControl]=\"selectControl\"\n              disableOptionCentering\n              panelClass=\"select-margin-top\"\n              [(value)]=\"selected\">\n\n              <mat-select-trigger>\n                  {{selected ? selected[0]?.viewValue : ''}}\n                  <span *ngIf=\"selected?.length > 1\" class=\"example-additional-selection\">\n                    (+{{selected.length - 1}} {{selected?.length === 2 ? other : others}})\n                  </span>\n                </mat-select-trigger>\n\n    <mat-option disabled=\"disabled\" class=\"filter-option\">\n      <bit-button sty=\"text\" color=\"secondary\" (click)=\"selectAll()\">\n        Select All\n      </bit-button>\n      <bit-button sty=\"text\" color=\"secondary\" (click)=\"deselectAll()\">\n        Deselect All\n      </bit-button>\n    </mat-option>\n                          \n    <mat-option *ngFor=\"let option of options\"\n                [value]=\"option\">\n      {{option.viewValue}}\n    </mat-option>\n  </mat-select>\n\n  <!-- Simple -->\n  <mat-select *ngIf=\"!isMultiple\"\n              (selectionChange)=\"onSelectionChange($event)\"\n              [formControl]=\"selectControl\"\n              disableOptionCentering\n              panelClass=\"select-margin-top\">\n\n    <mat-option *ngFor=\"let option of options\"\n                [value]=\"option\">\n      {{option.viewValue}}\n    </mat-option>\n  </mat-select>\n\n</mat-form-field>\n"
+            "templateData": "<mat-form-field appearance=\"outline\">\n  <mat-label>{{ label }}</mat-label>\n\n  <!-- Multiple -->\n  <mat-select *ngIf=\"isMultiple\" \n              multiple\n              #select\n              (selectionChange)=\"onSelectionChange($event)\"\n              [formControl]=\"selectControl\"\n              disableOptionCentering\n              panelClass=\"select-margin-top\"\n              [(value)]=\"selected\">\n\n              <mat-select-trigger>\n                  {{selected ? selected[0]?.viewValue : ''}}\n                  <span *ngIf=\"selected?.length > 1\" class=\"example-additional-selection\">\n                    (+{{selected.length - 1}} {{selected?.length === 2 ? otherText.text1: otherText.text2}})\n                  </span>\n                </mat-select-trigger>\n\n    <mat-option disabled=\"disabled\" class=\"filter-option\">\n      <bit-button sty=\"text\" color=\"secondary\" (click)=\"selectAll()\">\n       {{selectButtons.selectAll}}\n      </bit-button>\n      <bit-button sty=\"text\" color=\"secondary\" (click)=\"deselectAll()\">\n          {{selectButtons.deselectAll}}\n      </bit-button>\n    </mat-option>\n                          \n    <mat-option *ngFor=\"let option of options\"\n                [value]=\"option\">\n      {{option.viewValue}}\n    </mat-option>\n  </mat-select>\n\n  <!-- Simple -->\n  <mat-select *ngIf=\"!isMultiple\"\n              (selectionChange)=\"onSelectionChange($event)\"\n              [formControl]=\"selectControl\"\n              disableOptionCentering\n              panelClass=\"select-margin-top\">\n\n    <mat-option *ngFor=\"let option of options\"\n                [value]=\"option\">\n      {{option.viewValue}}\n    </mat-option>\n  </mat-select>\n\n</mat-form-field>\n"
         },
         {
             "name": "SliderComponent",
@@ -1844,8 +1918,95 @@
             "templateData": "<ngu-carousel #myCarousel class=\"rounded-custom-lg overflow-hidden shadow cont-cards h-100\" \n              [inputs]=\"carouselTileConfig\" \n              [dataSource]=\"slideInfo\" \n              (onMove)=\"onSlideMove($event)\">\n\n    <div class=\"card rounded-0 shadow-0 border-0 d-flex w-100 h-100 item px-2\" \n              *nguCarouselDef=\"let item; let i = index;\">\n\n            <div class=\"flex-grow-1 d-flex flex-column p-4\" (click)=\"onSlideClick()\">\n                        <div class=\"flex-grow-1 w-50 plans\">\n                            <div class=\"mb-2 d-flex align-items-center text-white\">\n                                <i class=\"material-icons icon-xs mr-2\">list_alt</i>\n                                <h6 class=\"m-0\">\n                                    {{item.careerLevel}}\n                                </h6>\n                            </div>\n                            <div class=\"mb-2 d-flex align-items-center text-white\">\n                                <i class=\"material-icons icon-xs mr-2\">work_outline</i>\n                                <h6 class=\"flex-grow-1 pr-2 m-0\">\n                                    {{item.modality}}\n                                </h6>\n                            </div>\n                            <div class=\"mb-1 d-flex align-items-center text-white\">\n                                <i class=\"material-icons icon-xs mr-2\">assignment</i>\n                                <h6 class=\"m-0\">\n                                    {{item.assigment}}\n                                </h6>\n                            </div>\n                        </div>\n                        <div class=\"flex-grow-1 d-flex align-items-center mt-4\">\n                            <h5 class=\"text-white font-weight-bold course-name m-0\">{{item.careerName}}</h5>\n                        </div>\n                        <div *ngIf=\"item.subjectsApprove\">\n                            <div class=\"total-subjets mt-4 rounded-custom\">\n                                <div class=\"h-100 d-flex align-items-center text-white px-3\">\n                                    <h6 class=\"acl flex-grow-1 pr-2 m-0\">{{item.subjectsLabel}}</h6>\n                                    <h5 class=\"num pl-2 m-0\">{{item.subjectsApprove}}</h5>\n                                </div>\n                            </div>\n                        </div>\n                        <div *ngIf=\"item.credits\">\n                            <div class=\"total-credits mt-2 rounded-custom\">\n                                <div class=\"h-100 d-flex align-items-center px-3\">\n                                    <h6 class=\"acl flex-grow-1 pr-2 m-0\">{{item.creditsLabel}}</h6>\n                                    <h5 class=\"num pl-2 m-0\"> {{item.credits}}</h5>\n                                </div>\n                            </div>\n                        </div>\n                </div>\n                \n            </div>\n    \n    <button NguCarouselPrev class=\"card-button prev\">\n        <i class=\"material-icons\">chevron_left</i>\n    </button>\n    <button NguCarouselNext class=\"card-button next\">\n        <i class=\"material-icons\">chevron_right</i>\n    </button>\n\n</ngu-carousel>\n"
         },
         {
+            "name": "StatusComponent",
+            "id": "component-StatusComponent-8e91df0364590d355e4711ca49c6b27d",
+            "file": "projects/bitlogic/src/lib/components/status/status.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "bit-status",
+            "styleUrls": [
+                "./status.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./status.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "size",
+                    "defaultValue": "SizeEnum.NORMAL",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 26,
+                    "type": "SizeEnum"
+                },
+                {
+                    "name": "status",
+                    "defaultValue": "StatusEnum.ACCEPTED",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 23,
+                    "type": "StatusEnum"
+                },
+                {
+                    "name": "statusHead",
+                    "defaultValue": "true",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 29,
+                    "type": "boolean"
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 33,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit, Input } from '@angular/core';\n\nenum StatusEnum {\n  PENEDING = 'pending',\n  ACCEPTED = 'accepted',\n  ERROR = 'error',\n  CANCELED = 'canceled'\n};\n\nenum SizeEnum {\n  SMALL = 'small',\n  NORMAL = 'normal'\n}\n\n@Component({\n  selector: 'bit-status',\n  templateUrl: './status.component.html',\n  styleUrls: ['./status.component.scss']\n})\nexport class StatusComponent implements OnInit {\n\n  @Input()\n  status: StatusEnum = StatusEnum.ACCEPTED;\n \n  @Input()\n  size: SizeEnum = SizeEnum.NORMAL;\n\n  @Input()\n  statusHead: boolean = true;\n\n  constructor() { }\n\n  ngOnInit(): void {\n  }\n\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@import '../../../../assets/scss/theme';\n\n\n// status colors\n$status-color-pending: $color-warning;\n$status-color-accepted: $color-success;\n$status-color-error: $color-danger;\n$status-color-canceled: $color-black-alt-60;\n\n:host {\n\n  font-family: $font-primary;\n\n  .status {\n    display: inline-flex;\n    flex-direction: row;    \n    border: none;\n    cursor: default;\n    height: 36px;\n    outline: none;\n    padding: 0;\n    font-size: 14px;\n    white-space: nowrap;\n    align-items: center;\n    border-radius: 16px;\n    vertical-align: middle;\n    text-decoration: none;\n    justify-content: center;\n\n    &.small {\n      transform: scale(0.75);\n    }\n    \n\n    &.pending {\n      background-color: mix($status-color-pending, white, 5%);\n    }\n\n    &.accepted {\n      background-color: mix($status-color-accepted, white, 5%);\n    }\n\n    &.error {\n      background-color: mix($status-color-error, white, 5%);\n    }\n\n    &.canceled {\n      background-color: mix($status-color-canceled, white, 5%);\n    }\n\n\n    .status-head {\n      display: flex;\n      overflow: hidden;\n      flex-shrink: 0;\n      align-items: center;\n      user-select: none;\n      border-radius: 50%;\n      justify-content: center;\n      width: 1rem;\n      height: 1rem;\n      color: #fff;\n      margin-left: 10px;\n\n      &.pending {\n        background-color: $status-color-pending;\n      }\n\n      &.accepted {\n        background-color: $status-color-accepted;\n      }\n\n      &.error {\n        background-color: $status-color-error;\n      }\n\n      &.canceled {\n        background-color: $status-color-canceled;\n      }\n      \n    }\n\n    .status-content {\n      display: flex;\n      align-items: center;\n      padding: 7px 10px;\n      font-weight: 500;\n\n      &.pending {\n        color: $status-color-pending;\n      }\n\n      &.accepted {\n        color: $status-color-accepted;\n      }\n\n      &.error {\n        color: $status-color-error;\n      }\n\n      &.canceled {\n        color: $status-color-canceled;\n      }\n\n      \n    }\n    \n  }\n  \n}\n",
+                    "styleUrl": "./status.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 29
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<div class=\"status\" ngClass=\"{{status}} {{size}}\">\n    <div *ngIf=\"statusHead === true\" class=\"status-head\" [ngClass]=\"status\"></div>\n    <div class=\"status-content\" [ngClass]=\"status\">\n        <ng-content></ng-content>\n    </div>\n</div>\n\n"
+        },
+        {
             "name": "TableComponent",
-            "id": "component-TableComponent-866ddf078e6faa0aafbc5ca9f6a8aac7",
+            "id": "component-TableComponent-44fa4790d26a6f8a65ac3a5a68522c4e",
             "file": "projects/bitlogic/src/lib/components/table/table.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -1866,21 +2027,28 @@
                     "name": "data",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 44,
+                    "line": 50,
                     "type": "any"
+                },
+                {
+                    "name": "enablePagination",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 71,
+                    "type": "boolean"
                 },
                 {
                     "name": "enableSelection",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 47,
+                    "line": 58,
                     "type": "boolean"
                 },
                 {
                     "name": "headers",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 26,
+                    "line": 31,
                     "type": "[]"
                 }
             ],
@@ -1890,7 +2058,7 @@
                     "defaultValue": "new EventEmitter()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 60,
+                    "line": 74,
                     "type": "EventEmitter<any>"
                 }
             ],
@@ -1902,7 +2070,7 @@
                     "type": "boolean",
                     "optional": false,
                     "description": "",
-                    "line": 21,
+                    "line": 24,
                     "modifierKind": [
                         120
                     ]
@@ -1914,7 +2082,7 @@
                     "type": "TableHeader[]",
                     "optional": false,
                     "description": "",
-                    "line": 20,
+                    "line": 23,
                     "modifierKind": [
                         120
                     ]
@@ -1926,7 +2094,34 @@
                     "type": "string[]",
                     "optional": false,
                     "description": "",
-                    "line": 22
+                    "line": 25
+                },
+                {
+                    "name": "dataSource",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "MatTableDataSource<any>",
+                    "optional": false,
+                    "description": "",
+                    "line": 22,
+                    "modifierKind": [
+                        120
+                    ]
+                },
+                {
+                    "name": "paginator",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "MatPaginator",
+                    "optional": false,
+                    "description": "",
+                    "line": 28,
+                    "decorators": [
+                        {
+                            "name": "ViewChild",
+                            "stringifiedArguments": "MatPaginator"
+                        }
+                    ]
                 },
                 {
                     "name": "selection",
@@ -1936,7 +2131,7 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 23
+                    "line": 26
                 }
             ],
             "methodsClass": [
@@ -1954,7 +2149,7 @@
                     "optional": false,
                     "returnType": "string",
                     "typeParameters": [],
-                    "line": 86,
+                    "line": 104,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\nThe label for the checkbox on the passed row",
@@ -1978,7 +2173,7 @@
                     "optional": false,
                     "returnType": "boolean",
                     "typeParameters": [],
-                    "line": 70,
+                    "line": 88,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -1988,7 +2183,17 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 76,
+                    "line": 94,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "ngAfterViewInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 84,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -1998,7 +2203,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 66,
+                    "line": 80,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -2015,7 +2220,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 93,
+                    "line": 111,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -2038,7 +2243,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';\nimport {SelectionModel} from '@angular/cdk/collections';\nimport {MatTableDataSource} from '@angular/material/table';\n\nexport interface TableHeader {\n  key: string,\n  text: string,\n  orden?: string\n  hide?: boolean,\n  class?: string\n}\n\n@Component({\n  selector: 'bit-table',\n  templateUrl: './table.component.html',\n  styleUrls: ['./table.component.scss']\n})\nexport class TableComponent implements OnInit {\n\n  private _headers: TableHeader[];\n  private _enableSelection: boolean;\n  columnsToDisplay: string[];\n  selection = new SelectionModel<any>(true, []);\n\n  @Input()\n  set headers(headers: TableHeader[]){\n    this._headers = headers;\n    \n    this.columnsToDisplay = [];\n    if (this._enableSelection) {\n      this.columnsToDisplay = ['select'];\n    } else {\n      this.selection.clear();\n    }\n    this.columnsToDisplay = [...this.columnsToDisplay, ...this._headers.map(header => header.key)]\n\n    \n  }\n  get headers() {\n    return this._headers;\n  }\n\n  @Input()\n  data;\n\n  @Input()\n  set enableSelection(enableSelection: boolean) {\n    this._enableSelection = enableSelection;\n    this.columnsToDisplay = [];\n    if (this._enableSelection) {\n      this.columnsToDisplay = ['select'];\n    } else {\n      this.selection.clear();\n    }\n    this.columnsToDisplay = [...this.columnsToDisplay, ...this._headers.map(header => header.key)]\n    \n  }\n\n  @Output()\n  rowClick: EventEmitter<any> = new EventEmitter();\n\n  constructor() { \n\n  }\n\n  ngOnInit(): void {\n    \n  }\n\n  isAllSelected() {\n    const numSelected = this.selection.selected.length;\n    const numRows = this.data.length;\n    return numSelected === numRows;\n  }\n\n  masterToggle() {\n    if (this.isAllSelected()) {\n      this.selection.clear();\n      return;\n    }\n\n    this.selection.select(...this.data);\n  }\n\n  /** The label for the checkbox on the passed row */\n  checkboxLabel(row?: any): string {\n    if (!row) {\n      return `${this.isAllSelected() ? 'deselect' : 'select'} all`;\n    }\n    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;\n  }  \n\n  onClick(row: any){\n    this.selection.toggle(row);\n    this.rowClick.emit(row);\n  }\n\n}\n",
+            "sourceCode": "import { Component, OnInit, Input, EventEmitter, Output, ViewChild, AfterViewInit } from '@angular/core';\nimport {SelectionModel} from '@angular/cdk/collections';\nimport {MatTableDataSource } from '@angular/material/table';\nimport {MatPaginator} from '@angular/material/paginator';\n\n\nexport interface TableHeader {\n  key: string,\n  text: string,\n  orden?: string\n  hide?: boolean,\n  class?: string\n}\n\n@Component({\n  selector: 'bit-table',\n  templateUrl: './table.component.html',\n  styleUrls: ['./table.component.scss']\n})\nexport class TableComponent implements OnInit, AfterViewInit {\n\n  private dataSource: MatTableDataSource<any>;\n  private _headers: TableHeader[];\n  private _enableSelection: boolean;\n  columnsToDisplay: string[];\n  selection = new SelectionModel<any>(true, []);\n\n  @ViewChild(MatPaginator) paginator: MatPaginator;\n\n  @Input()\n  set headers(headers: TableHeader[]){\n    this._headers = headers;\n    \n    this.columnsToDisplay = [];\n    if (this._enableSelection) {\n      this.columnsToDisplay = ['select'];\n    } else {\n      this.selection.clear();\n    }\n    this.columnsToDisplay = [...this.columnsToDisplay, ...this._headers.map(header => header.key)]\n\n    \n  }\n  get headers() {\n    return this._headers;\n  }\n\n  // dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);\n  @Input()\n  set data(data: any) {\n    this.dataSource = new MatTableDataSource<any>(data);\n  }\n  get data() {\n    return this.dataSource;\n  }\n\n  @Input()\n  set enableSelection(enableSelection: boolean) {\n    this._enableSelection = enableSelection;\n    this.columnsToDisplay = [];\n    if (this._enableSelection) {\n      this.columnsToDisplay = ['select'];\n    } else {\n      this.selection.clear();\n    }\n    this.columnsToDisplay = [...this.columnsToDisplay, ...this._headers.map(header => header.key)]\n    \n  }\n\n  @Input()\n  enablePagination: boolean\n\n  @Output()\n  rowClick: EventEmitter<any> = new EventEmitter();\n\n  constructor() { \n\n  }\n\n  ngOnInit(): void {\n    \n  }\n\n  ngAfterViewInit() {\n    this.dataSource.paginator = this.paginator;\n  }\n\n  isAllSelected() {\n    const numSelected = this.selection.selected.length;\n    const numRows = this.data.length;\n    return numSelected === numRows;\n  }\n\n  masterToggle() {\n    if (this.isAllSelected()) {\n      this.selection.clear();\n      return;\n    }\n\n    this.selection.select(...this.data);\n  }\n\n  /** The label for the checkbox on the passed row */\n  checkboxLabel(row?: any): string {\n    if (!row) {\n      return `${this.isAllSelected() ? 'deselect' : 'select'} all`;\n    }\n    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;\n  }  \n\n  onClick(row: any){\n    this.selection.toggle(row);\n    this.rowClick.emit(row);\n  }\n\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -2053,10 +2258,11 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "args": [],
-                "line": 60
+                "line": 74
             },
             "implements": [
-                "OnInit"
+                "OnInit",
+                "AfterViewInit"
             ],
             "accessors": {
                 "headers": {
@@ -2075,7 +2281,7 @@
                             }
                         ],
                         "returnType": "void",
-                        "line": 26,
+                        "line": 31,
                         "jsdoctags": [
                             {
                                 "name": "headers",
@@ -2092,7 +2298,43 @@
                         "name": "headers",
                         "type": "",
                         "returnType": "",
-                        "line": 39
+                        "line": 44
+                    }
+                },
+                "data": {
+                    "name": "data",
+                    "setSignature": {
+                        "name": "data",
+                        "type": "void",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "args": [
+                            {
+                                "name": "data",
+                                "type": "any",
+                                "deprecated": false,
+                                "deprecationMessage": ""
+                            }
+                        ],
+                        "returnType": "void",
+                        "line": 50,
+                        "jsdoctags": [
+                            {
+                                "name": "data",
+                                "type": "any",
+                                "deprecated": false,
+                                "deprecationMessage": "",
+                                "tagName": {
+                                    "text": "param"
+                                }
+                            }
+                        ]
+                    },
+                    "getSignature": {
+                        "name": "data",
+                        "type": "",
+                        "returnType": "",
+                        "line": 53
                     }
                 },
                 "enableSelection": {
@@ -2111,7 +2353,7 @@
                             }
                         ],
                         "returnType": "void",
-                        "line": 47,
+                        "line": 58,
                         "jsdoctags": [
                             {
                                 "name": "enableSelection",
@@ -2126,7 +2368,7 @@
                     }
                 }
             },
-            "templateData": "\n<table mat-table [dataSource]=\"data\" class=\"mat-elevation-z8\">\n  <ng-container matColumnDef=\"select\">\n    <th mat-header-cell *matHeaderCellDef>\n      <mat-checkbox (change)=\"$event ? masterToggle() : null\"\n                    [checked]=\"selection.hasValue() && isAllSelected()\"\n                    [indeterminate]=\"selection.hasValue() && !isAllSelected()\"\n                    [aria-label]=\"checkboxLabel()\">\n      </mat-checkbox>\n    </th>\n    <td mat-cell *matCellDef=\"let row\">\n      <mat-checkbox (click)=\"$event.stopPropagation()\"\n                    (change)=\"$event ? selection.toggle(row) : null\"\n                    [checked]=\"selection.isSelected(row)\"\n                    [aria-label]=\"checkboxLabel(row)\">\n      </mat-checkbox>\n    </td>\n  </ng-container>\n    \n  <ng-container [matColumnDef]=\"column.key\" *ngFor=\"let column of headers\">\n    \n    <th mat-header-cell *matHeaderCellDef> {{column.text}} </th>\n    <td mat-cell *matCellDef=\"let element\"> {{element[column.key]}} </td>\n  </ng-container>\n\n  <tr mat-header-row *matHeaderRowDef=\"columnsToDisplay\"></tr>\n  <tr mat-row *matRowDef=\"let row; columns: columnsToDisplay;\" (click)=\"onClick(row)\"></tr>\n</table>\n\n<!-- <table mat-table [dataSource]=\"dataSource\" class=\"mat-elevation-z8\">\n\n  <ng-container [matColumnDef]=\"column\" *ngFor=\"let column of displayedColumns\">\n    <th mat-header-cell *matHeaderCellDef> {{column}} </th>\n    <td mat-cell *matCellDef=\"let element\"> {{element[column]}} </td>\n  </ng-container>\n      \n  \n  <ng-container matColumnDef=\"position\">\n    <th mat-header-cell *matHeaderCellDef> No. </th>\n    <td mat-cell *matCellDef=\"let element\"> {{element.position}} </td>\n  </ng-container>\n\n  \n  <ng-container matColumnDef=\"name\">\n    <th mat-header-cell *matHeaderCellDef> Name </th>\n    <td mat-cell *matCellDef=\"let element\"> {{element.name}} </td>\n  </ng-container>\n\n  \n  <ng-container matColumnDef=\"weight\">\n    <th mat-header-cell *matHeaderCellDef> Weight </th>\n    <td mat-cell *matCellDef=\"let element\"> {{element.weight}} </td>\n  </ng-container>\n\n  \n  <ng-container matColumnDef=\"symbol\">\n    <th mat-header-cell *matHeaderCellDef> Symbol </th>\n    <td mat-cell *matCellDef=\"let element\"> {{element.symbol}} </td>\n  </ng-container>\n\n  <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n  <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\n</table> -->"
+            "templateData": "\n<div class=\"mat-elevation-z8\">\n\n    <table mat-table [dataSource]=\"data\" >\n        <ng-container matColumnDef=\"select\">\n          <th mat-header-cell *matHeaderCellDef>\n            <mat-checkbox (change)=\"$event ? masterToggle() : null\"\n                          [checked]=\"selection.hasValue() && isAllSelected()\"\n                          [indeterminate]=\"selection.hasValue() && !isAllSelected()\"\n                          [aria-label]=\"checkboxLabel()\">\n            </mat-checkbox>\n          </th>\n          <td mat-cell *matCellDef=\"let row\">\n            <mat-checkbox (click)=\"$event.stopPropagation()\"\n                          (change)=\"$event ? selection.toggle(row) : null\"\n                          [checked]=\"selection.isSelected(row)\"\n                          [aria-label]=\"checkboxLabel(row)\">\n            </mat-checkbox>\n          </td>\n        </ng-container>\n          \n        <ng-container [matColumnDef]=\"column.key\" *ngFor=\"let column of headers\">\n          \n          <th mat-header-cell *matHeaderCellDef> {{column.text}} </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element[column.key]}} </td>\n        </ng-container>\n      \n        <tr mat-header-row *matHeaderRowDef=\"columnsToDisplay\"></tr>\n        <tr mat-row *matRowDef=\"let row; columns: columnsToDisplay;\" (click)=\"onClick(row)\"></tr>\n      </table>\n      \n      <mat-paginator *ngIf=\"enablePagination\" [pageSizeOptions]=\"[5, 10, 20]\"\n        showFirstLastButtons>\n      </mat-paginator>\n      \n</div>\n"
         },
         {
             "name": "ToolbarComponent",
@@ -2261,13 +2503,13 @@
     "modules": [
         {
             "name": "BitlogicModule",
-            "id": "module-BitlogicModule-a6ec6f2e90a1dd4430c25aabfe6c826a",
+            "id": "module-BitlogicModule-262186c925b6c7c06b73adbd108df4e8",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "projects/bitlogic/src/lib/bitlogic.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\nimport { ToolbarModule } from './components/toolbar/toolbar.module';\nimport { ButtonModule } from './components/button/button.module';\nimport { MenuModule } from './components/menu/menu.module';\nimport { SliderModule } from './components/slider/slider.module';\nimport { SearchModule } from './components/search/search.module';\nimport { SelectModule } from './components/select/select.module';\nimport { TableModule } from './components/table/table.module';\n\n@NgModule({\n  declarations: [],\n  imports: [\n  ],\n  exports: [\n    ToolbarModule,\n    ButtonModule,\n    MenuModule,\n    SliderModule,\n    SearchModule,\n    SelectModule,\n    TableModule\n  ]\n})\nexport class BitlogicModule { }\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { ToolbarModule } from './components/toolbar/toolbar.module';\nimport { ButtonModule } from './components/button/button.module';\nimport { MenuModule } from './components/menu/menu.module';\nimport { SliderModule } from './components/slider/slider.module';\nimport { SearchModule } from './components/search/search.module';\nimport { SelectModule } from './components/select/select.module';\nimport { TableModule } from './components/table/table.module';\nimport { ChipsModule } from './components/chips/chips.module';\nimport { StatusModule } from './components/status/status.module';\n\n@NgModule({\n  declarations: [],\n  imports: [\n  ],\n  exports: [\n    ToolbarModule,\n    ButtonModule,\n    MenuModule,\n    SliderModule,\n    SearchModule,\n    SelectModule,\n    TableModule,\n    ChipsModule,\n    StatusModule\n  ]\n})\nexport class BitlogicModule { }\n",
             "children": [
                 {
                     "type": "providers",
@@ -2288,6 +2530,9 @@
                             "name": "ButtonModule"
                         },
                         {
+                            "name": "ChipsModule"
+                        },
+                        {
                             "name": "MenuModule"
                         },
                         {
@@ -2298,6 +2543,9 @@
                         },
                         {
                             "name": "SliderModule"
+                        },
+                        {
+                            "name": "StatusModule"
                         },
                         {
                             "name": "TableModule"
@@ -2348,6 +2596,50 @@
                     "elements": [
                         {
                             "name": "ButtonComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "ChipsModule",
+            "id": "module-ChipsModule-8ff90a67fcdb2c61a8eeb9dfe76ab8c7",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "projects/bitlogic/src/lib/components/chips/chips.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MatChipsModule } from '@angular/material/chips';\nimport { ChipsComponent } from './chips.component';\n\n@NgModule({\n  declarations: [ChipsComponent],\n  imports: [\n    CommonModule,\n    MatChipsModule\n  ],\n  exports: [\n    ChipsComponent\n  ]\n})\nexport class ChipsModule { }\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "ChipsComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "ChipsComponent"
                         }
                     ]
                 },
@@ -2542,14 +2834,58 @@
             ]
         },
         {
+            "name": "StatusModule",
+            "id": "module-StatusModule-96827c1e213c04af7170c251a2fbf0e2",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "projects/bitlogic/src/lib/components/status/status.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { StatusComponent } from './status.component';\n\n\n\n@NgModule({\n  declarations: [StatusComponent],\n  imports: [\n    CommonModule\n  ],\n  exports: [\n    StatusComponent\n  ]\n})\nexport class StatusModule { }\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "StatusComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "StatusComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
             "name": "TableModule",
-            "id": "module-TableModule-0e9815ab2bfab1c91d787e89f9ddbdc1",
+            "id": "module-TableModule-d013a9a71bc4e871d9b47676a243e0bf",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "projects/bitlogic/src/lib/components/table/table.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MatTableModule } from \"@angular/material/table\";\nimport { TableComponent } from './table.component';\nimport { MatCheckboxModule } from '@angular/material/checkbox'; \n\n@NgModule({\n  declarations: [TableComponent],\n  imports: [\n    CommonModule,\n    MatTableModule,\n    MatCheckboxModule\n  ],\n  exports: [\n    TableComponent\n  ]\n})\nexport class TableModule { }\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MatTableModule } from \"@angular/material/table\";\nimport { TableComponent } from './table.component';\nimport { MatCheckboxModule } from '@angular/material/checkbox'; \nimport { MatPaginatorModule } from '@angular/material/paginator';\n\n@NgModule({\n  declarations: [TableComponent],\n  imports: [\n    CommonModule,\n    MatTableModule,\n    MatCheckboxModule,\n    MatPaginatorModule\n  ],\n  exports: [\n    TableComponent\n  ]\n})\nexport class TableModule { }\n",
             "children": [
                 {
                     "type": "providers",
@@ -2686,17 +3022,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/bitlogic/src/lib/components/menu/menu.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
-                "name": "Default",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/bitlogic/src/lib/components/search/search.stories.ts",
+                "file": "projects/bitlogic/src/lib/components/button/button.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -2716,6 +3042,16 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "projects/bitlogic/src/lib/components/search/search.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "projects/bitlogic/src/lib/components/select/select.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -2726,7 +3062,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/bitlogic/src/lib/components/toolbar/toolbar.stories.ts",
+                "file": "projects/bitlogic/src/lib/components/menu/menu.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -2736,7 +3072,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/bitlogic/src/lib/components/button/button.stories.ts",
+                "file": "projects/bitlogic/src/lib/components/toolbar/toolbar.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -2835,21 +3171,11 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/bitlogic/src/lib/components/menu/menu.stories.ts",
+                "file": "projects/bitlogic/src/lib/components/button/button.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<MenuComponent>",
-                "defaultValue": "(args: MenuComponent) => ({\n  component: MenuComponent,\n  props: args,\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/bitlogic/src/lib/components/search/search.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<SearchComponent>",
-                "defaultValue": "(args: SearchComponent) => ({\n  component: SearchComponent,\n  props: args,\n  // decorators: [\n  //   moduleMetadata({\n  //     declarations: [],\n  //     imports: [\n  //       SearchModule\n  //     ],\n  //   }),\n  // ],\n\n  template: `<bit-search></bit-search>`,\n})"
+                "type": "Story<ButtonComponent>",
+                "defaultValue": "(args: ButtonComponent) => ({\n  component: ButtonComponent,\n  props: args,\n\n  template: \n//   `<button mat-raised-button color=\"primary\" >\n//   hola\n// </button>`\n\n  `<bit-button sty=\"text\" color=\"secondary\">Text - secondary</bit-button>\n  <bit-button sty=\"raised\" color=\"secondary\">raised - secondary</bit-button>\n  <bit-button sty=\"outlined\" color=\"secondary\">outlined - secondary</bit-button>\n  <bit-button sty=\"text\" type=\"fab\" color=\"secondary\"><i class=\"material-icons mx-auto\">menu_book</i></bit-button>\n  <bit-button sty=\"raised\" type=\"fab\" color=\"secondary\"><i class=\"material-icons mx-auto\">menu_book</i>\n  </bit-button>\n  <bit-button sty=\"outlined\" type=\"fab\" color=\"secondary\"><i class=\"material-icons mx-auto\">menu_book</i>\n  </bit-button>`\n\n\n})"
             },
             {
                 "name": "Template",
@@ -2865,6 +3191,16 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "projects/bitlogic/src/lib/components/search/search.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<SearchComponent>",
+                "defaultValue": "(args: SearchComponent) => ({\n  component: SearchComponent,\n  props: args,\n  // decorators: [\n  //   moduleMetadata({\n  //     declarations: [],\n  //     imports: [\n  //       SearchModule\n  //     ],\n  //   }),\n  // ],\n\n  template: `<bit-search></bit-search>`,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "projects/bitlogic/src/lib/components/select/select.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -2875,21 +3211,21 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/bitlogic/src/lib/components/toolbar/toolbar.stories.ts",
+                "file": "projects/bitlogic/src/lib/components/menu/menu.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<ToolbarComponent>",
-                "defaultValue": "(args: ToolbarComponent) => ({\n  component: ToolbarComponent,\n  props: args,\n})"
+                "type": "Story<MenuComponent>",
+                "defaultValue": "(args: MenuComponent) => ({\n  component: MenuComponent,\n  props: args,\n})"
             },
             {
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/bitlogic/src/lib/components/button/button.stories.ts",
+                "file": "projects/bitlogic/src/lib/components/toolbar/toolbar.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<ButtonComponent>",
-                "defaultValue": "(args: ButtonComponent) => ({\n  component: ButtonComponent,\n  props: args,\n\n  template: \n//   `<button mat-raised-button color=\"primary\" >\n//   hola\n// </button>`\n\n  `<bit-button sty=\"text\" color=\"secondary\">Text - secondary</bit-button>\n  <bit-button sty=\"raised\" color=\"secondary\">raised - secondary</bit-button>\n  <bit-button sty=\"outlined\" color=\"secondary\">outlined - secondary</bit-button>\n  <bit-button sty=\"text\" type=\"fab\" color=\"secondary\"><i class=\"material-icons mx-auto\">menu_book</i></bit-button>\n  <bit-button sty=\"raised\" type=\"fab\" color=\"secondary\"><i class=\"material-icons mx-auto\">menu_book</i>\n  </bit-button>\n  <bit-button sty=\"outlined\" type=\"fab\" color=\"secondary\"><i class=\"material-icons mx-auto\">menu_book</i>\n  </bit-button>`\n\n\n})"
+                "type": "Story<ToolbarComponent>",
+                "defaultValue": "(args: ToolbarComponent) => ({\n  component: ToolbarComponent,\n  props: args,\n})"
             },
             {
                 "name": "TYPE_DEFAULT",
@@ -2904,7 +3240,66 @@
         ],
         "functions": [],
         "typealiases": [],
-        "enumerations": [],
+        "enumerations": [
+            {
+                "name": "SizeEnum",
+                "childs": [
+                    {
+                        "name": "SMALL",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "value": "small"
+                    },
+                    {
+                        "name": "NORMAL",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "value": "normal"
+                    }
+                ],
+                "ctype": "miscellaneous",
+                "subtype": "enum",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "file": "projects/bitlogic/src/lib/components/status/status.component.ts"
+            },
+            {
+                "name": "StatusEnum",
+                "childs": [
+                    {
+                        "name": "PENEDING",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "value": "pending"
+                    },
+                    {
+                        "name": "ACCEPTED",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "value": "accepted"
+                    },
+                    {
+                        "name": "ERROR",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "value": "error"
+                    },
+                    {
+                        "name": "CANCELED",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "value": "canceled"
+                    }
+                ],
+                "ctype": "miscellaneous",
+                "subtype": "enum",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "file": "projects/bitlogic/src/lib/components/status/status.component.ts"
+            }
+        ],
         "groupedVariables": {
             "projects/bitlogic/src/lib/components/button/button.component.ts": [
                 {
@@ -2989,54 +3384,22 @@
                     "type": "literal type"
                 }
             ],
-            "projects/bitlogic/src/lib/components/menu/menu.stories.ts": [
+            "projects/bitlogic/src/lib/components/button/button.stories.ts": [
                 {
                     "name": "Default",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "projects/bitlogic/src/lib/components/menu/menu.stories.ts",
+                    "file": "projects/bitlogic/src/lib/components/button/button.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
                     "defaultValue": "Template.bind({})"
                 },
                 {
-                    "name": "moreOption",
+                    "name": "Disabled",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "projects/bitlogic/src/lib/components/menu/menu.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "object",
-                    "defaultValue": "{ id: '_mas', name: 'Más', icon: 'more_vert', link:\"\" }"
-                },
-                {
-                    "name": "options",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/bitlogic/src/lib/components/menu/menu.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "MenuOption[]",
-                    "defaultValue": "[\n  { id: 'butt-1', name: 'Exámenes', icon: 'insert_drive_file', link:\"\" },\n  { id: 'butt-2', name: 'Materias', icon: 'menu_book', link:\"\" },\n  { id: 'butt-3', name: 'Pagos', icon: 'receipt', link:\"\" },\n  { id: 'butt-4', name: 'Titulos', icon: 'done', link:\"\"  },\n  { id: 'butt-5', name: 'info', icon: 'info', link:\"\" },\n]"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/bitlogic/src/lib/components/menu/menu.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<MenuComponent>",
-                    "defaultValue": "(args: MenuComponent) => ({\n  component: MenuComponent,\n  props: args,\n})"
-                }
-            ],
-            "projects/bitlogic/src/lib/components/search/search.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/bitlogic/src/lib/components/search/search.stories.ts",
+                    "file": "projects/bitlogic/src/lib/components/button/button.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -3046,11 +3409,11 @@
                     "name": "Template",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "projects/bitlogic/src/lib/components/search/search.stories.ts",
+                    "file": "projects/bitlogic/src/lib/components/button/button.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "Story<SearchComponent>",
-                    "defaultValue": "(args: SearchComponent) => ({\n  component: SearchComponent,\n  props: args,\n  // decorators: [\n  //   moduleMetadata({\n  //     declarations: [],\n  //     imports: [\n  //       SearchModule\n  //     ],\n  //   }),\n  // ],\n\n  template: `<bit-search></bit-search>`,\n})"
+                    "type": "Story<ButtonComponent>",
+                    "defaultValue": "(args: ButtonComponent) => ({\n  component: ButtonComponent,\n  props: args,\n\n  template: \n//   `<button mat-raised-button color=\"primary\" >\n//   hola\n// </button>`\n\n  `<bit-button sty=\"text\" color=\"secondary\">Text - secondary</bit-button>\n  <bit-button sty=\"raised\" color=\"secondary\">raised - secondary</bit-button>\n  <bit-button sty=\"outlined\" color=\"secondary\">outlined - secondary</bit-button>\n  <bit-button sty=\"text\" type=\"fab\" color=\"secondary\"><i class=\"material-icons mx-auto\">menu_book</i></bit-button>\n  <bit-button sty=\"raised\" type=\"fab\" color=\"secondary\"><i class=\"material-icons mx-auto\">menu_book</i>\n  </bit-button>\n  <bit-button sty=\"outlined\" type=\"fab\" color=\"secondary\"><i class=\"material-icons mx-auto\">menu_book</i>\n  </bit-button>`\n\n\n})"
                 }
             ],
             "projects/bitlogic/src/lib/components/slider/slider.stories.ts": [
@@ -3115,6 +3478,28 @@
                     "defaultValue": "(args: SliderComponent) => ({\n  component: SliderComponent,\n  props: args,\n})"
                 }
             ],
+            "projects/bitlogic/src/lib/components/search/search.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/bitlogic/src/lib/components/search/search.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/bitlogic/src/lib/components/search/search.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<SearchComponent>",
+                    "defaultValue": "(args: SearchComponent) => ({\n  component: SearchComponent,\n  props: args,\n  // decorators: [\n  //   moduleMetadata({\n  //     declarations: [],\n  //     imports: [\n  //       SearchModule\n  //     ],\n  //   }),\n  // ],\n\n  template: `<bit-search></bit-search>`,\n})"
+                }
+            ],
             "projects/bitlogic/src/lib/components/select/select.stories.ts": [
                 {
                     "name": "Default",
@@ -3135,6 +3520,48 @@
                     "deprecationMessage": "",
                     "type": "Story<SelectComponent>",
                     "defaultValue": "(args: SelectComponent) => ({\n  component: SelectComponent,\n  props: args,\n})"
+                }
+            ],
+            "projects/bitlogic/src/lib/components/menu/menu.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/bitlogic/src/lib/components/menu/menu.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "moreOption",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/bitlogic/src/lib/components/menu/menu.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{ id: '_mas', name: 'Más', icon: 'more_vert', link:\"\" }"
+                },
+                {
+                    "name": "options",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/bitlogic/src/lib/components/menu/menu.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "MenuOption[]",
+                    "defaultValue": "[\n  { id: 'butt-1', name: 'Exámenes', icon: 'insert_drive_file', link:\"\" },\n  { id: 'butt-2', name: 'Materias', icon: 'menu_book', link:\"\" },\n  { id: 'butt-3', name: 'Pagos', icon: 'receipt', link:\"\" },\n  { id: 'butt-4', name: 'Titulos', icon: 'done', link:\"\"  },\n  { id: 'butt-5', name: 'info', icon: 'info', link:\"\" },\n]"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/bitlogic/src/lib/components/menu/menu.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<MenuComponent>",
+                    "defaultValue": "(args: MenuComponent) => ({\n  component: MenuComponent,\n  props: args,\n})"
                 }
             ],
             "projects/bitlogic/src/lib/components/toolbar/toolbar.stories.ts": [
@@ -3158,47 +3585,76 @@
                     "type": "Story<ToolbarComponent>",
                     "defaultValue": "(args: ToolbarComponent) => ({\n  component: ToolbarComponent,\n  props: args,\n})"
                 }
-            ],
-            "projects/bitlogic/src/lib/components/button/button.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/bitlogic/src/lib/components/button/button.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Disabled",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/bitlogic/src/lib/components/button/button.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/bitlogic/src/lib/components/button/button.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<ButtonComponent>",
-                    "defaultValue": "(args: ButtonComponent) => ({\n  component: ButtonComponent,\n  props: args,\n\n  template: \n//   `<button mat-raised-button color=\"primary\" >\n//   hola\n// </button>`\n\n  `<bit-button sty=\"text\" color=\"secondary\">Text - secondary</bit-button>\n  <bit-button sty=\"raised\" color=\"secondary\">raised - secondary</bit-button>\n  <bit-button sty=\"outlined\" color=\"secondary\">outlined - secondary</bit-button>\n  <bit-button sty=\"text\" type=\"fab\" color=\"secondary\"><i class=\"material-icons mx-auto\">menu_book</i></bit-button>\n  <bit-button sty=\"raised\" type=\"fab\" color=\"secondary\"><i class=\"material-icons mx-auto\">menu_book</i>\n  </bit-button>\n  <bit-button sty=\"outlined\" type=\"fab\" color=\"secondary\"><i class=\"material-icons mx-auto\">menu_book</i>\n  </bit-button>`\n\n\n})"
-                }
             ]
         },
         "groupedFunctions": {},
-        "groupedEnumerations": {},
+        "groupedEnumerations": {
+            "projects/bitlogic/src/lib/components/status/status.component.ts": [
+                {
+                    "name": "SizeEnum",
+                    "childs": [
+                        {
+                            "name": "SMALL",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "value": "small"
+                        },
+                        {
+                            "name": "NORMAL",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "value": "normal"
+                        }
+                    ],
+                    "ctype": "miscellaneous",
+                    "subtype": "enum",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "file": "projects/bitlogic/src/lib/components/status/status.component.ts"
+                },
+                {
+                    "name": "StatusEnum",
+                    "childs": [
+                        {
+                            "name": "PENEDING",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "value": "pending"
+                        },
+                        {
+                            "name": "ACCEPTED",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "value": "accepted"
+                        },
+                        {
+                            "name": "ERROR",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "value": "error"
+                        },
+                        {
+                            "name": "CANCELED",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "value": "canceled"
+                        }
+                    ],
+                    "ctype": "miscellaneous",
+                    "subtype": "enum",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "file": "projects/bitlogic/src/lib/components/status/status.component.ts"
+                }
+            ]
+        },
         "groupedTypeAliases": {}
     },
     "routes": [],
     "coverage": {
-        "count": 5,
+        "count": 4,
         "status": "low",
         "files": [
             {
@@ -3298,6 +3754,15 @@
                 "name": "Template",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/bitlogic/src/lib/components/chips/chips.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "ChipsComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
                 "status": "low"
             },
             {
@@ -3402,14 +3867,23 @@
                 "linktype": "component",
                 "name": "SelectComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/17",
+                "coverageCount": "0/15",
                 "status": "low"
             },
             {
                 "filePath": "projects/bitlogic/src/lib/components/select/select.component.ts",
                 "type": "interface",
                 "linktype": "interface",
-                "name": "SelectAllButton",
+                "name": "OtherText",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/bitlogic/src/lib/components/select/select.component.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "SelectButtons",
                 "coveragePercent": 0,
                 "coverageCount": "0/3",
                 "status": "low"
@@ -3522,12 +3996,21 @@
                 "status": "low"
             },
             {
+                "filePath": "projects/bitlogic/src/lib/components/status/status.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "StatusComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/6",
+                "status": "low"
+            },
+            {
                 "filePath": "projects/bitlogic/src/lib/components/table/table.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "TableComponent",
-                "coveragePercent": 6,
-                "coverageCount": "1/15",
+                "coveragePercent": 5,
+                "coverageCount": "1/19",
                 "status": "low"
             },
             {
