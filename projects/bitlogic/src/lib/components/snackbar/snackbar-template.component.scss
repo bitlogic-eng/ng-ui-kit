@@ -1,0 +1,12 @@
+@import '../../../../assets/scss/theme';
+
+:host {
+  // .snackbar-container {
+    display: flex;
+    align-items: baseline;
+  // }
+
+  .message {
+    flex-grow: 1;
+  }
+}

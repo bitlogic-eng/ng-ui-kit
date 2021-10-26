@@ -8,6 +8,7 @@ import { SelectModule } from './components/select/select.module';
 import { TableModule } from './components/table/table.module';
 import { ChipsModule } from './components/chips/chips.module';
 import { StatusModule } from './components/status/status.module';
+import { SnackbarModule } from './components/snackbar/snackbar.module';
 
 @NgModule({
   declarations: [],
@@ -22,7 +23,8 @@ import { StatusModule } from './components/status/status.module';
     SelectModule,
     TableModule,
     ChipsModule,
-    StatusModule
+    StatusModule,
+    SnackbarModule,
   ]
 })
 export class BitlogicModule { }
