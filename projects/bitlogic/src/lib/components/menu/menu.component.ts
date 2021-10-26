@@ -32,19 +32,22 @@ export class MenuComponent {
    */
   @Input()
   set options(options: MenuOption[]) {
-    
-    this._options = options; 
-    const regexp = new RegExp("^(http|https)://", "i");
-
-    this._options.map((op) => {
-      
-      if (regexp.test(op.link)) {
-        op.linkType = "externar";
-      } else {
-        op.linkType = "internal";
-      }
-
-    })
+    if (options) {
+      this._options = options; 
+      const regexp = new RegExp("^(http|https)://", "i");
+  
+      this._options.map((op) => {
+        
+        if (regexp.test(op.link)) {
+          op.linkType = "outside";
+        } else {
+          op.linkType = "internal";
+        }
+  
+      })  
+    } else {
+      throw 'Error: options not exists';
+    }
   }
   get options() {
     return this.getOptions();
@@ -92,7 +95,6 @@ export class MenuComponent {
   
   getOptions(): MenuOption[] {
     let optionsToShow: MenuOption[] = this._options.slice();
-
     if (this.moreOption !== null && this.numberItemShowed > 0 && this.numberItemShowed < this._options.length)
     { 
       optionsToShow = optionsToShow.slice(0,this.numberItemShowed).concat([this.moreOption]);

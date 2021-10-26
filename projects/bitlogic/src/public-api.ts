@@ -31,3 +31,6 @@ export * from './lib/components/chips/chips.component';
 export * from './lib/components/status/status.module';
 export * from './lib/components/status/status.component';
 
+export * from './lib/components/snackbar/snackbar.module';
+export * from './lib/components/snackbar/snackbar.component';
+
