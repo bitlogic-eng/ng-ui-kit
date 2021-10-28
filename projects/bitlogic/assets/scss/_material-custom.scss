@@ -1,14 +1,4 @@
 
-// @import '~@angular/material/theming';
-
-// @include mat-core();
-// @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
-
-// @import 'mixin';
-// @import 'color';
-// @import 'fonts';
-// @import 'variables';
-// @import 'placeholders';
 
 //--------------- Inputs Outline Regular ---------------//
 .mat-form-field {
@@ -75,7 +65,7 @@
     .mat-form-field-infix input {
       position: relative;
       top: -16px;
-      caret-color: map_get($color-map, gray);
+      caret-color: $color-black-alt-80;
     }
     .mat-form-field-outline {
       box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07);
