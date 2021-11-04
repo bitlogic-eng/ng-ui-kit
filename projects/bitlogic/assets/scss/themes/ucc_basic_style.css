@@ -1,0 +1,100 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
+
+
+:root {
+    --color-primary:#003087;
+    --color-primary-dark:#2d2926;
+    --color-primary-light: #647184;
+    --color-secondary: #6c757d;
+    --color-secondary-dark: #54595e;
+    --color-secondary-light: #abb5be;
+    --color-success: #28a745;
+    --color-danger: #dc3545;
+    --color-warning: #ffc107;
+    
+}
+
+body {
+    background-color: #f2f2f2; }
+
+
+h1 {
+	font-size:40px;
+	font-family:"Montserrat";
+    color: var(--color-primary);
+}
+h2 {
+	font-size:32px;
+	font-family:"Montserrat";
+	font-style:normal;
+	text-decoration:none;
+    color: var(--color-primary-dark);
+}
+h3{
+	font-size:28px;
+	font-family:"Montserrat";
+	font-weight:bolder;
+	font-style:normal;
+	text-decoration:none;
+}
+h4 {
+	font-size:24px;
+	font-family:"Montserrat";
+	font-weight:bolder;
+	font-style:normal;
+	text-decoration:none;
+}
+h5 {
+	font-size:20px;
+	font-family:"Montserrat";
+	font-weight:bolder;
+	font-style:normal;
+	text-decoration:none;
+}
+h6 {
+	font-size:16px;
+	font-family:"Montserrat";
+	font-weight:bolder;
+	font-style:normal;
+	text-decoration:none;
+}
+p {
+	font-size:16px;
+	font-family:"Montserrat";
+	font-weight:normal;
+	font-style:normal;
+	text-decoration:none;
+    color: var(--color-primary-dark);
+}
+
+.button-primary-—-16-pt{
+    font-family: "Montserrat";
+    font-style: bold;
+    font-weight: 600;
+    font-size: 16px;
+    color: #ffffff;
+    background-color: var(--color-primary);
+    border-radius: 4px;
+    top: 301px;
+    left: 60px;
+    width: 87px;
+    height: 41px;
+
+    }
+.button-primary-Outline—--16-pt{
+    font-family: "Montserrat";
+    font-style: bold;
+    font-weight: var(--unnamed-font-weight-medium);
+    font-size: 16px;
+    color: var(--color-primario-ucc);
+    background-color: fffff;
+    border-radius: 4px;
+    outline-color: var(--color-primary);
+    top: 301px;
+    left: 60px;
+    width: 87px;
+    height: 41px;
+    
+        }
+    
