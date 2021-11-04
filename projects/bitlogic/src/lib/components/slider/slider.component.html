@@ -6,34 +6,37 @@
     <div class="card rounded-0 shadow-0 border-0 d-flex w-100 h-100 item px-2" 
               *nguCarouselDef="let item; let i = index;">
 
-            <div class="flex-grow-1 d-flex flex-column p-4" (click)="onSlideClick()">
-                        <div class="flex-grow-1 w-50 plans">
-                            <div class="mb-2 d-flex align-items-center text-white">
+
+              <!-- mb-2 d-flex align-items-center text-white -->
+
+            <div class="flex-grow-1 d-flex flex-column p-4 carrusel-list" (click)="onSlideClick()">
+                        <!-- <div class="flex-grow-1 w-50 plans"> -->
+                            <div class="carrusel-item">
                                 <i class="material-icons icon-xs mr-2">list_alt</i>
-                                <h6 class="m-0">
+                                <p class="m-0">
                                     {{item.careerLevel}}
-                                </h6>
+                                </p>
                             </div>
-                            <div class="mb-2 d-flex align-items-center text-white">
+                            <div class="carrusel-item">
                                 <i class="material-icons icon-xs mr-2">work_outline</i>
-                                <h6 class="flex-grow-1 pr-2 m-0">
+                                <p class="m-0">
                                     {{item.modality}}
-                                </h6>
+                                </p>
                             </div>
-                            <div class="mb-1 d-flex align-items-center text-white">
+                            <div class="carrusel-item">
                                 <i class="material-icons icon-xs mr-2">assignment</i>
-                                <h6 class="m-0">
+                                <p class="m-0">
                                     {{item.assigment}}
-                                </h6>
+                                </p>
                             </div>
-                        </div>
-                        <div class="flex-grow-1 d-flex align-items-center mt-4">
-                            <h5 class="text-white font-weight-bold course-name m-0">{{item.careerName}}</h5>
+                        <!-- </div> -->
+                        <div class="carrusel-item">
+                            <h2 class="text-white font-weight-bold course-name m-0">{{item.careerName}}</h2>
                         </div>
                         <div *ngIf="item.subjectsApprove">
                             <div class="total-subjets mt-4 rounded-custom">
                                 <div class="h-100 d-flex align-items-center text-white px-3">
-                                    <h6 class="acl flex-grow-1 pr-2 m-0">{{item.subjectsLabel}}</h6>
+                                    <p class="acl flex-grow-1 pr-2 m-0">{{item.subjectsLabel}}</p>
                                     <h5 class="num pl-2 m-0">{{item.subjectsApprove}}</h5>
                                 </div>
                             </div>
@@ -41,7 +44,7 @@
                         <div *ngIf="item.credits">
                             <div class="total-credits mt-2 rounded-custom">
                                 <div class="h-100 d-flex align-items-center px-3">
-                                    <h6 class="acl flex-grow-1 pr-2 m-0">{{item.creditsLabel}}</h6>
+                                    <p class="acl flex-grow-1 pr-2 m-0">{{item.creditsLabel}}</p>
                                     <h5 class="num pl-2 m-0"> {{item.credits}}</h5>
                                 </div>
                             </div>

@@ -1,16 +1,16 @@
-<div class="toolbar">
+<div class="toolbar" [style.height]="_height">
     <div class="header-user-data">
         <h1>{{title}}</h1>
+        <p *ngIf="_type === 'big'">{{currentDate | date:'mediumDate'}}</p>
     </div>
 
     <div class="spacer"></div>
 
     <div class="header-profile">
 
-        <div class="user-data">
+        <div *ngIf="_type !== 'big'" class="user-data">
             <h5>{{userName}}</h5>
             <p>{{currentDate | date:'mediumDate'}}</p>
-            <!-- <p class="version">({{version}})</p> -->
         </div>
         <div class="user-avatar" (click)="onOpenProfile()"></div>
     </div>

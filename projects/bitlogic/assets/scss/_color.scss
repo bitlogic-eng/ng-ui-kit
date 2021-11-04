@@ -16,6 +16,36 @@
 // - contrast: Color that will provide readable text against the base color
 // - shade: 12% darker version of the base color (mix with black)
 // - tint: 10% lighter version of the base color (mix with white)
+// :host {
+//     --bit-color-primary:          #00a98f;
+//     --bit-color-secondary:        #006c5b;
+//     --bit-color-tertiary:         #005587;
+//     --bit-color-success:          #0EE1A2;
+//     --bit-color-warning:          #FAA41A;
+//     --bit-color-danger:           #dc1351;
+//     --bit-color-highlighted:      #772583;
+//     --bit-color-info:             #005587;
+//     --bit-color-light:            #f4f5f8;
+//     --bit-color-medium:           #92949c;
+//     --bit-color-dark:             #222428;
+//     --bit-color-white:            #FFFFFF;
+//     --bit-color-black:            #000000;     
+// }
+
+
+// $color-primary:           var(--bit-color-primary) !default;
+// $color-secondary:         var(--bit-color-secondary) !default;
+// $color-tertiary:          var(--bit-color-tertiary) !default;
+// $color-success:           var(--bit-color-success) !default;
+// $color-warning:           var(--bit-color-warning) !default;
+// $color-danger:            var(--bit-color-danger) !default;
+// $color-highlighted:       var(--bit-color-highlighted) !default;
+// $color-info:              var(--bit-color-info) !default;
+// $color-light:             var(--bit-color-light) !default;
+// $color-medium:            var(--bit-color-medium) !default;
+// $color-dark:              var(--bit-color-dark) !default;
+// $color-white:             var(--bit-color-white) !default;
+// $color-black:             var(--bit-color-black) !default;
 
 $color-primary:           #00a98f !default;
 $color-secondary:         #006c5b !default;
@@ -30,7 +60,6 @@ $color-medium:            #92949c !default;
 $color-dark:              #222428 !default;
 $color-white:             #FFFFFF !default;
 $color-black:             #000000 !default;
-
 
 $bit-primary-colors: (
     tint : get-color-tint($color-primary),
