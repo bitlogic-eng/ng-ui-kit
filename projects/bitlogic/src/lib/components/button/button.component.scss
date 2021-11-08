@@ -1,148 +1,155 @@
 @import '../../../../assets/scss/theme';
 
 
-// :host {
-//     button {
-//         font-family: $font-primary;
-//         border-radius: 10rem !important;
-//         padding: 10px 20px;
-//     }
-    
-// }
-
-
 :host {
-    
+
+    --bit-color-secondary: #{$color-secondary};
+
     button {
         font-family: $font-primary;
+        border-radius: 10rem !important;
+        padding: 11px 20px;
     }
 
-    @mixin btn-shadow($color) {
-        box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%), 0 1px 5px 0 rgb(0 0 0 / 12%) !important;
-        border-color: transparent !important;
-        &:active {
-            $color-lighten: lighten($color, 5%);
-            box-shadow: 0 5px 5px -3px rgb(0 0 0 / 20%), 0 8px 10px 1px rgb(0 0 0 / 14%), 0 3px 14px 2px rgb(0 0 0 / 12%) !important;
-            transition: all 0.3s cubic-bezier(.25,.8,.25,1) !important;
-            border-color: transparent !important;
-            background-color: $color-lighten !important;
-        }
+    .secundary {
+        
     }
+    
+}
 
-    @mixin btn-type($color-sty, $color, $border-color, $background-color ) {
-        .btn-#{$color-sty}{
-            border: 1px solid $border-color;
-            @include btn-background ($background-color, $color-white);
-            @include btn-shadow($color);    
-        }
 
-        .btn-outline-#{$color-sty}{
-            border: 1px solid $border-color;
-            box-shadow: none !important;
-            @include btn-background ($color-white, $background-color);
-            &:active {
-                background-color: mix($color, white, 20%);
-            }                    
-        }
+// :host {
+    
+//     button {
+//         font-family: $font-primary;
+//     }
 
-        .btn-text-#{$color-sty}{
-            border-color: transparent; 
-            box-shadow: none;
-            @include btn-background (transparent, $background-color);
-            &:active {
-                background-color: mix($color, white, 20%);
-            }                    
-        }
-    }
+//     @mixin btn-shadow($color) {
+//         box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%), 0 1px 5px 0 rgb(0 0 0 / 12%) !important;
+//         border-color: transparent !important;
+//         &:active {
+//             $color-lighten: lighten($color, 5%);
+//             box-shadow: 0 5px 5px -3px rgb(0 0 0 / 20%), 0 8px 10px 1px rgb(0 0 0 / 14%), 0 3px 14px 2px rgb(0 0 0 / 12%) !important;
+//             transition: all 0.3s cubic-bezier(.25,.8,.25,1) !important;
+//             border-color: transparent !important;
+//             background-color: $color-lighten !important;
+//         }
+//     }
+
+//     @mixin btn-type($color-sty, $color, $border-color, $background-color ) {
+//         .btn-#{$color-sty}{
+//             border: 1px solid $border-color;
+//             @include btn-background ($background-color, $color-white);
+//             @include btn-shadow($color);    
+//         }
+
+//         .btn-outline-#{$color-sty}{
+//             border: 1px solid $border-color;
+//             box-shadow: none !important;
+//             @include btn-background ($color-white, $background-color);
+//             &:active {
+//                 background-color: mix($color, white, 20%);
+//             }                    
+//         }
+
+//         .btn-text-#{$color-sty}{
+//             border-color: transparent; 
+//             box-shadow: none;
+//             @include btn-background (transparent, $background-color);
+//             &:active {
+//                 background-color: mix($color, white, 20%);
+//             }                    
+//         }
+//     }
 
          
-    .btn {
-        min-width: fit-content !important;
-        @extend %transition;
-        padding: .5rem 1rem !important;
-        font-size: 13px;
-        border-radius: 10rem !important;
+//     .btn {
+//         min-width: fit-content !important;
+//         @extend %transition;
+//         padding: .5rem 1rem !important;
+//         font-size: 13px;
+//         border-radius: 10rem !important;
         
-        &:focus, &:hover {
-            outline: none !important;
-        }
-    }
+//         &:focus, &:hover {
+//             outline: none !important;
+//         }
+//     }
 
-    .fab {
-        width: 56px;
-        min-width: 56px;
-        height: 56px;
-        padding: 0;
-        border-radius: 50%;
-        @extend %transition;
+//     .fab {
+//         width: 56px;
+//         min-width: 56px;
+//         height: 56px;
+//         padding: 0;
+//         border-radius: 50%;
+//         @extend %transition;
 
-        i {
-            line-height: 54px;
-        }    
-    }
+//         i {
+//             line-height: 54px;
+//         }    
+//     }
 
 
-    //size
+//     //size
 
-    // .btn-sm {
-    //     padding: .25rem .5rem !important;
-    //     font-size: 0.75rem;
-    //     line-height: 1.5;
-    //     text-transform: initial;
-    //     box-shadow: $shadow-sm;
-    // }
+//     // .btn-sm {
+//     //     padding: .25rem .5rem !important;
+//     //     font-size: 0.75rem;
+//     //     line-height: 1.5;
+//     //     text-transform: initial;
+//     //     box-shadow: $shadow-sm;
+//     // }
 
-    // .btn-lg {
-    //     padding: .1rem 1.5rem !important;
-    //     font-size: 1.25rem;
-    // }
+//     // .btn-lg {
+//     //     padding: .1rem 1.5rem !important;
+//     //     font-size: 1.25rem;
+//     // }
 
-    //color
+//     //color
 
-        // &:disabled {
-        //     border-color: $color-black-alt-20; 
-        //     @include btn-background ($color-black-alt-20, $color-black-alt-80);
-        //     cursor: initial;
-        //     box-shadow: none !important;
-        // }
+//         // &:disabled {
+//         //     border-color: $color-black-alt-20; 
+//         //     @include btn-background ($color-black-alt-20, $color-black-alt-80);
+//         //     cursor: initial;
+//         //     box-shadow: none !important;
+//         // }
     
 
-    .btn-link {
-        border-color: transparent; 
-        @include btn-background (transparent, $color-primary);
-        box-shadow: none;
-        text-transform: initial;
-        &:hover {
-            text-decoration: underline;
-        }
-    }
+//     .btn-link {
+//         border-color: transparent; 
+//         @include btn-background (transparent, $color-primary);
+//         box-shadow: none;
+//         text-transform: initial;
+//         &:hover {
+//             text-decoration: underline;
+//         }
+//     }
 
-    .btn-link-default {
-        border-color: transparent; 
-        @include btn-background (transparent, $color-black-alt-60);
-        box-shadow: none;
-        text-transform: initial;
-        &:hover {
-            text-decoration: none;
-        }
-    }
+//     .btn-link-default {
+//         border-color: transparent; 
+//         @include btn-background (transparent, $color-black-alt-60);
+//         box-shadow: none;
+//         text-transform: initial;
+//         &:hover {
+//             text-decoration: none;
+//         }
+//     }
 
-    .btn-close {
-        border-color: transparent; 
-        padding: 0 !important;
-        box-shadow: none;
-        @include btn-background (transparent, $color-black-alt-60);
-    }
+//     .btn-close {
+//         border-color: transparent; 
+//         padding: 0 !important;
+//         box-shadow: none;
+//         @include btn-background (transparent, $color-black-alt-60);
+//     }
 
 
-    @include btn-type("secondary", $color-secondary, $color-secondary, $color-secondary);
-    @include btn-type("info", $color-info, $color-info, $color-info);
-    @include btn-type("high", $color-highlighted, $color-highlighted, $color-highlighted);
-    @include btn-type("main", $color-black, $color-black-alt-10, $color-black);
-    @include btn-type("success", $color-success, $color-success, $color-success);
-    @include btn-type("danger", $color-danger, $color-danger, $color-danger);
-    @include btn-type("warning", $color-warning, $color-warning, $color-warning);
-    @include btn-type("primary", $color-primary, $color-primary, $color-primary);
+//     @include btn-type("secondary", $color-secondary, $color-secondary, $color-secondary);
+//     @include btn-type("info", $color-info, $color-info, $color-info);
+//     @include btn-type("high", $color-highlighted, $color-highlighted, $color-highlighted);
+//     @include btn-type("main", $color-black, $color-black-alt-10, $color-black);
+//     @include btn-type("success", $color-success, $color-success, $color-success);
+//     @include btn-type("danger", $color-danger, $color-danger, $color-danger);
+//     @include btn-type("warning", $color-warning, $color-warning, $color-warning);
+//     @include btn-type("primary", $color-primary, $color-primary, $color-primary);
 
-}
+// }
 

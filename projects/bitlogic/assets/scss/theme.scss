@@ -1,26 +1,11 @@
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
-@import '~bootstrap/scss/bootstrap';
+@import 'bootstrap-custom';
 
 @import 'mixin';
 @import 'color';
 @import 'fonts';
 @import 'variables';
-@import 'text';
-
-
-
-// @import '~bootstrap/scss/bootstrap-reboot';
-// @import '~bootstrap/scss/bootstrap-grid';
-// @import "~bootstrap/scss/utilities";
-
-// @import "~bootstrap/scss/functions";
-// @import "~bootstrap/scss/variables";
-// @import "~bootstrap/scss/mixins";
-// @import "~bootstrap/scss/root";
-// @import "~bootstrap/scss/reboot";
-// @import "~bootstrap/scss/type";
-// @import "~bootstrap/scss/images";
-// @import "~bootstrap/scss/code";
-// @import "~bootstrap/scss/grid";
+@import 'typography';
 
 @import 'material-custom';
+

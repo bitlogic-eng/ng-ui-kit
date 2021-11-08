@@ -1,27 +1,30 @@
 
-<!-- <ng-template #content><ng-content></ng-content></ng-template>
+<ng-template #content><ng-content></ng-content></ng-template>
 
+<!-- 
 <button ngClass={{getClass()}} [disabled]="disabled" (click)="onClickButton()">
   <ng-container *ngTemplateOutlet="content">
   </ng-container>
 </button> -->
 
-<button ngClass={{getClass()}} [disabled]="disabled" (click)="onClickButton($event)">
+<!-- <button ngClass={{getClass()}} [disabled]="disabled" (click)="onClickButton($event)">
     <ng-content></ng-content>
 </button>
+ -->
 
-<!-- <button *ngIf="sty === 'text'" mat-button [disabled]="disabled" (click)="onClickButton($event)">
-    <ng-content></ng-content>
-</button> -->
 
-<!-- <button *ngIf="sty === 'outlined'" mat-stroked-button [disabled]="disabled" (click)="onClickButton($event)">
-    <ng-content></ng-content>
-</button> -->
+<button *ngIf="sty === 'text'" mat-button [color]="color" ngClass={{getClass()}} [disabled]="disabled" (click)="onClickButton($event)">
+    <ng-container *ngTemplateOutlet="content"></ng-container>
+</button>
 
-<!-- <button *ngIf="sty === 'raised'" mat-flat-button [disabled]="disabled" (click)="onClickButton($event)">
-    <ng-content></ng-content>
-</button> -->
+<button *ngIf="sty === 'outlined'" mat-stroked-button [color]="color" ngClass={{getClass()}} [disabled]="disabled" (click)="onClickButton($event)">
+    <ng-container *ngTemplateOutlet="content"></ng-container>
+</button>
 
-<!-- <button *ngIf="sty === 'flat'" mat-flat-button [disabled]="disabled" (click)="onClickButton($event)">
-    <ng-content></ng-content>
-</button> -->
+<button *ngIf="sty === 'raised'" mat-raised-button [color]="color" ngClass={{getClass()}} [disabled]="disabled" (click)="onClickButton($event)">
+    <ng-container *ngTemplateOutlet="content"></ng-container>
+</button>
+
+<button *ngIf="sty === 'flat'" mat-flat-button [color]="color" ngClass={{getClass()}} [disabled]="disabled" (click)="onClickButton($event)">
+    <ng-container *ngTemplateOutlet="content"></ng-container>
+</button>
