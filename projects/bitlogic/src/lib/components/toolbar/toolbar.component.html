@@ -1,4 +1,4 @@
-<div class="toolbar" [style.height]="_height">
+<div class="toolbar" [style.height]="_height" *ngIf="isLoading === false; else loading">
     <div class="header-user-data">
         <h1>{{title}}</h1>
         <p *ngIf="_type === 'big'">{{currentDate | date:'mediumDate'}}</p>
@@ -17,3 +17,8 @@
 
 
 </div>
+
+<ng-template #loading>
+    <div class="skeleton" [style.height]="_height"></div>
+</ng-template>
+

@@ -74,6 +74,9 @@ export class MenuComponent {
   @Input()
   moreOption: MenuOption = null;
 
+  @Input()
+  isLoading: boolean = false;
+
   /**
    * Menu click handler
    */

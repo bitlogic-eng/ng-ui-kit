@@ -48,6 +48,11 @@ export class ToolbarComponent {
     this._type = height;
   }
 
+
+  @Input()
+  isLoading: boolean = false;
+
+
   /**
    * Profile Click handler
    */

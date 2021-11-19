@@ -1,4 +1,4 @@
-<nav class="navbar">
+<nav class="navbar" *ngIf="isLoading === false; else loading">
   <div class="u21"></div>
 
   <ul class="menu">
@@ -16,3 +16,42 @@
 
   <div class="version"></div> 
 </nav>
+
+<ng-template #loading>
+
+    <nav class="navbar">
+        <div class="skeleton skeleton-img"></div>
+      
+        <ul class="menu">
+          
+              <li class="item">
+                <div>
+                    <i class="skeleton"></i>
+                    <div class="skeleton skeleton-menu-text"></div>
+                </div>
+              </li>
+              <li class="item">
+                  <div>
+                      <i class="skeleton"></i>
+                      <div class="skeleton skeleton-menu-text"></div>
+                  </div>
+              </li>          
+              <li class="item">
+                  <div>
+                      <i class="skeleton"></i>
+                      <div class="skeleton skeleton-menu-text"></div>
+                  </div>
+              </li>         
+              <li class="item">
+                  <div>
+                      <i class="skeleton"></i>
+                      <div class="skeleton skeleton-menu-text"></div>
+                  </div>
+              </li>          
+  
+  
+        </ul>
+      
+      </nav>
+      
+</ng-template>

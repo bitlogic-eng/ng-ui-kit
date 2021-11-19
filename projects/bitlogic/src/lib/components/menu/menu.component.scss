@@ -1,6 +1,34 @@
 
 @import '../../../../assets/scss/theme';
 
+.skeleton {
+  animation: skeleton-loading 1s linear infinite alternate;
+}
+
+.skeleton-menu-text {
+  width: 60px;
+  height: 0.7rem;
+  border-radius: 0.25rem;
+}
+
+.skeleton-img {
+  width: 34px;
+  height: 34px;
+  margin: 26px 0 26px 0;
+  align-self: center;
+  border-radius: 0.25rem;
+}
+
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: hsl(200, 20%, 70%) ;
+  }
+
+  100% {
+    background-color: hsl(200, 20%, 95%);
+  }
+}
 
 :host {
   .navbar {
@@ -10,6 +38,8 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    position: fixed;
+    min-width: 85px;
   
     .u21 {
       background-image: url('../../../../assets/img/iso_siglo_21.svg');
@@ -29,6 +59,7 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
+      align-items: center;
   
       height: 80%;
   
@@ -86,14 +117,23 @@
     .u21 {
       display: none;  
     }
+
+    .skeleton-img {
+      display: none;
+    }
   
     .navbar {
-  
+      
+      // position: relative;
+      width: 100%;
+
       .menu {
         display: flex;
         flex-direction: row;
         justify-content: space-evenly;
         width: 100%;
+        align-items: flex-start;
+        height: auto;
       }
     }
   }
