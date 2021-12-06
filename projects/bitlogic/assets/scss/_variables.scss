@@ -12,4 +12,18 @@ $navbar-width: 4.375rem;
 	transition: all 0.3s ease-in-out!important;
 }
 
+// skeleton loading ...
+.skeleton {
+	animation: skeleton-loading 1s linear infinite alternate;
+}
+
+@keyframes skeleton-loading {
+	0% {
+		background-color: hsl(200, 20%, 70%) ;
+	}
+
+	100% {
+		background-color: hsl(200, 20%, 95%);
+	}
+}
 
