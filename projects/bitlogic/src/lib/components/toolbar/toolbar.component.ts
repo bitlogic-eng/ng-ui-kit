@@ -29,7 +29,6 @@ export class ToolbarComponent {
   @Input()
   version: string = 'v0.0.0';
 
-
   /**
    * Is the current date
    */
@@ -42,12 +41,17 @@ export class ToolbarComponent {
   @Input()
   userName: string;
 
+  /**
+   * Is the avatar
+   */
+  @Input()
+  avatar: string;
+
   @Input()
   set height(height: 'big' | 'medium' | 'small') {
     this._height = Height[height];
     this._type = height;
   }
-
 
   @Input()
   isLoading: boolean = false;

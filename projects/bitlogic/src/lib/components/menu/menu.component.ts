@@ -27,6 +27,12 @@ export class MenuComponent {
   private _options: Array<MenuOption> = [];
 
   /**
+   * Is the logo
+   */
+  @Input()
+  logo: string;
+
+  /**
    * Is the menu items
    * @requires
    */
