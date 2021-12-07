@@ -1,3 +1,7 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+@import 'color';
 
 
 //--------------- Inputs Outline Regular ---------------//
@@ -174,3 +178,13 @@
   display: none !important;
 }
 
+
+
+// Material custom color ...
+$bit-palette-primary: mat-palette($bit-primary-colors, base, tint, shade );
+$bit-palette-secondary: mat-palette($bit-secondary-colors, base, tint, shade );
+$bit-palette-warn: mat-palette($bit-danger-colors, base, tint, shade );
+
+$bit-light-theme: mat-light-theme($bit-palette-primary, $bit-palette-secondary, $bit-palette-warn);
+
+@include angular-material-theme($bit-light-theme);
