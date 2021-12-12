@@ -2,12 +2,14 @@
 
 
 // status colors
-$status-color-pending: $color-warning;
-$status-color-accepted: $color-success;
-$status-color-error: $color-danger;
-$status-color-canceled: $color-black-alt-60;
+
 
 :host {
+
+  $status-color-pending: #{bit-color(warning, base)};
+  $status-color-accepted: #{bit-color(success, base)};
+  $status-color-error: #{bit-color(danger, base)};
+  $status-color-canceled: #{bit-color(dark, base, 60%)};
 
   font-family: $font-primary;
 
@@ -33,19 +35,19 @@ $status-color-canceled: $color-black-alt-60;
     
 
     &.pending {
-      background-color: mix($status-color-pending, white, 5%);
+      background-color: #{bit-color(warning, base, 7%)};
     }
 
     &.accepted {
-      background-color: mix($status-color-accepted, white, 5%);
+      background-color: #{bit-color(success, base, 7%)};
     }
 
     &.error {
-      background-color: mix($status-color-error, white, 5%);
+      background-color: #{bit-color(danger, base, 7%)};
     }
 
     &.canceled {
-      background-color: mix($status-color-canceled, white, 5%);
+      background-color: #{bit-color(dark, base, 7%)};
     }
 
 

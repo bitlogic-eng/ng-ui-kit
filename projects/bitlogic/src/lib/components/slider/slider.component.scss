@@ -16,7 +16,7 @@
 		width: 100%;
 		height: 15rem;
 		box-sizing: border-box;
-		background: $color-primary-alt-80;
+		background: #{bit-color(primary, base, 80%)};
 		background-image: url("../../../../assets/img/wave_back.svg");
 		background-size: cover;
 		background-position: center bottom;
@@ -46,14 +46,14 @@
 		}
 
 		.course-name {
-			text-shadow: 0 2px 2px $color-primary-alt-80;	
+			text-shadow: 0 2px 2px #{bit-color(primary, base, 80%)};	
 			padding: 10px 0 0 0;
 		}
 	
 		.total-subjets {
 			height: 2rem;
 			bottom: 0 !important;
-			background-color:$color-primary-alt-80;
+			background-color: #{bit-color(primary, base, 80%)};
 			box-sizing: border-box;
 
 			p {
@@ -70,9 +70,9 @@
 		.total-credits {
 			height: 2rem;
 			bottom: 0 !important;
-			background-color: $color-secondary-alt-20;
+			background-color: #{bit-color(secondary, base, 20%)};
 			box-sizing: border-box;
-			color: $color-primary-alt-80 !important;
+			color: #{bit-color(primary, base, 80%)} !important;
 
 			p {
 				font-size: 12px;		

@@ -2,10 +2,19 @@
 @import 'bootstrap-custom';
 
 @import 'mixin';
-@import 'color';
+@import 'default-colors';
+@import 'functions-color';
+
 @import 'fonts';
 @import 'variables';
 @import 'typography';
 
 @import 'material-custom';
 
+// default color
+@include bit-colors-generate(primary, $color-primary );
+@include bit-colors-generate(secondary, $color-secondary);
+@include bit-colors-generate(tertiary, $color-tertiary);
+@include bit-colors-generate(danger, $color-danger);
+@include bit-colors-generate(success, $color-success);
+@include bit-colors-generate(warning, $color-warning);

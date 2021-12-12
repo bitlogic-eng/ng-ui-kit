@@ -10,16 +10,4 @@
         color: $color;
     }
 }
-
-// Mixes a color with black to create its shade.
-// --------------------------------------------------------------------------------------------
-@function get-color-shade($color) {
-    @return mix(#000, $color, 12%);
-}
-  
-// Mixes a color with white to create its tint.
-// --------------------------------------------------------------------------------------------
-@function get-color-tint($color) {
-    @return mix(#fff, $color, 10%);
-}
   

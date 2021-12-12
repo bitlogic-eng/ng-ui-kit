@@ -17,9 +17,20 @@
 }
 
 :host {
+
+  /**
+    * @prop --background: background of the menu
+    * @prop --background-icon-color: clicked background color 
+    * @prop --color: text color
+    */
+
+  --background: $color-white;
+  --background-icon-color: #{bit-color(primary, base)};
+  --color: #{bit-color(primary, base)};
+
   .navbar {
     height: 100%;
-    background: $color-white;
+    background: var(--background);
     box-shadow: 3px 0 6px rgba(0,0,0,.08);
     display: flex;
     flex-direction: column;
@@ -76,10 +87,10 @@
         &.selected {
           i {
               color: $color-white;
-              background-color: $color-primary;
+              background-color: var(--background-icon-color);
           }
           h6 {
-              color: $color-primary;
+              color: var(--color);
           }
         }
     

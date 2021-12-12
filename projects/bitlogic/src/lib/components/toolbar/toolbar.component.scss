@@ -1,12 +1,19 @@
   @import '../../../../assets/scss/theme';
  
+  // Toobar
+  // -------------------------------------
+
   :host {
 
-    // custom variables
-    --color: #{$color-white}; // title color
-    --background-lg-start: #{$color-secondary}; // linear-gradient start
-    --background-lg-end: #{$color-primary}; // linear-gradient end
+    /**
+    * @prop --color: font text color
+    * @prop --background-lg-start: linear-gradient start
+    * @prop --background-lg-end: linear-gradient end
+    */
 
+    --color: #{$color-white};
+    --background-lg-start: #{bit-color(secondary, base)};
+    --background-lg-end: #{bit-color(primary, base)};
 
     .loading {
       &.toolbar {
@@ -20,7 +27,6 @@
   
     .toolbar {
   
-      // height: 184px;
       display: flex;
       align-items: start;
       padding: 20px 0 0 0;
@@ -35,12 +41,6 @@
         flex-direction: column;
         margin: 0 20px;
   
-        // h1 {
-        //   margin: 0 0 5px 0;
-        //   font-weight: bold ;
-        //   font-size: 24px;
-        // }
-
         h1 {
           color: var(--color); 
         }

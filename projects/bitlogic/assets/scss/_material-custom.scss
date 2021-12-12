@@ -1,7 +1,54 @@
 @import '~@angular/material/theming';
 @include mat-core();
 
-@import 'color';
+$mat-color-primary: #{bit-color(primary, base)};
+$mat-color-secondary: #{bit-color(secondary, base)};
+$mat-color-danger: #{bit-color(danger, base)};
+
+
+// color
+$mat-primary-colors: (
+    
+    tint : get-color-tint($color-primary),
+    base : $mat-color-primary,
+    shade : get-color-shade($color-primary),
+    contrast: (
+        tint : #000000,
+        base : #ffffff,
+        shade : #ffffff,
+    )
+);
+
+$mat-secondary-colors: (
+    tint : get-color-tint($color-secondary),
+    base : $mat-color-secondary,
+    shade : get-color-shade($color-secondary),
+    contrast: (
+        tint : #000000,
+        base : #ffffff,
+        shade : #ffffff,
+    )
+);
+
+$mat-danger-colors: (
+    tint : get-color-tint($color-danger),
+    base : $mat-color-danger,
+    shade : get-color-shade($color-danger),
+    contrast: (
+        tint : #000000,
+        base : #ffffff,
+        shade : #ffffff,
+    )
+);
+
+// Material custom color ...
+$mat-palette-primary: mat-palette($mat-primary-colors, base, tint, shade );
+$mat-palette-secondary: mat-palette($mat-secondary-colors, base, tint, shade );
+$mat-palette-warn: mat-palette($mat-danger-colors, base, tint, shade );
+
+$mat-light-theme: mat-light-theme($mat-palette-primary, $mat-palette-secondary, $mat-palette-warn);
+
+@include angular-material-theme($mat-light-theme);
 
 
 //--------------- Inputs Outline Regular ---------------//
@@ -177,14 +224,3 @@
 .filter-option > .mat-pseudo-checkbox {
   display: none !important;
 }
-
-
-
-// Material custom color ...
-$bit-palette-primary: mat-palette($bit-primary-colors, base, tint, shade );
-$bit-palette-secondary: mat-palette($bit-secondary-colors, base, tint, shade );
-$bit-palette-warn: mat-palette($bit-danger-colors, base, tint, shade );
-
-$bit-light-theme: mat-light-theme($bit-palette-primary, $bit-palette-secondary, $bit-palette-warn);
-
-@include angular-material-theme($bit-light-theme);

@@ -1,0 +1,76 @@
+
+// Mixes a color with black to create its shade.
+// --------------------------------------------------------------------------------------------
+@function get-color-shade($color) {
+  @return mix(#000, $color, 12%);
+};
+
+// Mixes a color with white to create its tint.
+// --------------------------------------------------------------------------------------------
+@function get-color-tint($color) {
+  @return mix(#fff, $color, 10%);
+};
+
+// Gets the active color's css variable from a variation. Alpha is optional.
+// --------------------------------------------------------------------------------------------
+// Example usage:
+// current-color(base) => var(--bit-color-base)
+// current-color(contrast, 0.1) => rgba(var(--bit-color-contrast-rgb), 0.1)
+// --------------------------------------------------------------------------------------------
+@function current-color($variation, $alpha: null) {
+  @if $alpha == null {
+    @return var(--bit-color-#{$variation});
+  } @else {
+    @return rgba(var(--bit-color-#{$variation}-rgb), #{$alpha});
+  }
+};
+
+// Gets the specific color's css variable from the name and variation. Alpha/rgb are optional.
+// --------------------------------------------------------------------------------------------
+// Example usage:
+// bit-color(primary, base) => var(--bit-color-primary, #3880ff)
+// bit-color(secondary, contrast) => var(--bit-color-secondary-contrast)
+// bit-color(primary, base, 0.5) => rgba(var(--bit-color-primary-rgb, 56, 128, 255), 0.5)
+// --------------------------------------------------------------------------------------------
+@function bit-color($name, $variation, $alpha: null, $rgb: null) {
+
+  $values: map-get($default-colors, $name);
+  $value: map-get($values, $variation);
+  $variable: --bit-color-#{$name}-#{$variation};
+
+  @if ($variation == base) {
+    $variable: --bit-color-#{$name};
+  }
+
+  @if ($alpha) {
+    $value: color-to-rgb-list($value);
+    @return rgba(var(#{$variable}-rgb, $value), $alpha);
+  }
+  @if ($rgb) {
+    $value: color-to-rgb-list($value);
+    $variable: #{$variable}-rgb;
+  }
+
+  @return var(#{$variable}, $value);
+};
+
+// Converts a color to a comma separated rgb.
+// --------------------------------------------------------------------------------------------
+@function color-to-rgb-list($color) {
+  @return #{red($color)},#{green($color)},#{blue($color)};
+}
+
+$threshold: 55%;
+@function contrast-color($color, $dark: $color-black, $light: $color-white) {
+  @return if(lightness($color) < $threshold, $light, $dark);
+};
+
+@mixin bit-colors-generate($name, $color) {
+  :root {
+      --bit-color-#{$name}: #{$color};
+      --bit-color-#{$name}-rgb: #{color-to-rgb-list($color)};
+      --bit-color-#{$name}-contrast: #{contrast-color($color)};
+      --bit-color-#{$name}-tint: #{get-color-tint($color)};
+      --bit-color-#{$name}-shade: #{get-color-shade($color)};
+  } 
+}

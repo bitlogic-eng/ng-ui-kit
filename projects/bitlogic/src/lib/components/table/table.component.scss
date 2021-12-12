@@ -8,7 +8,7 @@
     
     // header
     .mat-header-row {
-      background-color: $color-primary;
+      background-color: #{bit-color(primary, base)};
 
       .mat-header-cell {
         color: $color-white;
@@ -17,31 +17,9 @@
 
     // body
     .mat-row:hover {
-      background-color: $color-primary-alt-10;
+      background-color: #{bit-color(primary, base, 10%)};
     }
 
   }
 
-  // checkbox
-  // ::ng-deep {
-  //   .mat-checkbox {
-  //     .mat-checkbox-layout {
-  //       margin-bottom: 0.2rem !important;
-  //     }
-  //   }
-  // }
-  
-  // ::ng-deep .mat-checkbox-ripple .mat-ripple-element {
-  //   background-color: $color-primary !important;
-  // }
-  
-  // ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background {
-  //   background-color: $color-primary !important;
-  // }
-  
-  // ::ng-deep .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
-  //   background-color: $color-primary !important;
-  // }
-  
-  
 }
