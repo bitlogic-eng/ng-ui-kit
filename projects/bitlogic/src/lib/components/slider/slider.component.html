@@ -1,4 +1,4 @@
-<ngu-carousel #myCarousel class="rounded-custom-lg overflow-hidden shadow cont-cards h-100" 
+<ngu-carousel *ngIf="enabled; else disable" #myCarousel class="rounded-custom-lg overflow-hidden shadow cont-cards h-100" 
               [inputs]="carouselTileConfig" 
               [dataSource]="slideInfo" 
               (onMove)="onSlideMove($event)">
@@ -56,3 +56,9 @@
     </button>
 
 </ngu-carousel>
+
+<ng-template #disable>
+    <div class="cont-cards card-disabled">
+        <h4>{{textDisable}}</h4>
+    </div>
+</ng-template>

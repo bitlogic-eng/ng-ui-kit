@@ -27,7 +27,17 @@ export class SliderComponent implements AfterViewInit {
    * Is the Slider info
    */
   @Input() slideInfo: SliderInfo[];
-  
+
+  /**
+   * Set enabled
+   */
+  @Input() enabled = true;
+
+  /**
+   * If is enabled = false, you should set text
+   */
+  @Input() textDisable: string;
+   
   /**
    * Slide Move click handler
    */
