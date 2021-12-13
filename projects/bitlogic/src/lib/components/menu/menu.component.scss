@@ -24,7 +24,7 @@
     * @prop --color: text color
     */
 
-  --background: $color-white;
+  --background: #{$color-white};
   --background-icon-color: #{bit-color(primary, base)};
   --color: #{bit-color(primary, base)};
 
@@ -110,7 +110,7 @@
   
   @media  only screen and ( max-width : 768px) {
   
-    .u21 {
+    .logo {
       display: none;  
     }
 
