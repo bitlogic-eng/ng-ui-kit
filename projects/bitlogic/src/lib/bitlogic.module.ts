@@ -9,9 +9,9 @@ import { TableModule } from './components/table/table.module';
 import { ChipsModule } from './components/chips/chips.module';
 import { StatusModule } from './components/status/status.module';
 import { SnackbarModule } from './components/snackbar/snackbar.module';
+import { ToolbarMenuModule } from './components/toolbar-menu/toolbar-menu.module';
 
 @NgModule({
-  declarations: [],
   imports: [
   ],
   exports: [
@@ -25,6 +25,7 @@ import { SnackbarModule } from './components/snackbar/snackbar.module';
     ChipsModule,
     StatusModule,
     SnackbarModule,
+    ToolbarMenuModule,
   ]
 })
 export class BitlogicModule { }

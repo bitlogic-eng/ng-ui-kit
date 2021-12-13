@@ -1,0 +1,17 @@
+<div class="wrapper">
+  <div class="sidebar">
+      <bit-menu [isLoading]="isLoading" [options]="menu" [moreOption]="moreOption" [numberItemShowed]="numberItemShowed" [logo]="logo" (menuClick)="onMenuClick($event)"></bit-menu>
+  </div>
+
+  <div class="container">
+      <div class="toolbar">
+          <bit-toolbar [isLoading]="isLoading" title={{title}} currentDate={{date}} userName={{userName}} [height]="toolbarHeight" [avatar]="avatar" (openProfile)="onProfileClick()"></bit-toolbar>
+      </div>
+      
+      <div class="main-container"> 
+          <div class="content">
+              <slot class="content-inner"></slot>
+          </div>    
+      </div>    
+  </div>
+</div>

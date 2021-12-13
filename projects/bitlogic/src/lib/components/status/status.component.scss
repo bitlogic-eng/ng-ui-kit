@@ -6,10 +6,10 @@
 
 :host {
 
-  $status-color-pending: #{bit-color(warning, base)};
-  $status-color-accepted: #{bit-color(success, base)};
-  $status-color-error: #{bit-color(danger, base)};
-  $status-color-canceled: #{bit-color(dark, base, 60%)};
+  --status-color-pending: #{bit-color(warning, base)};
+  --status-color-accepted: #{bit-color(success, base)};
+  --status-color-error: #{bit-color(danger, base)};
+  --status-color-canceled: #{bit-color(dark, base, 60%)};
 
   font-family: $font-primary;
 
@@ -35,19 +35,19 @@
     
 
     &.pending {
-      background-color: #{bit-color(warning, base, 7%)};
+      background-color: rgba(var(--bit-color-warning-rgb), 0.1);
     }
 
     &.accepted {
-      background-color: #{bit-color(success, base, 7%)};
+      background-color: rgba(var(--bit-color-success-rgb), 0.1);
     }
 
     &.error {
-      background-color: #{bit-color(danger, base, 7%)};
+      background-color: rgba(var(--bit-color-danger-rgb), 0.1);
     }
 
     &.canceled {
-      background-color: #{bit-color(dark, base, 7%)};
+      background-color: rgba(var(--bit-color-dark-rgb), 0.1);
     }
 
 
@@ -65,19 +65,19 @@
       margin-left: 10px;
 
       &.pending {
-        background-color: $status-color-pending;
+        background-color: var(--status-color-pending);
       }
 
       &.accepted {
-        background-color: $status-color-accepted;
+        background-color: var(--status-color-accepted);
       }
 
       &.error {
-        background-color: $status-color-error;
+        background-color: var(--status-color-error);
       }
 
       &.canceled {
-        background-color: $status-color-canceled;
+        background-color: var(--status-color-canceled);
       }
       
     }
@@ -89,19 +89,19 @@
       font-weight: 500;
 
       &.pending {
-        color: $status-color-pending;
+        color: var(--status-color-pending);
       }
 
       &.accepted {
-        color: $status-color-accepted;
+        color: var(--status-color-accepted);
       }
 
       &.error {
-        color: $status-color-error;
+        color: var(--status-color-error);
       }
 
       &.canceled {
-        color: $status-color-canceled;
+        color: var(--status-color-canceled);
       }
 
       

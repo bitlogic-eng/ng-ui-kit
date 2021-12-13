@@ -1,0 +1,86 @@
+:host {
+
+  --layout-margin: 10px 0 10px 0;
+
+  .wrapper {
+    display: flex;
+    height: 100%;
+  
+    .sidebar {
+      width: 85px;
+      min-width: 85px;
+    }
+  
+    .container {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+  
+  
+      .toolbar {
+        width: 100%;
+      }
+  
+      .main-container {
+        display: flex;
+        // margin-top: 100px ;
+        // margin-bottom: 100px ;
+  
+        margin: var(--layout-margin);
+        height: 100%;
+        // border: 1px dashed gray;     
+  
+        // margin: 0;
+        // padding: 0;
+        // height: 100%;
+      
+        .content {
+          width: 100%;  
+          text-align: center;
+          margin-top: 10px;
+      
+          .content-inner {
+            margin: 10px;
+          }
+        }
+      }
+      
+    }
+    
+  }
+  
+  
+  @media  only screen and ( max-width : 768px) {
+    .wrapper {
+      // flex-direction: column-reverse;
+  
+      .sidebar {
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+        z-index: 99;
+        min-height: 85px;
+      }
+      .toolbar {
+        overflow: hidden;
+        background-color: #333;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 99;      
+      }
+  
+      .container {
+        .main-container {
+          margin-top: 100px ;
+          margin-bottom: 100px ;
+  
+        }
+      }
+      
+    }
+  }
+  
+}

@@ -1,5 +1,3 @@
-@import "./mixin";
-
 // Theme
 // -------------------------------------------------------------------------------------------
 // This file contains the theme variables shared
@@ -29,38 +27,78 @@ $color-white:             #FFFFFF !default;
 $color-black:             #000000 !default;
 
 
-$bit-primary-colors: (
-    tint : get-color-tint($color-primary),
-    base : $color-primary,
-    shade : get-color-shade($color-primary),
-    contrast: (
-        tint : #000000,
-        base : #ffffff,
-        shade : #ffffff,
-    )
-);
+$default-colors:  (
+  primary: (
+    base:             $color-primary,
+    contrast:         contrast-color($color-primary),
+    shade:            get-color-shade($color-primary),
+    tint:             get-color-tint($color-primary)
+  ),
+  secondary: (
+    base:             $color-secondary,
+    contrast:         contrast-color($color-secondary),
+    shade:            get-color-shade($color-secondary),
+    tint:             get-color-tint($color-secondary)
+  ),
+  tertiary: (
+    base:             $color-tertiary,
+    contrast:         contrast-color($color-tertiary),
+    shade:            get-color-shade($color-tertiary),
+    tint:             get-color-tint($color-tertiary)
+  ),
+  success: (
+    base:             $color-success,
+    contrast:         contrast-color($color-success),
+    shade:            get-color-shade($color-success),
+    tint:             get-color-tint($color-success)
+  ),
+  warning: (
+    base:             $color-warning,
+    contrast:         contrast-color($color-warning),
+    shade:            get-color-shade($color-warning),
+    tint:             get-color-tint($color-warning)
+  ),
+  danger: (
+    base:             $color-danger,
+    contrast:         contrast-color($color-danger),
+    shade:            get-color-shade($color-danger),
+    tint:             get-color-tint($color-danger)
+  ),
+  light: (
+    base:             $color-light,
+    contrast:         contrast-color($color-light),
+    shade:            get-color-shade($color-light),
+    tint:             get-color-tint($color-light)
+  ),
+  medium: (
+    base:             $color-medium,
+    contrast:         contrast-color($color-medium),
+    shade:            get-color-shade($color-medium),
+    tint:             get-color-tint($color-medium)
+  ),
+  dark: (
+    base:             $color-dark,
+    contrast:         contrast-color($color-dark),
+    shade:            get-color-shade($color-dark),
+    tint:             get-color-tint($color-dark)
+  ),
+) !default;
 
-$bit-secondary-colors: (
-    tint : get-color-tint($color-secondary),
-    base : $color-secondary,
-    shade : get-color-shade($color-secondary),
-    contrast: (
-        tint : #000000,
-        base : #ffffff,
-        shade : #ffffff,
-    )
-);
 
-$bit-danger-colors: (
-    tint : get-color-tint($color-danger),
-    base : $color-danger,
-    shade : get-color-shade($color-danger),
-    contrast: (
-        tint : #000000,
-        base : #ffffff,
-        shade : #ffffff,
-    )
-);
+// Default Background and text Colors
+// -------------------------------------------------------------------------------------------
+
+$background-color-value:            #fff !default;
+$background-color-rgb-value:        255, 255, 255 !default;
+
+$text-color-value:                  #000 !default;
+$text-color-rgb-value:              0, 0, 0 !default;
+
+$background-color:                  var(--bit-background-color, $background-color-value) !default;
+$background-color-rgb:              var(--bit-background-color-rgb, $background-color-rgb-value) !default;
+$text-color:                        var(--bit-text-color, $text-color-value) !default;
+$text-color-rgb:                    var(--bit-text-color-rgb, $text-color-rgb-value) !default;
+
 
 // Alternative apha - Colors 
 $color-primary-alt-80: mix($color-primary, white, 80%);
@@ -117,4 +155,4 @@ $color-info-alt-60: mix($color-info, white, 60%);
 $color-info-alt-40: mix($color-info, white, 40%);
 $color-info-alt-20: mix($color-info, white, 20%);
 $color-info-alt-10: mix($color-info, white, 10%);
-$color-info-alt-05: mix($color-info, white, 5%);
+$color-info-alt-05: mix($color-info, white, 5%);  

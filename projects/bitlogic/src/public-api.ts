@@ -34,3 +34,6 @@ export * from './lib/components/status/status.component';
 export * from './lib/components/snackbar/snackbar.module';
 export * from './lib/components/snackbar/snackbar.component';
 
+export * from './lib/components/toolbar-menu/toolbar-menu.module';
+export * from './lib/components/toolbar-menu/toolbar-menu.component';
+
