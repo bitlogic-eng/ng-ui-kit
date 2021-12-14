@@ -1,9 +1,9 @@
 name: Secuencial jobs
 on:
   push:
-    branches: [ feature/add-repo ]
+    branches: [ master ]
   pull_request:
-    branches: [ feature/add-repo ]
+    branches: [ master ]
 jobs:
   release:
     name: publish
