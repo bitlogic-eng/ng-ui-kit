@@ -1,5 +1,5 @@
 {
-  "name": "@bitlogic/ng-ui-kit",
+  "name": "@bitlogic-eng/ng-ui-kit",
   "version": "0.0.5",
   "peerDependencies": {
     "@angular/common": "^11.0.5",
