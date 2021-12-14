@@ -5,6 +5,25 @@ on:
   pull_request:
     branches: [ master ]
 jobs:
+  release:
+    name: publish
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: build
+        run: |
+          npm i
+          npm run build
+
+      - name: publish
+        run: npm run publish
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+
+
   buildStorybook:
     runs-on: ubuntu-latest
 
@@ -15,7 +34,6 @@ jobs:
         run: |
           npm i
           npm run build-storybook
-
         
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
