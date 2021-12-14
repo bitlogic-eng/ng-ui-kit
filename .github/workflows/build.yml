@@ -19,9 +19,8 @@ jobs:
 
       - name: publish
         run: npm run publish
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-
+        env:
+          NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
   buildStorybook:
