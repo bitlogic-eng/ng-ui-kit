@@ -18,7 +18,10 @@
     "docs:json": "compodoc -p ./tsconfig.json -e json -d .",
     "storybook": "npm run docs:json && start-storybook -p 6006",
     "build-storybook": "npm run docs:json && build-storybook",
-    "deploy-storybook": "npx angular-cli-ghpages --dir=storybook-static"
+    "deploy-storybook": "npx angular-cli-ghpages --dir=storybook-static",
+    "version:pat": "cd ./projects/bitlogic && npm version patch",
+    "version:min": "cd ./projects/bitlogic && npm version minor",
+    "version:maj": "cd ./projects/bitlogic && npm version major"
   },
   "private": true,
   "dependencies": {

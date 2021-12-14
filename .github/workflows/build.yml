@@ -29,14 +29,15 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Create artifact Storybook
-        run: |
-          npm i
-          npm run build-storybook
+      # TODO: disabled 
+      # - name: Create artifact Storybook
+      #   run: |
+      #     npm i
+      #     npm run build-storybook
         
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./storybook-static
+      # - name: Deploy to GitHub Pages
+      #   uses: peaceiris/actions-gh-pages@v3
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     publish_dir: ./storybook-static
         
