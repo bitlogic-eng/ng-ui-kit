@@ -60,11 +60,16 @@
   @return #{red($color)},#{green($color)},#{blue($color)};
 }
 
+// Converts to contrast color base on threshold.
+// --------------------------------------------------------------------------------------------
 $threshold: 55%;
 @function contrast-color($color, $dark: $color-black, $light: $color-white) {
   @return if(lightness($color) < $threshold, $light, $dark);
 };
 
+
+// Generate css variable colors
+// --------------------------------------------------------------------------------------------
 @mixin bit-colors-generate($name, $color) {
   :root {
       --bit-color-#{$name}: #{$color};
