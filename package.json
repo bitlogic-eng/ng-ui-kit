@@ -8,7 +8,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "npm run prebuild-ucc && npm run prebuild-u21 && ng build bitlogic --configuration production",
+    "build": "npm run prebuild-ucc && npm run prebuild-u21 && ng build bitlogic --prod",
     "test": "ng test",
     "lint": "ng lint",
     "symlink": "npm link ./dist/bitlogic",
