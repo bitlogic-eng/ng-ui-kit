@@ -1,4 +1,11 @@
+@import '../../../../../assets/scss/theme';
+
 :host {
+
+  .color-primary {
+    color: #{bit-color(primary, base)};
+  }
+
   .ticket-card {
     display: flex;
     padding: 10px;
@@ -15,9 +22,14 @@
     .right {      
       width: 25%;
       display: flex;
-      flex-direction: column;
-      align-items: end;
-      justify-content: center;
+      // flex-direction: column;
+      align-items: center;
+      justify-content: end;
+
+      .prices {
+        display: flex;
+        flex-direction: column;
+      }
 
       .icon {
 
@@ -25,13 +37,14 @@
     }
 
     &:hover {
-      background-color: #{bit-color(secondary, base, 10%)};
+      background-color: #00A98F0D;
     }
 
   }
 
   .ticket-detail {
     padding: 10px;
+    margin: 10px;
     border-radius: 0.5rem;
     box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
 
@@ -45,7 +58,7 @@
         margin-top: 1rem;
         margin-bottom: 1rem;
         border: 0;
-        border-top: 1px solid rgba(0,0,0,.1);          
+        border-top: 1px solid rgba(0,0,0,.1);    
       }
 
       .item {
@@ -54,17 +67,16 @@
         flex-direction: column;
         margin: 10px 0;
 
-
         .item-text {
           display: flex;
         }
 
         .item-banner {
           display: flex;
-          padding: 10px;
-          background-color: #e6edf2;
+          padding: 20px;
+          background-color: rgba(250, 164, 26, 0.05);
           border-radius: 0.5rem;
-          box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
+          box-shadow: rgba(250, 164, 26, 0.05) 0px 0px 0px 1px, rgb(250, 164, 26) 0px 0px 0px 1px inset;
         }
 
         .item-button {

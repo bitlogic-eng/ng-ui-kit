@@ -2,6 +2,20 @@
 
 :host {
 
+  .color-primary {
+    color: #{bit-color(primary, base)};
+  }
+
+  .background-color-primary {
+    color: #{bit-color(primary, base)};
+  }
+
+  .line {
+    width: 100%;
+    border: 0;
+    border-top: 1px solid rgba(0,0,0,.1);    
+  }
+
   .content {
     display: flex;
     flex-direction: column;
@@ -9,10 +23,14 @@
 
     .header {
       margin: 0 0 20px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;      
     }
 
     .ticket {
-      width: 100%;
+      // width: 100%;
+      margin: 20px;
     }
 
     .summary-card {
@@ -21,15 +39,39 @@
       flex-direction: column;
       align-items: center;      
       padding: 10px;
-      margin: 20px 0;
+      margin: 10px 0;
       
       background-color: #f2f2f2;
       border-radius: 0.5rem;
       box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
 
+      .header {
+        width: 100%;
+
+        .summary-title {
+          font-weight: 500;
+          color: #{bit-color(primary, base)};
+        }
+
+        
+      }
+
       .ticket {
         width: 100%;
+        
       };
+
+      .empty-ticket {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 10px 0;
+        box-shadow: 0 1px 3px 0 rgba(0,0,0,.08);
+        border-radius: 0.5rem;
+        background-color: #e6e6e6;        
+        padding: 10px;
+        width: 100%;
+      }
     }
 
   }

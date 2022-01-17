@@ -1,24 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-
-export interface ticketDetails {
-  listPrice: number,
-  price: number,
-  period: string,
-  subperiod: string,
-  periodId: number,
-  details: string
-};
-
-export interface ticket {
-  id: number,
-  listPrice: number,
-  price: number,
-  details: string,
-  period: string,
-  discountPrice: number,
-  total: number,
-  tickets: ticketDetails[]
-}
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Ticket } from '../models/ticket';
 
 @Component({
   selector: 'bit-ticket',
@@ -28,48 +9,33 @@ export interface ticket {
 export class TicketComponent implements OnInit {
 
   @Input()
-  ticket: ticket;
+  ticket: Ticket;
 
   @Input()
-  open: true;
+  enableToOpen: boolean = true;
+
+  @Output()
+  selectedTicket: EventEmitter<Ticket> = new EventEmitter();
+
+  open: boolean = false;
+  priceCurrency: "'USD':true:'2.2-4'";
 
   constructor() { 
-    
-
-    this.ticket = {
-          "id": 5,
-          "listPrice": 60000,
-          "price": 48000,
-          "details": "Arancel hasta 3 materias",
-          "period": "1/22",
-          "discountPrice": 4000,
-          "total": 56000,
-          "tickets": [
-            {
-              "listPrice": 20000,
-              "price": 16000,
-              "period": "1/22",
-              "subperiod": "A",
-              "periodId": 9200,
-              "details": "Matrícula 1/22"
-            },
-            {
-              "listPrice": 40000,
-              "price": 32000,
-              "period": "1/22",
-              "subperiod": "A",
-              "periodId": 9200,
-              "details": "Arancel B"
-            }
-          ]
-        };
-      
-    
   }
 
   ngOnInit(): void {
   }
 
+  openDetail() {
+    if(this.enableToOpen) {
+      this.open = !this.open;
+    } 
+  }
+
+  onSelectedTicket() {
+    this.selectedTicket.emit(this.ticket);
+    this.open = false;
+  }
 }
 
 

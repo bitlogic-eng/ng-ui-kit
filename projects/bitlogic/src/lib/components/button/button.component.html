@@ -1,18 +1,18 @@
 
 <ng-template #content><ng-content></ng-content></ng-template>
 
-<button *ngIf="sty === 'text'" mat-button [color]="color" ngClass={{getClass()}} [disabled]="disabled" (click)="onClickButton($event)">
+<button *ngIf="sty === 'text'" mat-button [color]="color" ngClass={{getClass()}} [disabled]="disabled">
     <ng-container *ngTemplateOutlet="content"></ng-container>
 </button>
 
-<button *ngIf="sty === 'outlined'" mat-stroked-button [color]="color" ngClass={{getClass()}} [disabled]="disabled" (click)="onClickButton($event)">
+<button *ngIf="sty === 'outlined'" mat-stroked-button [color]="color" ngClass={{getClass()}} [disabled]="disabled">
     <ng-container *ngTemplateOutlet="content"></ng-container>
 </button>
 
-<button *ngIf="sty === 'raised'" mat-raised-button [color]="color" ngClass={{getClass()}} [disabled]="disabled" (click)="onClickButton($event)">
+<button *ngIf="sty === 'raised'" mat-raised-button [color]="color" ngClass={{getClass()}} [disabled]="disabled">
     <ng-container *ngTemplateOutlet="content"></ng-container>
 </button>
 
-<button *ngIf="sty === 'flat'" mat-flat-button [color]="color" ngClass={{getClass()}} [disabled]="disabled" (click)="onClickButton($event)">
+<button *ngIf="sty === 'flat'" mat-flat-button [color]="color" ngClass={{getClass()}} [disabled]="disabled">
     <ng-container *ngTemplateOutlet="content"></ng-container>
 </button>

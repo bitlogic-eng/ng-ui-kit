@@ -1,27 +1,45 @@
 
 <section class="content">
   <div class="header">
-    <bit-button sty="raised" color="primary">Generar Tickets</bit-button>
+    <bit-button sty="raised" color="primary" (click)="openTicket()">
+      Generar Tickets
+      <i *ngIf="open" class="material-icons">remove</i>
+      <i *ngIf="!open" class="material-icons">add</i>
+    </bit-button>
   </div>
   
-  <section class="ticket">
-      <h2 class="">Elige un paquete:</h2>
-      <bit-ticket></bit-ticket>
-  </section>
-  
-  <div class="summary-card">
-    <div class="header">
-        <h2 class="summary-title">Resumen</h2>
-    </div>
+  <ng-container *ngIf="open">
+      <section class="ticket">
+          <h2 class="mb-2">Elige un paquete:</h2>
+          <ng-container *ngFor="let ticket of tickets">
+              <bit-ticket [ticket]="ticket" (selectedTicket)="onSelectedTicket($event)"></bit-ticket>
+          </ng-container>
+          
+      </section>
+      
+      <section class="summary-card">
+        <div class="header">
+            <h4 class="summary-title">Resumen</h4>
+            <hr class="line">
+        </div>
+        
+        <div class="ticket" *ngIf="selectedTicket; else summaryEmptyTicket" (click)="removeTicket()">
+            <bit-ticket [enableToOpen]="false" [ticket]="selectedTicket" ></bit-ticket>
+        </div>
     
-    <div class="ticket">
-        <bit-ticket></bit-ticket>
-    </div>
+        <hr class="line">
 
-    <div class="footer">
-        <bit-button sty="raised" color="primary">Generar y pagar</bit-button>
-    </div>
-  </div>
-
+        <div class="footer">
+            <bit-button sty="raised" color="primary" [disabled]="buttonPaidDisabled" (click)="onPaidTicket()">Generar y pagar</bit-button>
+        </div>
+      </section>
+  </ng-container>
   
 </section>
+
+<ng-template #summaryEmptyTicket>
+    <div class="empty-ticket">
+        <h5>Paquetes</h5>
+        <p>podrás ver el paquete que tienes que abonar</p>  
+      </div>
+</ng-template>
