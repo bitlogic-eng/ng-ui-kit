@@ -1,4 +1,4 @@
-<div class="ticket-card" (click)="openDetail()">
+<div class="ticket-card" [class.active]="open" (click)="openDetail()">
   <div class="left">
     <h4>{{ticket.details}}</h4>
     <p>{{ticket.period}}</p>
@@ -8,8 +8,13 @@
         <h4>{{ticket.price | currency:priceCurrency}}</h4>
         <p style="text-decoration: line-through;">{{ticket.listPrice | currency:priceCurrency}}</p>    
     </div>
-    <ng-container *ngIf="open"><i class="material-icons">arrow_drop_up</i></ng-container>
-    <ng-container *ngIf="!open"><i class="material-icons">arrow_drop_down</i></ng-container>
+
+    <ng-container *ngIf="enableToOpen">
+      <ng-container *ngIf="open"><i class="material-icons">arrow_drop_up</i></ng-container>
+      <ng-container *ngIf="!open"><i class="material-icons">arrow_drop_down</i></ng-container>  
+    </ng-container>
+
+    <!-- <i class="material-icons" *ngIf="!enableToOpen && enableToClose">highlight_off</i> -->
 
   </div>
 </div>
@@ -49,6 +54,7 @@
 
     <div class="item">
       <div class="item-banner">
+          <i class="material-icons">error_outline</i>  
           <p>El precio final puede variar. Para verificarlo consulte ePagos</p>
       </div>
     </div>

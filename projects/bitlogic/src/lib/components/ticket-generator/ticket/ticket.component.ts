@@ -14,6 +14,9 @@ export class TicketComponent implements OnInit {
   @Input()
   enableToOpen: boolean = true;
 
+  @Input()
+  active: boolean = true;
+
   @Output()
   selectedTicket: EventEmitter<Ticket> = new EventEmitter();
 
