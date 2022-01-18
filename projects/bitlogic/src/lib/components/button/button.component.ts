@@ -81,8 +81,8 @@ export class ButtonComponent implements OnInit {
   }
 
 
-  @Output()
-  click: EventEmitter<any> = new EventEmitter<any>();
+  // @Output()
+  // click: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() { 
   }
@@ -97,7 +97,8 @@ export class ButtonComponent implements OnInit {
     return `${commun} ${this._typeClass} ${this._styleClass}-${this._colorClass}`;
   }
 
-  onClickButton($event) {
-    this.click.emit('ev');
-  }
+  // onClickButton($event) {
+  //   console.log('click!');
+  //   this.click.emit('ev');
+  // }
 }

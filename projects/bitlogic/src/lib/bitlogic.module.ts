@@ -10,6 +10,7 @@ import { ChipsModule } from './components/chips/chips.module';
 import { StatusModule } from './components/status/status.module';
 import { SnackbarModule } from './components/snackbar/snackbar.module';
 import { ToolbarMenuModule } from './components/toolbar-menu/toolbar-menu.module';
+import { TicketGeneratorModule } from './components/ticket-generator/ticket-generator.module';
 
 @NgModule({
   imports: [
@@ -26,6 +27,8 @@ import { ToolbarMenuModule } from './components/toolbar-menu/toolbar-menu.module
     StatusModule,
     SnackbarModule,
     ToolbarMenuModule,
-  ]
+    TicketGeneratorModule
+  ],
+  declarations: []
 })
 export class BitlogicModule { }

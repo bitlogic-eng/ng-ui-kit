@@ -37,3 +37,6 @@ export * from './lib/components/snackbar/snackbar.component';
 export * from './lib/components/toolbar-menu/toolbar-menu.module';
 export * from './lib/components/toolbar-menu/toolbar-menu.component';
 
+export * from './lib/components/ticket-generator/ticket-generator.module';
+export * from './lib/components/ticket-generator/ticket-generator.component';
+export * from './lib/components/ticket-generator/models/ticket';

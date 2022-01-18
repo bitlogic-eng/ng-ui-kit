@@ -1,0 +1,105 @@
+@import '../../../../../assets/scss/theme';
+
+:host {
+
+  .color-primary {
+    color: #{bit-color(primary, base)};
+  }
+
+  .ticket-card {
+    display: flex;
+    padding: 10px;
+    border-radius: 0.5rem;
+    margin-bottom: 10px;
+    background-color: white;
+    // box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+    cursor: default;
+    
+
+    .left {
+      width: 75%;
+    }
+
+    .right {      
+      width: 25%;
+      display: flex;
+      align-items: center;
+      justify-content: end;
+
+      .prices {
+        display: flex;
+        flex-direction: column;
+        margin-right: 10px;
+        align-items: end;
+      }
+
+    }
+
+    &:hover {
+      background-color: #00A98F0D;
+    }
+
+    &.active {
+      background-color: #00A98F1A;
+    }
+
+  }
+
+  .ticket-detail {
+    padding: 10px;
+    margin: 10px;
+    border-radius: 0.5rem;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+
+    .item-list {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      hr {
+        width: 100%;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        border: 0;
+        border-top: 1px solid rgba(0,0,0,.1);    
+      }
+
+      .item {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        margin: 10px 0;
+
+        .item-text {
+          display: flex;
+        }
+
+        .item-banner {
+          display: flex;
+          padding: 20px;
+          background-color: rgba(250, 164, 26, 0.05);
+          border-radius: 0.5rem;
+          box-shadow: rgba(250, 164, 26, 0.05) 0px 0px 0px 1px, rgb(250, 164, 26) 0px 0px 0px 1px inset;
+          align-items: end;
+
+          i {
+            margin-right: 10px;
+            color: rgb(250, 164, 26);
+          }
+          p {
+            font-size: 14px;
+          }
+        }
+
+        .item-button {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+
+      }
+
+    }
+  }
+}

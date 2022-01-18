@@ -1,0 +1,71 @@
+<div class="ticket-card" [class.active]="open" (click)="openDetail()">
+  <div class="left">
+    <h4>{{ticket.details}}</h4>
+    <p>{{ticket.period}}</p>
+  </div>
+  <div class="right">
+    <div class="prices">
+        <h4>{{ticket.price | currency:priceCurrency}}</h4>
+        <p style="text-decoration: line-through;">{{ticket.listPrice | currency:priceCurrency}}</p>    
+    </div>
+
+    <ng-container *ngIf="enableToOpen">
+      <ng-container *ngIf="open"><i class="material-icons">arrow_drop_up</i></ng-container>
+      <ng-container *ngIf="!open"><i class="material-icons">arrow_drop_down</i></ng-container>  
+    </ng-container>
+
+    <!-- <i class="material-icons" *ngIf="!enableToOpen && enableToClose">highlight_off</i> -->
+
+  </div>
+</div>
+
+<div class="ticket-detail" *ngIf="open">
+
+  <div class="item-list" >
+    <div class="item">
+        <div class="item-text">
+            <i class="material-icons mr-2">discount</i>
+            <h4>Descuento por beca</h4>
+            <p>{{ticket.discountPrice | currency:priceCurrency }}</p>
+        </div>
+    </div>
+    <hr class="line">
+    <div class="item">
+        <div class="item-text">
+            <i class="material-icons mr-2 color-primary">confirmation_number</i>
+            <h4>Ticket</h4>
+            <p></p>    
+        </div>
+    </div>
+    <div class="item">
+        <div class="ticket-card" *ngFor="let item of ticket.tickets">
+            <div class="left">
+              <h4>{{item.details}}</h4>
+              <p>{{item.period}}</p>
+            </div>
+            <div class="right">
+              <div class="prices">              
+                <h4>{{item.price | currency:priceCurrency}}</h4>
+                <p style="text-decoration: line-through;">{{item.listPrice | currency:priceCurrency}}</p>
+              </div>
+            </div>
+        </div>        
+    </div>
+
+    <div class="item">
+      <div class="item-banner">
+          <i class="material-icons">error_outline</i>  
+          <p>El precio final puede variar. Para verificarlo consulte ePagos</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="item-button">
+          <bit-button sty="raised" color="primary" (click)="onSelectedTicket()">Seleccionar Paquete</bit-button>
+      </div>
+        
+    </div>
+
+  </div>
+
+</div>
