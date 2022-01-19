@@ -12,7 +12,7 @@
               [(value)]="selected">
 
               <mat-select-trigger>
-                  {{selected ? selected[0]?.viewValue : ''}}
+                  {{selected ? selected[0]?.value : ''}}
                   <span *ngIf="selected?.length > 1" class="example-additional-selection">
                     (+{{selected.length - 1}} {{selected?.length === 2 ? otherText.text1: otherText.text2}})
                   </span>
@@ -29,7 +29,7 @@
                           
     <mat-option *ngFor="let option of options"
                 [value]="option">
-      {{option.viewValue}}
+      {{option.value}}
     </mat-option>
   </mat-select>
 
@@ -42,7 +42,7 @@
 
     <mat-option *ngFor="let option of options"
                 [value]="option">
-      {{option.viewValue}}
+      {{option.value}}
     </mat-option>
   </mat-select>
 
