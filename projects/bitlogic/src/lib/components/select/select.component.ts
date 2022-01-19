@@ -5,7 +5,7 @@ import { MatOption } from '@angular/material/core';
 
 export interface SelectOption {
   id: number,
-  viewValue: string,
+  value: string,
   meta?: any
 };
 
@@ -28,7 +28,9 @@ export interface OtherText {
 })
 export class SelectComponent implements OnInit {
 
+  @Input()
   selectControl = new FormControl('');
+
   allSelected = false;
 
   @ViewChild('select') select: MatSelect;
@@ -53,7 +55,7 @@ export class SelectComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {    
     this.selectControl.valueChanges.subscribe(()=>{
       this.selectChange.emit(this.selectControl.value)
     })
