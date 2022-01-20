@@ -2,20 +2,6 @@
 
 :host {
 
-  .color-primary {
-    color: #{bit-color(primary, base)};
-  }
-
-  .background-color-primary {
-    color: #{bit-color(primary, base)};
-  }
-
-  .line {
-    width: 100%;
-    border: 0;
-    border-top: 1px solid rgba(0,0,0,.1);    
-  }
-
   .content {
     display: flex;
     flex-direction: column;
@@ -29,7 +15,6 @@
     }
 
     .ticket {
-      // width: 100%;
       margin: 20px;
     }
 
@@ -75,6 +60,48 @@
     }
 
   }
+
+  .color-primary {
+    color: #{bit-color(primary, base)};
+  }
+
+  .background-color-primary {
+    color: #{bit-color(primary, base)};
+  }
+
+  .line {
+    width: 100%;
+    border: 0;
+    border-top: 1px solid rgba(0,0,0,.1);    
+  }
+
+  .loading {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    flex-direction: column;
+    margin: 5rem;
+
+  }
+
+  .item-banner {
+    display: flex;
+    padding: 20px;
+    margin: 20px 0;
+    background-color: rgba(250, 164, 26, 0.05);
+    border-radius: 0.5rem;
+    box-shadow: rgba(250, 164, 26, 0.05) 0px 0px 0px 1px, rgb(250, 164, 26) 0px 0px 0px 1px inset;
+    align-items: start;
+
+    i {
+      margin-right: 10px;
+      color: rgb(250, 164, 26);
+    }
+    p {
+      font-size: 14px;
+    }
+  }
+
 
 
 }

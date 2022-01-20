@@ -1,38 +1,33 @@
 
 <section class="content">
-  <div class="header">
-    <bit-button sty="raised" color="primary" (click)="openTicket()">
-      Generar Tickets
-      <i *ngIf="open" class="material-icons">remove</i>
-      <i *ngIf="!open" class="material-icons">add</i>
-    </bit-button>
-  </div>
-  
-  <ng-container *ngIf="open">
-      <section class="ticket">
-          <h2 class="mb-2">Elige un paquete:</h2>
-          <ng-container *ngFor="let ticket of tickets">
-              <bit-ticket [ticket]="ticket" (selectedTicket)="onSelectedTicket($event)"></bit-ticket>
-          </ng-container>
-          
-      </section>
-      
-      <section class="summary-card">
-        <div class="header">
-            <h4 class="summary-title">Resumen</h4>
-            <hr class="line">
-        </div>
+  <ng-container *ngIf="!isLoading; else loading">
+    <ng-container *ngIf="tickets.length !== 0; else emptyTickets ">
+        <section class="ticket">
+            <h2 class="mb-2">Elige un paquete:</h2>
+            <ng-container *ngFor="let ticket of tickets">
+                <bit-ticket [ticket]="ticket" (selectedTicket)="onSelectedTicket($event)"></bit-ticket>
+            </ng-container>
+            
+        </section>
         
-        <div class="ticket" *ngIf="selectedTicket; else summaryEmptyTicket" (click)="removeTicket()">
-            <bit-ticket [enableToOpen]="false" [ticket]="selectedTicket" ></bit-ticket>
-        </div>
-    
-        <hr class="line">
-
-        <div class="footer">
-            <bit-button sty="raised" color="primary" [disabled]="buttonPaidDisabled" (click)="onPaidTicket()">Generar y pagar</bit-button>
-        </div>
-      </section>
+        <section class="summary-card">
+          <div class="header">
+              <h4 class="summary-title">Resumen</h4>
+              <hr class="line">
+          </div>
+          
+          <div class="ticket" *ngIf="selectedTicket; else summaryEmptyTicket" (click)="removeTicket()">
+              <bit-ticket [enableToOpen]="false" [ticket]="selectedTicket" ></bit-ticket>
+          </div>
+      
+          <hr class="line">
+  
+          <div class="footer">
+              <bit-button sty="raised" color="primary" [disabled]="buttonPaidDisabled" (click)="onPaidTicket()">Generar y pagar</bit-button>
+          </div>
+        </section>
+  
+    </ng-container>
   </ng-container>
   
 </section>
@@ -43,3 +38,17 @@
         <p>podrás ver el paquete que tienes que abonar</p>  
       </div>
 </ng-template>
+
+<ng-template #emptyTickets>
+    <div class="item-banner">
+        <i class="material-icons">error_outline</i>  
+        <p>El subperíodo seleccionado no se encuentra habilitado para compra de tickets. Selecciona otro subperíodo del listado.</p>
+    </div>
+</ng-template>
+
+<ng-template #loading>
+  <div class="loading">
+    <mat-spinner diameter="40" ></mat-spinner>
+    </div>
+</ng-template>
+

@@ -11,11 +11,13 @@ export class TicketGeneratorComponent implements OnInit {
   @Input()
   tickets: Ticket[];
 
+  @Input()
+  isLoading: boolean = false;
+
   @Output()
   paidTicket: EventEmitter<Ticket> = new EventEmitter();
 
   selectedTicket: Ticket;
-  open: boolean = false;
   buttonPaidDisabled = true;
 
   constructor() { 
@@ -24,13 +26,8 @@ export class TicketGeneratorComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  openTicket() {
-    this.open = !this.open;
-  }
-
   onSelectedTicket($event) {
     this.selectedTicket = $event;
-    console.log(this.selectedTicket);
     this.buttonPaidDisabled = false;
   }
 
