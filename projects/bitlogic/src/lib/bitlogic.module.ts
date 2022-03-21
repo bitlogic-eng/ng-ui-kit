@@ -11,6 +11,7 @@ import { StatusModule } from './components/status/status.module';
 import { SnackbarModule } from './components/snackbar/snackbar.module';
 import { ToolbarMenuModule } from './components/toolbar-menu/toolbar-menu.module';
 import { TicketGeneratorModule } from './components/ticket-generator/ticket-generator.module';
+import { UploaderModule } from './components/uploader/uploader.module'
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import { TicketGeneratorModule } from './components/ticket-generator/ticket-gene
     StatusModule,
     SnackbarModule,
     ToolbarMenuModule,
-    TicketGeneratorModule
+    TicketGeneratorModule,
+    UploaderModule
   ],
   declarations: []
 })

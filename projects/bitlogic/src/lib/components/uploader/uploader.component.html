@@ -1,0 +1,11 @@
+
+<ng-container *ngIf="status === 0; else stepper">
+    <bit-uploader-file [files]="inputData" (importFile)="onImportFile($event)"></bit-uploader-file>
+</ng-container>
+
+<button (click)="next(0)">PREV</button>
+<button (click)="next(1)">NEXT</button>
+
+<ng-template #stepper>
+    <bit-stepper [stepData]="stepData"></bit-stepper>
+</ng-template>

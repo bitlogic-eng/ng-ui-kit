@@ -1,0 +1,102 @@
+
+<div class="container">
+    <input #fileInput class="input-file" type="file" accept=".xlsx, .csv, .xml, .xlt" 
+    (change)="onUploadFile($event)"/>
+
+    <h4>Importacion Masiva</h4>
+    <p>En esta seccion de suben los archivos para la creación masiva.</p>
+
+    <div class="drop-zone" ngClass="drop-zone-active" bitDropZone (onDropZone)="onUploadFile($event)">
+        <div class="card-container">        
+            <ng-container *ngIf="files.length === 0; else list">
+
+                
+                    <div class="upload-file" >
+
+                        <div class="img"></div>
+            
+                        <h5>Suelta los archivos aquí o has click en el boton</h5>
+                        <h6>El sistema admite archivos con extensión xls o xlsx</h6>
+                        <bit-button sty="flat" color="primary" (click)="fileInput.click()">
+                            <i class="material-icons pr-2" aria-label="backup">backup</i>
+                            <span>Subir archivo</span>  
+                        </bit-button>
+                    </div> 
+                        
+                
+
+            </ng-container>
+        </div>
+
+    </div>        
+
+    <ng-template #list>
+        <div class="list-content">
+            <div class="header line">
+                <h4 class="title">Mi archivos</h4>
+                <bit-button sty="flat" color="primary" (click)="fileInput.click()">
+                    <i class="material-icons pr-2" aria-label="backup">backup</i>
+                    <span>Subir archivo</span>  
+                </bit-button>
+    
+            </div>
+
+            <div class="list">
+                <div class="title row line">
+                    <div class="col align-self-center"></div>
+                    <div class="col col-4 align-self-center">File</div>
+                    <div class="col align-self-center">Fecha</div>
+                    <div class="col align-self-center">Tamaño</div>
+                    <div class="col align-self-center">Estado</div>
+                    <div class="col align-self-center"></div>
+                </div>
+                <div class="files row" *ngFor="let file of files">
+                    <!-- <i class="col align-self-center material-icons">description</i> -->
+                    <mat-icon class="col align-self-center" color="primary">description</mat-icon>
+                    <div class="col align-self-center col-4">{{file.name}}</div>
+                    <div class="col align-self-center">{{file.date | date:"dd/MM/yyyy" }}</div>
+                    <div class="col align-self-center">{{file.size}}</div>
+                    <div class="col align-self-center">
+                        <!-- {{file.status}} -->
+                        <ng-container *ngTemplateOutlet="progress"></ng-container>
+                    </div>
+                    <div class="col align-self-center">
+                        
+                        <button mat-icon-button color="warn" aria-label="Example icon button with a vertical three dot icon">
+                            <!-- <i class="col align-self-center material-icons">description</i> -->
+                            <mat-icon>highlight_off</mat-icon>
+                          </button>
+                    </div>
+
+                    <div class="col-12 align-self-center line"></div>
+                </div>
+            </div>    
+        </div>
+
+    </ng-template>
+
+
+    <ng-template #progress>
+        <div class="progress-content">
+    
+          <div class="progress-bar">
+            <span class="bar">
+              <span class="progress" [style.width]="'40%'"></span>
+            </span>
+          </div>
+        </div>
+      </ng-template>
+
+    <!-- <ng-template>
+        <input #fileInput class="input-file" type="file" accept=".xlsx, .csv, .xml, .xlt" 
+        (change)="onUploadFile($event)"/>
+
+    </ng-template> -->
+ <!-- <ng-template> -->
+    <!-- <bit-table 
+    [data]="dataSource" 
+    [headers]="headers">
+    </bit-table> -->
+
+ <!-- </ng-template>    -->
+</div>

@@ -1,0 +1,82 @@
+<h4>Importación de Catedras</h4>
+<p>En esta seccion  se analizan si los datos del archivo a importar son correctos</p>
+
+<mat-horizontal-stepper  labelPosition="bottom" [disableRipple]="false"  #stepper>
+
+      <mat-step [editable]="false">
+        <ng-template matStepLabel>Análisis de la importación</ng-template>
+
+          <div class="step-content">
+            <ng-container *ngTemplateOutlet="progress"></ng-container>
+            <button mat-button (click)="stepper.next()">Next</button>
+          </div>
+
+      </mat-step>
+      <mat-step  [editable]="false">
+        <ng-template matStepLabel>Detalle del análisis</ng-template>
+        <div>
+            <ng-container *ngTemplateOutlet="info"></ng-container>
+            <button mat-button matStepperNext>Next</button>
+        </div>
+
+      </mat-step>
+      <mat-step [editable]="false">
+        <ng-template matStepLabel>Progreso de la importación</ng-template>
+        <div>
+          <ng-container *ngTemplateOutlet="progress"></ng-container>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Reporte de creación</ng-template>
+        <div>
+          <ng-container *ngTemplateOutlet="info"></ng-container>
+          <button mat-button (click)="stepper.reset()">Reset</button>
+        </div>
+  
+      </mat-step>
+
+</mat-horizontal-stepper>
+    
+<button mat-stroked-button (click)="clickButton(1, stepper)">1</button>
+    <button mat-stroked-button (click)="clickButton(2, stepper)">2</button>
+    <button mat-stroked-button (click)="clickButton(3, stepper)">3</button>
+    <button mat-stroked-button (click)="clickButton(4, stepper)">4</button>
+    
+      <ng-template #progress>
+        <div class="progress-content">
+          <i class="material-icons-round">upload_file</i>
+          <p>{{progressValue}}</p>
+    
+          <div class="progress-bar">
+            <span class="bar">
+              <span class="progress" [style.width]="progressValue"></span>
+            </span>
+          </div>
+    
+          <p>[File] ...</p>
+    
+          <p>Anlilizando registro [progress]...</p>
+    
+          <button mat-stroked-button color="primary" >Cancelar</button>
+        </div>
+      </ng-template>
+
+      <ng-template #info>
+        <div class="info">
+          <div class="header">
+            <h5>Resumen del Analisis de Importacion</h5>
+            <div>Status</div>
+            <div>Errores</div>
+          </div>
+      
+          <div class="content">
+            table
+          </div>
+
+          <div class="footer">
+            <button mat-stroked-button color="primary">Cancelar</button>
+            <button mat-raised-button color="primary">Cargar</button>
+          </div>
+        </div>
+      </ng-template>      

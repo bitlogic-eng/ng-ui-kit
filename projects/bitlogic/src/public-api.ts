@@ -40,3 +40,8 @@ export * from './lib/components/toolbar-menu/toolbar-menu.component';
 export * from './lib/components/ticket-generator/ticket-generator.module';
 export * from './lib/components/ticket-generator/ticket-generator.component';
 export * from './lib/components/ticket-generator/models/ticket';
+
+export * from './lib/components/uploader/uploader.module';
+export * from './lib/components/uploader/uploader.component';
+export * from './lib/components/uploader/models/models';
+
