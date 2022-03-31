@@ -45,10 +45,13 @@ export class SelectComponent implements OnInit {
   isMultiple: boolean;
 
   @Input()
-  selectButtons: SelectButtons = {selectAll: 'Select All', deselectAll: 'Deselect All'};
+  selectButtons: SelectButtons = { selectAll: 'Select All', deselectAll: 'Deselect All' };
 
   @Input()
-  otherText: OtherText = {text1: 'other', text2: 'others'}
+  otherText: OtherText = { text1: 'más', text2: 'más' };
+
+  @Input()
+  allText: string = 'Todos';
 
   @Output()
   selectChange = new EventEmitter();

@@ -9,10 +9,10 @@
         "@schematics/angular:component": {
           "style": "scss"
         }
-      },      
+      },
       "root": "projects/bitlogic",
       "sourceRoot": "projects/bitlogic/src",
-      "prefix": "bit",      
+      "prefix": "bit",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
@@ -20,7 +20,9 @@
             "tsConfig": "projects/bitlogic/tsconfig.lib.json",
             "project": "projects/bitlogic/ng-package.json"
           },
-          "assets": ["projects/bitlogic/assets"],
+          "assets": [
+            "projects/bitlogic/assets"
+          ],
           "styles": [
             "./node_modules/bootstrap/dist/css/bootstrap.min.css",
             "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
@@ -58,5 +60,8 @@
       }
     }
   },
-  "defaultProject": "bitlogic"
+  "defaultProject": "bitlogic",
+  "cli": {
+    "analytics": "6356993d-ab64-46bb-9a43-6e7e4da6fccc"
+  }
 }
