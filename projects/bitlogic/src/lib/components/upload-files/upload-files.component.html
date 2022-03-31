@@ -1,0 +1,93 @@
+<div class="container">
+
+    <div class="header line">
+                
+        <button mat-flat-button color="primary" (click)="fileInput.click()">
+            <i class="material-icons pr-2" aria-label="backup">backup</i>
+            <span>Subir archivo</span>  
+        </button>
+    
+        <div class="progress d-flex ml-1" *ngIf="isProgress">
+            <mat-icon class="rotate-center" color="primary">cached</mat-icon>
+            <p>Cargando 1 elemento</p>
+        </div>
+        
+    </div>
+
+    <h4 class="title">Mi archivos</h4>
+
+    <input #fileInput class="input-file" type="file" accept=".xlsx, .csv, .xml, .xlt" 
+    (change)="onUploadFile($event)"/>
+
+    <div class="drop-zone" ngClass="drop-zone-active" bitDropZone (onDropZone)="onUploadFile($event)">
+        <div class="card-container">        
+            <ng-container *ngIf="filesData.length === 0; else list">
+                
+                <div class="upload-file" >
+
+                    <div class="img"></div>
+        
+                    <h5>Suelta los archivos aquí</h5>
+                    <p>El sistema admite archivos con extensión xls o xlsx</p>
+                    <!-- <button mat-flat-button color="primary" (click)="fileInput.click()">
+                        <i class="material-icons pr-2" aria-label="backup">backup</i>
+                        <span>Subir archivo</span>  
+                    </button> -->
+                </div> 
+                        
+            </ng-container>
+        </div>
+
+    </div>        
+
+    <ng-template #list>
+        <div class="list-content">
+
+            <div class="list">
+                <div class="title row line">
+                    <div class="col align-self-center"></div>
+                    <div class="col col-4 align-self-center">File</div>
+                    <div class="col align-self-center">Fecha</div>
+                    <div class="col align-self-center">Tamaño</div>
+                    <div class="col align-self-center">Estado</div>
+                    <div class="col align-self-center"></div>
+                </div>
+                <div class="files row" *ngFor="let file of filesData" (click)="onSelectFile(file)">
+                    <!-- <i class="col align-self-center material-icons">description</i> -->
+                    <mat-icon class="col align-self-center" color="primary">description</mat-icon>
+                    <div class="col align-self-center col-4">{{file.name}}</div>
+                    <div class="col align-self-center">{{file.date | date:"dd/MM/yyyy" }}</div>
+                    <div class="col align-self-center">{{file.size}}</div>
+                    <div class="col align-self-center">
+                        <!-- {{file.status}} -->
+                        <ng-container *ngTemplateOutlet="progress"></ng-container>
+                    </div>
+                    <div class="col align-self-center">
+                        
+                        <button mat-icon-button color="warn" (click)="onDeleteFile(file.id)">
+                            <!-- <i class="col align-self-center material-icons">description</i> -->
+                            <mat-icon>highlight_off</mat-icon>
+                          </button>
+                    </div>
+
+                    <div class="col-12 align-self-center line"></div>
+                </div>
+            </div>    
+        </div>
+
+    </ng-template>
+
+
+    <ng-template #progress>
+        <div class="progress-content">
+    
+          <div class="progress-bar">
+            <span class="bar">
+              <span class="progress" [style.width]="'40%'"></span>
+            </span>
+          </div>
+        </div>
+      </ng-template>
+
+</div>
+

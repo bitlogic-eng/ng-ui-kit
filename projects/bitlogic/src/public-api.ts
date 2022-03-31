@@ -45,3 +45,5 @@ export * from './lib/components/uploader/uploader.module';
 export * from './lib/components/uploader/uploader.component';
 export * from './lib/components/uploader/models/models';
 
+export * from './lib/components/upload-files/upload-files.module';
+export * from './lib/components/upload-files/upload-files.component';

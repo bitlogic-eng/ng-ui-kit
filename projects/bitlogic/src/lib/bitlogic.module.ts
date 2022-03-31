@@ -11,7 +11,8 @@ import { StatusModule } from './components/status/status.module';
 import { SnackbarModule } from './components/snackbar/snackbar.module';
 import { ToolbarMenuModule } from './components/toolbar-menu/toolbar-menu.module';
 import { TicketGeneratorModule } from './components/ticket-generator/ticket-generator.module';
-import { UploaderModule } from './components/uploader/uploader.module'
+import { UploaderModule } from './components/uploader/uploader.module';
+import { UploadFilesModule } from './components/upload-files/upload-files.module'
 
 @NgModule({
   imports: [
@@ -29,7 +30,8 @@ import { UploaderModule } from './components/uploader/uploader.module'
     SnackbarModule,
     ToolbarMenuModule,
     TicketGeneratorModule,
-    UploaderModule
+    UploaderModule,
+    UploadFilesModule
   ],
   declarations: []
 })
