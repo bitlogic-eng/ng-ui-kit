@@ -12,10 +12,10 @@
               [(value)]="selected">
 
               <mat-select-trigger>
-                <div *ngIf="selected?.length == options?.length">
+                <div *ngIf="selected?.length === options?.length">
                   {{allText}}
                 </div>
-                <div *ngIf="selected?.length != options?.length">
+                <div *ngIf="selected?.length !== options?.length">
                   {{selected ? selected[0]?.value : ''}}
                   <span *ngIf="selected?.length > 1" class="example-additional-selection">
                     ({{selected.length - 1}} {{selected?.length === 2 ? otherText.text1 : otherText.text2}})
