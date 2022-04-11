@@ -12,8 +12,8 @@ import { SnackbarModule } from './components/snackbar/snackbar.module';
 import { ToolbarMenuModule } from './components/toolbar-menu/toolbar-menu.module';
 import { TicketGeneratorModule } from './components/ticket-generator/ticket-generator.module';
 import { UploaderModule } from './components/uploader/uploader.module';
-import { UploadFilesModule } from './components/upload-files/upload-files.module'
-
+import { UploadFilesModule } from './components/upload-files/upload-files.module';
+import { ImportFileModule } from './components/import-file/import-file.module';
 @NgModule({
   imports: [
   ],
@@ -30,8 +30,9 @@ import { UploadFilesModule } from './components/upload-files/upload-files.module
     SnackbarModule,
     ToolbarMenuModule,
     TicketGeneratorModule,
-    UploaderModule,
-    UploadFilesModule
+    // UploaderModule,
+    UploadFilesModule,
+    ImportFileModule
   ],
   declarations: []
 })

@@ -9,12 +9,16 @@
     
         <div class="progress d-flex ml-1" *ngIf="isProgress">
             <mat-icon class="rotate-center" color="primary">cached</mat-icon>
-            <p>Cargando 1 elemento</p>
+            <p>{{progressMsg}}</p>
         </div>
         
     </div>
 
     <h4 class="title">Mi archivos</h4>
+    <button mat-stroked-button color="primary" (click)="onRefresh()">
+        <mat-icon>refresh</mat-icon>
+    </button>
+
 
     <input #fileInput class="input-file" type="file" accept=".xlsx, .csv, .xml, .xlt" 
     (change)="onUploadFile($event)"/>
@@ -45,29 +49,39 @@
 
             <div class="list">
                 <div class="title row line">
-                    <div class="col align-self-center"></div>
+                    <div class="col col-1 align-self-center"></div>
                     <div class="col col-4 align-self-center">File</div>
-                    <div class="col align-self-center">Fecha</div>
-                    <div class="col align-self-center">Tamaño</div>
-                    <div class="col align-self-center">Estado</div>
+                    <div class="col col-1 align-self-center">Fecha</div>
+                    <div class="col col-1 align-self-center">Tamaño</div>
+                    <div class="col col-3 align-self-center">Estado</div>
                     <div class="col align-self-center"></div>
                 </div>
                 <div class="files row" *ngFor="let file of filesData" (click)="onSelectFile(file)">
                     <!-- <i class="col align-self-center material-icons">description</i> -->
-                    <mat-icon class="col align-self-center" color="primary">description</mat-icon>
-                    <div class="col align-self-center col-4">{{file.name}}</div>
-                    <div class="col align-self-center">{{file.date | date:"dd/MM/yyyy" }}</div>
-                    <div class="col align-self-center">{{file.size}}</div>
-                    <div class="col align-self-center">
-                        <!-- {{file.status}} -->
-                        <ng-container *ngTemplateOutlet="progress"></ng-container>
+                    <mat-icon class="col col-1 align-self-center" color="primary">description</mat-icon>
+                    <div class="col col-4 align-self-center col-4">{{file.name}}</div>
+                    <div class="col col-1 align-self-center">{{file.date | date:"dd/MM/yyyy" }}</div>
+                    <div class="col col-1 align-self-center">{{file.size}}</div>
+                    <div class="col col-3 align-self-center">
+                        {{file.status}}
+                        <!-- <ng-container *ngTemplateOutlet="progress"></ng-container> -->
                     </div>
                     <div class="col align-self-center">
-                        
-                        <button mat-icon-button color="warn" (click)="onDeleteFile(file.id)">
-                            <!-- <i class="col align-self-center material-icons">description</i> -->
-                            <mat-icon>highlight_off</mat-icon>
-                          </button>
+                        <ng-container *ngIf="file.isProcessing === false; else fileIsProcessing">
+                            <button mat-icon-button color="warn" (click)="onDeleteFile(file)">
+                                <mat-icon>highlight_off</mat-icon>
+                            </button>
+                            <button mat-icon-button color="primary" (click)="onExecute(file)">
+                                <mat-icon>play_arrow</mat-icon>
+                            </button>
+                            <button mat-icon-button color="primary" (click)="onInfo(file)">
+                                <mat-icon>info</mat-icon>
+                            </button>
+                        </ng-container>
+                        <ng-template #fileIsProcessing>
+                            <mat-icon class="rotate-center align-self-center" color="primary">autorenew</mat-icon>
+                        </ng-template>
+
                     </div>
 
                     <div class="col-12 align-self-center line"></div>

@@ -7,6 +7,7 @@ export interface FileData {
   size: number;
   date: number;
   status: string;
+  isProcessing: boolean;
 }
 
 @Component({
@@ -17,6 +18,7 @@ export interface FileData {
 export class UploaderFileComponent implements OnInit {
 
   currentFile: File;
+  progressMsg: string;
 
   @Input()
   filesData: FileData[] = [];
@@ -32,6 +34,15 @@ export class UploaderFileComponent implements OnInit {
 
   @Output()
   deleteFile: EventEmitter<FileData> = new EventEmitter();
+
+  @Output()
+  refresh: EventEmitter<boolean> = new EventEmitter();
+
+  @Output()
+  execute: EventEmitter<FileData> = new EventEmitter();
+
+  @Output()
+  info: EventEmitter<FileData> = new EventEmitter();
 
   constructor(private http: HttpClient) {
   }
@@ -51,6 +62,7 @@ export class UploaderFileComponent implements OnInit {
 
     console.log(this.currentFile);
 
+    this.progressMsg = "Cargando 1 elemento";
     this.importFile.emit(this.currentFile);
 
 
@@ -60,8 +72,21 @@ export class UploaderFileComponent implements OnInit {
     this.selectFile.emit($event);
   }
 
-  onDeleteFile(id) {
-    this.deleteFile.emit(id);
+  onDeleteFile(file) {
+    this.progressMsg = "Eliminando 1 elemento";
+    this.deleteFile.emit(file);
+  }
+
+  onRefresh() {
+    this.refresh.emit(true);
+  }
+
+  onExecute(file) {
+    this.execute.emit(file);
+  }
+
+  onInfo(file) {
+    this.info.emit(file);
   }
 
   private validateFile(file: File): boolean {
