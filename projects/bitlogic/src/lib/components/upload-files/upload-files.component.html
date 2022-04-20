@@ -1,0 +1,103 @@
+<div class="container">
+
+    <div class="header line">
+                
+        <button mat-flat-button color="primary" (click)="fileInput.click()">
+            <i class="material-icons pr-2" aria-label="backup">backup</i>
+            <span>Subir archivo</span>  
+        </button>
+    
+        <div class="progress d-flex ml-1" *ngIf="isProgress">
+            <mat-icon class="rotate-center" color="primary">cached</mat-icon>
+            <p>{{progressMsg}}</p>
+        </div>
+        
+    </div>
+
+    <h4 class="title">Mi archivos</h4>
+    <button mat-stroked-button color="primary" (click)="onRefresh()">
+        <mat-icon>refresh</mat-icon>
+    </button>
+
+
+    <input #fileInput class="input-file" type="file" accept=".xlsx, .csv, .xml, .xlt" 
+    (change)="onUploadFile($event)"/>
+
+    <div class="drop-zone" ngClass="drop-zone-active" bitDropZone (onDropZone)="onUploadFile($event)">
+        <div class="card-container">        
+            <ng-container *ngIf="filesData.length === 0; else list">
+                
+                <div class="upload-file" >
+
+                    <div class="img"></div>
+        
+                    <h5>Suelta los archivos aquí</h5>
+                    <p>El sistema admite archivos con extensión xls o xlsx</p>
+                </div> 
+                        
+            </ng-container>
+        </div>
+
+    </div>        
+
+    <ng-template #list>
+        <div class="list-content">
+
+            <div class="list">
+                <div class="title row line">
+                    <div class="col col-1 align-self-center"></div>
+                    <div class="col col-4 align-self-center">File</div>
+                    <div class="col col-1 align-self-center">Fecha</div>
+                    <div class="col col-1 align-self-center">Tamaño</div>
+                    <div class="col col-3 align-self-center">Estado</div>
+                    <div class="col align-self-center"></div>
+                </div>
+                <div class="files row" *ngFor="let file of filesData" (click)="onSelectFile(file)">
+                    <mat-icon class="col col-1 align-self-center" color="primary">description</mat-icon>
+                    <div class="col col-4 align-self-center col-4">{{file.name}}</div>
+                    <div class="col col-1 align-self-center">{{file.date | date:"dd/MM/yyyy" }}</div>
+                    <div class="col col-1 align-self-center">{{file.size}}</div>
+                    <div class="col col-3 align-self-center">
+                        {{file.status}}
+                    </div>
+                    <div class="col align-self-center">
+                        <button mat-icon-button color="primary" *ngIf="file.actions?.info" (click)="onInfo(file)">
+                            <mat-icon>info</mat-icon>
+                        </button>
+
+                        <ng-container *ngIf="file.isProcessing === false; else fileIsProcessing">
+                            <button mat-icon-button color="primary" *ngIf="file.actions?.execute" (click)="onExecute(file)">
+                                <mat-icon>play_arrow</mat-icon>
+                            </button>
+                            <button mat-icon-button color="warn" *ngIf="file.actions?.delete" (click)="onDeleteFile(file)">
+                                <mat-icon>highlight_off</mat-icon>
+                            </button>
+                        </ng-container>
+                        <ng-template #fileIsProcessing>
+                            <mat-icon class="rotate-center align-self-center" color="primary">autorenew</mat-icon>
+                        </ng-template>
+
+
+                    </div>
+
+                    <div class="col-12 align-self-center line"></div>
+                </div>
+            </div>    
+        </div>
+
+    </ng-template>
+
+
+    <ng-template #progress>
+        <div class="progress-content">
+    
+          <div class="progress-bar">
+            <span class="bar">
+              <span class="progress" [style.width]="'40%'"></span>
+            </span>
+          </div>
+        </div>
+      </ng-template>
+
+</div>
+

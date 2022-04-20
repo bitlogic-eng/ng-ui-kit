@@ -1,0 +1,93 @@
+<mat-horizontal-stepper  labelPosition="bottom" [disableRipple]="false"  #stepper>
+      
+      <mat-step [editable]="false">
+        <ng-template matStepLabel>Análisis de la importación</ng-template>
+
+          <div class="step-content">
+            <ng-container *ngTemplateOutlet="step1"></ng-container>
+          </div>
+
+      </mat-step>
+      <mat-step  [editable]="false">
+        <ng-template matStepLabel>Detalle del análisis</ng-template>
+        <div>
+            <ng-container *ngTemplateOutlet="step2"></ng-container>
+        </div>
+
+      </mat-step>
+      <mat-step [editable]="false">
+        <ng-template matStepLabel>Progreso de la importación</ng-template>
+        <div>
+          <ng-container *ngTemplateOutlet="step3"></ng-container>
+        </div>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Reporte de creación</ng-template>
+        <div>
+          <ng-container *ngTemplateOutlet="step4"></ng-container>
+        </div>
+  
+      </mat-step>
+  
+</mat-horizontal-stepper>
+    
+<ng-template #loading>
+  <p>loading</p>
+  <div class="loading">
+    <mat-spinner diameter="40" ></mat-spinner>
+    </div>
+</ng-template>
+
+<ng-template #step1>
+    <div class="progress-content">
+        <div class="imgAnalysis"></div>
+        <p>{{progressValue}}</p>
+
+        <div class="progress-bar">
+        <span class="bar">
+            <span class="progress" [style.width]="progressValue"></span>
+        </span>
+        </div>
+
+        <p>{{_jobData?.fileName}}</p>
+
+        <p>Analizando file  <strong>{{_jobData?.status}}</strong></p>
+
+        <button mat-stroked-button color="primary" >Cancelar</button>
+    </div>
+</ng-template>
+
+<ng-template #step2>
+    <div class="progress-content">
+        <p>File: <strong>{{_jobData?.fileName}}</strong></p>
+        <div class="imgReportAnalysis"></div>
+        <button mat-stroked-button color="primary" (click)="onImportFile()">Cargar</button>
+    </div>
+
+</ng-template>      
+
+<ng-template #step3>
+    <div class="progress-content">
+        <div class="imgProgress"></div>
+        <p>{{progressValue}}</p>
+
+        <div class="progress-bar">
+        <span class="bar">
+            <span class="progress" [style.width]="progressValue"></span>
+        </span>
+        </div>
+
+        <p>{{_jobData?.fileName}}</p>
+
+        <p>Procesando file <strong>{{_jobData?.status}}</strong></p>
+
+        <button mat-stroked-button color="primary" >Cancelar</button>
+    </div>
+</ng-template>
+
+<ng-template #step4>
+    <div class="progress-content">
+        <p>File: <strong>{{_jobData?.fileName}}</strong></p>
+        <div class="imgReportDone"></div>
+    </div>
+</ng-template>      

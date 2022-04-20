@@ -5,7 +5,6 @@ $mat-color-primary: #{bit-color(primary, base)};
 $mat-color-secondary: #{bit-color(secondary, base)};
 $mat-color-danger: #{bit-color(danger, base)};
 
-
 // color
 $mat-primary-colors: (
     
@@ -223,4 +222,10 @@ $mat-light-theme: mat-light-theme($mat-palette-primary, $mat-palette-secondary, 
 
 .filter-option > .mat-pseudo-checkbox {
   display: none !important;
+}
+
+button {
+  span {
+    line-height: 32px;
+  }
 }
