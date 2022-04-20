@@ -33,10 +33,6 @@
         
                     <h5>Suelta los archivos aquí</h5>
                     <p>El sistema admite archivos con extensión xls o xlsx</p>
-                    <!-- <button mat-flat-button color="primary" (click)="fileInput.click()">
-                        <i class="material-icons pr-2" aria-label="backup">backup</i>
-                        <span>Subir archivo</span>  
-                    </button> -->
                 </div> 
                         
             </ng-container>
@@ -57,14 +53,12 @@
                     <div class="col align-self-center"></div>
                 </div>
                 <div class="files row" *ngFor="let file of filesData" (click)="onSelectFile(file)">
-                    <!-- <i class="col align-self-center material-icons">description</i> -->
                     <mat-icon class="col col-1 align-self-center" color="primary">description</mat-icon>
                     <div class="col col-4 align-self-center col-4">{{file.name}}</div>
                     <div class="col col-1 align-self-center">{{file.date | date:"dd/MM/yyyy" }}</div>
                     <div class="col col-1 align-self-center">{{file.size}}</div>
                     <div class="col col-3 align-self-center">
                         {{file.status}}
-                        <!-- <ng-container *ngTemplateOutlet="progress"></ng-container> -->
                     </div>
                     <div class="col align-self-center">
                         <button mat-icon-button color="primary" *ngIf="file.actions?.info" (click)="onInfo(file)">

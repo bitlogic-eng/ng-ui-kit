@@ -22,8 +22,6 @@ export interface FileActions {
   styleUrls: ['./upload-files.component.scss']
 })
 export class UploaderFileComponent implements OnInit {
-
-  // _actions: FileActions;
   currentFile: File;
   progressMsg: string;
 

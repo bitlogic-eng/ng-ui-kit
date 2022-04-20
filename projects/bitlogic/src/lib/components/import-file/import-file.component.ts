@@ -21,12 +21,6 @@ export interface JobData {
   progress: number;
   data?: any;
 }
-
-// export interface ImportFileData {
-//   id: string,
-//   name: string
-// }
-
 @Component({
   selector: 'bit-import-file',
   templateUrl: './import-file.component.html',

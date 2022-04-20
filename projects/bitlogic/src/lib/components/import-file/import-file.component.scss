@@ -95,11 +95,7 @@
     }
   
   }
-  
-  
-  
-  
-  
+   
 }
 
 ::ng-deep .mat-horizontal-stepper-header-container {
@@ -108,15 +104,7 @@
   }
   
   ::ng-deep .mat-horizontal-stepper-header {
-    // display: flex;
-    // justify-content: center;
-    // flex: 1 1 0px;
-    // cursor: default;
     pointer-events: none;
-  
-    // &:hover {
-    //   background-color: initial;
-    // }
   }
   
   ::ng-deep .mat-stepper-horizontal {
@@ -126,17 +114,7 @@
         background-color: #EFEFEF;
       }
   }
-  
-//   ::ng-deep .mat-stepper-horizontal-line {
-//     flex: 0 !important;
-//     margin: 0 !important;
-//     min-width: 24px !important;
-//   }
-  
-//   ::ng-deep .mat-horizontal-stepper-header {
-//     padding: 0 !important;
-//   }
-  
+    
   ::ng-deep .mat-horizontal-stepper-header .mat-step-icon {
     background-color: #C8C9CA;
     width: 36px;
@@ -167,9 +145,7 @@
     
   }
 
-
-// Animation =============================================
-// Edit these at random intervals to change the animation.
+// Animation
 @keyframes loader {
 
 	0% {
