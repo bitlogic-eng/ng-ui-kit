@@ -6,7 +6,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatIconModule } from '@angular/material/icon';
-
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [ImportFileComponent],
@@ -16,7 +16,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatStepperModule,
     MatButtonModule,
     MatProgressBarModule,
-    MatIconModule  
+    MatIconModule,
+    MatProgressSpinnerModule  
   ],
   exports: [ImportFileComponent]
 })

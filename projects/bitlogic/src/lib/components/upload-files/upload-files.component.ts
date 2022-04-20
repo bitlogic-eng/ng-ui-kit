@@ -8,8 +8,14 @@ export interface FileData {
   date: number;
   status: string;
   isProcessing: boolean;
+  actions: FileActions;
 }
 
+export interface FileActions {
+  delete?: boolean;
+  execute?: boolean;
+  info?: boolean;
+}
 @Component({
   selector: 'bit-upload-files',
   templateUrl: './upload-files.component.html',
@@ -17,6 +23,7 @@ export interface FileData {
 })
 export class UploaderFileComponent implements OnInit {
 
+  // _actions: FileActions;
   currentFile: File;
   progressMsg: string;
 

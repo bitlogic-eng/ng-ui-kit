@@ -1,14 +1,17 @@
 <h4>Importación de Catedras</h4>
-<p>En esta seccion  se analizan si los datos del archivo a importar son correctos</p>
+<!-- <p>En esta seccion  se analizan si los datos del archivo a importar son correctos</p> -->
 
+<!-- <ng-container *ngIf="!isLoading; else loading">
+
+</ng-container> -->
 <mat-horizontal-stepper  labelPosition="bottom" [disableRipple]="false"  #stepper>
-
+      
       <mat-step [editable]="false">
         <ng-template matStepLabel>Análisis de la importación</ng-template>
 
           <div class="step-content">
             <ng-container *ngTemplateOutlet="step1"></ng-container>
-            <button mat-button (click)="stepper.next()">Next</button>
+            <!-- <button mat-button (click)="stepper.next()">Next</button> -->
           </div>
 
       </mat-step>
@@ -16,7 +19,7 @@
         <ng-template matStepLabel>Detalle del análisis</ng-template>
         <div>
             <ng-container *ngTemplateOutlet="step2"></ng-container>
-            <button mat-button matStepperNext>Next</button>
+            <!-- <button mat-button matStepperNext>Next</button> -->
         </div>
 
       </mat-step>
@@ -24,25 +27,33 @@
         <ng-template matStepLabel>Progreso de la importación</ng-template>
         <div>
           <ng-container *ngTemplateOutlet="step3"></ng-container>
-          <button mat-button matStepperNext>Next</button>
+          <!-- <button mat-button matStepperNext>Next</button> -->
         </div>
       </mat-step>
       <mat-step>
         <ng-template matStepLabel>Reporte de creación</ng-template>
         <div>
           <ng-container *ngTemplateOutlet="step4"></ng-container>
-          <button mat-button (click)="onReset()">Reset</button>
+          <!-- <button mat-button (click)="onReset()">Reset</button> -->
         </div>
   
       </mat-step>
-
+  
 </mat-horizontal-stepper>
     
 <!-- <button mat-stroked-button (click)="clickButton(1, stepper)">1</button>
 <button mat-stroked-button (click)="clickButton(2, stepper)">2</button>
 <button mat-stroked-button (click)="clickButton(3, stepper)">3</button>
 <button mat-stroked-button (click)="clickButton(4, stepper)">4</button> -->
-    
+   
+
+<ng-template #loading>
+  <p>loading</p>
+  <div class="loading">
+    <mat-spinner diameter="40" ></mat-spinner>
+    </div>
+</ng-template>
+
 <ng-template #step1>
     <div class="progress-content">
         <div class="imgAnalysis"></div>
@@ -55,9 +66,9 @@
         </span>
         </div>
 
-        <p>{{importFileData?.name}}</p>
+        <p>{{_jobData?.fileName}}</p>
 
-        <p>Analizando file  <strong>{{_stepData.status}}</strong></p>
+        <p>Analizando file  <strong>{{_jobData?.status}}</strong></p>
 
         <button mat-stroked-button color="primary" >Cancelar</button>
     </div>
@@ -65,26 +76,11 @@
 
 <ng-template #step2>
     <div class="progress-content">
+        <p>File: <strong>{{_jobData?.fileName}}</strong></p>
         <div class="imgReportAnalysis"></div>
         <button mat-stroked-button color="primary" (click)="onImportFile()">Cargar</button>
     </div>
 
-    <!-- <div class="info">
-        <div class="header">
-        <h5>Resumen del Analisis de Importacion</h5>
-        <div>Status</div>
-        <div>Errores</div>
-        </div>
-
-        <div class="content">
-        table
-        </div>
-
-        <div class="footer">
-        <button mat-stroked-button color="primary">Cancelar</button>
-        <button mat-raised-button color="primary">Cargar</button>
-        </div> -->
-    <!-- </div> -->
 </ng-template>      
 
 <ng-template #step3>
@@ -98,9 +94,9 @@
         </span>
         </div>
 
-        <p>{{importFileData?.name}}</p>
+        <p>{{_jobData?.fileName}}</p>
 
-        <p>Procesando file <strong>{{_stepData.status}}</strong></p>
+        <p>Procesando file <strong>{{_jobData?.status}}</strong></p>
 
         <button mat-stroked-button color="primary" >Cancelar</button>
     </div>
@@ -108,7 +104,9 @@
 
 <ng-template #step4>
     <div class="progress-content">
+        <p>File: <strong>{{_jobData?.fileName}}</strong></p>
         <div class="imgReportDone"></div>
+        
         <!-- <button mat-stroked-button color="primary" >Cargar</button> -->
     </div>
 </ng-template>      

@@ -67,20 +67,22 @@
                         <!-- <ng-container *ngTemplateOutlet="progress"></ng-container> -->
                     </div>
                     <div class="col align-self-center">
+                        <button mat-icon-button color="primary" *ngIf="file.actions?.info" (click)="onInfo(file)">
+                            <mat-icon>info</mat-icon>
+                        </button>
+
                         <ng-container *ngIf="file.isProcessing === false; else fileIsProcessing">
-                            <button mat-icon-button color="warn" (click)="onDeleteFile(file)">
-                                <mat-icon>highlight_off</mat-icon>
-                            </button>
-                            <button mat-icon-button color="primary" (click)="onExecute(file)">
+                            <button mat-icon-button color="primary" *ngIf="file.actions?.execute" (click)="onExecute(file)">
                                 <mat-icon>play_arrow</mat-icon>
                             </button>
-                            <button mat-icon-button color="primary" (click)="onInfo(file)">
-                                <mat-icon>info</mat-icon>
+                            <button mat-icon-button color="warn" *ngIf="file.actions?.delete" (click)="onDeleteFile(file)">
+                                <mat-icon>highlight_off</mat-icon>
                             </button>
                         </ng-container>
                         <ng-template #fileIsProcessing>
                             <mat-icon class="rotate-center align-self-center" color="primary">autorenew</mat-icon>
                         </ng-template>
+
 
                     </div>
 

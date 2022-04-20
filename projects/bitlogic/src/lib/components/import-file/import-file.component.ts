@@ -11,19 +11,21 @@ export const enum STEPS {
   STEP4 = 4,
 }
 
-export interface StepData {
+export interface JobData {
+  id: string;
+  fileId: string;
+  fileName: string;
   step: STEPS;
   error?: number;
   status: string;
-  data?: {
-    progress: number;
-  }
+  progress: number;
+  data?: any;
 }
 
-export interface ImportFileData {
-  id: string,
-  name: string
-}
+// export interface ImportFileData {
+//   id: string,
+//   name: string
+// }
 
 @Component({
   selector: 'bit-import-file',
@@ -31,11 +33,7 @@ export interface ImportFileData {
   styleUrls: ['./import-file.component.scss']
 })
 export class ImportFileComponent implements OnInit, AfterViewInit{
-  // firstFormGroup: FormGroup;
-  // secondFormGroup: FormGroup;
-  // isEditable = false;
-
-  private _stepData: StepData;
+  private _jobData: JobData;
 
   progressValue: string;
 
@@ -43,42 +41,42 @@ export class ImportFileComponent implements OnInit, AfterViewInit{
   @ViewChild('stepper') private stepper: MatStepper;
   
   @Input()
-  importFileData: ImportFileData;
-
-  @Input()
-  set stepData(data: StepData) {
+  set jobData(data: JobData) {
     console.log('stepData'); 
     console.log(data); 
-    this._stepData = data;
-    this.progressValue = `${this._stepData?.data?.progress}%`;
-    this.clickButton(this._stepData.step, this.stepper);
+    this._jobData = data;
+    this.progressValue = `${this._jobData?.progress}%`;
+    if (this._jobData) {
+      this.clickButton(this._jobData.step, this.stepper);
+    }
+    
   }
-  get stepData(): StepData {
-    return this._stepData;
+  get jobData(): JobData {
+    return this._jobData;
   }
+
+  @Input()
+  isLoading: boolean = false;
   
   @Output()
-  importFile: EventEmitter<ImportFileData> = new EventEmitter();
+  importFile: EventEmitter<JobData> = new EventEmitter();
 
-  @Output()
-  reset: EventEmitter<boolean> = new EventEmitter();
-
-  
-  // constructor(private _formBuilder: FormBuilder) {}
   constructor() {}
   
   ngAfterViewInit(): void {
-    this.stepper.selectedIndex = this._stepData.step;
-    console.log(this.stepper.selectedIndex);
+    // this.stepper.selectedIndex = this._jobData.step;
+    // console.log(this.stepper.selectedIndex);
   }
 
   ngOnInit() {
-    // this.firstFormGroup = this._formBuilder.group({
-    //   firstCtrl: ['', Validators.required]
-    // });
-    // this.secondFormGroup = this._formBuilder.group({
-    //   secondCtrl: ['', Validators.required]
-    // });
+    this._jobData = {
+      id: '',
+      fileId: '',
+      fileName: '',
+      step: 0,
+      status: '',
+      progress: 0
+    }
   }
 
   clickButton(index: number, stepper: MatStepper) {
@@ -98,25 +96,13 @@ export class ImportFileComponent implements OnInit, AfterViewInit{
       }
   
     }
-    // for(const step of ) {
-    //   console.log (step.completed ) 
-    // }
   }
 
   onImportFile() {
-    this.importFile.emit(this.importFileData);
+    this.importFile.emit(this._jobData);
   }
 
   onReset() {
-    this._stepData = {
-      step: 0,
-      error: 0,
-      status: '',
-      data: {
-        progress: 0
-      }
-    }
-    // this.reset.emit(true);
     this.stepper.reset();
   }
 }

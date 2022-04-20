@@ -17,6 +17,15 @@
     font-size: 12px;
   }
 
+  .loading {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    flex-direction: column;
+    margin: 5rem;
+
+  }
+
   .imgAnalysis {
     width: 300px;
     height: 300px;
