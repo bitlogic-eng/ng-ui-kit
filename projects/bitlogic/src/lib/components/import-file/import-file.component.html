@@ -1,12 +1,13 @@
+<div *ngIf="!isLoading; else loading"></div>
+
 <mat-horizontal-stepper  labelPosition="bottom" [disableRipple]="false"  #stepper>
-      
+
       <mat-step [editable]="false">
         <ng-template matStepLabel>Análisis de la importación</ng-template>
 
           <div class="step-content">
             <ng-container *ngTemplateOutlet="step1"></ng-container>
           </div>
-
       </mat-step>
       <mat-step  [editable]="false">
         <ng-template matStepLabel>Detalle del análisis</ng-template>
@@ -31,13 +32,6 @@
   
 </mat-horizontal-stepper>
     
-<ng-template #loading>
-  <p>loading</p>
-  <div class="loading">
-    <mat-spinner diameter="40" ></mat-spinner>
-    </div>
-</ng-template>
-
 <ng-template #step1>
     <div class="progress-content">
         <div class="imgAnalysis"></div>
@@ -60,8 +54,26 @@
 <ng-template #step2>
     <div class="progress-content">
         <p>File: <strong>{{_jobData?.fileName}}</strong></p>
+        <div class="d-flex align-items-center">
+          <ng-container *ngIf="getDataError(); else notFoundErrors">
+            <p class="mr-2">Analisis con errores</p>
+            <button mat-stroked-button color="warn" (click)="showErrors()">
+              <mat-icon color="warn">error</mat-icon>
+              Ver Errores
+            </button>
+          </ng-container>
+          <ng-template #notFoundErrors>
+            <p class="mr-2">Analisis completo</p>
+            <button mat-stroked-button color="primary" (click)="onImportFile()">
+              <mat-icon color="primary">check_circle</mat-icon>
+              Cargar
+            </button>
+            
+          </ng-template>  
+        </div>
+
         <div class="imgReportAnalysis"></div>
-        <button mat-stroked-button color="primary" (click)="onImportFile()">Cargar</button>
+        
     </div>
 
 </ng-template>      
@@ -88,6 +100,37 @@
 <ng-template #step4>
     <div class="progress-content">
         <p>File: <strong>{{_jobData?.fileName}}</strong></p>
+        <div class="d-flex align-items-center">
+          <ng-container *ngIf="getDataError(); else notFoundErrors">
+            <p class="mr-2">Carga completa con errores</p>
+            <button mat-stroked-button color="warn" (click)="showErrors()">
+              <mat-icon color="warn">error</mat-icon>
+              Ver Errores
+            </button>
+          </ng-container>
+          <ng-template #notFoundErrors>
+            <p class="mr-2">Carga completa</p>
+            <mat-icon color="primary">check_circle</mat-icon>
+          </ng-template>  
+        </div>
+
         <div class="imgReportDone"></div>
+        
+        
     </div>
-</ng-template>      
+</ng-template>    
+
+<!-- <ng-template #dataError>
+  <h3>Error: </h3>
+  <div class="d-flex" *ngFor="let data of _jobData?.data?.error">
+    <h6>{{data.row}}{{data.col}}</h6>
+    <p class="mx-2">{{data.msg}}</p>
+  </div>
+</ng-template> -->
+
+<ng-template #loading>
+  <div class="loading">
+    <mat-spinner [diameter]="40"></mat-spinner>
+  </div>
+</ng-template>
+

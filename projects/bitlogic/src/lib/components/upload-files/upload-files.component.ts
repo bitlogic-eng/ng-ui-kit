@@ -15,6 +15,7 @@ export interface FileActions {
   delete?: boolean;
   execute?: boolean;
   info?: boolean;
+  download?: boolean;
 }
 @Component({
   selector: 'bit-upload-files',
@@ -30,6 +31,9 @@ export class UploaderFileComponent implements OnInit {
 
   @Input()
   isProgress: boolean;
+
+  @Input()
+  isLoading: boolean;
 
   @Output()
   importFile: EventEmitter<File> = new EventEmitter();
@@ -48,6 +52,9 @@ export class UploaderFileComponent implements OnInit {
 
   @Output()
   info: EventEmitter<FileData> = new EventEmitter();
+
+  @Output()
+  downloadFile: EventEmitter<FileData> = new EventEmitter();
 
   constructor(private http: HttpClient) {
   }
@@ -92,6 +99,10 @@ export class UploaderFileComponent implements OnInit {
 
   onInfo(file) {
     this.info.emit(file);
+  }
+
+  onDownloadFile(file) {
+    this.downloadFile.emit(file);
   }
 
   private validateFile(file: File): boolean {

@@ -23,7 +23,7 @@
     <input #fileInput class="input-file" type="file" accept=".xlsx, .csv, .xml, .xlt" 
     (change)="onUploadFile($event)"/>
 
-    <div class="drop-zone" ngClass="drop-zone-active" bitDropZone (onDropZone)="onUploadFile($event)">
+    <div class="drop-zone" ngClass="drop-zone-active" *ngIf="!isLoading; else loading" bitDropZone (onDropZone)="onUploadFile($event)">
         <div class="card-container">        
             <ng-container *ngIf="filesData.length === 0; else list">
                 
@@ -65,12 +65,16 @@
                             <mat-icon>info</mat-icon>
                         </button>
 
+                        <!-- <button mat-icon-button color="primary" *ngIf="file.actions?.download" (click)="onDownloadFile(file)">
+                            <mat-icon>download</mat-icon>
+                        </button> -->
+
                         <ng-container *ngIf="file.isProcessing === false; else fileIsProcessing">
                             <button mat-icon-button color="primary" *ngIf="file.actions?.execute" (click)="onExecute(file)">
                                 <mat-icon>play_arrow</mat-icon>
                             </button>
                             <button mat-icon-button color="warn" *ngIf="file.actions?.delete" (click)="onDeleteFile(file)">
-                                <mat-icon>highlight_off</mat-icon>
+                                <mat-icon>delete</mat-icon>
                             </button>
                         </ng-container>
                         <ng-template #fileIsProcessing>
@@ -99,5 +103,11 @@
         </div>
       </ng-template>
 
+      <ng-template #loading>
+          <div class="d-flex align-items-center justify-content-center">
+            <mat-spinner [diameter]="40"></mat-spinner>
+          </div>
+        
+      </ng-template>
 </div>
 

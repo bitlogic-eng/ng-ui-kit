@@ -1,7 +1,7 @@
-import { Component, Input, OnInit , ElementRef, ViewChild, AfterViewInit, EventEmitter, Output } from '@angular/core';
-
+import { Component, Input, OnInit , ViewChild, AfterViewInit, EventEmitter, Output } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatHorizontalStepper, MatStepper } from '@angular/material/stepper';
-
+import { ImportFileErrorDialogComponent } from './import-file-errorDialog.component';
 
 export const enum STEPS {
   STEP0 = 1,
@@ -19,7 +19,7 @@ export interface JobData {
   error?: number;
   status: string;
   progress: number;
-  data?: any;
+  data?: {dataSource: string, error: []};
 }
 @Component({
   selector: 'bit-import-file',
@@ -50,12 +50,12 @@ export class ImportFileComponent implements OnInit, AfterViewInit{
   }
 
   @Input()
-  isLoading: boolean = false;
+  isLoading: boolean;
   
   @Output()
   importFile: EventEmitter<JobData> = new EventEmitter();
 
-  constructor() {}
+  constructor(private dialog: MatDialog) {}
   
   ngAfterViewInit(): void {
     // this.stepper.selectedIndex = this._jobData.step;
@@ -84,11 +84,9 @@ export class ImportFileComponent implements OnInit, AfterViewInit{
         console.log (element ) 
         if (i < index - 1) {
           element.completed= true;
-        }
-        
+        }  
         
       }
-  
     }
   }
 
@@ -99,4 +97,36 @@ export class ImportFileComponent implements OnInit, AfterViewInit{
   onReset() {
     this.stepper.reset();
   }
+
+  getDataError() {
+    const data = this._jobData.data;
+    console.log(data);
+    if (data) {
+      return data.error.length === 0 ? false : true;
+    }
+
+    return false;
+  }
+
+  showErrors() {
+    this.dialog.open(ImportFileErrorDialogComponent, {
+      width      : '100%',
+      maxWidth   : '400px',
+      data: this._jobData.data?.error
+    });
+
+    // width      : '100%',
+    // maxWidth   : '400px',
+    // height     : 'auto',
+    // hasBackdrop: true,
+    // maxHeight  : '700px',
+    // panelClass : ‘personal-details-dialog‘,
+    // data       : {
+    //     person: {
+    //         name: ‘Simon’,
+    //         age: 32,
+    //     }
+    // },    
+  }
+
 }

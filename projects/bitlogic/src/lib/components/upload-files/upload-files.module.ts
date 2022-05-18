@@ -4,13 +4,15 @@ import { DropZoneDirective } from './drop-zone.directive';
 import { UploaderFileComponent } from './upload-files.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [UploaderFileComponent, DropZoneDirective],
   imports: [
     CommonModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     UploaderFileComponent
