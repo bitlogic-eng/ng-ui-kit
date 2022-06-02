@@ -1,5 +1,4 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component, Input, OnInit, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 
 export interface FileData {
   id: string;
@@ -20,7 +19,8 @@ export interface FileActions {
 @Component({
   selector: 'bit-upload-files',
   templateUrl: './upload-files.component.html',
-  styleUrls: ['./upload-files.component.scss']
+  styleUrls: ['./upload-files.component.scss'],
+  encapsulation: ViewEncapsulation.ShadowDom
 })
 export class UploaderFileComponent implements OnInit {
   currentFile: File;
@@ -56,7 +56,7 @@ export class UploaderFileComponent implements OnInit {
   @Output()
   downloadFile: EventEmitter<FileData> = new EventEmitter();
 
-  constructor(private http: HttpClient) {
+  constructor() {
   }
 
   ngOnInit(): void {
@@ -101,9 +101,9 @@ export class UploaderFileComponent implements OnInit {
     this.info.emit(file);
   }
 
-  onDownloadFile(file) {
-    this.downloadFile.emit(file);
-  }
+  // onDownloadFile(file) {
+  //   this.downloadFile.emit(file);
+  // }
 
   private validateFile(file: File): boolean {
     return true;

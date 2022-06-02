@@ -1,7 +1,6 @@
 <div class="container">
 
     <div class="header line">
-                
         <button mat-flat-button color="primary" (click)="fileInput.click()">
             <i class="material-icons pr-2" aria-label="backup">backup</i>
             <span>Subir archivo</span>  
@@ -65,10 +64,6 @@
                             <mat-icon>info</mat-icon>
                         </button>
 
-                        <!-- <button mat-icon-button color="primary" *ngIf="file.actions?.download" (click)="onDownloadFile(file)">
-                            <mat-icon>download</mat-icon>
-                        </button> -->
-
                         <ng-container *ngIf="file.isProcessing === false; else fileIsProcessing">
                             <button mat-icon-button color="primary" *ngIf="file.actions?.execute" (click)="onExecute(file)">
                                 <mat-icon>play_arrow</mat-icon>
@@ -107,7 +102,6 @@
           <div class="d-flex align-items-center justify-content-center">
             <mat-spinner [diameter]="40"></mat-spinner>
           </div>
-        
       </ng-template>
 </div>
 

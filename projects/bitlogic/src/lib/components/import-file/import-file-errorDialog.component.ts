@@ -3,7 +3,7 @@ import { MAT_DIALOG_DATA } from "@angular/material/dialog";
 
 @Component({
     selector: 'bit-import-file-error-dialog',
-    templateUrl: 'import-file-errorDialog.component.html',
+    templateUrl: 'import-file-error-dialog.component.html',
   })
   export class ImportFileErrorDialogComponent {
     
