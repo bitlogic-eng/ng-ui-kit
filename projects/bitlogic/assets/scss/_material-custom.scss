@@ -122,6 +122,15 @@ $mat-light-theme: mat-light-theme($mat-palette-primary, $mat-palette-secondary, 
       border-radius: 4px;
       background: #fff;
     }
+
+    // disabled
+    &.mat-form-field-disabled {
+      .mat-form-field-outline {
+        background-color: #f8f8f8;
+      }
+      
+    }
+    
     .mat-form-field-outline-start,
     .mat-form-field-outline-gap,
     .mat-form-field-outline-end {

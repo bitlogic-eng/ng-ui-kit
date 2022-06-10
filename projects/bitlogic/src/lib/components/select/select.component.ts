@@ -53,6 +53,10 @@ export class SelectComponent implements OnInit {
   @Input()
   allText: string = 'Todos';
 
+  @Input()
+  disabled: boolean = false;
+
+
   @Output()
   selectChange = new EventEmitter();
 

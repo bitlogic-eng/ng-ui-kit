@@ -9,7 +9,8 @@
               [formControl]="selectControl"
               disableOptionCentering
               panelClass="select-margin-top"
-              [(value)]="selected">
+              [(value)]="selected"
+              [disabled]="disabled">
 
               <mat-select-trigger>
                 <div *ngIf="selected?.length === options?.length">
@@ -23,7 +24,7 @@
                 </div>
               </mat-select-trigger>
 
-    <mat-option disabled="disabled" class="filter-option">
+    <mat-option class="filter-option">
       <button mat-button color="primary" (click)="selectAll()">
        {{selectButtons.selectAll}}
       </button>
@@ -43,7 +44,8 @@
               (selectionChange)="onSelectionChange($event)"
               [formControl]="selectControl"
               disableOptionCentering
-              panelClass="select-margin-top">
+              panelClass="select-margin-top"
+              [disabled]="disabled">
 
     <mat-option *ngFor="let option of options"
                 [value]="option">
