@@ -35,7 +35,7 @@ NPM private registry [Nexus](https://nexus.uesiglo21.edu.ar/#browse/browse:npm-p
 To install this library, run:
 
 ```bash
-$ npm install @bitlogic/ng-ui-kit
+$ npm install @bitlogic-eng/ng-ui-kit
 ```
 
 and then from your Angular `AppModule`:
@@ -43,7 +43,7 @@ and then from your Angular `AppModule`:
 ```typescript
 ...
 // Import the module
-import { BitlogicModule } from '@bitlogic/ng-ui-kit';
+import { BitlogicModule } from '@bitlogic-eng/ng-ui-kit';
 
 @NgModule({
   ...
