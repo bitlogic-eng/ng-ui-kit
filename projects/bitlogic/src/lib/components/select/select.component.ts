@@ -45,6 +45,12 @@ export class SelectComponent implements OnInit {
   isMultiple: boolean;
 
   @Input()
+  set value(value:any){
+    const selected = this.options.find( option => option.id == value.id);
+    this.selectControl.setValue(selected);
+  };
+
+  @Input()
   selectButtons: SelectButtons = { selectAll: 'Select All', deselectAll: 'Deselect All' };
 
   @Input()
